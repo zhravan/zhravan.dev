@@ -26,7 +26,7 @@ function getNavItems() {
   const items: Array<{ name: string; path: string; icon?: string | null }> = [
     { name: 'Home', path: '/' }
   ];
-  
+
   contentTypes.forEach(ct => {
     items.push({
       name: ct.label,
@@ -34,10 +34,10 @@ function getNavItems() {
       icon: ct.icon
     });
   });
-  
+
   // Add About at the end (static page)
   items.push({ name: 'About', path: '/about' });
-  
+
   return items;
 }
 
@@ -48,12 +48,12 @@ export default function RootLayout({
 }>) {
   const posts = getAllPosts();
   const navItems = getNavItems();
-  
+
   // Load plugin configurations
   const commandPaletteConfig = getCommandPaletteConfig();
   const scrollProgressConfig = getScrollProgressConfig();
   const scrollToTopConfig = getScrollToTopConfig();
-  
+
   // Analytics configuration
   const analyticsConfig = getAnalyticsConfig();
   const analyticsScriptSrc = analyticsConfig ? getAnalyticsScriptSrc(analyticsConfig.provider, analyticsConfig.domain) : '';
@@ -65,7 +65,7 @@ export default function RootLayout({
         <ThemeStyleTag />
       </head>
       <body className="antialiased">
-        <Analytics 
+        <Analytics
           config={analyticsConfig}
           scriptSrc={analyticsScriptSrc}
           scriptAttrs={analyticsScriptAttrs}
@@ -73,7 +73,7 @@ export default function RootLayout({
         <ThemeProvider>
           <div className="min-h-screen" style={{ backgroundColor: 'var(--color-background)' }}>
             {scrollProgressConfig && (
-              <ScrollProgress 
+              <ScrollProgress
                 position={scrollProgressConfig.position}
                 height={scrollProgressConfig.height}
               />
@@ -83,7 +83,7 @@ export default function RootLayout({
                 <div className="flex flex-wrap items-center gap-3 sm:gap-6">
                   {navItems.map((item) => (
                     <NavLink key={item.path} href={item.path}>
-                      {item.name}
+                      {"/ "} {item.name}
                     </NavLink>
                   ))}
                 </div>
@@ -93,19 +93,19 @@ export default function RootLayout({
             <footer className="mt-24">
               <div className="max-w-2xl mx-auto px-4 sm:px-8 py-6 sm:py-8">
                 <p className="text-xs" style={{ color: 'var(--color-muted-foreground)' }}>
-                  © {new Date().getFullYear()}
+                  © {new Date().getFullYear()} @zhravan
                 </p>
               </div>
             </footer>
             {scrollToTopConfig && (
-              <ScrollToTop 
+              <ScrollToTop
                 showAfter={scrollToTopConfig.showAfter}
                 position={scrollToTopConfig.position}
                 smooth={scrollToTopConfig.smooth}
               />
             )}
             {commandPaletteConfig && (
-              <CommandPaletteWithButton 
+              <CommandPaletteWithButton
                 posts={posts}
                 fuzzyThreshold={commandPaletteConfig.fuzzyThreshold}
                 showPages={commandPaletteConfig.showPages}

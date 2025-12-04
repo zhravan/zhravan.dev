@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/zhravan/zen-mdx-blog"><img src="app/favicon.ico" alt="zen blogs"  align="center" width="25%" /></a>
+  <a href="https://github.com/zhravan/zen-mdx-blog"><img src="app/favicon.ico" alt="shravan blog"  align="center" width="25%" /></a>
 </p>
 
 <p align="center">

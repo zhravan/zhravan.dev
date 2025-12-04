@@ -67,8 +67,8 @@ export default function Work() {
 
       <section>
         <p className="" style={{ color: 'var(--color-muted-foreground)' }}>
-          You can find more of my work on{' '}
-          <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+          You can find more of my experiments and tools on{' '}
+          <a href="https://github.com/zhravan" target="_blank" rel="noopener noreferrer">
             GitHub
           </a>
           .

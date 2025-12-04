@@ -199,7 +199,9 @@ export const CommandPalette = forwardRef<CommandPaletteHandle, CommandPalettePro
                   aria-label={`${item.title}, ${item.type === 'page' ? 'Page' : 'Post'}`}
                 >
                   <div className="flex items-center justify-between gap-2">
-                    <span>{item.title}</span>
+                    <span>
+                      {item.type === 'page' ? item.path : item.title}
+                    </span>
                     <span
                       className="text-xs opacity-70"
                       style={{ color: 'var(--color-muted-foreground)' }}

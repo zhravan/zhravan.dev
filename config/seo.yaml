@@ -1,18 +1,18 @@
 # Site-wide SEO configuration
 # Update these values to change global metadata without touching code.
 
-siteUrl: "https://example.com"
+siteUrl: "https://zhravan.dev"
 
 # Default <title> and template for pages
 # If titleTemplate is omitted, it falls back to "%s | <title>"
 
-title: "Your Name"
+title: "zhravan"
 
-titleTemplate: "%s | Your Name"
+titleTemplate: "%s | zhravan"
 
 # Default description used across the site
 
-description: "Engineer, writer, and creator."
+description: "tinkerer, polymathic indie computer scientist, systems engineer, and data-science aficionado."
 
 openGraph:
   type: "website"
@@ -22,6 +22,5 @@ openGraph:
 
 twitter:
   card: "summary_large_image"
-  # Optional: your @handle
-  # site: "@yourhandle"
-  # creator: "@yourhandle"
+  site: "@zhravan"
+  creator: "@zhravan"

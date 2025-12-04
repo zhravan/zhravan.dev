@@ -1,8 +1,10 @@
 import type { ThemeName } from "./themes";
 
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://example.com";
-export const SITE_TITLE = "Your Name";
-export const SITE_DESCRIPTION = "Engineer, writer, and creator.";
+export const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://zhravan.dev";
+export const SITE_TITLE = "zhravan";
+export const SITE_DESCRIPTION =
+  "tinkerer, polymathic indie computer scientist, systems engineer, data-science aficionado, i write at times.";
 
 /**
  * Theme Configuration
@@ -68,4 +70,4 @@ export const SITE_DESCRIPTION = "Engineer, writer, and creator.";
  * - 'everforest-light'  - Everforest Light
  * - 'material-lighter'  - Material Lighter
  */
-export const ACTIVE_THEME: ThemeName = "noctis";
+export const ACTIVE_THEME: ThemeName = "panda";

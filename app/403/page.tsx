@@ -37,7 +37,7 @@ export default function ForbiddenPage() {
             className="text-sm leading-relaxed"
             style={{ color: 'var(--color-muted-foreground)' }}
           >
-            This draft requires a preview token.
+            Access denied. This area is reserved for draft content.
           </p>
           
           {/* Simple Navigation */}

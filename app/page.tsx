@@ -4,22 +4,21 @@ export default function Home() {
   return (
     <div className="space-y-6 text-xxs">
       <section className="animate-fade-in">
-        <h1 className="text-sm mb-4">Your Name</h1>
+        <h1 className="text-sm mb-4">Shravan Kumar B</h1>
         <div className="prose space-y-3">
           <p style={{ color: 'var(--color-muted-foreground)' }}>
-            I am a developer and writer. I work on building tools that make
-            technology more accessible and enjoyable to use. I have been coding
-            for over a decade and teaching for half that time.
+            I am tinkerer, polymathic indie computer scientist, systems engineer, and data-science aficionado. I build systems that make life simpler for developers, teams, and curious humans.
           </p>
           <p style={{ color: 'var(--color-muted-foreground)' }}>
-            My life's work is to make technology easy to understand and
-            interesting to learn about. When I am not writing code, I am writing
-            essays about it.
+            I work on problems that are interesting, challenging, and have real-world impact. I enjoy optimization challenges, resilient system design, clever abstractions, and performance focused engineering.
+          </p>
+          <p style={{ color: 'var(--color-muted-foreground)' }}>
+            In my leisure time, I enjoy exploring ideas - scientific, philosophical, or just strange enough to be interesting. I like gardening, introspection, and discovering how people learn, build, and collaborate.
           </p>
         </div>
       </section>
 
-      <section className="animate-fade-up" style={{ animationDelay: '100ms' }}>
+      {/* <section className="animate-fade-up" style={{ animationDelay: '100ms' }}>
         <h2 className="text-sm mb-2">Featured Essays</h2>
         <ul className="space-y-1">
           <li>
@@ -41,14 +40,12 @@ export default function Home() {
             </Link>
           </li>
         </ul>
-      </section>
+      </section> */}
 
       <section className="animate-fade-up" style={{ animationDelay: '200ms' }}>
         <p className="" style={{ color: 'var(--color-muted-foreground)' }}>
           You can <Link href="/blog">read my writing</Link>, check out my{' '}
-          <Link href="/work">projects</Link>, or{' '}
-          <Link href="/about">learn more about me</Link>. I am always interested
-          in connecting with fellow developers and creators.
+          <Link href="/work">projects</Link>, or <Link href="/about">learn more about me</Link>. I am always interested in connecting with fellow developers and creators.
         </p>
       </section>
     </div>

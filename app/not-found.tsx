@@ -5,7 +5,7 @@ export default function NotFound() {
                 <p className="text-xs mb-2" style={{ color: 'var(--color-muted-foreground)' }}>
                     404
                 </p>
-                <h1 className="text-sm mb-3">This page wandered off.</h1>
+                <h1 className="text-sm mb-3">This page has wandered off into the unknown. Try heading back home.</h1>
                 <p className="text-xs mb-6" style={{ color: 'var(--color-muted-foreground)' }}>
                     &gt; request not found
                     <span className="inline-block w-2 h-[1em] align-text-bottom ml-[2px] caret-blink" aria-hidden />
