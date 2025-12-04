@@ -69,9 +69,8 @@ export function MobileNav({ items }: MobileNavProps) {
 
       {/* Side Drawer */}
       <div
-        className={`md:hidden fixed top-0 left-0 h-full w-64 z-50 transition-transform duration-300 ease-in-out ${
-          isOpen ? 'translate-x-0' : '-translate-x-full'
-        }`}
+        className={`md:hidden fixed top-0 left-0 h-full w-64 z-50 transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : '-translate-x-full'
+          }`}
         style={{
           backgroundColor: 'var(--color-background)',
           borderRight: '1px solid var(--color-border)',
@@ -80,7 +79,7 @@ export function MobileNav({ items }: MobileNavProps) {
         <div className="flex flex-col h-full">
           {/* Header */}
           <div className="flex items-center justify-between p-4 border-b" style={{ borderColor: 'var(--color-border)' }}>
-            <span className="text-xs font-medium">Menu</span>
+            <span className="text-xs font-medium">zhravan.dev</span>
             <button
               onClick={() => setIsOpen(false)}
               className="p-1 transition-opacity hover:opacity-80"

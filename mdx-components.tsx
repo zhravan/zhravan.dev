@@ -5,6 +5,7 @@ import { UnorderedList, OrderedList, ListItem } from '@/components/mdx/List';
 import { InlineCode, Pre } from '@/components/mdx/Code';
 import { ExternalLink } from '@/components/mdx/ExternalLink';
 import { DocumentViewer, PDF, PPT } from '@/components/mdx/DocumentViewer';
+import { Gist } from '@/components/mdx/Gist';
 
 // Allow both sync and async server components
 type MDXComponent = React.ComponentType<any> | ((props: any) => Promise<React.JSX.Element>);
@@ -32,5 +33,7 @@ export function useMDXComponents(): MDXComponents {
     DocumentViewer,
     PDF,
     PPT,
+    // Gist embeds
+    Gist,
   };
 }

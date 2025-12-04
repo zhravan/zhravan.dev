@@ -4,3 +4,4 @@ export { UnorderedList, OrderedList, ListItem } from './List';
 export { InlineCode, Pre } from './Code';
 export { ExternalLink } from './ExternalLink';
 export { DocumentViewer, PDF, PPT } from './DocumentViewer';
+export { Gist } from './Gist';

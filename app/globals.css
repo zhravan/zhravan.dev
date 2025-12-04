@@ -481,3 +481,95 @@ pre.shiki::-webkit-scrollbar-thumb {
   }
 }
 
+/* GitHub Gist Styling */
+.gist-wrapper {
+  margin: 1.5rem 0;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  background: var(--color-card);
+}
+
+.gist-wrapper .gist {
+  margin: 0;
+}
+
+.gist-wrapper .gist .gist-file {
+  border: none;
+  border-radius: 0;
+  margin: 0;
+}
+
+.gist-wrapper .gist .gist-data {
+  background: var(--color-card) !important;
+  border-bottom: 1px solid var(--color-border);
+  border-radius: 0;
+}
+
+.gist-wrapper .gist .gist-meta {
+  background: var(--color-muted) !important;
+  color: var(--color-muted-foreground);
+  border-top: 1px solid var(--color-border);
+  padding: 0.5rem 1rem;
+  border-radius: 0;
+  font-size: 0.75rem;
+}
+
+.gist-wrapper .gist .gist-meta a {
+  color: var(--color-link);
+}
+
+.gist-wrapper .gist .gist-meta a:hover {
+  color: var(--color-link-hover);
+}
+
+.gist-wrapper .gist table {
+  margin: 0;
+  border-spacing: 0;
+}
+
+.gist-wrapper .gist .blob-wrapper {
+  border-radius: 0;
+  overflow: auto;
+}
+
+.gist-wrapper .gist .blob-num {
+  color: var(--color-muted-foreground);
+  background: var(--color-muted);
+  border-right: 1px solid var(--color-border);
+  padding: 0 0.75rem;
+  min-width: 3rem;
+  text-align: right;
+  user-select: none;
+}
+
+.gist-wrapper .gist .blob-code {
+  padding: 0 1rem;
+  background: var(--color-card);
+  color: var(--color-foreground);
+}
+
+.gist-wrapper .gist .blob-code-inner {
+  color: var(--color-foreground);
+  font-family: var(--code-font-family);
+  font-size: var(--code-font-size);
+  line-height: 1.5;
+}
+
+/* Ensure gist iframe has proper styling */
+.gist-wrapper .gist iframe {
+  border: none;
+  width: 100%;
+}
+
+/* Dark mode adjustments for gist syntax highlighting */
+@media (prefers-color-scheme: dark) {
+  .gist-wrapper .gist .blob-num {
+    background: var(--color-muted);
+  }
+  
+  .gist-wrapper .gist .blob-code {
+    background: var(--color-card);
+  }
+}
+
