@@ -11,62 +11,50 @@ export const metadata = pageMetadata;
 
 export default function Work() {
   const projects = getProjects();
+
   return (
     <div className="space-y-6 text-xxs">
       <PageHeader metadata={pageMetadata} />
 
-      <section>
-        <div className="space-y-6">
-          {projects.map((project, index) => (
-            <article
-              key={project.title}
-              className="space-y-1 animate-fade-up group"
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              <div className="flex items-baseline justify-between gap-4">
-                <h2
-                  className="transition-opacity group-hover:opacity-80"
-                  style={{ color: 'var(--color-foreground)' }}
-                >
-                  {project.title}
-                </h2>
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-shrink-0 no-underline border-none pb-0 transition-colors hover:opacity-80"
-                  style={{ color: 'var(--color-muted-foreground)' }}
-                  aria-label={`View ${project.title} on GitHub`}
-                >
-                  <ExternalLink className="w-3 h-3" />
-                </a>
-              </div>
-              <p className="leading-relaxed" style={{ color: 'var(--color-muted-foreground)' }}>
-                {project.description}
-              </p>
-              {project.tech.length > 0 && (
-                <div className="flex flex-wrap gap-1">
-                  {project.tech.map((tech) => (
-                    <span
-                      key={tech}
-                      className="rounded-[3px] border px-1.5 py-[1px]"
-                      style={{
-                        borderColor: 'var(--color-border)',
-                        color: 'var(--color-muted-foreground)'
-                      }}
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        {projects.map((project) => (
+          <a
+            key={project.title}
+            href={project.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="project-card"
+          >
+            <div className="flex items-start justify-between gap-2 mb-1.5">
+              <h3 className="project-title">
+                {project.title}
+                <ExternalLink className="project-icon" />
+              </h3>
+              {project.period && (
+                <span className="project-period">{project.period}</span>
               )}
-            </article>
-          ))}
-        </div>
-      </section>
+            </div>
+            {project.description && (
+              <p className="project-description">{project.description}</p>
+            )}
+            <div className="project-tech">
+              {project.tech && project.tech.map((tech) => (
+                <span key={tech} className="tech-badge">
+                  {tech}
+                </span>
+              ))}
+            </div>
+            {project.roles && project.roles.length > 0 && (
+              <div className="project-roles">
+                {project.roles.join(', ')}
+              </div>
+            )}
+          </a>
+        ))}
+      </div>
 
-      <section>
-        <p className="" style={{ color: 'var(--color-muted-foreground)' }}>
+      <section className="pt-4">
+        <p style={{ color: 'var(--color-muted-foreground)' }}>
           You can find more of my experiments and tools on{' '}
           <a href="https://github.com/zhravan" target="_blank" rel="noopener noreferrer">
             GitHub

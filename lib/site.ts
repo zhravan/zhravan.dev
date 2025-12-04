@@ -70,4 +70,4 @@ export const SITE_DESCRIPTION =
  * - 'everforest-light'  - Everforest Light
  * - 'material-lighter'  - Material Lighter
  */
-export const ACTIVE_THEME: ThemeName = "panda";
+export const ACTIVE_THEME: ThemeName = "noctis";

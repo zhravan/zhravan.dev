@@ -1,7 +1,7 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { Space_Grotesk } from 'next/font/google';
-import { NavLink } from '@/components/navigation';
+import { NavLink, MobileNav } from '@/components/navigation';
 import { ScrollToTop } from '@/components/ScrollToTop';
 import { CommandPaletteWithButton } from '@/components/CommandPaletteWithButton';
 import { ScrollProgress } from '@/components/ScrollProgress';
@@ -80,12 +80,17 @@ export default function RootLayout({
             )}
             <nav>
               <div className="max-w-2xl mx-auto px-4 sm:px-8 py-6 sm:py-8">
-                <div className="flex flex-wrap items-center gap-3 sm:gap-6">
+                {/* Desktop Navigation */}
+                <div className="hidden md:flex flex-wrap items-center gap-3 sm:gap-6">
                   {navItems.map((item) => (
                     <NavLink key={item.path} href={item.path}>
                       {"/ "} {item.name}
                     </NavLink>
                   ))}
+                </div>
+                {/* Mobile Navigation */}
+                <div className="md:hidden flex items-center justify-start">
+                  <MobileNav items={navItems} />
                 </div>
               </div>
             </nav>
@@ -93,7 +98,7 @@ export default function RootLayout({
             <footer className="mt-24">
               <div className="max-w-2xl mx-auto px-4 sm:px-8 py-6 sm:py-8">
                 <p className="text-xs" style={{ color: 'var(--color-muted-foreground)' }}>
-                  © {new Date().getFullYear()} @zhravan
+                  © {new Date().getFullYear()} • zhravan
                 </p>
               </div>
             </footer>
