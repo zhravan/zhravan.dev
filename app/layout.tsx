@@ -1,5 +1,5 @@
 import './globals.css';
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Space_Grotesk } from 'next/font/google';
 import { NavLink, MobileNav } from '@/components/navigation';
 import { ScrollToTop } from '@/components/ScrollToTop';
@@ -10,7 +10,7 @@ import ThemeStyleTag from '@/components/ThemeStyleTag';
 import { Analytics } from '@/components/Analytics';
 import { CustomCursor } from '@/components/CustomCursor';
 import { getAllPosts } from '@/lib/blog';
-import { getDefaultMetadata, getWebsiteStructuredData, getPersonStructuredData } from '@/lib/seo';
+import { getDefaultMetadata, getDefaultViewport, getWebsiteStructuredData, getPersonStructuredData } from '@/lib/seo';
 import { StructuredData } from '@/components/StructuredData';
 import { getCommandPaletteConfig } from '@/lib/plugins/command-palette';
 import { getScrollProgressConfig } from '@/lib/plugins/scroll-progress';
@@ -21,6 +21,7 @@ import { getNavigationContentTypes } from '@/lib/content-types';
 const spaceGrotesk = Space_Grotesk({ subsets: ['latin'] });
 
 export const metadata: Metadata = getDefaultMetadata();
+export const viewport: Viewport = getDefaultViewport();
 
 // Build navigation items dynamically from content types
 function getNavItems() {

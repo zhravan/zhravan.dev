@@ -16,6 +16,16 @@ description: "tinkerer, polymathic indie computer scientist, systems engineer, a
 
 # Keywords for SEO (optional)
 keywords:
+  - "open source"
+  - "foss"
+  - "free and open source software"
+  - "free software"
+  - "open source software"
+  - "open source projects"
+  - "open source contributions"
+  - "open source community"
+  - "open source development"
+  - "open source projects"
   - "software engineering"
   - "systems engineering"
   - "backend development"
@@ -30,6 +40,10 @@ keywords:
 author:
   name: "Shravan Kumar B"
   url: "https://zhravan.dev"
+
+# PWA Theme Colors (optional)
+# themeColor: "#000000"  # Theme color for browser UI
+# backgroundColor: "#ffffff"  # Background color for splash screen
 
 openGraph:
   type: "website"

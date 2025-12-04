@@ -1,0 +1,29 @@
+{
+  "name": "zhravan - Shravan Kumar B",
+  "short_name": "zhravan",
+  "description": "tinkerer, polymathic indie computer scientist, systems engineer, and data-science aficionado.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/assets/zhravan.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/og/zhravan.png",
+      "sizes": "1200x630",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "categories": ["blog", "portfolio", "education", "foss", "open source", "oss"],
+  "lang": "en-US",
+  "dir": "ltr"
+}
+

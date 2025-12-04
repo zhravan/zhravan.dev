@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import YAML from 'yaml';
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 
 export interface StructuredData {
   '@context': string;
@@ -23,6 +23,8 @@ interface YamlSEOConfig {
     name?: string;
     url?: string;
   };
+  themeColor?: string;
+  backgroundColor?: string;
   openGraph?: {
     type?: OGType;
     image?: string;
@@ -64,6 +66,8 @@ export function loadSeoConfig(): YamlSEOConfig {
     description: data?.description || 'Engineer, writer, and creator.',
     keywords: data?.keywords,
     author: data?.author,
+    themeColor: data?.themeColor,
+    backgroundColor: data?.backgroundColor,
     openGraph: {
       type: data?.openGraph?.type || 'website',
       image: data?.openGraph?.image,
@@ -117,11 +121,6 @@ export function getDefaultMetadata(): Metadata {
       description: cfg.description,
       images: ogImages as any
     },
-    viewport: {
-      width: 'device-width',
-      initialScale: 1,
-      maximumScale: 5
-    },
     robots: {
       index: true,
       follow: true,
@@ -132,8 +131,37 @@ export function getDefaultMetadata(): Metadata {
         'max-image-preview': 'large',
         'max-snippet': -1
       }
-    }
+    },
+    manifest: '/manifest.json',
+    icons: {
+      icon: [
+        { url: '/assets/zhravan.png', sizes: '512x512', type: 'image/png' }
+      ],
+      apple: [
+        { url: '/assets/zhravan.png', sizes: '512x512', type: 'image/png' }
+      ]
+    },
+    appleWebApp: {
+      capable: true,
+      statusBarStyle: cfg.themeColor ? 'black-translucent' : 'default',
+      title: cfg.title
+    },
+    other: cfg.backgroundColor ? {
+      'msapplication-TileColor': cfg.backgroundColor
+    } : undefined
   } satisfies Metadata;
+}
+
+export function getDefaultViewport(): Viewport {
+  const cfg = loadSeoConfig();
+  
+  return {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 5,
+    themeColor: cfg.themeColor || '#000000',
+    colorScheme: 'light dark'
+  };
 }
 
 export function getPostMetadata({
