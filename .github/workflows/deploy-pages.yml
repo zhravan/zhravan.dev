@@ -44,8 +44,13 @@ jobs:
         id: pages
         run: |
           REPO="${GITHUB_REPOSITORY#*/}"
-          if [ "$REPO" = "${GITHUB_ACTOR}.github.io" ]; then
-            echo "base=/" >> $GITHUB_OUTPUT
+          # Check if custom domain is configured (CNAME file exists)
+          if [ -f public/CNAME ]; then
+            CUSTOM_DOMAIN=$(cat public/CNAME | tr -d '[:space:]')
+            echo "base=" >> $GITHUB_OUTPUT
+            echo "site=https://${CUSTOM_DOMAIN}" >> $GITHUB_OUTPUT
+          elif [ "$REPO" = "${GITHUB_ACTOR}.github.io" ]; then
+            echo "base=" >> $GITHUB_OUTPUT
             echo "site=https://${GITHUB_ACTOR}.github.io" >> $GITHUB_OUTPUT
           else
             echo "base=/$REPO" >> $GITHUB_OUTPUT

@@ -2,7 +2,9 @@ import type { NextConfig } from 'next';
 import createMDX from '@next/mdx';
 
 // Allow overriding basePath/assetPrefix in CI for GitHub Pages deploys
-const basePath = process.env.NEXT_BASE_PATH || undefined;
+// Empty string means no basePath (for custom domains or user.github.io)
+const basePathEnv = process.env.NEXT_BASE_PATH;
+const basePath = basePathEnv && basePathEnv !== '/' && basePathEnv.trim() !== '' ? basePathEnv : undefined;
 
 const nextConfig: NextConfig = {
   pageExtensions: ['mdx', 'ts', 'tsx'],
