@@ -1,7 +1,8 @@
 import { notFound } from 'next/navigation';
 import { getPostBySlug, getAllPosts } from '@/lib/blog';
-import { getPostMetadata } from '@/lib/seo';
+import { getPostMetadata, getArticleStructuredData } from '@/lib/seo';
 import { BackLink } from '@/components/navigation';
+import { StructuredData } from '@/components/StructuredData';
 import { getPluginConfig } from '@/lib/plugins/registry';
 import { Giscus } from '@/lib/plugins';
 import { getReadingTimeForPost } from '@/lib/plugins/reading-time';
@@ -45,7 +46,9 @@ export async function generateMetadata({
   return getPostMetadata({
     title: post.title,
     description: post.description,
-    slug
+    slug,
+    date: post.date,
+    tags: post.tags
   });
 }
 
@@ -88,8 +91,17 @@ export default async function BlogPost({
   // Generate share URL
   const shareUrl = getPostShareUrl(slug);
 
+  const structuredData = getArticleStructuredData({
+    title: post.title,
+    description: post.description,
+    slug,
+    date: post.date,
+    tags: post.tags
+  });
+
   return (
     <Suspense fallback={<div>Loading...</div>}>
+      <StructuredData data={structuredData} />
       <DraftPreviewGate 
         isDraft={isDraft(post)} 
         previewToken={draftsConfig?.previewToken || ''}

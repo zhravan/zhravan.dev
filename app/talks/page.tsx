@@ -2,13 +2,16 @@ import { getContentTypeById } from '@/lib/content-types';
 import { getContentForType } from '@/lib/content';
 import { filterDrafts } from '@/lib/plugins/drafts';
 import { ContentListing } from '@/components/ContentListing';
+import { getPageMetadata } from '@/lib/seo';
+import type { Metadata } from 'next';
 
-export async function generateMetadata() {
+export async function generateMetadata(): Promise<Metadata> {
   const contentType = getContentTypeById('talks');
-  return {
+  return getPageMetadata({
     title: contentType?.label || 'Tech Talks',
-    description: contentType?.description || 'Presentations and speaking engagements'
-  };
+    description: contentType?.description || 'Presentations and speaking engagements',
+    path: '/talks'
+  });
 }
 
 export default function TalksPage() {

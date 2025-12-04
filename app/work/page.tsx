@@ -1,13 +1,19 @@
 import { getProjects } from '@/lib/projects';
 import { PageHeader } from '@/components/PageHeader';
 import { ProjectDescription } from '@/components/ProjectDescription';
+import { getPageMetadata } from '@/lib/seo';
+import type { Metadata } from 'next';
 
 const pageMetadata = {
   title: 'Work',
   description: 'A selection of projects I have built and contributed to.'
 };
 
-export const metadata = pageMetadata;
+export const metadata: Metadata = getPageMetadata({
+  title: pageMetadata.title,
+  description: pageMetadata.description,
+  path: '/work'
+});
 
 export default function Work() {
   const projects = getProjects();

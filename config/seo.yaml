@@ -14,10 +14,27 @@ titleTemplate: "%s | zhravan"
 
 description: "tinkerer, polymathic indie computer scientist, systems engineer, and data-science aficionado."
 
+# Keywords for SEO (optional)
+keywords:
+  - "software engineering"
+  - "systems engineering"
+  - "backend development"
+  - "distributed systems"
+  - "developer tools"
+  - "data science"
+  - "AI engineering"
+  - "platform engineering"
+  - "indie development"
+
+# Author information
+author:
+  name: "Shravan Kumar B"
+  url: "https://zhravan.dev"
+
 openGraph:
   type: "website"
   # Optional: path to a default OG image. Provide an absolute URL or a path under public/
-  # image: "/og.png"
+  image: "/images/og/zhravan.png"
   locale: "en_US"
 
 twitter:

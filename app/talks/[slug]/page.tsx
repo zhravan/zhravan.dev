@@ -5,6 +5,9 @@ import { getContentForType, getContentBySlug } from '@/lib/content';
 import { filterDrafts } from '@/lib/plugins/drafts';
 import { DraftPreviewGate } from '@/components/DraftPreviewGate';
 import { getPluginConfig } from '@/lib/plugins/registry';
+import { getPostMetadata, getArticleStructuredData } from '@/lib/seo';
+import { StructuredData } from '@/components/StructuredData';
+import type { Metadata } from 'next';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -22,19 +25,30 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: PageProps) {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const contentType = getContentTypeById('talks');
   
-  if (!contentType) return {};
+  if (!contentType) {
+    return {
+      title: 'Talk Not Found'
+    };
+  }
   
   const item = getContentBySlug(contentType, slug);
-  if (!item) return {};
+  if (!item) {
+    return {
+      title: 'Talk Not Found'
+    };
+  }
 
-  return {
+  return getPostMetadata({
     title: item.title,
-    description: item.description
-  };
+    description: item.description,
+    slug: `${contentType.path}/${slug}`,
+    date: item.date,
+    tags: item.tags
+  });
 }
 
 export default async function TalksPost({ params }: PageProps) {
@@ -60,8 +74,18 @@ export default async function TalksPost({ params }: PageProps) {
 
   const draftsConfig = getPluginConfig<{ enabled: boolean; previewToken: string }>('drafts');
 
+  const structuredData = getArticleStructuredData({
+    title: item.title,
+    description: item.description,
+    slug: `${contentType.path}/${item.slug}`,
+    date: item.date,
+    tags: item.tags
+  });
+
   return (
-    <Suspense fallback={
+    <>
+      <StructuredData data={structuredData} />
+      <Suspense fallback={
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center space-y-4">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 dark:border-gray-100 mx-auto"></div>
@@ -108,5 +132,6 @@ export default async function TalksPost({ params }: PageProps) {
         </article>
       </DraftPreviewGate>
     </Suspense>
+    </>
   );
 }

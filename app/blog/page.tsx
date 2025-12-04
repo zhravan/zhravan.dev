@@ -2,13 +2,19 @@ import Link from 'next/link';
 import { getAllPosts } from '@/lib/blog';
 import { filterDrafts } from '@/lib/plugins/drafts';
 import { PageHeader } from '@/components/PageHeader';
+import { getPageMetadata } from '@/lib/seo';
+import type { Metadata } from 'next';
 
 const pageMetadata = {
   title: 'Blog',
   description: 'Thoughts on technology, development, and building products.'
 };
 
-export const metadata = pageMetadata;
+export const metadata: Metadata = getPageMetadata({
+  title: pageMetadata.title,
+  description: pageMetadata.description,
+  path: '/blog'
+});
 
 export default function Blog() {
   const allPosts = getAllPosts();

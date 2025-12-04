@@ -1,4 +1,8 @@
 import Link from 'next/link';
+import { getDefaultMetadata } from '@/lib/seo';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = getDefaultMetadata();
 
 export default function Home() {
   return (

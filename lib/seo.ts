@@ -3,6 +3,12 @@ import path from 'path';
 import YAML from 'yaml';
 import type { Metadata } from 'next';
 
+export interface StructuredData {
+  '@context': string;
+  '@type': string;
+  [key: string]: any;
+}
+
 type TwitterCard = 'summary' | 'summary_large_image' | 'app' | 'player';
 
 type OGType = 'website' | 'article' | 'book' | 'profile' | 'music.song' | 'music.album' | 'music.playlist' | 'music.radio_station' | 'video.movie' | 'video.episode' | 'video.tv_show' | 'video.other';
@@ -12,6 +18,11 @@ interface YamlSEOConfig {
   title: string;
   titleTemplate?: string;
   description: string;
+  keywords?: string[];
+  author?: {
+    name?: string;
+    url?: string;
+  };
   openGraph?: {
     type?: OGType;
     image?: string;
@@ -51,6 +62,8 @@ export function loadSeoConfig(): YamlSEOConfig {
     title: data?.title || 'Your Name',
     titleTemplate: data?.titleTemplate,
     description: data?.description || 'Engineer, writer, and creator.',
+    keywords: data?.keywords,
+    author: data?.author,
     openGraph: {
       type: data?.openGraph?.type || 'website',
       image: data?.openGraph?.image,
@@ -81,13 +94,19 @@ export function getDefaultMetadata(): Metadata {
     metadataBase: new URL(cfg.siteUrl),
     title,
     description: cfg.description,
-    alternates: { canonical: '/' },
+    keywords: cfg.keywords,
+    authors: cfg.author?.name ? [{ name: cfg.author.name, url: cfg.author.url }] : undefined,
+    alternates: { 
+      canonical: '/',
+      languages: { 'en-US': cfg.siteUrl }
+    },
     openGraph: {
       type: (cfg.openGraph?.type || 'website') as OGType,
       locale: cfg.openGraph?.locale,
       title: cfg.title,
       description: cfg.description,
       url: cfg.siteUrl,
+      siteName: cfg.title,
       images: ogImages
     },
     twitter: {
@@ -97,6 +116,22 @@ export function getDefaultMetadata(): Metadata {
       title: cfg.title,
       description: cfg.description,
       images: ogImages as any
+    },
+    viewport: {
+      width: 'device-width',
+      initialScale: 1,
+      maximumScale: 5
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1
+      }
     }
   } satisfies Metadata;
 }
@@ -104,11 +139,19 @@ export function getDefaultMetadata(): Metadata {
 export function getPostMetadata({
   title,
   description,
-  slug
+  slug,
+  date,
+  tags,
+  ogImage,
+  modifiedTime
 }: {
   title: string;
   description: string;
   slug: string;
+  date?: string;
+  tags?: string[];
+  ogImage?: string;
+  modifiedTime?: string;
 }): Metadata {
   const cfg = loadSeoConfig();
   const url = `${cfg.siteUrl}/blog/${slug}`;
@@ -116,21 +159,189 @@ export function getPostMetadata({
     ? { default: cfg.title, template: cfg.titleTemplate.replace('%s', title) }
     : { default: cfg.title, template: `${title} | ${cfg.title}` };
 
+  // Build keywords from tags and default keywords
+  const keywords = tags && tags.length > 0 
+    ? [...(cfg.keywords || []), ...tags]
+    : cfg.keywords;
+
+  // Handle OG image - prefer post-specific, fallback to default
+  const ogImages = ogImage
+    ? [{ url: ogImage.startsWith('http') ? ogImage : `${cfg.siteUrl}${ogImage}` }]
+    : cfg.openGraph?.image
+    ? [{ url: cfg.openGraph.image.startsWith('http') ? cfg.openGraph.image : `${cfg.siteUrl}${cfg.openGraph.image}` }]
+    : undefined;
+
+  // Parse dates for article metadata
+  const publishedTime = date ? new Date(date).toISOString() : undefined;
+  const modifiedTimeISO = modifiedTime ? new Date(modifiedTime).toISOString() : publishedTime;
+
   return {
     metadataBase: new URL(cfg.siteUrl),
     title: pageTitle,
     description,
-    alternates: { canonical: `/blog/${slug}` },
+    keywords,
+    authors: cfg.author?.name ? [{ name: cfg.author.name, url: cfg.author.url }] : undefined,
+    alternates: { 
+      canonical: `/blog/${slug}`,
+      languages: { 'en-US': url }
+    },
     openGraph: {
       type: 'article',
       title,
       description,
-      url
+      url,
+      siteName: cfg.title,
+      locale: cfg.openGraph?.locale,
+      publishedTime,
+      modifiedTime: modifiedTimeISO,
+      authors: cfg.author?.name ? [cfg.author.name] : undefined,
+      tags: tags,
+      images: ogImages
     },
     twitter: {
       card: cfg.twitter?.card || 'summary_large_image',
+      site: cfg.twitter?.site,
+      creator: cfg.twitter?.creator,
       title,
-      description
+      description,
+      images: ogImages as any
+    }
+  } satisfies Metadata;
+}
+
+export function getPersonStructuredData(): StructuredData {
+  const cfg = loadSeoConfig();
+  
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: cfg.author?.name || cfg.title,
+    url: cfg.siteUrl,
+    sameAs: cfg.author?.url ? [cfg.author.url] : undefined
+  };
+}
+
+export function getArticleStructuredData({
+  title,
+  description,
+  slug,
+  date,
+  modifiedTime,
+  tags,
+  ogImage
+}: {
+  title: string;
+  description: string;
+  slug: string;
+  date?: string;
+  modifiedTime?: string;
+  tags?: string[];
+  ogImage?: string;
+}): StructuredData {
+  const cfg = loadSeoConfig();
+  const url = `${cfg.siteUrl}/blog/${slug}`;
+  const publishedTime = date ? new Date(date).toISOString() : undefined;
+  const modifiedTimeISO = modifiedTime ? new Date(modifiedTime).toISOString() : publishedTime;
+
+  const article: StructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: title,
+    description,
+    url,
+    datePublished: publishedTime,
+    dateModified: modifiedTimeISO,
+    author: {
+      '@type': 'Person',
+      name: cfg.author?.name || cfg.title,
+      url: cfg.author?.url || cfg.siteUrl
+    },
+    publisher: {
+      '@type': 'Person',
+      name: cfg.author?.name || cfg.title,
+      url: cfg.siteUrl
+    }
+  };
+
+  if (tags && tags.length > 0) {
+    article.keywords = tags.join(', ');
+  }
+
+  if (ogImage) {
+    const imageUrl = ogImage.startsWith('http') ? ogImage : `${cfg.siteUrl}${ogImage}`;
+    article.image = imageUrl;
+  } else if (cfg.openGraph?.image) {
+    const imageUrl = cfg.openGraph.image.startsWith('http') 
+      ? cfg.openGraph.image 
+      : `${cfg.siteUrl}${cfg.openGraph.image}`;
+    article.image = imageUrl;
+  }
+
+  return article;
+}
+
+export function getWebsiteStructuredData(): StructuredData {
+  const cfg = loadSeoConfig();
+  
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: cfg.title,
+    url: cfg.siteUrl,
+    description: cfg.description,
+    author: {
+      '@type': 'Person',
+      name: cfg.author?.name || cfg.title,
+      url: cfg.author?.url || cfg.siteUrl
+    }
+  };
+}
+
+export function getPageMetadata({
+  title,
+  description,
+  path
+}: {
+  title: string;
+  description: string;
+  path: string;
+}): Metadata {
+  const cfg = loadSeoConfig();
+  const url = `${cfg.siteUrl}${path}`;
+  const pageTitle: Metadata['title'] = cfg.titleTemplate
+    ? { default: cfg.title, template: cfg.titleTemplate.replace('%s', title) }
+    : { default: cfg.title, template: `${title} | ${cfg.title}` };
+
+  const ogImages = cfg.openGraph?.image
+    ? [{ url: cfg.openGraph.image.startsWith('http') ? cfg.openGraph.image : `${cfg.siteUrl}${cfg.openGraph.image}` }]
+    : undefined;
+
+  return {
+    metadataBase: new URL(cfg.siteUrl),
+    title: pageTitle,
+    description,
+    keywords: cfg.keywords,
+    authors: cfg.author?.name ? [{ name: cfg.author.name, url: cfg.author.url }] : undefined,
+    alternates: {
+      canonical: path,
+      languages: { 'en-US': url }
+    },
+    openGraph: {
+      type: (cfg.openGraph?.type || 'website') as OGType,
+      locale: cfg.openGraph?.locale,
+      title,
+      description,
+      url,
+      siteName: cfg.title,
+      images: ogImages
+    },
+    twitter: {
+      card: cfg.twitter?.card || 'summary_large_image',
+      site: cfg.twitter?.site,
+      creator: cfg.twitter?.creator,
+      title,
+      description,
+      images: ogImages as any
     }
   } satisfies Metadata;
 }

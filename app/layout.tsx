@@ -10,7 +10,8 @@ import ThemeStyleTag from '@/components/ThemeStyleTag';
 import { Analytics } from '@/components/Analytics';
 import { CustomCursor } from '@/components/CustomCursor';
 import { getAllPosts } from '@/lib/blog';
-import { getDefaultMetadata } from '@/lib/seo';
+import { getDefaultMetadata, getWebsiteStructuredData, getPersonStructuredData } from '@/lib/seo';
+import { StructuredData } from '@/components/StructuredData';
 import { getCommandPaletteConfig } from '@/lib/plugins/command-palette';
 import { getScrollProgressConfig } from '@/lib/plugins/scroll-progress';
 import { getScrollToTopConfig } from '@/lib/plugins/scroll-to-top';
@@ -60,10 +61,14 @@ export default function RootLayout({
   const analyticsScriptSrc = analyticsConfig ? getAnalyticsScriptSrc(analyticsConfig.provider, analyticsConfig.domain) : '';
   const analyticsScriptAttrs = analyticsConfig ? getAnalyticsScriptAttrs(analyticsConfig) : {};
 
+  const websiteStructuredData = getWebsiteStructuredData();
+  const personStructuredData = getPersonStructuredData();
+
   return (
     <html lang="en" className={spaceGrotesk.className}>
       <head>
         <ThemeStyleTag />
+        <StructuredData data={[websiteStructuredData, personStructuredData]} />
       </head>
       <body className="antialiased">
         <CustomCursor />

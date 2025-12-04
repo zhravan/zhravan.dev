@@ -1,11 +1,17 @@
 import { PageHeader } from '@/components/PageHeader';
+import { getPageMetadata } from '@/lib/seo';
+import type { Metadata } from 'next';
 
 const pageMetadata = {
   title: 'About',
   description: 'Learn more about me and what I do.'
 };
 
-export const metadata = pageMetadata;
+export const metadata: Metadata = getPageMetadata({
+  title: pageMetadata.title,
+  description: pageMetadata.description,
+  path: '/about'
+});
 
 export default function About() {
   return (
