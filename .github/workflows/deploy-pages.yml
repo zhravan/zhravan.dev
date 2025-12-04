@@ -61,6 +61,10 @@ jobs:
           pnpm run build
           # Static export is produced in ./out when output: 'export' is set in next.config.ts
           touch out/.nojekyll
+          # Ensure CNAME file is copied to out directory for custom domain
+          if [ -f public/CNAME ]; then
+            cp public/CNAME out/CNAME
+          fi
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
