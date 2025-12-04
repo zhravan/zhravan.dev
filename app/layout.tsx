@@ -8,6 +8,7 @@ import { ScrollProgress } from '@/components/ScrollProgress';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import ThemeStyleTag from '@/components/ThemeStyleTag';
 import { Analytics } from '@/components/Analytics';
+import { CustomCursor } from '@/components/CustomCursor';
 import { getAllPosts } from '@/lib/blog';
 import { getDefaultMetadata } from '@/lib/seo';
 import { getCommandPaletteConfig } from '@/lib/plugins/command-palette';
@@ -65,6 +66,7 @@ export default function RootLayout({
         <ThemeStyleTag />
       </head>
       <body className="antialiased">
+        <CustomCursor />
         <Analytics
           config={analyticsConfig}
           scriptSrc={analyticsScriptSrc}
