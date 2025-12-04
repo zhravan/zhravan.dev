@@ -1,6 +1,6 @@
-import { ExternalLink } from 'lucide-react';
 import { getProjects } from '@/lib/projects';
 import { PageHeader } from '@/components/PageHeader';
+import { ProjectDescription } from '@/components/ProjectDescription';
 
 const pageMetadata = {
   title: 'Work',
@@ -28,14 +28,13 @@ export default function Work() {
             <div className="flex items-start justify-between gap-2 mb-1.5">
               <h3 className="project-title">
                 {project.title}
-                <ExternalLink className="project-icon" />
               </h3>
               {project.period && (
                 <span className="project-period">{project.period}</span>
               )}
             </div>
             {project.description && (
-              <p className="project-description">{project.description}</p>
+              <ProjectDescription description={project.description} />
             )}
             <div className="project-tech">
               {project.tech && project.tech.map((tech) => (

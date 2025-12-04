@@ -1,15 +1,122 @@
 # Projects shown on the Work page
 # Add, remove, or reorder entries as needed.
+# Projects are displayed in order based on the sequence number (lower numbers appear first)
+- title: JSONp
+  sequence: 1
+  description: Multi-tab JSON previewer with tree views, formatting, and diff tool.
+  tech: [JavaScript, HTML, CSS]
+  roles: [Developer]
+  period: Feb 2025 – Present
+  link: https://github.com/zhravan
+
+- title: Gitalytics
+  sequence: 2
+  description: Repository health and development activity insights.
+  tech: [JavaScript, GitHub API]
+  roles: [Developer]
+  period: Mar 2025 – Present
+  link: https://github.com/zhravan
+
+- title: Rsvp2Go
+  sequence: 3
+  description: Self-hosted RSVP system on Cloudflare Workers.
+  tech: [Cloudflare Workers, Cloudflare KV, JavaScript]
+  roles: [Developer]
+  period: Feb 2025 – Feb 2025
+  link: https://github.com/zhravan
+
 - title: Nixopus
-  description: A calm, minimal, self-hosted developer infrastructure platform with terminals, servers, containers, AI chat, apps, metrics, and secure multi-tenancy.
+  sequence: 4
+  description: Self-hosted developer infrastructure platform.
   tech: [Next.js, FastAPI, "SQLite/PostgreSQL", Docker, Redis]
   roles: ["fellow contributor"]
   period: 2024–2025
   link: https://github.com/zhravan
 
 - title: Wappalytic
-  description: A WhatsApp chat analyzer built with Python + Streamlit that turns chats into stories, graphs, insights, and fun analytics.
+  sequence: 5
+  description: WhatsApp chat analyzer with visualizations.
   tech: [Python, Streamlit, Matplotlib]
   roles: [Developer]
   period: 2024–2025
+  link: https://github.com/zhravan
+
+- title: Business Forecasting using Linear Regression
+  sequence: 6
+  description: Sales forecasting model using linear regression in R.
+  tech: [R, Linear Regression, Data Visualization]
+  roles: [Developer]
+  period: Jun 2024 – Jun 2024
+  link: https://github.com/zhravan
+
+- title: Automating Product Photography using Generative AI
+  sequence: 7
+  description: Product photography automation using generative AI.
+  tech: [Python, Stable Diffusion, "Mid Journey", Generative AI]
+  roles: [Developer]
+  period: Feb 2023 – May 2023
+  link: https://github.com/zhravan
+
+- title: Custom Input Types
+  sequence: 8
+  description: NPM package for custom HTML input types.
+  tech: [JavaScript, NPM, HTML]
+  roles: [Developer]
+  period: Mar 2021 – May 2021
+  link: https://github.com/zhravan
+
+- title: GitHub Readme Quotes
+  sequence: 9
+  description: Dynamic quote generator for GitHub README files.
+  tech: [JavaScript, GitHub API, Markdown]
+  roles: [Developer]
+  period: Nov 2020 – Present
+  link: https://github.com/zhravan
+
+- title: Autonomous Garbage Collecting System using Internet of Things
+  sequence: 10
+  description: IoT-based indoor garbage collection robot system.
+  tech: [IoT, Arduino, Sensors, Embedded Systems]
+  roles: [Developer]
+  period: Nov 2018 – May 2019
+  link: https://github.com/zhravan
+
+- title: Internal E Banking Website
+  sequence: 11
+  description: Internal banking web app for money transfers.
+  tech: [Bootstrap, PHP, MySQL]
+  roles: [Developer]
+  period: Oct 2018 – Nov 2018
+  link: https://github.com/zhravan
+
+- title: Online Food Portal Website
+  sequence: 12
+  description: Food ordering portal built with MEAN stack.
+  tech: [Bootstrap, AngularJS, jQuery, Express, MongoDB, "MEAN Stack"]
+  roles: [Developer]
+  period: Jul 2018 – Aug 2018
+  link: https://github.com/zhravan
+
+- title: Smart Garbage Van Tracking and Alert System using IoT
+  sequence: 13
+  description: IoT system for tracking filled garbage bins.
+  tech: [Raspberry Pi, IoT, Android, MIT App Inventor]
+  roles: [Developer]
+  period: Jul 2018 – Aug 2018
+  link: https://github.com/zhravan
+
+- title: Zoo Management Information System
+  sequence: 14
+  description: Zoo management information system.
+  tech: [Bootstrap, PHP, MySQL, XAMPP]
+  roles: [Developer]
+  period: Sep 2017 – Nov 2017
+  link: https://github.com/zhravan
+
+- title: Obstacle Detection and Avoidance Robot
+  sequence: 15
+  description: Arduino-based obstacle avoidance robot.
+  tech: [Arduino, Ultrasonic Sensors, Embedded Systems]
+  roles: [Developer]
+  period: Sep 2017 – Oct 2017
   link: https://github.com/zhravan
