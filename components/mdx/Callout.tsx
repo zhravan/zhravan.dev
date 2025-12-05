@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-type CalloutType = 'note' | 'tip' | 'important' | 'warning' | 'caution';
+type CalloutType = 'note' | 'tip' | 'important' | 'warning' | 'caution' | 'question';
 
 interface CalloutProps {
   type?: CalloutType;
@@ -53,6 +53,15 @@ const calloutStyles: Record<CalloutType, { color: string; icon: ReactNode; title
       </svg>
     ),
     title: 'Caution',
+  },
+  question: {
+    color: '#0ea5e9',
+    icon: (
+      <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
+        <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.92 6.085h.001a.749.749 0 1 1-1.342-.67c.169-.339.436-.701.849-.977C6.845 4.16 7.369 4 8 4a2.756 2.756 0 0 1 1.637.525c.503.377.863.965.863 1.725 0 .448-.115.83-.329 1.15-.205.307-.47.513-.692.662-.109.072-.22.138-.313.195l-.006.004a6.24 6.24 0 0 0-.26.16.952.952 0 0 0-.276.245.75.75 0 0 1-1.248-.832c.184-.264.42-.489.692-.661.103-.067.207-.132.313-.195l.007-.004c.1-.061.182-.118.258-.167a.717.717 0 0 0 .269-.269.52.52 0 0 0 .062-.286c0-.2-.1-.39-.303-.545A1.257 1.257 0 0 0 8 5.5c-.374 0-.653.106-.857.248a.835.835 0 0 0-.23.313ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"/>
+      </svg>
+    ),
+    title: 'Question',
   },
 };
 
@@ -113,6 +122,10 @@ export function Warning({ children }: { children: ReactNode }) {
 
 export function Caution({ children }: { children: ReactNode }) {
   return <Callout type="caution">{children}</Callout>;
+}
+
+export function Question({ children }: { children: ReactNode }) {
+  return <Callout type="question">{children}</Callout>;
 }
 
 // Aliases

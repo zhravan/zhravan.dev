@@ -6,7 +6,7 @@ import { InlineCode, Pre } from '@/components/mdx/Code';
 import { ExternalLink } from '@/components/mdx/ExternalLink';
 import { DocumentViewer, PDF, PPT } from '@/components/mdx/DocumentViewer';
 import { Gist } from '@/components/mdx/Gist';
-import { Callout, Note, Tip, Important, Warning, Caution, Info, Danger } from '@/components/mdx/Callout';
+import { Callout, Note, Tip, Important, Warning, Caution, Question, Info, Danger } from '@/components/mdx/Callout';
 import { Image } from '@/components/mdx/Image';
 
 // Allow both sync and async server components
@@ -44,9 +44,11 @@ export function useMDXComponents(): MDXComponents {
     Important,
     Warning,
     Caution,
+    Question,
     Info,
     Danger,
     // Images (centered)
     img: Image,
+    Image,
   };
 }
