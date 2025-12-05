@@ -7,3 +7,4 @@ export { DocumentViewer, PDF, PPT } from './DocumentViewer';
 export { Gist } from './Gist';
 export { Callout, Note, Tip, Important, Warning, Caution, Question, Info, Danger } from './Callout';
 export { Image } from './Image';
+export { ImageRow, ImageCol } from './ImageRow';
