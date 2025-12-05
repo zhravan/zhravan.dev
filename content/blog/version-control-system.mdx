@@ -1,0 +1,147 @@
+export const frontmatter = {
+  title: "‘Version Control System’: Get a Bit "Git" Culture!",
+  date: "2020-07-15",
+  description:
+    "A beginner-friendly overview of version control systems (VCS), Git, GitHub and core VCS concepts.",
+  tags: ["version-control", "version-control-system", "git", "github", "vcs"],
+};
+
+This post is regarding Version Control System, with explanation of Basic Terminologies of the Versioning System.
+
+# Version Control System: Get a Bit "Git" Culture!!!
+
+![captionless image](https://miro.medium.com/v2/resize:fit:936/format:webp/1*QDejJdxA0oRhqNKKMJMYTg.jpeg)
+
+Git is one of the most powerful tools, I feel I have used during my past learnings in the field of programming. It is one open-source tool that I would recommend any person willing to be in programming or non-programming background profession, to learn. People in the programming field should definitely master the use of this software tool.
+
+Perks of learning and using Git is infinitely useful and invaluable.
+
+In this article, we will be talking a bit about,
+
+- Version Control System
+- Git
+- Github
+
+<Note>
+Other things like How Git works and git commands and so on.
+
+Are you guys ready? Do drop your reviews as well. Since I am a beginner, your reviews would mean a lot. If there’s anything wrong in the below article, please feel free to drop a comment.
+
+</Note>
+
+## Version Control System
+
+Talking about, **_Version Control System (VCS)_** is a tool that is used to keep track and record the changes in the files, by recording/tracking the modification done to that code/any sort of file. It contains all the edits, changes and historical versions as snapshots. It basically doesn’t preserve the complete file.
+Instead, it preserves the image of the file at that point of time when committed.
+
+![Aye, Aye! Developers will definitely understand!](https://miro.medium.com/v2/resize:fit:998/format:webp/1*F6EXpDg4-Vx2qFTbcZZifA.jpeg)
+
+## CVCS vs DVCS
+
+There are two types of VCS, namely,
+
+- _**Centralized VCS**_
+- _**Distributed VCS**_
+
+> **_Note:_** Two terms, you will be reading more often, Repositories, Local Repo and Central Repo.
+> **_Repo_** is a central place where some sort of data is stored and can be found.
+
+Now, going on with **_Central VCS_** is sort of a system that only contains one repo and each user gets their own working directory. Whatever you commit in your working directory, reflects directly to your central repo.
+So basically,
+
+- You change something.
+- You commit.
+- It reflects your Central Repo.
+- These changes reflected in the other User’s system as well.
+
+Whereas, in **_Distributed VCS,_** it works sort of differently in this type. Here, every user has their own **_working directory_**, i.e., the folder you are working/project exists and owns a **_repository_** called as a **_local repo._** And another repo called in your central system, called **_Central Repo/Remote Repo._**
+
+![CVCS v/s DVCS: Which is better??](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*g2yeS33ARslJ9Jg8uZGULQ.png)
+
+Whatever you change, on commit from your working directory will first reflect your local repo. And only once you **_push_** the content from the local repo, it will reflect the Central repo. And that won’t affect another user’s repo, as he needs to **_pull_** that content to have the same content in that user’s local repo and working directory.
+So basically,
+
+- You commit the code to your local repo.
+- You push the content to your central repo from the local repo.
+- The Central repo is updated.
+- Other person pulls the code to reflect the same in their local repo.
+- Other person’s repo updated.
+
+![This is how Git works from your currently working directory to Remote repo and back](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*Ju-X7VzkCnYT7UngdT26Qw.png)
+
+I hope this gives you an ample amount of idea about how the **_Version Control System_** works.
+
+![captionless image](https://miro.medium.com/v2/resize:fit:654/format:webp/1*z4Ct6r8hrL-JQ5i9jaWr0A.png)
+
+Jumping into the mains, What are the **_Git_** and **_Github_**?
+People often misunderstand and have very wrong misconceptions that **_Git_** and **_GitHub_** are one and the same. They are related but are different.
+
+## Git
+
+**_Git_** is a VCS tool that runs in your system and keeps track of versions of your code/content in your local repo and central repo changes as well on the pull.
+Whereas, **_GitHub_** is the service for projects that use Git. In simple terms, GitHub is like a cloud storage system, that preserves the code of different versions; a hosting service for Git repos.
+
+Some alternatives for **_Github_** are:
+
+- GitLab
+- BitBucket
+- GitBucket
+- SourceForge,... so on.
+
+Now jumping into simple usage of Git repo in your local with commands and basic terminologies.
+
+## Commit
+
+What’s _a_ **_commit_**?
+A **_commit_** is a collection of content, that records changes to the local repo. It creates a new commit containing the new changes/additions.
+Example: $git commit -m "some message in some format"
+
+## Master
+
+What’s a **_Master_**?
+The default name for the first branch; always reflected for Deployment; expected to hold the stable code only.
+
+## Branch
+
+What’s a **_Branch_**?
+The pointer to a commit. Basically, if you develop a feature, that can be created in a different branch; since better approach of working with git and also ensures a commit/backup of the code version before this feature is implemented, just in case of some issues.
+
+## Push
+
+What’s a **_Push_**?
+Updates a remote branch with the commits made to the current branch in the local branch; in simplest words, pushing the changes in local to the central repo.
+
+## Merge
+
+What’s a **_Merge_**?
+Taking the changes in one branch and adding them into another branch; usually, the branch that holds the base code. The new commits are usually requested using via "**_Pull Request_**" before merging them.
+
+_For instance_, say the master branch has content ‘XY’.
+Now you and your fellow friend have been asked to develop **feature ‘A’ and ‘B’** respectively.
+So, you create a branch ‘**featureA**’ and implement the code with existing base code ‘XY’, ending up with **‘XYA’** code in ‘**featureA’** branch.
+Now on pull request and merge, with base Master Branch, it will also have code ‘XYA’ code.
+
+## Pull Request
+
+Now, wondering "**_Pull Request_**" is?
+If someone has changed code on a separate branch of the project and wants to review the code before adding it to the branch having stable code. Then you can put the reviewer in a pull request. Pull requests ask the repo collaborators to review the commits and merge the upstream changes. **_Pull Requests_** happens on the **_GitHub._**
+
+## Clone
+
+What is "**_Clone_**"?
+A clone is a process of downloading a complete repo onto your system. Downloads the whole project folder as new content onto the local system.
+
+## Pull
+
+What is "**_Pull_**"?
+A "**_Pull_**" is used to receive data from Github. It basically fetches and merges the changes on the central repo to your local repo and working directory. **_Pull_** happens on the **_Git (local repo)._**
+
+There are so many other jargons related to Git and Github. I wonder, for beginners, these are few things that I know and I hope it helped you get an idea about how Git/VCS works.
+
+There is much more to learn and explore about Git and Github. You can explore several other things. If you want me to write another article about the Git strategies and also about another article about Git modules like Merging, Rebasing, Resetting, Reverting and so on. Drop a comment and share your views.
+
+## Visualize and play with Git
+
+Utilize the [Visualize Git](https://git-school.github.io/visualizing-git/) tool for seeking more insights.
+
+Please play with Git and Github. That is how you learn about Git’s supreme usage.
