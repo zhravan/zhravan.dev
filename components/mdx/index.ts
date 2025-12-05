@@ -5,3 +5,5 @@ export { InlineCode, Pre } from './Code';
 export { ExternalLink } from './ExternalLink';
 export { DocumentViewer, PDF, PPT } from './DocumentViewer';
 export { Gist } from './Gist';
+export { Callout, Note, Tip, Important, Warning, Caution, Info, Danger } from './Callout';
+export { Image } from './Image';

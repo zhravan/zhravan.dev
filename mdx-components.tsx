@@ -6,6 +6,8 @@ import { InlineCode, Pre } from '@/components/mdx/Code';
 import { ExternalLink } from '@/components/mdx/ExternalLink';
 import { DocumentViewer, PDF, PPT } from '@/components/mdx/DocumentViewer';
 import { Gist } from '@/components/mdx/Gist';
+import { Callout, Note, Tip, Important, Warning, Caution, Info, Danger } from '@/components/mdx/Callout';
+import { Image } from '@/components/mdx/Image';
 
 // Allow both sync and async server components
 type MDXComponent = React.ComponentType<any> | ((props: any) => Promise<React.JSX.Element>);
@@ -35,5 +37,16 @@ export function useMDXComponents(): MDXComponents {
     PPT,
     // Gist embeds
     Gist,
+    // Callouts / Admonitions (GitHub-style)
+    Callout,
+    Note,
+    Tip,
+    Important,
+    Warning,
+    Caution,
+    Info,
+    Danger,
+    // Images (centered)
+    img: Image,
   };
 }
