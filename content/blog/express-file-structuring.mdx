@@ -6,13 +6,15 @@ export const frontmatter = {
   tags: ["express", "nodejs", "backend", "architecture", "clean-code"],
 };
 
-![Alt Text](https://dev-to-uploads.s3.amazonaws.com/i/5vzr2cps82xkoamlm9qy.png)
-
----
+# Express.js File Structuring Guide
 
 The app/file structuring is one way to be Clean Coder. There are no standard structures as such, but, generally followed structure will be discussed below.
 
 I am a beginner. As a beginner, I would explain how did I go about this File Structuring scenario for the Express Application. I have used Express Framework, with MongoDB database. I had used Mongoose as MongoDB Object Modelling for Express Application.
+
+![Alt Text](https://dev-to-uploads.s3.amazonaws.com/i/5vzr2cps82xkoamlm9qy.png)
+
+---
 
 > “ There is a luxury in self-reproach. When we blame ourselves we feel no one else has a right to blame us. ”
 >
@@ -23,6 +25,8 @@ It is best to use an Application scaffolder to get you generalised initial struc
 The generated app would have directory structure something of this sort:
 
 ![Alt Text](https://dev-to-uploads.s3.amazonaws.com/i/b19r1f9puza4petmlv6q.png)
+
+## Directory Structure
 
 Here, you can create another folder named “src”.
 
@@ -57,6 +61,8 @@ Say, your front end is asking for data to be sent from the server in some form. 
 Also, you can define a folder named **_helpers,_** which will have some functionality that you want to use in multiple APIs or scenarios. So instead of trying to define it everywhere, you can just define it in one place and call that wherever required.
 
 Another folder could be **_middlewares,_** where you can define all your route-level middle-wares once and call it in your routes as chained-functions.
+
+## Digging in programming principles
 
 Make sure you go through some simple concepts like :
 

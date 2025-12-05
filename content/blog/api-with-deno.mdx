@@ -5,14 +5,16 @@ export const frontmatter = {
   tags: ["deno", "javascript", "web-api", "backend", "rest", "typescript"],
 };
 
-🦕🦕🦕🦕🦕🦕🦕🦕🦕🦕🦕🦕🦕🦕🦕🦕🦕🦕🦕🦕🦕🦕🦕🦕🦕🦕
+# API with Deno :: Antidote for Node
 
 ![Alt Text](https://dev-to-uploads.s3.amazonaws.com/i/l1zokutl8n2hbal0wf3u.png)
 
-Since Deno 1.0 released
-##Disclaimer
+Since Deno 1.0 released.
 
-> To start with, the framework I am currently using OAK/Snowlight is to write a RESTful API which is currently stable Deno version 1.0.0
+<Warning>
+  To start with, the framework I am currently using OAK/Snowlight is to write a
+  RESTful API which is currently stable Deno version 1.0.0
+</Warning>
 
 There are several speculations and hypothesis amongst Developers as follows saying,
 
@@ -22,7 +24,7 @@ There are several speculations and hypothesis amongst Developers as follows sayi
 
 ---
 
-As Ryan Dahl claimed in JSConf in his talk 10 Things I Regret About Node.js
+### As Ryan Dahl claimed in JSConf in his talk 10 Things I Regret About Node.js
 
 > “ Node could have been much nicer ”
 
@@ -30,32 +32,34 @@ When Ryan started out Node; he missed out on very essential aspects which he rec
 
 To summarize those design flaws in the Node.js that Ryan had mentioned are as follows;
 
-1. **Security**: Node has no security. Since you use NPM packages and you don’t completely know what’s in that code; maybe these codes may have unfound loopholes or severe vulnerabilities making network attacks or hacks easier. Easy access to the computer was very much open.
-   Deno overcame this security concern by putting the Deno environment in a sandbox, by default, where each operation beyond the execution context was permitted explicitly by the user.
+- **Security**: Node has no security. Since you use NPM packages and you don’t completely know what’s in that code; maybe these codes may have unfound loopholes or severe vulnerabilities making network attacks or hacks easier. Easy access to the computer was very much open.
+  Deno overcame this security concern by putting the Deno environment in a sandbox, by default, where each operation beyond the execution context was permitted explicitly by the user.
 
-2. **Importing URLs**: One major change was requiring modules from the folder node_modules where Node.js used syntax omitting the extensions in files, caused issues with the browser standards. To resolve this issue, they had bundle up the Module Resolution Algorithm to find the requested module in Node.
-   To overcome this, Deno came up with the use of import instead of the require. You did not have the packages locally; instead, you could fill it in with URL from which you need the module from. This throws the light on another aspect; explained in the next point.
+- **Importing URLs**: One major change was requiring modules from the folder node_modules where Node.js used syntax omitting the extensions in files, caused issues with the browser standards. To resolve this issue, they had bundle up the Module Resolution Algorithm to find the requested module in Node.
+  To overcome this, Deno came up with the use of import instead of the require. You did not have the packages locally; instead, you could fill it in with URL from which you need the module from. This throws the light on another aspect; explained in the next point.
 
-3. **The unnecessary need of node_modules**: With Node, NPM packages had too many codebases whose vulnerabilities were not surely known. Apart from that, every time you need to use a module from node_modules; you had require it; which would have to again run Module Resolution Algorithm which itself is quite complex.
-   In Deno, there was no need for the node_modules folder. Modules are imported using URLs; which are cached and used for the project you are executing available globally. This might make you wonder; does it always need an internet connection to run?
-   Well, no. When packages are initially imported; they are downloaded and cached, just like how it works with NPM. They are cached in a folder
+- **The unnecessary need of node_modules**: With Node, NPM packages had too many codebases whose vulnerabilities were not surely known. Apart from that, every time you need to use a module from node_modules; you had require it; which would have to again run Module Resolution Algorithm which itself is quite complex.
+  In Deno, there was no need for the node_modules folder. Modules are imported using URLs; which are cached and used for the project you are executing available globally. This might make you wonder; does it always need an internet connection to run?
+  Well, no. When packages are initially imported; they are downloaded and cached, just like how it works with NPM. They are cached in a folder
 
-   > _On Linux_ : $XDG*CACHE_HOME/deno or $HOME/.cache/deno
-   > \_On Windows*: %LOCALAPPDATA%/deno (%LOCALAPPDATA% = FOLDERID_LocalAppData)
-   > Another file called .deno_plugins is also generated in the project’s directory itself in the first run when you use certain packages like deno_mongo to install the rust binaries of the same.
+> _On Linux_ : $XDG\*CACHE_HOME/deno or $HOME/.cache/deno
 
-4. **package.json**: With the above two major drawbacks; maintaining package.json was an unnecessary abstraction. Semantic Versioning was one of the main purposes that package.json served.
-   On the contrary, Deno does not support the use of a package manager like npm. Hence, the need for Semantic Versioning is eliminated, eliminating the need for package.json like the manifest.
+> \_On Windows: %LOCALAPPDATA%/deno (%LOCALAPPDATA% = FOLDERID_LocalAppData)
 
-5. **Handling Asynchronous Operations**: In Node, the initial evolution of handling asynchronous operations was, using Callbacks Pattern. As time passed, it evolved using the Promise API in the early versions of v8; which were included in late 2009 and removed in early 2010. There was an outbreak since by then, there were several packages/libraries which used Callback patterns for async operations. Node was designed much before Javascript had Callbacks / Promises API.
-   In Deno, the most fundamental or let us say lowest level binding Promises API is “ops” binding to handle Asynchronous Operations.
+> Another file called .deno_plugins is also generated in the project’s directory itself in the first run when you use certain packages like deno_mongo to install the rust binaries of the same.
 
-6. **Out of the box, TypeScript Compiler Built in**: Node supports JavaScript scripts, with .js files. If we had to write TypeScript in Node Environment; we had to set up the TypeScript Configuration for the project along with the TypeScript package.
-   This pain of set up is over with Deno, which gives right away without the initial configuration of the application. The use is confined to default configurations of the Deno’s TypeScript Compiler. Anyhow, if your want to override the default configuration, you can add the ‘tsconfig.json’ file; using flag ‘- -config=tsconfig.json’.
-   Normal JS also works too with Deno; basically even files with .js extensions.
+- **package.json**: With the above two major drawbacks; maintaining package.json was an unnecessary abstraction. Semantic Versioning was one of the main purposes that package.json served.
+  On the contrary, Deno does not support the use of a package manager like npm. Hence, the need for Semantic Versioning is eliminated, eliminating the need for package.json like the manifest.
 
-7. **Lastly, the usage of the await supported by v8 - Top level Async**: Node supported the async-await pattern of handling asynchronous operation after the release of ES5/ES6. If you are defining a function that does some asynchronous operation, then you will have to use this standard pattern of async-await.
-   Deno had the awesome feature of using await directly since it was binded directly to the promises. In simpler terms, you could use ‘await’ without using the async keyword in a program.
+- **Handling Asynchronous Operations**: In Node, the initial evolution of handling asynchronous operations was, using Callbacks Pattern. As time passed, it evolved using the Promise API in the early versions of v8; which were included in late 2009 and removed in early 2010. There was an outbreak since by then, there were several packages/libraries which used Callback patterns for async operations. Node was designed much before Javascript had Callbacks / Promises API.
+  In Deno, the most fundamental or let us say lowest level binding Promises API is “ops” binding to handle Asynchronous Operations.
+
+- **Out of the box, TypeScript Compiler Built in**: Node supports JavaScript scripts, with .js files. If we had to write TypeScript in Node Environment; we had to set up the TypeScript Configuration for the project along with the TypeScript package.
+  This pain of set up is over with Deno, which gives right away without the initial configuration of the application. The use is confined to default configurations of the Deno’s TypeScript Compiler. Anyhow, if your want to override the default configuration, you can add the ‘tsconfig.json’ file; using flag ‘- -config=tsconfig.json’.
+  Normal JS also works too with Deno; basically even files with .js extensions.
+
+- **Lastly, the usage of the await supported by v8 - Top level Async**: Node supported the async-await pattern of handling asynchronous operation after the release of ES5/ES6. If you are defining a function that does some asynchronous operation, then you will have to use this standard pattern of async-await.
+  Deno had the awesome feature of using await directly since it was binded directly to the promises. In simpler terms, you could use ‘await’ without using the async keyword in a program.
 
 ---
 
@@ -72,7 +76,7 @@ In this article, I will be discussing about an Application Server setup using Oa
 
 Let us dig into Deno and then start with Creating a RESTful API using Deno [ Oak Framework — Inspired by Koa Framework ].
 
-##What is this **`Deno`?**
+## What is this `Deno`?
 
 - Simple, Modern & Secure Runtime for JavaScript and TypeScript that uses v8 engine built using Rust.
 - Recently in May 2020, v1.0.0 of Deno was out officially.
@@ -90,7 +94,9 @@ In this article, we will be creating Application Server using
 
 **deno_mongo**: It is a MongoDB database driver built for the Deno Platform. A native database driver for MongoDB.
 
-####To get started, before starting to build the application, this is a simple application to build an Application Server, to create a user and fetch user details.
+## Getting started
+
+Before starting to build the application, this is a simple application to build an Application Server, to create a user and fetch user details.
 
 Below given is the folder structure of the mini-project as follows
 
@@ -117,9 +123,9 @@ Below given is the folder structure of the mini-project as follows
 
 ---
 
-Starting with an ‘app.ts’ file.
+Starting with an 'app.ts' file.
 
-{% gist https://gist.github.com/shravan20/63ab0a6da0380e540f09e84be1881dc5 %}
+<Gist id="zhravan/63ab0a6da0380e540f09e84be1881dc5" />
 
 This is app.ts file; starting point.
 
@@ -133,9 +139,9 @@ POST → ‘/user’
 GET → ‘/user/:id’
 
 To add a user along with getting user data as well. The route file would like this as follows:
-Create a ‘routers’ folder and create another file ‘userRoute.js’. This file deals only with routing to the user service.
+Create a 'routers' folder and create another file 'userRoute.js'. This file deals only with routing to the user service.
 
-{% gist https://gist.github.com/shravan20/127d3d2cee641f32292f8e15ba1a34de %}
+<Gist id="zhravan/127d3d2cee641f32292f8e15ba1a34de" />
 
 This is userRoute.ts file;
 
@@ -143,7 +149,7 @@ This is userRoute.ts file;
 
 Next, create another folder controllers having a file userController.js, which completely deals with handling Success Response and Error Response and apart from which usually deals with Data Validation.
 
-{% gist https://gist.github.com/shravan20/a5eee8e7875682f2548005ed56bb60e9 %}
+<Gist id="zhravan/a5eee8e7875682f2548005ed56bb60e9" />
 
 This is userController.ts file;
 
@@ -151,7 +157,7 @@ This is userController.ts file;
 
 Following up create services folder having another file userServices.ts which completely handles the business logic of the API.
 
-{% gist https://gist.github.com/shravan20/1d16dc3a4fa6cdfc625dd4daf9c26309 %}
+<Gist id="zhravan/1d16dc3a4fa6cdfc625dd4daf9c26309" />
 
 This is userServices.ts file; having business logic.
 
@@ -159,7 +165,7 @@ This is userServices.ts file; having business logic.
 
 Finally, comes the Repository layer which deals with database queries. Basically following DRY ( Do not Repeat Yourself ); write those queries once in Repository Layer and can be called multiple times as required.
 
-{% gist https://gist.github.com/shravan20/4d064eb50614d9938f111c3f7e75f2e6 %}
+<Gist id="zhravan/4d064eb50614d9938f111c3f7e75f2e6" />
 
 This is userDAL.ts file
 
@@ -167,9 +173,9 @@ This is userDAL.ts file
 
 Following we create a class ‘database’ for the database connectivity whose object we can use to create an instance of, to write queries.
 
-Create a database folder, with a file ‘config.ts’, which looks like as follows,
+Create a database folder, with a file 'config.ts', which looks like as follows,
 
-{% gist https://gist.github.com/shravan20/863be8906ac67a628e73c55ec1549198 %}
+<Gist id="zhravan/863be8906ac67a628e73c55ec1549198" />
 
 This is the config.ts file; dealing with all the database connectivity code.
 
@@ -179,7 +185,7 @@ Finally creating a User Interface, a model for user database; since we do not ha
 
 In a model folder, create a file userInterface.ts;
 
-{% gist https://gist.github.com/shravan20/2667cfdcc218172bc2ad1b12f8dd32e4 %}
+<Gist id="zhravan/2667cfdcc218172bc2ad1b12f8dd32e4" />
 
 This is userModel.ts; having User Interface.
 
@@ -189,22 +195,22 @@ This is userModel.ts; having User Interface.
 
 These are the fundamentals requirements needed to run the Oak Framework based Server Application.
 
-Along with this, there are other pieces of code snippets that will be required to run the code as well. These are available in [my Github account](https://github.com/shravan20/deno-crud-api).
+Along with this, there are other pieces of code snippets that will be required to run the code as well. These are available in [my Github account](https://github.com/zhravan/deno-crud-api).
 
 If you want to clone the project that I am working on, clone oak branch.
 
-```python
-git clone -b ‘oak’ https://github.com/shravan20/deno-crud-api.git
+```sh
+git clone -b ‘oak’ https://github.com/zhravan/deno-crud-api.git
 ```
 
 Now let’s run the project. Open the terminal/command prompt in the root directory of the project
 
-```python
-> deno run --allow-net --allow-write --allow-read --allow-plugin --unstable app.ts
+```sh
+deno run --allow-net --allow-write --allow-read --allow-plugin --unstable app.ts
 ```
 
-- - allow-write - -allow-net; are the flags required to give permission to Deno to access network and other resources.
-    When you run this command for the first time; it will download all the required library files and put them in cache locally in a folder named ./.deno_plugins; which we basically put in .gitignore before committing your code.
+`--allow-write` and `--allow-net` are the flags required to give permission to Deno to access network and other resources.
+When you run this command for the first time; it will download all the required library files and put them in cache locally in a folder named ./.deno_plugins; which we basically put in .gitignore before committing your code.
 
 ##Resources
 
@@ -217,8 +223,8 @@ Since we are at the very start of the Deno.land and the current scenario looks a
 
 I am already fond of another called Snowlight Framework ( Inspired by Express Framework in Node); which is also available in the GitHub codebase in the ‘SnowLight’ branch.
 
-```javascript
-git clone -b ‘snowlight’ https://github.com/shravan20/deno-crud-api.git
+```sh
+git clone -b ‘snowlight’ https://github.com/zhravan/deno-crud-api.git
 ```
 
 Deno looks like already better than Node as per my point of view. Looking forward to exploring many more frameworks and libraries in the Deno platform.
