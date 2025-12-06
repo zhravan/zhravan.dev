@@ -7,6 +7,8 @@ import { DraftPreviewGate } from '@/components/DraftPreviewGate';
 import { getPluginConfig } from '@/lib/plugins/registry';
 import { getPostMetadata, getArticleStructuredData } from '@/lib/seo';
 import { StructuredData } from '@/components/StructuredData';
+import { BackLink } from '@/components/navigation';
+import { DraftBadge } from '@/components/DraftBadge';
 import type { Metadata } from 'next';
 
 interface PageProps {
@@ -97,6 +99,11 @@ export default async function TalksPost({ params }: PageProps) {
         isDraft={item.draft || false}
         previewToken={draftsConfig?.previewToken || ''}
       >
+        <div className="space-y-6 text-xxs">
+          <div className="flex items-center gap-2 mb-8">
+            <BackLink href="/talks">Back to Talks</BackLink>
+            {item.draft && <DraftBadge draft={true} />}
+          </div>
         <article>
           <header className="mb-8 space-y-2">
             <h1 className="text-2xl font-bold">{item.title}</h1>
@@ -130,6 +137,7 @@ export default async function TalksPost({ params }: PageProps) {
             <MdxContent />
           </div>
         </article>
+        </div>
       </DraftPreviewGate>
     </Suspense>
     </>
