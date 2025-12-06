@@ -1,0 +1,332 @@
+export const frontmatter = {
+  title: "Expedition of Async Programming in JavaScript",
+  date: "2025-07-18",
+  description:
+    "A walkthrough of asynchronous programming in JavaScript: callbacks, promises and async/await.",
+  tags: [
+    "javascript",
+    "async",
+    "promises",
+    "callbacks",
+    "async-await",
+    "node",
+    "programming",
+  ],
+};
+
+# Expedition of Async Programming in JavaScript
+
+## My Background with Programming
+
+This is a story of my expedition of understanding Asynchronous Programming in JS. Coming from a Computer Science background, I got various opportunities to explore multiple platforms, where I could learn different programming languages, from Assembly languages to High-level languages. However, I have never struggled to understand the construct or flow of the language.
+
+<Image
+  src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/j8479e37h8ruk4z89s78.png"
+  alt="Programming journey"
+  caption="Programming journey"
+/>
+
+## Understanding Synchronous JS
+
+As far as I know, JS is one of those technologies that stands out from the rest that is in the industry. Far more, I am not speaking about performance, optimization, and things so on.
+
+JS in Node is an asynchronous programming language.
+
+This might be pretty confusing. While JavaScript runs on a single thread, Node.js introduced a powerful way to handle non-blocking operations. This means, even though only one operation can run on the main thread, time-consuming tasks like reading files or hitting APIs don’t halt the execution of other code.
+
+To put it in simple words:
+
+> JavaScript is a **single threaded** language, which means it has a one call stack and memory heap, that simply executes the code in the order it is written. It must finish executing a piece of code before it moves to the next.
+>
+> This is the synchronous behavior of JS.
+
+Whoa! You might wonder, then, why the title **_Async Programming_**, and what on Earth does **_Async Programming have to do with JavaScript_**?
+
+For this, we should thank Ryan Dahl, the mastermind and also criminal behind one of the most dominant, powerful runtime environments, Node.js.
+Node.js was an environment that enabled Asynchronism in JavaScript.
+
+<Image
+  src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/ex1aqqwet1fy4b2ym7lk.png"
+  alt="Node.js and asynchronous programming"
+  caption="Node.js and asynchronous programming"
+/>
+
+## Asynchronism with JS
+
+> Asynchronism in JavaScript, or now on, let’s say Node.js, runs in a single process, without creating another thread.
+> This simply means that, unlike other languages like Java, Python, which block their thread for I/O ( What this means is, when we have to do an API call, accessing the database, or reading text files, so on), will pause the runtime until this process is completed.
+
+In Node.js, it is contrary to the above situation. Node.js uses something referred to as **_Callbacks_**. The Node.js Event Loop orchestrates async tasks without blocking the main thread.
+
+> Simple real life scenario, let us say,
+> You are cooking and have to wash clothes as well. You put the clothes into the washing machine for a wash, and resume back to cooking. Once the washing is done, you can get back to it.
+> Washing clothes did not stop you from cooking? Did it?
+> The same principle applies here as well.
+
+I suppose this gives you a basic ideology behind **_What_** and **_How_** of Async Programming, and now let us dive into something deeper, What and How of Async Programming in Node.js.
+
+## Async Programming in Node.js
+
+In Node.js, functions that perform asynchronous operations, on completing the execution of the asynchronous task, they return control and push onto a stack known to us as a callback.
+
+#### Callback
+
+This is how I initially understood that the way Node.js works using a callback.
+
+For instance:
+
+```js
+function getUserById(userId, function(err, result) {
+  if(err) { throw err; }
+  console.log(result);
+});
+
+console.log('Hello World');
+
+OUTPUT:
+Hello World
+{ id:1, name: Lee }
+```
+
+The above function runs, and once it's complete, the result is made available within the callback function.
+
+In Node.js, for it to know that a function has some asynchronous operation, i.e., returns some data or throws some error, it points to a function that will be executed once the asynchronous operation is done.
+
+This function, which deals with the returned value/throws an error, is called a Callback function.
+
+Meanwhile, Node.js ensures it continues with the normal execution of the code, just as in the above example, where `console.log()` did not wait for the complete execution of the `getUserById()`.
+
+<Image
+  src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/hwgxreoyuwvz7mo2wg5w.png"
+  alt="Callback execution flow"
+  caption="Callback execution flow"
+/>
+
+### Callback hell, the vexation
+
+As time passed, I found it quite frustrating to deal with these Callback functions.
+
+The first problem is variable scope, and the second is dealing with too many callbacks to access the results of the callback function, as we cannot return the resultant value from the callback.
+
+```js
+function getUserById(userId, callback) {
+  // Simulate async behavior
+  setTimeout(() => {
+    const result = {
+     id: 1,
+     name: "Lee",
+     userEmail: "iam@you.com"
+    };
+    callback(null, result);
+  }, 1000);
+}
+
+getUserById(1, function (err, result) {
+  if (err) throw err;
+  console.log(result); // 3
+});
+
+console.log(result);     // 1
+console.log("Hello World"); // 2
+
+// 1,2,3 being order execution
+OUTPUT:
+undefined
+Hello World
+{ id:1, name: Lee, userEmail:iam@you.com}
+```
+
+The only way to access or do anything with the result was to operate inside the callback.
+
+```js
+async function getUserById(userId, callback) {
+  // Simulate async DB fetch
+  setTimeout(() => {
+    const result = {
+      id: 1,
+      name: "Lee",
+      userEmail: "iam@you.com",
+    };
+    callback(null, result);
+  }, 1000);
+}
+
+async function sendEmail(email, callback) {
+  // Simulate async email sending
+  setTimeout(() => {
+    callback(null, "Email sent successfully to " + email);
+  }, 1000);
+}
+
+// Call the function
+getUserById(1, function (err, result) {
+  if (err) throw err;
+
+  sendEmail(result.userEmail, function (err, emailResult) {
+    if (err) throw err;
+    console.log(emailResult); // "Email sent successfully to iam@you.com"
+  });
+});
+```
+
+This caused me a lot of confusion with naming a variable, accessing the variable. All in the flow of the code and function calls. This is where I realized I was dealing with something called **_CALLBACK HELL_** because of its confusing paradigm view.
+
+**_Heartily thankful to StackOverflow._**
+
+### Promises
+
+As I struggled with nested callbacks, I stumbled upon a concept that served as a solution to my problem of Callback Hell; something called **_Promises_**.
+
+A **_Promise_** is an object that encapsulates an asynchronous operation and on completion of the execution. It is a proxy for a value not known when the asynchronous code starts executing.
+
+In simpler terms, it's a placeholder for a value that will be available in the future, once the async task is done.
+
+Sounds very similar to Callback?
+It is quite similar to Callback design but was less sophisticated in terms of readability of the code, variable scope, and variable hoisting.
+
+Instead of giving a callback function to deal with the asynchronous function, the Promises API provides its own methods called “.then” and “.catch”, which basically execute based on functional chaining, as given below.
+The same example, in terms of promises;
+
+```js
+
+async function getUserById(userId) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      const result = {
+        id: 1,
+        name: "someone",
+        userEmail: "someone@everyone@email.com"
+      };
+      resolve(result);
+    }, 1000);
+  });
+}
+
+async function sendEmail(email) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(`Email sent successfully to ${email}`);
+    }, 1000);
+  });
+}
+
+getUserById(1)
+  .then(function (result) {
+    console.log(result);
+    return result;
+  })
+  .then(function (userData) {
+    console.log('Email to be sent');
+    // return promise
+    return sendEmail(userData.userEmail);
+  })
+  .then(function (emailStatus) {
+    // waits until sendEmail is resolved
+    console.log(emailStatus);
+  })
+  .catch(function (err) {
+    console.error('Error:', err);
+  });
+
+
+OUTPUT:
+Hello World
+undefined
+{
+ id:1,
+ name:someone,
+ userEmail:someone@everyone@email.com
+}
+Email to be sent
+Email sent
+```
+
+This looks basically more organized than the way Callback looked and the way the code structure seemed in the callback functions.
+
+This paradigm, too, had issues. This dealt with firstly what I call **Promise Hell** when you need to keep passing the resultant to many 'then' functions.
+
+> _Another major setback was the scope again. Data flow can be passed/ returned from one then() to another then(), but they were not available outside for processing._
+
+<Image
+  src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/j3uh0losid7iwsrwdhiv.png"
+  alt="Promise Hell illustration"
+  caption="Promise Hell illustration"
+/>
+
+This became a very major issue when I had to deal with several complex API's and that's when again I came across the solution, again in the StackOverflow, which was something called **_Async/Await_**.
+
+### Async/Await
+
+<Image
+  src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/457s0isk9fdolcri1h8e.png"
+  alt="Async/Await introduction"
+  caption="Async/Await introduction"
+/>
+
+This was a step forward for me, to write several logics simplified and sorted.
+
+<Image
+  src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/zef9v7hlz46vkj7aj2id.png"
+  alt="JavaScript callback and promise joke"
+  caption="When a JavaScript date has gone bad, 'Don't call me, I'll callback you. I promise!'"
+/>
+
+It turned out to be the ultimate solution for several problems I had been facing during the development.
+
+Async/Await is one best way to make asynchronous Node.js operate more imperatively.
+
+This was one such pattern, where asynchronous operations were handled much more simplified way.
+It brings in two keywords into the picture;
+"**async**" and "**await**", where async is for declaring a function that will be dealing with some asynchronous operations and await is used to declare inside the "**async**" function that it shall "**await**" for the result of the asynchronous operation.
+
+Simple Example with the above code:
+
+```js
+
+async function someFunction(userId) {
+  try {
+    let user = await getUserById(userId);
+    console.log(user);
+    console.log('Email to be sent');
+    await sendEmail(user.userEmail);
+    console.log('Email sent');
+    console.log('Hello World');
+  } catch (error) {
+    throw error;
+  }
+}
+
+OUTPUT:
+{
+ id:1,
+ name:someone,
+ userEmail:someone@everyone@email.com
+}
+Email to be sent
+Email sent
+Hello World
+```
+
+In the above instance, isn't the code more readable? The code is neatly structured and also makes sense with the flow and how it executes. Async/Await makes the code look more like a synchronous code format.
+
+One major thing to be considered in async/await way of handling asynchronous operation is that a function call can **await** only its "_awaitable_".
+
+Awaitable, meaning a function that returns a Promise Object or if its function carrying some asynchronous operation.
+
+This was my journey of learning Asynchronous programming with Node.js.
+
+---
+
+<Image
+  src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/rgo50pg07zvmjiabhwza.png"
+  alt="Async programming summary"
+  caption="Async programming summary"
+/>
+
+## Conclusion
+
+From my point of view, I believe Callbacks are one of the worst ways to code and deal with asynchronous operations, given that at any point in time. But the Promise method of dealing with asynchronous programming overcomes with Callback Hell issue. But definitely see that the Promises methodology of dealing with async operations has its own perks in different cases. Async/Await might seem the best solution to be as of now. But don't limit yourself to these. Explore and use each of them based on the optimal use cases that you are dealing with.
+
+Thanks for reading. Signing off, until next time.
+
+Happy Learning.
