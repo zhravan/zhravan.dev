@@ -5,12 +5,13 @@ interface ImageProps {
   caption?: string;
   width?: number | string;
   height?: number | string;
+  href?: string;
 }
 
-export function Image({ src, alt, title, caption, width, height }: ImageProps) {
+export function Image({ src, alt, title, caption, width, height, href }: ImageProps) {
   if (!src) return null;
 
-  return (
+  const figure = (
     <figure
       style={{
         margin: '1.5rem auto',
@@ -49,5 +50,15 @@ export function Image({ src, alt, title, caption, width, height }: ImageProps) {
       )}
     </figure>
   );
+
+  if (href) {
+    return (
+      <a href={href} style={{ textDecoration: 'none', display: 'block' }}>
+        {figure}
+      </a>
+    );
+  }
+
+  return figure;
 }
 
