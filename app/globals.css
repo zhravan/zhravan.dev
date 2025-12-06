@@ -101,6 +101,7 @@ a:hover {
   line-height: 1.7 !important;
   margin-bottom: 1rem !important;
   color: var(--color-muted-foreground) !important;
+  text-align: justify !important;
 }
 
 .prose ul {
