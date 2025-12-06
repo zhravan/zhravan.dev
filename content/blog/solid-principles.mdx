@@ -15,12 +15,16 @@ export const frontmatter = {
 
 # SOLID Principles: Write SOLID programs; Avoid STUPID programs
 
-![Alt Image](https://iamskb258154309.files.wordpress.com/2020/09/dont-be-stupid-grasp-solid-north-east-php-1-638-1.jpg)
+<Image 
+  src="https://iamskb258154309.files.wordpress.com/2020/09/dont-be-stupid-grasp-solid-north-east-php-1-638-1.jpg" 
+  alt="SOLID principles vs STUPID code" 
+  caption="Don't be STUPID, be SOLID"
+/>
 **_“Think Twice, Code Once”_**
 
-Hi everyone! This is a revised version of my article from [my personal blog](https://ohmyscript.com/2020/10/06/solid-principles-write-solid-programs-avoid-stupid-programs/).
+Hi everyone!
 
-Previously, in [my last article](https://dev.to/imshravan/must-know-basic-engineering-principles-for-programming-383), I had explained some of the [must-know fundamental programming principles](https://dev.to/imshravan/must-know-basic-engineering-principles-for-programming-383), which are applicable in any programming paradigm that you follow. Be it **_Functional or Object-Oriented paradigm/programming_**, those serve as the **primary fundamentals**.
+Previously, in [my last article](https://zhravan.dev/blog/engineering-principles-for-programmers/), I had explained some of the must know fundamental [programming principles](https://zhravan.dev/blog/engineering-principles-for-programmers/), which are applicable in any programming paradigm that you follow. Be it **_Functional or Object-Oriented paradigm/programming_**, those serve as the **primary fundamentals**.
 
 This article purely speaks of another 5 design principles, most specifically hold good to problems that can be solved using OOPs paradigm.
 
@@ -30,16 +34,25 @@ Similarly, on a larger scale, this technique caused some flaws in the solution w
 
 As I started programming in Typescript standards, implementing OOPS, had become easier, better, smaller and cleaner. I realised one thing after moving from **_Functional Paradigm to OOPs paradigm_**, that knowingly or unknowingly we end up implementing some sort of anti-patterns into our codebase.
 
-#### What’s a **_STUPID_** codebase?
+## What’s a **_STUPID_** codebase?
 
 > A STUPID codebase is that codebase which has flaws or faults, which affect the maintainability, readability or efficiency.
 
 > Anti-Pattern Code == STUPID Code
 
-#### What causes STUPID codebase?
+## What causes STUPID codebase?
 
-![AltImage](https://iamskb258154309.files.wordpress.com/2020/10/captured-4-1.png?w=1024)
+<Image 
+  src="https://iamskb258154309.files.wordpress.com/2020/10/captured-4-1.png?w=1024" 
+  alt="STUPID acronym breakdown" 
+  caption="What causes STUPID codebase"
+/>
+
+## Problems / Anti patterns
+
 **_Why be STUPID, when you can be SOLID_**
+
+### Singleton
 
 - **_Singleton_**: Violation of Singleton basically decreases the flexibility and reusability of the existing code, which deals with the object creation mechanism.
   It is an anti-pattern, where we define a class and its object in the same script/file and export the object for reusability. This is pattern is not wrong, but using it everywhere inappropriately is an symptom sick codebase.
@@ -123,6 +136,8 @@ console.log(myInstance2.getValue()); // OUTPUT: 2
 */
 ```
 
+### Tight coupling
+
 - **_Tight-Coupling_**: Excessive coupling/dependency between classes or different separate functionality is a code smell, we need to be very careful about while we are developing or programming.
   We can figure tight-coupling when a method accesses the data of another object more than its own data or some sort of functional chaining scenarios.
 
@@ -168,11 +183,17 @@ class Traveller2 {
 }
 ```
 
+### Untestabiility
+
 - **_Untestabiility_**: Unit Testing is a very important part of software development where you cross-check and test if the component you built is functioning exactly the way expected. It is always advised to ship a product only after writing test cases. Shipping an untested code/product is very much similar to deploying an application whose behaviour you are not sure about.
   Apart from Unit testing, we have other tests like Integration testing, E2E testing and so on, which are done based on their use cases and necessity.
 
+### Pre-optimizations (Overengineering)
+
 - **_Premature Optimizations_**: Avoid refactoring code if it doesn’t improve readability or performance of the system for no reason.
   Premature optimisation can also be defined as trying to optimizing the code, expecting it to improvise the performance or readability without having much data assuring it and purely weighing upon intuitions.
+
+### Indescriptive convention
 
 - **_Indescriptive Naming_**: Descriptive Naming and Naming Conventions are two important criteria. Most of the times, naming becomes the most painful issue.
   After some time when you or another developer visits the codebase, you would be asking the question ‘What does this variable do?’. We fail to decide what would be the best descriptive name that can be given to a variable, class, class object/instance or function. It is very important to give a descriptive name, for better readability and understandability.
@@ -200,6 +221,8 @@ console.log(sum(1, 2));
 // Statement is descriptive in nature
 ```
 
+### Duplicity
+
 - **_Duplication_**: Sometimes, duplication of code is resultant of copy and paste. Violation of DRY principle causes code-duplication. Always advised not to replicate the code across the codebase, as on longer run causes huge technical debt. Duplication makes code maintenance tedious on a larger scale and longer run.
 
 These flaws were often overlooked knowingly or unknowingly, for which SOLID principles served as the best cure.
@@ -208,12 +231,15 @@ So, you wondering now what SOLID principles hold and how does it solve the issue
 SOLID principles can be considered as remedies to the problems caused due to any of the STUPID flaws in your codebase.
 Uncle Bob, otherwise known as Robert C Martin, was the Software Engineer and Consultant, who came up with mnemonic acronym SOLID in his book “Clean Coder”. Let’s explore a little more on SOLID principles in detail,
 
-## Single Responsibility Principle (SRP)
+## Pattern fixing Anti-patterns
+
+### Single Responsibility Principle (SRP)
 
 A class, method or function should undertake the responsibility of one functionality. In simpler words, it should carry out only one feature/functionality.
 
 > A class should only have a single responsibility, that is, only changes to one part of the software’s specification should be able to affect the specification of the class.
-> -Wikipedia
+>
+> - Wikipedia
 
 In OOPs paradigm, one class should only serve one purpose. This does not mean that each class should have just one method, but the methods you define inside a class should be related to the responsibility of that class.
 
@@ -330,7 +356,7 @@ public delete(query:any):IUser {...}
 
 Here, we are ensuring a specific class solves a specific problem; UserService dealing with business logic and UserRepo dealing with database queries/calls.
 
-## Open-Closed Principle (OCP)
+### Open-Closed Principle (OCP)
 
 This principle speaks about the flexibility nature of the code you write. As the name stands for itself, the principle states that the solution/code you write should always be **_Open_** for extensions but **_Closed_** for modifications.
 
@@ -399,7 +425,7 @@ As you see in the above example, when you needed another requirement where you h
 
 Now, moving on to next important principle, called as **_Liskov Substitution principle_**.
 
-## Liskov Substitution Principle (LSP)
+### Liskov Substitution Principle (LSP)
 
 This principle is the trickiest one. **_Liskov Substitution Principle_** was introduced by Barbara Liskov in her paper called **_“Data Abstraction”_**.
 By now, you already must have known that this principle has to do with the way we implement Abstraction.
@@ -413,7 +439,11 @@ Example: Water is composed of Hydrogen and Oxygen, but we see is a liquid matter
 According to **_LSP_** in the OOP paradigm, child classes should never break the parent class type definition.
 To put it in even simpler bits, all subclass/derived class should be substitutable for their base/parent class. If you use base type, you should be able to use subtypes without breaking anything.
 
-![altIMAGE](https://iamskb258154309.files.wordpress.com/2020/10/liskov-substition-principle-565x600-1.png?w=283)
+<Image 
+  src="https://iamskb258154309.files.wordpress.com/2020/10/liskov-substition-principle-565x600-1.png?w=283" 
+  alt="Liskov Substitution Principle diagram" 
+  caption="Liskov Substitution Principle"
+/>
 
 ```javascript
 /**
@@ -491,7 +521,7 @@ class Cycle extends Car {
 */
 ```
 
-## Interface Segregation Principle (ISP)
+### Interface Segregation Principle (ISP)
 
 This principle deals with the demerits and issues caused when implementing big interfaces.
 
@@ -558,12 +588,12 @@ interface IShoe {
 
 This principle focuses on dividing the set of actions into smaller parts such that Class executes what is required.
 
-- Dependency Inversion Principle (DIP)
+### Dependency Inversion Principle (DIP)
 
 This principle states that we should depend upon abstractions. Abstractions should not be dependent on the implementation. The implementation of our functionality should be dependent on our abstractions.
 
 > One should “depend upon abstractions, [not] concretions.”
-> -Wikipedia
+> ~ Wikipedia
 
 **_Dependency Injection_** is very much correlated to another term called as Inversion of Control. These two terminologies are can be explained differently in two situations.
 
@@ -574,9 +604,16 @@ Based on programming in Framework, Dependency Injection is an application of IoC
 
 To put it up in simpler words, the control of a program is inverted, i.e., instead of programmer controlling the flow of the program. IoC is inbuilt with the framework and is a factor that differentiates a framework and library. **_Spring Boot_** is the best example.
 
-![altimagee](https://iamskb258154309.files.wordpress.com/2020/10/gr8conf-2015-spring-boot-and-groovy-what-more-do-you-need-24-638.jpg) Voila! Spring Boot developers! Inversion of Control made sense!! Didn’t it?
+<Image 
+  src="https://iamskb258154309.files.wordpress.com/2020/10/gr8conf-2015-spring-boot-and-groovy-what-more-do-you-need-24-638.jpg" 
+  alt="Spring Boot Inversion of Control" 
+  caption="Voila! Spring Boot developers! Inversion of Control made sense!! Didn't it?"
+/>
 
-> Note: For all Spring Boot developers, just like how annotation take control over your program flow
+<Note>
+  For all Spring Boot developers, just like how annotation take control over
+  your program flow
+</Note>
 
 Based on the general perspective, we can define IoC as the principle that ensures, “An object does not create other objects on which they rely to do their work”.
 Similarly, based on the general perspective, DIP is a subset principle to IoC, that states define interfaces to make it easy to pass in the implementations.
