@@ -54,7 +54,7 @@ export default function Blog() {
                   <li key={post.slug} className="group">
                     <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-2 text-xs leading-relaxed">
                       <div className="flex items-baseline gap-2 min-w-0 flex-1">
-                        <span className="opacity-30 hidden sm:inline">·</span>
+                        <span className="opacity-30">·</span>
                         <Link
                           href={`/blog/${post.slug}`}
                           className="hover:opacity-70 transition-opacity truncate"
