@@ -11,7 +11,7 @@ export default function Home() {
         <h1 className="text-sm mb-4">Shravan Kumar B</h1>
         <div className="prose space-y-3">
           <p style={{ color: 'var(--color-muted-foreground)' }}>
-            I am tinkerer, polymathic indie computer scientist, systems engineer, and data-science aficionado. I build systems that make life simpler for developers, teams, and curious humans.
+            I am tinkerer, FOSS enthusiast, polymathic indie computer scientist, systems engineer, and data-science aficionado. I build systems that make life simpler for developers, teams, and curious humans.
           </p>
           <p style={{ color: 'var(--color-muted-foreground)' }}>
             I work on problems that are interesting, challenging, and have real-world impact. I enjoy optimization challenges, resilient system design, clever abstractions, and performance focused engineering.

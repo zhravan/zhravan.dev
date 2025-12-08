@@ -24,7 +24,7 @@ export default function About() {
       >
         <h2 className="text-sm">Background</h2>
         <p className="" style={{ color: 'var(--color-muted-foreground)' }}>
-          I am a tinkerer, polymathic indie computer scientist, systems engineer, and data-science aficionado. My experience spans backend architectures, platform engineering, distributed systems, AI agents, developer tools, and routing solvers.
+          I am a tinkerer, FOSS enthusiast, polymathic indie computer scientist, systems engineer, and data-science aficionado. My experience spans backend architectures, platform engineering, distributed systems, AI agents, developer tools, and routing solvers.
           <br /><br />
           I have built products in edutech, logistics optimization, supply chain management,
           cloud infrastructure, developer utilities, and AI workflows.
@@ -46,7 +46,7 @@ export default function About() {
 
         <h2 className="text-sm">Beyond Code</h2>
         <p className="" style={{ color: 'var(--color-muted-foreground)' }}>
-          When I am not at my keyboard, you will find me exploring new music, cooking,gardening, reading about philosophy, culture, technology and design, or exploring ideas through writing.<br />  
+          When I am not at my keyboard, you will find me exploring new music, cooking,gardening, reading about philosophy, culture, technology and design, or exploring ideas through writing.<br />
           I believe diverse interests make for better engineers and more thoughtful problem-solving.
         </p>
 
