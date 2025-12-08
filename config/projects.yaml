@@ -7,7 +7,7 @@
   tech: [JavaScript, HTML, CSS]
   roles: [Developer]
   period: Feb 2025 – Present
-  link: https://github.com/zhravan
+  link: https://github.com/zhravan/jsonp
 
 - title: Gitalytics
   sequence: 2
@@ -15,31 +15,31 @@
   tech: [JavaScript, GitHub API]
   roles: [Developer]
   period: Mar 2025 – Present
-  link: https://github.com/zhravan
+  link: https://github.com/zhravan/gitalytics
 
-- title: Rsvp2Go
+- title: rsvp2go
   sequence: 3
   description: Self-hosted RSVP system on Cloudflare Workers.
   tech: [Cloudflare Workers, Cloudflare KV, JavaScript]
   roles: [Developer]
   period: Feb 2025 – Feb 2025
-  link: https://github.com/zhravan
+  link: https://github.com/zhravan/rsvp2go
 
 - title: Nixopus
   sequence: 4
   description: Self-hosted developer infrastructure platform.
-  tech: [Next.js, FastAPI, "SQLite/PostgreSQL", Docker, Redis]
+  tech: [Next.js, Go, PostgreSQL, Redis]
   roles: ["fellow contributor"]
-  period: 2024–2025
-  link: https://github.com/zhravan
+  period: 2025 – Present
+  link: https://github.com/raghavyuva/nixopus/
 
 - title: Wappalytic
   sequence: 5
   description: WhatsApp chat analyzer with visualizations.
   tech: [Python, Streamlit, Matplotlib]
   roles: [Developer]
-  period: 2024–2025
-  link: https://github.com/zhravan
+  period: 2024 – 2025
+  link: https://github.com/zhravan/wappalytic
 
 - title: Business Forecasting using Linear Regression
   sequence: 6
@@ -47,7 +47,7 @@
   tech: [R, Linear Regression, Data Visualization]
   roles: [Developer]
   period: Jun 2024 – Jun 2024
-  link: https://github.com/zhravan
+  link:
 
 - title: Automating Product Photography using Generative AI
   sequence: 7
@@ -57,24 +57,40 @@
   period: Feb 2023 – May 2023
   link: https://github.com/zhravan
 
-- title: Custom Input Types
+- title: Corona Smart Mask
   sequence: 8
+  description: Corona Smart Mask using IoT.
+  tech: [Python, IoT, Springboot, MySQL]
+  roles: [Developer]
+  period: Feb 2023 – Feb 2023
+  link: https://github.com/zhravan/nl-hackathon-2020-iot
+
+- title: Custom Input Types
+  sequence: 9
   description: NPM package for custom HTML input types.
   tech: [JavaScript, NPM, HTML]
-  roles: [Developer]
+  roles: [core contributor]
   period: Mar 2021 – May 2021
-  link: https://github.com/zhravan
+  link: https://github.com/atish31/custom-input-types
+
+- title: golearn
+  sequence: 10
+  description: rustling like cli application to learn golang concepts.
+  tech: [go]
+  roles: [Developer]
+  period: Aug 2025 – present
+  link: https://github.com/zhravan/golearn
 
 - title: GitHub Readme Quotes
-  sequence: 9
+  sequence: 11
   description: Dynamic quote generator for GitHub README files.
   tech: [JavaScript, GitHub API, Markdown]
   roles: [Developer]
   period: Nov 2020 – Present
-  link: https://github.com/zhravan
+  link: https://github.com/zhravan/github-readme-quotes
 
 - title: Autonomous Garbage Collecting System using Internet of Things
-  sequence: 10
+  sequence: 12
   description: IoT-based indoor garbage collection robot system.
   tech: [IoT, Arduino, Sensors, Embedded Systems]
   roles: [Developer]
@@ -82,7 +98,7 @@
   link: https://github.com/zhravan
 
 - title: Internal E Banking Website
-  sequence: 11
+  sequence: 13
   description: Internal banking web app for money transfers.
   tech: [Bootstrap, PHP, MySQL]
   roles: [Developer]
@@ -90,7 +106,7 @@
   link: https://github.com/zhravan
 
 - title: Online Food Portal Website
-  sequence: 12
+  sequence: 14
   description: Food ordering portal built with MEAN stack.
   tech: [Bootstrap, AngularJS, jQuery, Express, MongoDB, "MEAN Stack"]
   roles: [Developer]
@@ -98,25 +114,33 @@
   link: https://github.com/zhravan
 
 - title: Smart Garbage Van Tracking and Alert System using IoT
-  sequence: 13
+  sequence: 15
   description: IoT system for tracking filled garbage bins.
   tech: [Raspberry Pi, IoT, Android, MIT App Inventor]
   roles: [Developer]
   period: Jul 2018 – Aug 2018
-  link: https://github.com/zhravan
+  link:
 
 - title: Zoo Management Information System
-  sequence: 14
+  sequence: 16
   description: Zoo management information system.
   tech: [Bootstrap, PHP, MySQL, XAMPP]
   roles: [Developer]
   period: Sep 2017 – Nov 2017
-  link: https://github.com/zhravan
+  link: https://github.com/zhravan/dbms-zoo-mgmt-system
 
 - title: Obstacle Detection and Avoidance Robot
-  sequence: 15
+  sequence: 17
   description: Arduino-based obstacle avoidance robot.
   tech: [Arduino, Ultrasonic Sensors, Embedded Systems]
   roles: [Developer]
   period: Sep 2017 – Oct 2017
-  link: https://github.com/zhravan
+  link: https://github.com/zhravan/obstacle-detection-bot
+
+- title: Sharkio
+  sequence: 18
+  description: proxy that records requests sent to your servers, enables replaying them, and helps generate types for your API.
+  tech: [TypeScript, JavaScript, HTML, CSS, SCSS, Docker]
+  roles: [contributor]
+  period: June 2023 – Sept 2023
+  link: https://github.com/sharkio-dev/sharkio
