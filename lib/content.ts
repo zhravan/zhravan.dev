@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { ContentType, hasContentDirectory } from './content-types';
+import { ContentType, hasContentDirectory, getContentTypeById } from './content-types';
 
 export interface ContentItem {
   slug: string;
@@ -126,6 +126,34 @@ export function getContentBySlug(
   // In development, include drafts when looking up by slug
   const includeDrafts = process.env.NODE_ENV === 'development';
   return getContentForType(contentType, includeDrafts).find((item) => item.slug === slug);
+}
+
+/**
+ * Get all content items for a content type by ID (string)
+ */
+export function getContentByType(
+  contentTypeId: string,
+  includeDrafts = false
+): ContentItem[] {
+  const contentType = getContentTypeById(contentTypeId);
+  if (!contentType) {
+    return [];
+  }
+  return getContentForType(contentType, includeDrafts);
+}
+
+/**
+ * Get a specific content item by content type ID (string) and slug
+ */
+export function getContentItemBySlug(
+  contentTypeId: string,
+  slug: string
+): ContentItem | undefined {
+  const contentType = getContentTypeById(contentTypeId);
+  if (!contentType) {
+    return undefined;
+  }
+  return getContentBySlug(contentType, slug);
 }
 
 /**

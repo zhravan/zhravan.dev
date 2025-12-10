@@ -108,7 +108,7 @@ export default async function BlogPost({
       >
         <div className="space-y-6 text-xxs">
           <div className="flex items-center gap-2 mb-8">
-            <BackLink href="/blog">Back to Blog</BackLink>
+            <BackLink href="/writing">Back to Writing</BackLink>
             {isDraft(post) && <DraftBadge draft={true} />}
           </div>
 

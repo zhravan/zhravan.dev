@@ -3,8 +3,8 @@
 
 contentTypes:
   - id: blog
-    label: Blog
-    path: /blog
+    label: Writing
+    path: /writing
     contentDir: content/blog
     icon: null  # Optional: can be a lucide-react icon name like 'BookOpen', 'FileText', etc.
     enabled: true
@@ -28,7 +28,16 @@ contentTypes:
     enabled: true
     description: Presentations and speaking engagements.
     showInNav: true
-    
+
+  - id: thoughts
+    label: Musings
+    path: /musings
+    contentDir: content/thoughts
+    icon: Sparkles
+    enabled: true
+    description: Personal and philosophical musings.
+    showInNav: false
+
   # Example: Add more content types below
   # - id: bugbash
   #   label: Bug Bash

@@ -3,14 +3,15 @@ interface PageHeaderProps {
     title: string;
     description?: string;
   };
+  hideTitle?: boolean;
 }
 
-export function PageHeader({ metadata }: PageHeaderProps) {
+export function PageHeader({ metadata, hideTitle = false }: PageHeaderProps) {
   return (
     <section className="animate-fade-in">
-      <h1 className="text-sm mb-4">{metadata.title}</h1>
+      {!hideTitle && <h1 className="text-sm mb-4">{metadata.title}</h1>}
       {metadata.description && (
-        <p className="mb-6" style={{ color: 'var(--color-muted-foreground)' }}>
+        <p className={hideTitle ? 'mb-6' : 'mb-6'} style={{ color: 'var(--color-muted-foreground)' }}>
           {metadata.description}
         </p>
       )}

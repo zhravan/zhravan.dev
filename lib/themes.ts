@@ -1299,6 +1299,29 @@ export const themes = {
     },
     syntaxTheme: 'material-theme',
   },
+  'cream-light': {
+    name: 'Cream Light',
+    colors: {
+      background: 'hsl(40 30% 97%)', // Warm cream background
+      foreground: 'hsl(0 0% 15%)', // Near-black text
+      card: 'hsl(40 25% 95%)', // Slightly darker cream for cards
+      cardForeground: 'hsl(0 0% 15%)',
+      primary: 'hsl(0 0% 15%)', // Dark primary
+      primaryForeground: 'hsl(40 30% 97%)',
+      secondary: 'hsl(40 20% 92%)', // Subtle secondary
+      secondaryForeground: 'hsl(0 0% 20%)',
+      muted: 'hsl(40 20% 92%)',
+      mutedForeground: 'hsl(0 0% 45%)', // Medium gray for muted text
+      accent: 'hsl(40 15% 88%)', // Subtle accent
+      accentForeground: 'hsl(0 0% 15%)',
+      border: 'hsl(40 15% 85%)', // Soft border
+      input: 'hsl(40 20% 90%)',
+      ring: 'hsl(0 0% 25%)', // Dark focus ring
+      link: 'hsl(0 0% 25%)', // Dark links
+      linkHover: 'hsl(0 0% 10%)', // Darker on hover
+    },
+    syntaxTheme: 'github-light',
+  },
 } as const;
 
 export type ThemeName = keyof typeof themes;

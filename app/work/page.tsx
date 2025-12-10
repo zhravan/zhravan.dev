@@ -20,7 +20,7 @@ export default function Work() {
 
   return (
     <div className="space-y-6 text-xxs">
-      <PageHeader metadata={pageMetadata} />
+      <PageHeader metadata={pageMetadata} hideTitle={true} />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         {projects.map((project) => (

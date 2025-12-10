@@ -48,7 +48,7 @@ export default function Home() {
 
       <section className="animate-fade-up" style={{ animationDelay: '200ms' }}>
         <p className="" style={{ color: 'var(--color-muted-foreground)' }}>
-          You can <Link href="/blog">read my writing</Link>, check out my{' '}
+          You can <Link href="/writing">read my writing</Link>, check out my{' '}
           <Link href="/work">projects</Link>, or <Link href="/about">learn more about me</Link>. I am always interested in connecting with fellow developers and creators.
         </p>
       </section>

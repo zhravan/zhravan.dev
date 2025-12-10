@@ -55,3 +55,10 @@ twitter:
   card: "summary_large_image"
   site: "@zhravan"
   creator: "@zhravan"
+
+# Social media links
+social:
+  github: "https://github.com/zhravan"
+  gitlab: "https://gitlab.com/zhravan"
+  twitter: "https://x.com/zhravan"
+  linkedin: "https://linkedin.com/in/zhravan"
