@@ -48,7 +48,7 @@ author:
 openGraph:
   type: "website"
   # Optional: path to a default OG image. Provide an absolute URL or a path under public/
-  image: "/images/og/zhravan.png"
+  image: "/api/og?title=zhravan&description=tinkerer,%20polymathic%20indie%20computer%20scientist,%20systems%20engineer,%20and%20data-science%20aficionado."
   locale: "en_US"
 
 twitter:

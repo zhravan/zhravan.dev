@@ -2,7 +2,24 @@ import Link from 'next/link';
 import { getDefaultMetadata } from '@/lib/seo';
 import type { Metadata } from 'next';
 
-export const metadata: Metadata = getDefaultMetadata();
+export const metadata: Metadata = {
+  ...getDefaultMetadata(),
+  openGraph: {
+    ...getDefaultMetadata().openGraph,
+    images: [
+      {
+        url: '/api/og?title=zhravan&description=tinkerer,%20polymathic%20indie%20computer%20scientist,%20systems%20engineer,%20and%20data-science%20aficionado.',
+        width: 1200,
+        height: 630,
+        alt: 'zhravan - tinkerer, polymathic indie computer scientist',
+      },
+    ],
+  },
+  twitter: {
+    ...getDefaultMetadata().twitter,
+    images: ['/api/og?title=zhravan&description=tinkerer,%20polymathic%20indie%20computer%20scientist,%20systems%20engineer,%20and%20data-science%20aficionado.'],
+  },
+};
 
 export default function Home() {
   return (
@@ -27,7 +44,7 @@ export default function Home() {
         <ul className="space-y-1">
           <li>
             <Link
-              href="/blog/developer-experience"
+              href="/writing/developer-experience"
               className=""
               style={{ color: 'var(--color-link)' }}
             >
@@ -36,7 +53,7 @@ export default function Home() {
           </li>
           <li>
             <Link
-              href="/blog/welcome"
+              href="/writing/welcome"
               className=""
               style={{ color: 'var(--color-link)' }}
             >

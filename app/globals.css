@@ -137,6 +137,7 @@ a:hover {
 .prose li {
   margin-bottom: 0.25rem !important;
   color: var(--color-muted-foreground) !important;
+  text-align: justify !important;
 }
 
 .prose code {
@@ -183,6 +184,7 @@ pre.shiki code {
   color: var(--color-muted-foreground) !important;
   font-size: 0.8125rem !important;
   line-height: 1.7 !important;
+  text-align: justify !important;
 }
 
 .prose blockquote p {
