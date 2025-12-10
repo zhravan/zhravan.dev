@@ -2,24 +2,7 @@ import Link from 'next/link';
 import { getDefaultMetadata } from '@/lib/seo';
 import type { Metadata } from 'next';
 
-export const metadata: Metadata = {
-  ...getDefaultMetadata(),
-  openGraph: {
-    ...getDefaultMetadata().openGraph,
-    images: [
-      {
-        url: '/api/og?title=zhravan&description=tinkerer,%20polymathic%20indie%20computer%20scientist,%20systems%20engineer,%20and%20data-science%20aficionado.',
-        width: 1200,
-        height: 630,
-        alt: 'zhravan - tinkerer, polymathic indie computer scientist',
-      },
-    ],
-  },
-  twitter: {
-    ...getDefaultMetadata().twitter,
-    images: ['/api/og?title=zhravan&description=tinkerer,%20polymathic%20indie%20computer%20scientist,%20systems%20engineer,%20and%20data-science%20aficionado.'],
-  },
-};
+export const metadata: Metadata = getDefaultMetadata();
 
 export default function Home() {
   return (
