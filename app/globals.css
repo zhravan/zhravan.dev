@@ -306,6 +306,35 @@ pre.shiki::-webkit-scrollbar-thumb {
   animation-fill-mode: both;
 }
 
+@keyframes spin-reverse {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes progress {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(400%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-spin-reverse {
+  animation: spin-reverse linear infinite;
+}
+
+.animate-progress {
+  animation: progress 2s ease-in-out infinite;
+}
+
 @keyframes caretBlink {
 
   0%,
