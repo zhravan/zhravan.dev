@@ -59,6 +59,8 @@ export const SITE_DESCRIPTION =
  *
  * LIGHT THEMES (11):
  * - 'atom-one-light'    - Atom One Light
+ * - 'cream-light'       - Cream theme
+ * - 'github-light'      - Atom One Light
  * - 'light-plus'        - VS Code Light+
  * - 'quiet-light'       - Quiet Light
  * - 'solarized-light'   - Solarized light

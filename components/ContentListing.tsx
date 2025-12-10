@@ -25,7 +25,7 @@ export function ContentListing({ items, contentType }: ContentListingProps) {
     (acc[key] ||= []).push(item);
     return acc;
   }, {});
-  
+
   const yearKeys = Object.keys(byYear)
     .sort((a, b) => (b === 'Unknown' ? -1 : a === 'Unknown' ? 1 : Number(b) - Number(a)));
 
@@ -36,7 +36,7 @@ export function ContentListing({ items, contentType }: ContentListingProps) {
 
   return (
     <div className="space-y-6 text-xxs">
-      <PageHeader metadata={pageMetadata} />
+      <PageHeader metadata={pageMetadata} hideTitle={true} />
 
       <div className="space-y-5">
         {yearKeys.map((year) => {

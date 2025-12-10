@@ -16,7 +16,7 @@ export const metadata: Metadata = getPageMetadata({
 export default function About() {
   return (
     <div className="space-y-6 text-xxs">
-      <PageHeader metadata={pageMetadata} />
+      <PageHeader metadata={pageMetadata} hideTitle={true} />
 
       <section
         className="prose animate-fade-up"

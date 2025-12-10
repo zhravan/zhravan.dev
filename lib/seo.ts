@@ -1,17 +1,29 @@
-import fs from 'fs';
-import path from 'path';
-import YAML from 'yaml';
-import type { Metadata, Viewport } from 'next';
+import fs from "fs";
+import path from "path";
+import YAML from "yaml";
+import type { Metadata, Viewport } from "next";
 
 export interface StructuredData {
-  '@context': string;
-  '@type': string;
+  "@context": string;
+  "@type": string;
   [key: string]: any;
 }
 
-type TwitterCard = 'summary' | 'summary_large_image' | 'app' | 'player';
+type TwitterCard = "summary" | "summary_large_image" | "app" | "player";
 
-type OGType = 'website' | 'article' | 'book' | 'profile' | 'music.song' | 'music.album' | 'music.playlist' | 'music.radio_station' | 'video.movie' | 'video.episode' | 'video.tv_show' | 'video.other';
+type OGType =
+  | "website"
+  | "article"
+  | "book"
+  | "profile"
+  | "music.song"
+  | "music.album"
+  | "music.playlist"
+  | "music.radio_station"
+  | "video.movie"
+  | "video.episode"
+  | "video.tv_show"
+  | "video.other";
 
 interface YamlSEOConfig {
   siteUrl: string;
@@ -35,9 +47,15 @@ interface YamlSEOConfig {
     site?: string;
     creator?: string;
   };
+  social?: {
+    github?: string;
+    gitlab?: string;
+    twitter?: string;
+    linkedin?: string;
+  };
 }
 
-const seoConfigPath = path.join(process.cwd(), 'config', 'seo.yaml');
+const seoConfigPath = path.join(process.cwd(), "config", "seo.yaml");
 
 let cached: YamlSEOConfig | null = null;
 
@@ -47,51 +65,67 @@ export function loadSeoConfig(): YamlSEOConfig {
   if (!fs.existsSync(seoConfigPath)) {
     // Provide sensible defaults if file doesn't exist
     cached = {
-      siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://example.com',
-      title: 'Your Name',
-      description: 'Engineer, writer, and creator.'
+      siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://example.com",
+      title: "Your Name",
+      description: "Engineer, writer, and creator."
     };
     return cached;
   }
 
-  const file = fs.readFileSync(seoConfigPath, 'utf8');
+  const file = fs.readFileSync(seoConfigPath, "utf8");
   const data = YAML.parse(file) as Partial<YamlSEOConfig> | null;
 
-  const siteUrl = (data?.siteUrl || process.env.NEXT_PUBLIC_SITE_URL || 'https://example.com').replace(/\/$/, '');
+  const siteUrl = (
+    data?.siteUrl ||
+    process.env.NEXT_PUBLIC_SITE_URL ||
+    "https://example.com"
+  ).replace(/\/$/, "");
 
   cached = {
     siteUrl,
-    title: data?.title || 'Your Name',
+    title: data?.title || "Your Name",
     titleTemplate: data?.titleTemplate,
-    description: data?.description || 'Engineer, writer, and creator.',
+    description: data?.description || "Engineer, writer, and creator.",
     keywords: data?.keywords,
     author: data?.author,
     themeColor: data?.themeColor,
     backgroundColor: data?.backgroundColor,
     openGraph: {
-      type: data?.openGraph?.type || 'website',
+      type: data?.openGraph?.type || "website",
       image: data?.openGraph?.image,
-      locale: data?.openGraph?.locale || 'en_US'
+      locale: data?.openGraph?.locale || "en_US"
     },
     twitter: {
-      card: data?.twitter?.card || 'summary_large_image',
+      card: data?.twitter?.card || "summary_large_image",
       site: data?.twitter?.site,
       creator: data?.twitter?.creator
-    }
+    },
+    social: data?.social
   };
 
   return cached;
 }
 
+export function getSocialLinks() {
+  const cfg = loadSeoConfig();
+  return cfg.social || {};
+}
+
 export function getDefaultMetadata(): Metadata {
   const cfg = loadSeoConfig();
 
-  const title: Metadata['title'] = cfg.titleTemplate
+  const title: Metadata["title"] = cfg.titleTemplate
     ? { default: cfg.title, template: cfg.titleTemplate }
     : { default: cfg.title, template: `%s | ${cfg.title}` };
 
   const ogImages = cfg.openGraph?.image
-    ? [{ url: cfg.openGraph.image.startsWith('http') ? cfg.openGraph.image : `${cfg.siteUrl}${cfg.openGraph.image}` }]
+    ? [
+        {
+          url: cfg.openGraph.image.startsWith("http")
+            ? cfg.openGraph.image
+            : `${cfg.siteUrl}${cfg.openGraph.image}`
+        }
+      ]
     : undefined;
 
   return {
@@ -99,13 +133,15 @@ export function getDefaultMetadata(): Metadata {
     title,
     description: cfg.description,
     keywords: cfg.keywords,
-    authors: cfg.author?.name ? [{ name: cfg.author.name, url: cfg.author.url }] : undefined,
-    alternates: { 
-      canonical: '/',
-      languages: { 'en-US': cfg.siteUrl }
+    authors: cfg.author?.name
+      ? [{ name: cfg.author.name, url: cfg.author.url }]
+      : undefined,
+    alternates: {
+      canonical: "/",
+      languages: { "en-US": cfg.siteUrl }
     },
     openGraph: {
-      type: (cfg.openGraph?.type || 'website') as OGType,
+      type: (cfg.openGraph?.type || "website") as OGType,
       locale: cfg.openGraph?.locale,
       title: cfg.title,
       description: cfg.description,
@@ -114,7 +150,7 @@ export function getDefaultMetadata(): Metadata {
       images: ogImages
     },
     twitter: {
-      card: cfg.twitter?.card || 'summary_large_image',
+      card: cfg.twitter?.card || "summary_large_image",
       site: cfg.twitter?.site,
       creator: cfg.twitter?.creator,
       title: cfg.title,
@@ -127,40 +163,42 @@ export function getDefaultMetadata(): Metadata {
       googleBot: {
         index: true,
         follow: true,
-        'max-video-preview': -1,
-        'max-image-preview': 'large',
-        'max-snippet': -1
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1
       }
     },
-    manifest: '/manifest.json',
+    manifest: "/manifest.json",
     icons: {
       icon: [
-        { url: '/assets/zhravan.png', sizes: '512x512', type: 'image/png' }
+        { url: "/assets/zhravan.png", sizes: "512x512", type: "image/png" }
       ],
       apple: [
-        { url: '/assets/zhravan.png', sizes: '512x512', type: 'image/png' }
+        { url: "/assets/zhravan.png", sizes: "512x512", type: "image/png" }
       ]
     },
     appleWebApp: {
       capable: true,
-      statusBarStyle: cfg.themeColor ? 'black-translucent' : 'default',
+      statusBarStyle: cfg.themeColor ? "black-translucent" : "default",
       title: cfg.title
     },
-    other: cfg.backgroundColor ? {
-      'msapplication-TileColor': cfg.backgroundColor
-    } : undefined
+    other: cfg.backgroundColor
+      ? {
+          "msapplication-TileColor": cfg.backgroundColor
+        }
+      : undefined
   } satisfies Metadata;
 }
 
 export function getDefaultViewport(): Viewport {
   const cfg = loadSeoConfig();
-  
+
   return {
-    width: 'device-width',
+    width: "device-width",
     initialScale: 1,
     maximumScale: 5,
-    themeColor: cfg.themeColor || '#000000',
-    colorScheme: 'light dark'
+    themeColor: cfg.themeColor || "#000000",
+    colorScheme: "light dark"
   };
 }
 
@@ -183,38 +221,51 @@ export function getPostMetadata({
 }): Metadata {
   const cfg = loadSeoConfig();
   const url = `${cfg.siteUrl}/blog/${slug}`;
-  const pageTitle: Metadata['title'] = cfg.titleTemplate
-    ? { default: cfg.title, template: cfg.titleTemplate.replace('%s', title) }
+  const pageTitle: Metadata["title"] = cfg.titleTemplate
+    ? { default: cfg.title, template: cfg.titleTemplate.replace("%s", title) }
     : { default: cfg.title, template: `${title} | ${cfg.title}` };
 
   // Build keywords from tags and default keywords
-  const keywords = tags && tags.length > 0 
-    ? [...(cfg.keywords || []), ...tags]
-    : cfg.keywords;
+  const keywords =
+    tags && tags.length > 0 ? [...(cfg.keywords || []), ...tags] : cfg.keywords;
 
   // Handle OG image - prefer post-specific, fallback to default
   const ogImages = ogImage
-    ? [{ url: ogImage.startsWith('http') ? ogImage : `${cfg.siteUrl}${ogImage}` }]
+    ? [
+        {
+          url: ogImage.startsWith("http") ? ogImage : `${cfg.siteUrl}${ogImage}`
+        }
+      ]
     : cfg.openGraph?.image
-    ? [{ url: cfg.openGraph.image.startsWith('http') ? cfg.openGraph.image : `${cfg.siteUrl}${cfg.openGraph.image}` }]
+    ? [
+        {
+          url: cfg.openGraph.image.startsWith("http")
+            ? cfg.openGraph.image
+            : `${cfg.siteUrl}${cfg.openGraph.image}`
+        }
+      ]
     : undefined;
 
   // Parse dates for article metadata
   const publishedTime = date ? new Date(date).toISOString() : undefined;
-  const modifiedTimeISO = modifiedTime ? new Date(modifiedTime).toISOString() : publishedTime;
+  const modifiedTimeISO = modifiedTime
+    ? new Date(modifiedTime).toISOString()
+    : publishedTime;
 
   return {
     metadataBase: new URL(cfg.siteUrl),
     title: pageTitle,
     description,
     keywords,
-    authors: cfg.author?.name ? [{ name: cfg.author.name, url: cfg.author.url }] : undefined,
-    alternates: { 
+    authors: cfg.author?.name
+      ? [{ name: cfg.author.name, url: cfg.author.url }]
+      : undefined,
+    alternates: {
       canonical: `/blog/${slug}`,
-      languages: { 'en-US': url }
+      languages: { "en-US": url }
     },
     openGraph: {
-      type: 'article',
+      type: "article",
       title,
       description,
       url,
@@ -227,7 +278,7 @@ export function getPostMetadata({
       images: ogImages
     },
     twitter: {
-      card: cfg.twitter?.card || 'summary_large_image',
+      card: cfg.twitter?.card || "summary_large_image",
       site: cfg.twitter?.site,
       creator: cfg.twitter?.creator,
       title,
@@ -239,10 +290,10 @@ export function getPostMetadata({
 
 export function getPersonStructuredData(): StructuredData {
   const cfg = loadSeoConfig();
-  
+
   return {
-    '@context': 'https://schema.org',
-    '@type': 'Person',
+    "@context": "https://schema.org",
+    "@type": "Person",
     name: cfg.author?.name || cfg.title,
     url: cfg.siteUrl,
     sameAs: cfg.author?.url ? [cfg.author.url] : undefined
@@ -269,38 +320,42 @@ export function getArticleStructuredData({
   const cfg = loadSeoConfig();
   const url = `${cfg.siteUrl}/blog/${slug}`;
   const publishedTime = date ? new Date(date).toISOString() : undefined;
-  const modifiedTimeISO = modifiedTime ? new Date(modifiedTime).toISOString() : publishedTime;
+  const modifiedTimeISO = modifiedTime
+    ? new Date(modifiedTime).toISOString()
+    : publishedTime;
 
   const article: StructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
     headline: title,
     description,
     url,
     datePublished: publishedTime,
     dateModified: modifiedTimeISO,
     author: {
-      '@type': 'Person',
+      "@type": "Person",
       name: cfg.author?.name || cfg.title,
       url: cfg.author?.url || cfg.siteUrl
     },
     publisher: {
-      '@type': 'Person',
+      "@type": "Person",
       name: cfg.author?.name || cfg.title,
       url: cfg.siteUrl
     }
   };
 
   if (tags && tags.length > 0) {
-    article.keywords = tags.join(', ');
+    article.keywords = tags.join(", ");
   }
 
   if (ogImage) {
-    const imageUrl = ogImage.startsWith('http') ? ogImage : `${cfg.siteUrl}${ogImage}`;
+    const imageUrl = ogImage.startsWith("http")
+      ? ogImage
+      : `${cfg.siteUrl}${ogImage}`;
     article.image = imageUrl;
   } else if (cfg.openGraph?.image) {
-    const imageUrl = cfg.openGraph.image.startsWith('http') 
-      ? cfg.openGraph.image 
+    const imageUrl = cfg.openGraph.image.startsWith("http")
+      ? cfg.openGraph.image
       : `${cfg.siteUrl}${cfg.openGraph.image}`;
     article.image = imageUrl;
   }
@@ -310,15 +365,15 @@ export function getArticleStructuredData({
 
 export function getWebsiteStructuredData(): StructuredData {
   const cfg = loadSeoConfig();
-  
+
   return {
-    '@context': 'https://schema.org',
-    '@type': 'WebSite',
+    "@context": "https://schema.org",
+    "@type": "WebSite",
     name: cfg.title,
     url: cfg.siteUrl,
     description: cfg.description,
     author: {
-      '@type': 'Person',
+      "@type": "Person",
       name: cfg.author?.name || cfg.title,
       url: cfg.author?.url || cfg.siteUrl
     }
@@ -335,27 +390,36 @@ export function getPageMetadata({
   path: string;
 }): Metadata {
   const cfg = loadSeoConfig();
+
   const url = `${cfg.siteUrl}${path}`;
-  const pageTitle: Metadata['title'] = cfg.titleTemplate
-    ? { default: cfg.title, template: cfg.titleTemplate.replace('%s', title) }
+  const pageTitle: Metadata["title"] = cfg.titleTemplate
+    ? { default: cfg.title, template: cfg.titleTemplate.replace("%s", title) }
     : { default: cfg.title, template: `${title} | ${cfg.title}` };
 
   const ogImages = cfg.openGraph?.image
-    ? [{ url: cfg.openGraph.image.startsWith('http') ? cfg.openGraph.image : `${cfg.siteUrl}${cfg.openGraph.image}` }]
+    ? [
+        {
+          url: cfg.openGraph.image.startsWith("http")
+            ? cfg.openGraph.image
+            : `${cfg.siteUrl}${cfg.openGraph.image}`
+        }
+      ]
     : undefined;
 
-  return {
+  console.log({
     metadataBase: new URL(cfg.siteUrl),
     title: pageTitle,
     description,
     keywords: cfg.keywords,
-    authors: cfg.author?.name ? [{ name: cfg.author.name, url: cfg.author.url }] : undefined,
+    authors: cfg.author?.name
+      ? [{ name: cfg.author.name, url: cfg.author.url }]
+      : undefined,
     alternates: {
       canonical: path,
-      languages: { 'en-US': url }
+      languages: { "en-US": url }
     },
     openGraph: {
-      type: (cfg.openGraph?.type || 'website') as OGType,
+      type: (cfg.openGraph?.type || "website") as OGType,
       locale: cfg.openGraph?.locale,
       title,
       description,
@@ -364,7 +428,38 @@ export function getPageMetadata({
       images: ogImages
     },
     twitter: {
-      card: cfg.twitter?.card || 'summary_large_image',
+      card: cfg.twitter?.card || "summary_large_image",
+      site: cfg.twitter?.site,
+      creator: cfg.twitter?.creator,
+      title,
+      description,
+      images: ogImages as any
+    }
+  });
+
+  return {
+    metadataBase: new URL(cfg.siteUrl),
+    title: pageTitle,
+    description,
+    keywords: cfg.keywords,
+    authors: cfg.author?.name
+      ? [{ name: cfg.author.name, url: cfg.author.url }]
+      : undefined,
+    alternates: {
+      canonical: path,
+      languages: { "en-US": url }
+    },
+    openGraph: {
+      type: (cfg.openGraph?.type || "website") as OGType,
+      locale: cfg.openGraph?.locale,
+      title,
+      description,
+      url,
+      siteName: cfg.title,
+      images: ogImages
+    },
+    twitter: {
+      card: cfg.twitter?.card || "summary_large_image",
       site: cfg.twitter?.site,
       creator: cfg.twitter?.creator,
       title,
