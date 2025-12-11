@@ -8,7 +8,7 @@ import type { Metadata } from 'next';
 
 const pageMetadata = {
   title: 'Writing',
-  description: 'Blogs on technology, engineering, building products, and personal musings reflections.'
+  description: 'I sometimes write about technology, engineering, & my personal musings.'
 };
 
 export const metadata: Metadata = getPageMetadata({

@@ -6,21 +6,21 @@ export const metadata: Metadata = getDefaultMetadata();
 
 export default function Home() {
   return (
-    <div className="space-y-6 text-xxs">
-      <section className="animate-fade-in">
+    <main className="space-y-6 text-xxs">
+      <article className="animate-fade-in">
         <h1 className="text-sm mb-4">Shravan Kumar B</h1>
         <div className="prose space-y-3">
           <p style={{ color: 'var(--color-muted-foreground)' }}>
-            I am tinkerer, FOSS enthusiast, polymathic indie computer scientist, systems engineer, and data-science aficionado. I build systems that make life simpler for developers, teams, and curious humans.
+            I am a tinkerer, FOSS enthusiast, polymathic indie computer scientist, systems engineer, and data-science aficionado. I build systems that make life simpler for developers, teams, and curious humans.
           </p>
           <p style={{ color: 'var(--color-muted-foreground)' }}>
-            I work on problems that are interesting, challenging, and have real-world impact. I enjoy optimization challenges, resilient system design, clever abstractions, and performance focused engineering.
+            I work on problems that are interesting, challenging, and have real-world impact. I enjoy optimization challenges, resilient system design, clever abstractions, and performance-focused engineering.
           </p>
           <p style={{ color: 'var(--color-muted-foreground)' }}>
-            In my leisure time, I enjoy exploring ideas - scientific, philosophical, or just strange enough to be interesting. I like gardening, introspection, and discovering how people learn, build, and collaborate.
+            In my leisure time, I enjoy exploring ideas—scientific, philosophical, or just strange enough to be interesting. I like gardening, introspection, and discovering how people learn, build, and collaborate.
           </p>
         </div>
-      </section>
+      </article>
 
       {/* <section className="animate-fade-up" style={{ animationDelay: '100ms' }}>
         <h2 className="text-sm mb-2">Featured Essays</h2>
@@ -52,6 +52,6 @@ export default function Home() {
           <Link href="/work">projects</Link>, or <Link href="/about">learn more about me</Link>. I am always interested in connecting with fellow developers and creators.
         </p>
       </section>
-    </div>
+    </main>
   );
 }

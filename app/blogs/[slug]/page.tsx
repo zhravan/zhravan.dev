@@ -21,6 +21,7 @@ import { DraftBadge } from '@/components/DraftBadge';
 import { DraftPreviewGate } from '@/components/DraftPreviewGate';
 import { SeriesNavigator } from '@/components/SeriesNavigator';
 import { Suspense } from 'react';
+import { getBreadcrumbStructuredData } from '@/lib/breadcrumbs';
 
 export async function generateStaticParams() {
   const allPosts = getAllPosts(true); // Include drafts for static generation
@@ -99,9 +100,15 @@ export default async function BlogPost({
     tags: post.tags
   });
 
+  const breadcrumbData = getBreadcrumbStructuredData([
+    { name: 'Home', url: '/' },
+    { name: 'Writing', url: '/writing' },
+    { name: post.title, url: `/blogs/${slug}` },
+  ]);
+
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <StructuredData data={structuredData} />
+      <StructuredData data={[structuredData, breadcrumbData]} />
       <DraftPreviewGate 
         isDraft={isDraft(post)} 
         previewToken={draftsConfig?.previewToken || ''}

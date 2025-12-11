@@ -110,9 +110,12 @@ plugins:
 
   # Analytics (privacy-friendly)
   analytics:
-    enabled: false
-    provider: "plausible"    # Options: "plausible", "umami", "simple-analytics"
-    domain: ""
+    enabled: true             # Analytics enabled
+    provider: "google-analytics"  # Options: "google-analytics", "plausible", "umami", "simple-analytics"
+    trackingId: "G-PSVZHQG7Y8"  # Your Google Analytics 4 Measurement ID
+    domain: "zhravan.dev"     # Your domain
+    respectDoNotTrack: true   # Respect user privacy preferences
+
 
   # Draft Preview Mode
   drafts:

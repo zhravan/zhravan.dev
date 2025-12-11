@@ -59,7 +59,7 @@ export default function RootLayout({
 
   // Analytics configuration
   const analyticsConfig = getAnalyticsConfig();
-  const analyticsScriptSrc = analyticsConfig ? getAnalyticsScriptSrc(analyticsConfig.provider, analyticsConfig.domain) : '';
+  const analyticsScriptSrc = analyticsConfig ? getAnalyticsScriptSrc(analyticsConfig.provider, analyticsConfig.trackingId) : '';
   const analyticsScriptAttrs = analyticsConfig ? getAnalyticsScriptAttrs(analyticsConfig) : {};
 
   const websiteStructuredData = getWebsiteStructuredData();
@@ -87,22 +87,24 @@ export default function RootLayout({
                 height={scrollProgressConfig.height}
               />
             )}
-            <nav>
-              <div className="max-w-2xl mx-auto px-4 sm:px-8 py-6 sm:py-8">
-                {/* Desktop Navigation */}
-                <div className="hidden md:flex flex-wrap items-center gap-3 sm:gap-6">
-                  {navItems.map((item) => (
-                    <NavLink key={item.path} href={item.path}>
-                      {"/ "} {item.name}
-                    </NavLink>
-                  ))}
-                </div>
-                {/* Mobile Navigation */}
+            <header>
+              <nav aria-label="Main navigation">
+                <div className="max-w-2xl mx-auto px-4 sm:px-8 py-6 sm:py-8">
+                  {/* Desktop Navigation */}
+                  <div className="hidden md:flex flex-wrap items-center gap-3 sm:gap-6">
+                    {navItems.map((item) => (
+                      <NavLink key={item.path} href={item.path}>
+                        {"/ "} {item.name}
+                      </NavLink>
+                    ))}
+                  </div>
+                  {/* Mobile Navigation */}
                 <div className="md:hidden flex items-center justify-start">
                   <MobileNav items={navItems} />
                 </div>
               </div>
             </nav>
+            </header>
             <main className="max-w-2xl mx-auto px-4 sm:px-8 py-12 sm:py-16">{children}</main>
             <footer className="mt-24">
               <div className="max-w-2xl mx-auto px-4 sm:px-8 py-6 sm:py-8">
