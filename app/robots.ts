@@ -10,10 +10,15 @@ export default function robots() {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/api/', '/_next/']
+        disallow: ['/api/', '/_next/', '/403']
+      },
+      {
+        userAgent: 'GPTBot',
+        disallow: ['/'] // Opt out of AI training
       }
     ],
-    sitemap: `${siteUrl}/sitemap.xml`
+    sitemap: `${siteUrl}/sitemap.xml`,
+    host: siteUrl
   };
 }
 

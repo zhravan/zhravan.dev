@@ -3,6 +3,12 @@ import { getPluginConfig } from './registry';
 // TypeScript declarations for analytics providers
 declare global {
   interface Window {
+    gtag?: (
+      command: 'config' | 'event' | 'js',
+      targetId: string | Date,
+      config?: Record<string, any>
+    ) => void;
+    dataLayer?: any[];
     plausible?: (eventName: string, options?: { props?: Record<string, any> }) => void;
     umami?: {
       track: (eventName: string | { url: string }, props?: Record<string, any>) => void;
@@ -13,8 +19,10 @@ declare global {
 
 export interface AnalyticsConfig {
   enabled: boolean;
-  provider: 'plausible' | 'umami' | 'simple-analytics';
+  provider: 'google-analytics' | 'plausible' | 'umami' | 'simple-analytics';
+  trackingId?: string;
   domain: string;
+  respectDoNotTrack?: boolean;
 }
 
 /**
@@ -27,8 +35,10 @@ export function getAnalyticsConfig(): AnalyticsConfig | null {
 /**
  * Get script source URL based on provider
  */
-export function getAnalyticsScriptSrc(provider: string, domain?: string): string {
+export function getAnalyticsScriptSrc(provider: string, trackingId?: string): string {
   switch (provider) {
+    case 'google-analytics':
+      return trackingId ? `https://www.googletagmanager.com/gtag/js?id=${trackingId}` : '';
     case 'plausible':
       return 'https://plausible.io/js/script.js';
     case 'umami':
@@ -47,6 +57,9 @@ export function getAnalyticsScriptAttrs(config: AnalyticsConfig): Record<string,
   const attrs: Record<string, string> = {};
 
   switch (config.provider) {
+    case 'google-analytics':
+      // Google Analytics loads via gtag script, no special attributes needed
+      break;
     case 'plausible':
       if (config.domain) {
         attrs['data-domain'] = config.domain;
@@ -70,7 +83,14 @@ export function getAnalyticsScriptAttrs(config: AnalyticsConfig): Record<string,
  */
 export function shouldLoadAnalytics(): boolean {
   const config = getAnalyticsConfig();
-  return !!(config?.enabled && config?.domain);
+  if (!config?.enabled) return false;
+  
+  // Google Analytics requires trackingId instead of domain
+  if (config.provider === 'google-analytics') {
+    return !!config.trackingId;
+  }
+  
+  return !!config.domain;
 }
 
 /**
@@ -86,6 +106,12 @@ export function trackEvent(eventName: string, props?: Record<string, any>): void
 
   try {
     switch (config.provider) {
+      case 'google-analytics':
+        if (window.gtag && config.trackingId) {
+          window.gtag('event', eventName, props);
+        }
+        break;
+      
       case 'plausible':
         // @ts-ignore - Plausible is loaded externally
         if (window.plausible) {
@@ -127,6 +153,14 @@ export function trackPageView(url?: string): void {
 
   try {
     switch (config.provider) {
+      case 'google-analytics':
+        if (window.gtag && config.trackingId) {
+          window.gtag('config', config.trackingId, {
+            page_path: pageUrl,
+          });
+        }
+        break;
+      
       case 'plausible':
         // @ts-ignore
         if (window.plausible) {
