@@ -2,6 +2,7 @@ import { getProjects } from '@/lib/projects';
 import { PageHeader } from '@/components/PageHeader';
 import { ProjectDescription } from '@/components/ProjectDescription';
 import { getPageMetadata } from '@/lib/seo';
+import { AnalyticsTracker } from '@/components/AnalyticsTracker';
 import type { Metadata } from 'next';
 
 const pageMetadata = {
@@ -20,6 +21,11 @@ export default function Work() {
 
   return (
     <div className="space-y-6 text-xxs">
+      <AnalyticsTracker
+        contentType="page"
+        contentTitle={pageMetadata.title}
+        contentSlug="work"
+      />
       <PageHeader metadata={pageMetadata} hideTitle={true} />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">

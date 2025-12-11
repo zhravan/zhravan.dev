@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { trackEvent } from '@/lib/analytics-client';
 
 export function CopyButton({ text }: { text: string }) {
   const [copied, setCopied] = useState(false);
@@ -10,6 +11,12 @@ export function CopyButton({ text }: { text: string }) {
       await navigator.clipboard.writeText(text || '');
       setCopied(true);
       setTimeout(() => setCopied(false), 1200);
+      
+      // Track code copy event
+      trackEvent('code_copy', {
+        code_length: text?.length || 0,
+        page_path: window.location.pathname,
+      });
     } catch {
       console.log(`Failed to copy!`)
     }

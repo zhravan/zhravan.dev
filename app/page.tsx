@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { getDefaultMetadata } from '@/lib/seo';
+import { AnalyticsTracker } from '@/components/AnalyticsTracker';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = getDefaultMetadata();
@@ -7,6 +8,11 @@ export const metadata: Metadata = getDefaultMetadata();
 export default function Home() {
   return (
     <main className="space-y-6 text-xxs">
+      <AnalyticsTracker
+        contentType="page"
+        contentTitle="Home"
+        contentSlug="home"
+      />
       <article className="animate-fade-in">
         <h1 className="text-sm mb-4">Shravan Kumar B</h1>
         <div className="prose space-y-3">

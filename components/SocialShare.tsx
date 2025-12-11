@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Share2, Link as LinkIcon, Check, MessageCircle, Twitter, Globe, Linkedin } from 'lucide-react';
+import { trackEvent } from '@/lib/analytics-client';
 
 interface SocialShareProps {
   title: string;
@@ -27,9 +28,23 @@ export function SocialShare({ title, url, showIcon = true }: SocialShareProps) {
       await navigator.clipboard.writeText(url);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
+      
+      trackEvent('share', {
+        method: 'copy_link',
+        content_title: title,
+        content_url: url,
+      });
     } catch (err) {
       console.error('Failed to copy link:', err);
     }
+  };
+
+  const handleSocialShare = (platform: string) => {
+    trackEvent('share', {
+      method: platform,
+      content_title: title,
+      content_url: url,
+    });
   };
 
   return (
@@ -54,6 +69,7 @@ export function SocialShare({ title, url, showIcon = true }: SocialShareProps) {
           href={shareLinks.whatsapp}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => handleSocialShare('whatsapp')}
           className="p-1.5 rounded bg-opacity-10 border border-current opacity-50 hover:opacity-100 transition-opacity"
           aria-label="Share on WhatsApp"
           title="Share on WhatsApp"
@@ -65,6 +81,7 @@ export function SocialShare({ title, url, showIcon = true }: SocialShareProps) {
           href={shareLinks.x}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => handleSocialShare('x')}
           className="p-1.5 rounded bg-opacity-10 border border-current opacity-50 hover:opacity-100 transition-opacity"
           aria-label="Share on X"
           title="Share on X"
@@ -76,6 +93,7 @@ export function SocialShare({ title, url, showIcon = true }: SocialShareProps) {
           href={shareLinks.mastodon}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => handleSocialShare('mastodon')}
           className="p-1.5 rounded bg-opacity-10 border border-current opacity-50 hover:opacity-100 transition-opacity"
           aria-label="Share on Mastodon"
           title="Share on Mastodon"
@@ -87,6 +105,7 @@ export function SocialShare({ title, url, showIcon = true }: SocialShareProps) {
           href={shareLinks.linkedin}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => handleSocialShare('linkedin')}
           className="p-1.5 rounded bg-opacity-10 border border-current opacity-50 hover:opacity-100 transition-opacity"
           aria-label="Share on LinkedIn"
           title="Share on LinkedIn"

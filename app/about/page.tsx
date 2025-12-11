@@ -1,5 +1,6 @@
 import { PageHeader } from '@/components/PageHeader';
 import { getPageMetadata } from '@/lib/seo';
+import { AnalyticsTracker } from '@/components/AnalyticsTracker';
 import type { Metadata } from 'next';
 
 const pageMetadata = {
@@ -16,6 +17,11 @@ export const metadata: Metadata = getPageMetadata({
 export default function About() {
   return (
     <div className="space-y-6 text-xxs">
+      <AnalyticsTracker
+        contentType="page"
+        contentTitle={pageMetadata.title}
+        contentSlug="about"
+      />
       <PageHeader metadata={pageMetadata} hideTitle={true} />
 
       <section

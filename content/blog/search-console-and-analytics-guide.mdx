@@ -1,0 +1,216 @@
+export const frontmatter = {
+  title: "Exploring GA4 & Google Search Console",
+  date: "2025-12-11",
+  description:
+    "practical guide to setting up Google Search Console and Analytics for any website.",
+  tags: ["seo", "analytics", "web", "google"]
+};
+
+# Exploring GA4 & Google Search Console
+
+You built a website. You wrote content. You deployed it. Now what?
+
+How does Google know your site exists? How do you know if anyone reads your articles? Who are they? Where do they come from?
+
+These are not rhetorical questions. They have answers. And the answers come from two tools: Google Search Console and Google Analytics.
+
+I learned this the hard way with this very site.
+
+## What These Tools Actually Are
+
+### Google Search Console
+
+Search Console is your direct communication channel with Google's search engine.
+
+Think of it this way: You open a store in a city. But there's no address registered anywhere. No signboard. No maps listing. People might stumble upon it by accident, but most will never find it.
+
+Search Console is that address registration.
+
+It tells Google that your website exists. It shows you which searches bring people to your site. It alerts you when Google encounters problems reading your pages. It reveals technical issues that hurt your ranking.
+
+For this site, Search Console showed me something interesting. My technical articles on async programming and Express.js rank well in search results. People find them through Google. But my personal thoughts on simplicity? Those spread through direct links and word of mouth. Different content, different discovery paths.
+
+### Google Analytics
+
+Analytics answers a different question: What happens after people arrive?
+
+How many visitors do you get? Which articles do they read? How long do they stay? Where did they come from? What do they click?
+
+Without Analytics, you're publishing into a void. You have no idea if your content resonates. You don't know if that article you spent days writing gets ten views or ten thousand.
+
+On this site, Analytics revealed that my Express file structuring guide gets steady traffic from search engines. Readers from Google tend to stay longer, reading multiple articles. Social media traffic? Quick visits, usually. These patterns shaped what I write and how I share it.
+
+## Why You Need Both
+
+Search Console makes you discoverable. Analytics makes you informed.
+
+They serve different purposes but work together beautifully.
+
+Without Search Console, Google might never index your pages. Your content exists but remains invisible. You're hoping people accidentally find it. With Search Console, you explicitly tell Google what exists and request indexing.
+
+Without Analytics, you operate on assumptions. You think people read your articles but have no proof. You believe certain content performs well but have no data. Analytics turns guesses into facts.
+
+I've watched both these tools transform this site from a personal project into something people actually find and read.
+
+## Setting Up Google Search Console
+
+Let me walk you through what I did for this site.
+
+### Step 1: Add Your Property
+
+Go to Google Search Console. Click "Add Property". Enter your domain.
+
+For this site, I entered `zhravan.dev`.
+
+### Step 2: Verify Ownership
+
+Google needs proof you own the domain. Several verification methods exist. I used the HTML file method because it's straightforward for static sites.
+
+Here's what happens:
+
+1. Google gives you an HTML file with a random name like `google1234567890abcdef.html`
+2. You place it in your website's public folder
+3. You deploy your site
+4. Google checks if that file exists at your domain
+5. Once confirmed, you're verified
+
+The file sits there permanently. Google checks it periodically to confirm ownership.
+
+### Step 3: Submit Your Sitemap
+
+A sitemap is a file listing every page on your site. It helps Google find everything, even pages buried deep in your navigation.
+
+For this site, my sitemap lives at `zhravan.dev/sitemap.xml`.
+
+In Search Console, go to Sitemaps. Enter your sitemap URL. Click Submit.
+
+Google processes it within a few days. You'll see which pages it discovered and which it indexed.
+
+### Step 4: Request Indexing
+
+Don't wait for Google to find your pages organically. Request indexing manually.
+
+Use the URL Inspection tool. Enter a URL. Click "Request Indexing".
+
+I did this for:
+
+- My homepage
+- My writing page
+- My top articles
+
+Indexing happens within hours instead of days or weeks.
+
+## Setting Up Google Analytics
+
+The Analytics setup follows a similar pattern but focuses on tracking visitors instead of search engines.
+
+### Step 1: Create a Property
+
+Go to Google Analytics. Create a new property. Enter your website details.
+
+For this site, I named it `zhravan.dev`.
+
+### Step 2: Get Your Measurement ID
+
+Google generates a Measurement ID. It looks like `G-XXXXXXXXXX`.
+
+This ID is unique to your site. Every page needs it to send data to Analytics.
+
+### Step 3: Add the Tracking Code
+
+You need to integrate this ID into your website.
+
+How you do this depends on your setup. For this site, I added it to my configuration file. The site then automatically includes the Analytics script on every page.
+
+The script loads when visitors arrive. It sends anonymous data about their visit to Google's servers.
+
+### Step 4: Verify It Works
+
+Deploy your changes. Visit your site. Open Google Analytics. Go to the Realtime report.
+
+You should see yourself as an active visitor. Navigate between pages. Watch the data update in real-time.
+
+If you see yourself, tracking works. If not, check your Measurement ID and script integration.
+
+## What to Actually Monitor
+
+Having these tools installed isn't enough. You need to know what to watch.
+
+### In Search Console
+
+**Check Weekly:**
+
+- Performance reports: Which search queries bring traffic
+- Coverage reports: Which pages are indexed, which have errors
+- Enhancement reports: Mobile usability issues
+
+**Check Monthly:**
+
+- Backlinks: Who links to your site
+- Core Web Vitals: Speed and user experience metrics
+
+For this site, Search Console revealed that my technical articles rank well. My personal essays don't show up in search much, but that's fine. Different content serves different purposes.
+
+### In Analytics
+
+**Check Weekly:**
+
+- Acquisition: Where visitors come from
+- Engagement: Which pages hold attention
+- Pages and screens: Most popular content
+
+**Check Monthly:**
+
+- Traffic trends: Growth patterns
+- User behavior: What content resonates
+- Conversion paths: What actions people take
+
+Analytics showed me that search engine visitors read more articles per session. Social media visitors bounce quickly but sometimes share content with others. Both matter, but differently.
+
+## The Timeline
+
+Patience matters here.
+
+### Search Console Timeline
+
+- Day 1: Setup and verification
+- Day 2-3: Sitemap processing begins
+- Week 1: Initial data appears
+- Week 2-4: Full historical data populates
+
+For this site, it took five days before articles appeared in search results. Two weeks later, organic traffic started growing. Now, months later, search engines drive most of my readership.
+
+### Analytics Timeline
+
+- Day 1: Tracking begins immediately
+- Day 2-7: First patterns emerge
+- Week 2-4: Clear trends become visible
+- Month 1+: Deep insights available
+
+Analytics worked faster. Within twenty-four hours, I had meaningful data. After a week, I understood which articles performed well. A month in, I knew my audience.
+
+## What I Learned
+
+These tools don't just provide data. They change how you think about your content.
+
+Before Search Console, I wrote articles and hoped people found them. After, I understood which topics people actually search for. I could see what worked and what didn't.
+
+Before Analytics, I assumed certain articles were popular. After, I knew for certain. Some surprises: technical articles I thought were niche got steady traffic. Personal essays I expected to perform well barely got views.
+
+Both tools are free. Both take less than thirty minutes to set up. Both provide insights you cannot get anywhere else.
+
+## The Foundation
+
+Every website needs these tools.
+
+Search Console makes your site discoverable. Without it, you're invisible to search engines.
+
+Analytics makes your site measurable. Without it, you're guessing about everything.
+
+Together, they transform a published site into something that can grow and improve based on real data instead of assumptions.
+
+I set these up for this site on day one. Best decision I made. Everything else—the content strategy, the focus areas, the writing priorities—all flow from the insights these tools provide.
+
+Start with Search Console. Add Analytics. Monitor both regularly. Let the data guide your decisions.
+
+This is the foundation everything else builds on.

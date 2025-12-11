@@ -9,6 +9,7 @@ import { getPostMetadata, getArticleStructuredData } from '@/lib/seo';
 import { StructuredData } from '@/components/StructuredData';
 import { BackLink } from '@/components/navigation';
 import { DraftBadge } from '@/components/DraftBadge';
+import { AnalyticsTracker } from '@/components/AnalyticsTracker';
 import type { Metadata } from 'next';
 
 interface PageProps {
@@ -87,6 +88,13 @@ export default async function TalksPost({ params }: PageProps) {
   return (
     <>
       <StructuredData data={structuredData} />
+      <AnalyticsTracker
+        contentType="talk"
+        contentTitle={item.title}
+        contentSlug={slug}
+        contentTags={item.tags}
+        contentCategory={item.tags?.[0]}
+      />
       <Suspense fallback={
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center space-y-4">

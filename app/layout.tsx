@@ -17,6 +17,8 @@ import { getScrollProgressConfig } from '@/lib/plugins/scroll-progress';
 import { getScrollToTopConfig } from '@/lib/plugins/scroll-to-top';
 import { getAnalyticsConfig, getAnalyticsScriptSrc, getAnalyticsScriptAttrs } from '@/lib/plugins/analytics';
 import { getNavigationContentTypes } from '@/lib/content-types';
+import { LinkTracker } from '@/components/LinkTracker';
+import { SearchAnalytics } from '@/components/SearchAnalytics';
 
 const spaceGrotesk = Space_Grotesk({ subsets: ['latin'] });
 
@@ -79,6 +81,8 @@ export default function RootLayout({
           scriptSrc={analyticsScriptSrc}
           scriptAttrs={analyticsScriptAttrs}
         />
+        <LinkTracker />
+        <SearchAnalytics />
         <ThemeProvider>
           <div className="min-h-screen" style={{ backgroundColor: 'var(--color-background)' }}>
             {scrollProgressConfig && (

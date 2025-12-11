@@ -20,6 +20,7 @@ import { DraftBadge } from '@/components/DraftBadge';
 import { DraftPreviewGate } from '@/components/DraftPreviewGate';
 import { SeriesNavigator } from '@/components/SeriesNavigator';
 import { Suspense } from 'react';
+import { AnalyticsTracker } from '@/components/AnalyticsTracker';
 
 export async function generateStaticParams() {
   const allThoughts = getContentByType('thoughts', true); // Include drafts for static generation
@@ -101,6 +102,14 @@ export default async function ThoughtPost({
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <StructuredData data={structuredData} />
+      <AnalyticsTracker
+        contentType="article"
+        contentTitle={thought.title}
+        contentSlug={slug}
+        contentTags={thought.tags}
+        contentCategory={thought.tags?.[0]}
+        readingTimeMinutes={readingTime?.minutes}
+      />
       <DraftPreviewGate
         isDraft={isDraft(thought)}
         previewToken={draftsConfig?.previewToken || ''}
