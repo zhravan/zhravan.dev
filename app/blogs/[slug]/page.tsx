@@ -9,7 +9,7 @@ import { getReadingTimeForPost } from '@/lib/plugins/reading-time';
 import { getTocForPost } from '@/lib/plugins/toc';
 import { getPostNavigation } from '@/lib/plugins/post-navigation';
 import { isDraft } from '@/lib/plugins/drafts';
-import { getPostShareUrl } from '@/lib/plugins/social-share';
+import { getShareUrl } from '@/lib/plugins/social-share';
 import { getSeriesForPost } from '@/lib/plugins/series';
 import { ReadingTimeBadge } from '@/components/ReadingTimeBadge';
 import { TableOfContents } from '@/components/TableOfContents';
@@ -48,7 +48,7 @@ export async function generateMetadata({
   return getPostMetadata({
     title: post.title,
     description: post.description,
-    slug,
+    path: `/blogs/${slug}`,
     date: post.date,
     tags: post.tags
   });
@@ -92,12 +92,12 @@ export default async function BlogPost({
   const showSidebar = true; // Always show sidebar for metadata
   
   // Generate share URL
-  const shareUrl = getPostShareUrl(slug);
+  const shareUrl = getShareUrl(`/blogs/${slug}`);
 
   const structuredData = getArticleStructuredData({
     title: post.title,
     description: post.description,
-    slug,
+    path: `/blogs/${slug}`,
     date: post.date,
     tags: post.tags
   });

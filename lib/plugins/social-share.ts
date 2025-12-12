@@ -21,10 +21,19 @@ export function getSocialShareConfig(): SocialShareConfig | null {
 }
 
 /**
+ * Generate the full URL for a given path
+ */
+export function getShareUrl(path: string): string {
+  const normalized = path.startsWith('/') ? path : `/${path}`;
+  return `${SITE_URL}${normalized}`;
+}
+
+/**
  * Generate the full URL for a blog post
+ * @deprecated Prefer getShareUrl(`/blogs/${slug}`)
  */
 export function getPostShareUrl(slug: string): string {
-  return `${SITE_URL}/blog/${slug}`;
+  return getShareUrl(`/blogs/${slug}`);
 }
 
 /**

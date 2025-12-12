@@ -22,6 +22,7 @@ import { SeriesNavigator } from '@/components/SeriesNavigator';
 import { Suspense } from 'react';
 import { getBreadcrumbStructuredData } from '@/lib/breadcrumbs';
 import { AnalyticsTracker } from '@/components/AnalyticsTracker';
+import { getShareUrl } from '@/lib/plugins/social-share';
 
 export async function generateStaticParams() {
   const allThoughts = getContentByType('thoughts', true); // Include drafts for static generation
@@ -47,7 +48,7 @@ export async function generateMetadata({
   return getPostMetadata({
     title: thought.title,
     description: thought.description,
-    slug,
+    path: `/musings/${slug}`,
     date: thought.date,
     tags: thought.tags
   });
@@ -91,12 +92,12 @@ export default async function ThoughtPost({
   const showSidebar = true; // Always show sidebar for metadata
 
   // Generate share URL
-  const shareUrl = `/musings/${slug}`;
+  const shareUrl = getShareUrl(`/musings/${slug}`);
 
   const structuredData = getArticleStructuredData({
     title: thought.title,
     description: thought.description,
-    slug,
+    path: `/musings/${slug}`,
     date: thought.date,
     tags: thought.tags
   });

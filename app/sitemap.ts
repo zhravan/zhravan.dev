@@ -1,35 +1,43 @@
-import { getAllPosts } from '@/lib/blog';
 import { loadSeoConfig } from '@/lib/seo';
 import { filterDrafts } from '@/lib/plugins/drafts';
-import { getAllContentTypes, getContentTypeById } from '@/lib/content-types';
+import { getAllContentTypes } from '@/lib/content-types';
+import { getContentForType } from '@/lib/content';
 
 export const dynamic = 'force-static';
 
 export default async function sitemap() {
-  const allPosts = getAllPosts(true);
-  const posts = filterDrafts(allPosts); // Filter drafts from sitemap
   const { siteUrl } = loadSeoConfig();
   const contentTypes = getAllContentTypes();
 
-  // Generate URLs for all posts across all content types
-  const postUrls = posts.map((post) => {
-    const postDate = post.date ? new Date(post.date) : new Date();
-    const contentType = getContentTypeById(post.contentType);
-    const basePath = contentType?.path || `/${post.contentType}`;
-    
-    return {
-      url: `${siteUrl}${basePath}/${post.slug}`,
-      lastModified: postDate.toISOString()
-    };
-  });
+  const getDetailBasePath = (contentTypeId: string, configuredPath: string) => {
+    // The "blog" content type lists at /writing, but detail routes live at /blogs/[slug]
+    if (contentTypeId === 'blog') return '/blogs';
+    return configuredPath;
+  };
 
-  // Generate static routes: homepage + about + all enabled content type paths
-  const contentTypePaths = contentTypes.map((ct) => ct.path);
-  
-  const staticRoutes = ['', '/about', ...contentTypePaths].map((route) => ({
-    url: `${siteUrl}${route}`,
-    lastModified: new Date().toISOString()
-  }));
+  // Generate URLs for all content items across enabled content types with MDX content
+  const contentItemUrls = contentTypes
+    .filter((ct) => ct.enabled && ct.contentDir)
+    .flatMap((ct) => {
+      const items = filterDrafts(getContentForType(ct, true));
+      const basePath = getDetailBasePath(ct.id, ct.path);
 
-  return [...staticRoutes, ...postUrls];
+      return items.map((item) => {
+        const itemDate = item.date ? new Date(item.date) : new Date();
+        return {
+          url: `${siteUrl}${basePath}/${item.slug}`,
+          lastModified: itemDate.toISOString()
+        };
+      });
+    });
+
+  // Generate static routes (only routes that actually exist as pages)
+  const staticRoutes = ['', '/about', '/writing', '/work', '/talks'].map(
+    (route) => ({
+      url: `${siteUrl}${route}`,
+      lastModified: new Date().toISOString()
+    })
+  );
+
+  return [...staticRoutes, ...contentItemUrls];
 }

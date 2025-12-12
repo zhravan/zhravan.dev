@@ -9,6 +9,11 @@ export interface StructuredData {
   [key: string]: any;
 }
 
+function normalizePath(input: string): string {
+  if (!input) return "/";
+  return input.startsWith("/") ? input : `/${input}`;
+}
+
 type TwitterCard = "summary" | "summary_large_image" | "app" | "player";
 
 type OGType =
@@ -206,6 +211,7 @@ export function getPostMetadata({
   title,
   description,
   slug,
+  path,
   date,
   tags,
   ogImage,
@@ -213,14 +219,22 @@ export function getPostMetadata({
 }: {
   title: string;
   description: string;
-  slug: string;
+  /**
+   * @deprecated Prefer passing `path` to avoid incorrect URL generation.
+   */
+  slug?: string;
+  /**
+   * Canonical path for the post, e.g. `/blogs/my-post` or `/musings/my-post`
+   */
+  path: string;
   date?: string;
   tags?: string[];
   ogImage?: string;
   modifiedTime?: string;
 }): Metadata {
   const cfg = loadSeoConfig();
-  const url = `${cfg.siteUrl}/blog/${slug}`;
+  const canonicalPath = normalizePath(path || (slug ? `/blogs/${slug}` : "/"));
+  const url = `${cfg.siteUrl}${canonicalPath}`;
   const pageTitle: Metadata["title"] = cfg.titleTemplate
     ? { default: cfg.title, template: cfg.titleTemplate.replace("%s", title) }
     : { default: cfg.title, template: `${title} | ${cfg.title}` };
@@ -261,7 +275,7 @@ export function getPostMetadata({
       ? [{ name: cfg.author.name, url: cfg.author.url }]
       : undefined,
     alternates: {
-      canonical: `/blog/${slug}`,
+      canonical: canonicalPath,
       languages: { "en-US": url }
     },
     openGraph: {
@@ -304,6 +318,7 @@ export function getArticleStructuredData({
   title,
   description,
   slug,
+  path,
   date,
   modifiedTime,
   tags,
@@ -311,14 +326,22 @@ export function getArticleStructuredData({
 }: {
   title: string;
   description: string;
-  slug: string;
+  /**
+   * @deprecated Prefer passing `path` to avoid incorrect URL generation.
+   */
+  slug?: string;
+  /**
+   * Canonical path for the post, e.g. `/blogs/my-post` or `/musings/my-post`
+   */
+  path: string;
   date?: string;
   modifiedTime?: string;
   tags?: string[];
   ogImage?: string;
 }): StructuredData {
   const cfg = loadSeoConfig();
-  const url = `${cfg.siteUrl}/blog/${slug}`;
+  const canonicalPath = normalizePath(path || (slug ? `/blogs/${slug}` : "/"));
+  const url = `${cfg.siteUrl}${canonicalPath}`;
   const publishedTime = date ? new Date(date).toISOString() : undefined;
   const modifiedTimeISO = modifiedTime
     ? new Date(modifiedTime).toISOString()
@@ -405,37 +428,6 @@ export function getPageMetadata({
         }
       ]
     : undefined;
-
-  console.log({
-    metadataBase: new URL(cfg.siteUrl),
-    title: pageTitle,
-    description,
-    keywords: cfg.keywords,
-    authors: cfg.author?.name
-      ? [{ name: cfg.author.name, url: cfg.author.url }]
-      : undefined,
-    alternates: {
-      canonical: path,
-      languages: { "en-US": url }
-    },
-    openGraph: {
-      type: (cfg.openGraph?.type || "website") as OGType,
-      locale: cfg.openGraph?.locale,
-      title,
-      description,
-      url,
-      siteName: cfg.title,
-      images: ogImages
-    },
-    twitter: {
-      card: cfg.twitter?.card || "summary_large_image",
-      site: cfg.twitter?.site,
-      creator: cfg.twitter?.creator,
-      title,
-      description,
-      images: ogImages as any
-    }
-  });
 
   return {
     metadataBase: new URL(cfg.siteUrl),

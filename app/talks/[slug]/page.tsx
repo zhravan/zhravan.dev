@@ -48,7 +48,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return getPostMetadata({
     title: item.title,
     description: item.description,
-    slug: `${contentType.path}/${slug}`,
+    path: `${contentType.path}/${slug}`,
     date: item.date,
     tags: item.tags
   });
@@ -80,7 +80,7 @@ export default async function TalksPost({ params }: PageProps) {
   const structuredData = getArticleStructuredData({
     title: item.title,
     description: item.description,
-    slug: `${contentType.path}/${item.slug}`,
+    path: `${contentType.path}/${item.slug}`,
     date: item.date,
     tags: item.tags
   });
