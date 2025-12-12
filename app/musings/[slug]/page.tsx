@@ -20,6 +20,7 @@ import { DraftBadge } from '@/components/DraftBadge';
 import { DraftPreviewGate } from '@/components/DraftPreviewGate';
 import { SeriesNavigator } from '@/components/SeriesNavigator';
 import { Suspense } from 'react';
+import { getBreadcrumbStructuredData } from '@/lib/breadcrumbs';
 import { AnalyticsTracker } from '@/components/AnalyticsTracker';
 
 export async function generateStaticParams() {
@@ -73,8 +74,8 @@ export default async function ThoughtPost({
   }
 
   // Load plugin data
-  const readingTime = await getReadingTimeForPost(slug);
-  const tocHeadings = await getTocForPost(slug);
+  const readingTime = await getReadingTimeForPost(slug, 'thoughts');
+  const tocHeadings = await getTocForPost(slug, 'thoughts');
   const postNav = getPostNavigation(slug);
   const seriesInfo = getSeriesForPost(slug);
 
@@ -87,6 +88,7 @@ export default async function ThoughtPost({
 
   const showTocSidebar = tocHeadings && tocConfig && tocConfig.position !== 'inline';
   const showTocInline = tocHeadings && tocConfig && tocConfig.position === 'inline';
+  const showSidebar = true; // Always show sidebar for metadata
 
   // Generate share URL
   const shareUrl = `/musings/${slug}`;
@@ -99,9 +101,15 @@ export default async function ThoughtPost({
     tags: thought.tags
   });
 
+  const breadcrumbData = getBreadcrumbStructuredData([
+    { name: 'Home', url: '/' },
+    { name: 'Musings', url: '/writing' },
+    { name: thought.title, url: `/musings/${slug}` },
+  ]);
+
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <StructuredData data={structuredData} />
+      <StructuredData data={[structuredData, breadcrumbData]} />
       <AnalyticsTracker
         contentType="article"
         contentTitle={thought.title}
@@ -150,7 +158,7 @@ export default async function ThoughtPost({
         <MobileTOC headings={tocHeadings} />
       )}
 
-      <div className={showTocSidebar ? 'lg:grid lg:grid-cols-[1fr_250px] lg:gap-12' : ''}>
+      <div className={showSidebar ? 'lg:grid lg:grid-cols-[1fr_250px] lg:gap-12' : ''}>
         <article className="animate-fade-in prose max-w-none">
           {showTocInline && (
             <TableOfContents
@@ -174,9 +182,9 @@ export default async function ThoughtPost({
 
         </article>
 
-        {showTocSidebar && (
+        {showSidebar && (
           <aside className="hidden lg:block space-y-6">
-            {/* Metadata section - in sidebar on desktop */}
+            {/* Metadata section - always show in sidebar on desktop */}
             <div className="space-y-2 pb-6 border-b border-gray-200 dark:border-gray-800">
               <p className="text-[10px] opacity-50" style={{ color: 'var(--color-muted-foreground)' }}>
                 {thought.date}
@@ -201,11 +209,13 @@ export default async function ThoughtPost({
               )}
             </div>
 
-            <TableOfContents
-              headings={tocHeadings}
-              position={tocConfig.position}
-              sticky={tocConfig.sticky}
-            />
+            {showTocSidebar && (
+              <TableOfContents
+                headings={tocHeadings}
+                position={tocConfig.position}
+                sticky={tocConfig.sticky}
+              />
+            )}
           </aside>
         )}
       </div>

@@ -89,6 +89,7 @@ export default async function BlogPost({
   
   const showTocSidebar = tocHeadings && tocConfig && tocConfig.position !== 'inline';
   const showTocInline = tocHeadings && tocConfig && tocConfig.position === 'inline';
+  const showSidebar = true; // Always show sidebar for metadata
   
   // Generate share URL
   const shareUrl = getPostShareUrl(slug);
@@ -158,7 +159,7 @@ export default async function BlogPost({
         <MobileTOC headings={tocHeadings} />
       )}
 
-      <div className={showTocSidebar ? 'lg:grid lg:grid-cols-[1fr_250px] lg:gap-12' : ''}>
+      <div className={showSidebar ? 'lg:grid lg:grid-cols-[1fr_250px] lg:gap-12' : ''}>
         <article className="animate-fade-in prose max-w-none">
           {showTocInline && (
             <TableOfContents
@@ -182,9 +183,9 @@ export default async function BlogPost({
 
         </article>
 
-        {showTocSidebar && (
+        {showSidebar && (
           <aside className="hidden lg:block space-y-6">
-            {/* Metadata section - in sidebar on desktop */}
+            {/* Metadata section - always show in sidebar on desktop */}
             <div className="space-y-2 pb-6 border-b border-gray-200 dark:border-gray-800">
               <p className="text-[10px] opacity-50" style={{ color: 'var(--color-muted-foreground)' }}>
                 {post.date}
@@ -209,11 +210,13 @@ export default async function BlogPost({
               )}
             </div>
 
-            <TableOfContents
-              headings={tocHeadings}
-              position={tocConfig.position}
-              sticky={tocConfig.sticky}
-            />
+            {showTocSidebar && (
+              <TableOfContents
+                headings={tocHeadings}
+                position={tocConfig.position}
+                sticky={tocConfig.sticky}
+              />
+            )}
           </aside>
         )}
       </div>

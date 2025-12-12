@@ -73,7 +73,7 @@ export function generateHeadingId(text: string): string {
 /**
  * Get table of contents for a blog post by slug
  */
-export async function getTocForPost(slug: string): Promise<TocHeading[] | null> {
+export async function getTocForPost(slug: string, contentType: string = 'blog'): Promise<TocHeading[] | null> {
   const config = getPluginConfig<TocConfig>('toc');
   
   if (!config) {
@@ -83,7 +83,7 @@ export async function getTocForPost(slug: string): Promise<TocHeading[] | null> 
   try {
     const fs = await import('fs');
     const path = await import('path');
-    const filePath = path.join(process.cwd(), 'content', 'blog', `${slug}.mdx`);
+    const filePath = path.join(process.cwd(), 'content', contentType, `${slug}.mdx`);
     
     if (!fs.existsSync(filePath)) {
       return null;

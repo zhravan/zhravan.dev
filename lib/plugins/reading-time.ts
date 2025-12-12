@@ -52,7 +52,7 @@ export function calculateReadingTime(content: string): ReadingTimeResult | null 
 /**
  * Get reading time for a blog post by slug
  */
-export async function getReadingTimeForPost(slug: string): Promise<ReadingTimeResult | null> {
+export async function getReadingTimeForPost(slug: string, contentType: string = 'blog'): Promise<ReadingTimeResult | null> {
   const config = getPluginConfig<ReadingTimeConfig>('reading-time');
   
   if (!config) {
@@ -62,7 +62,7 @@ export async function getReadingTimeForPost(slug: string): Promise<ReadingTimeRe
   try {
     const fs = await import('fs');
     const path = await import('path');
-    const filePath = path.join(process.cwd(), 'content', 'blog', `${slug}.mdx`);
+    const filePath = path.join(process.cwd(), 'content', contentType, `${slug}.mdx`);
     
     if (!fs.existsSync(filePath)) {
       return null;
