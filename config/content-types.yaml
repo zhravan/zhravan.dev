@@ -47,6 +47,15 @@ contentTypes:
     description: A digital garden for storing and organizing knowledge, ideas, and personal insights.
     showInNav: false
 
+  - id: reading
+    label: Reading
+    path: /reading
+    contentDir: null  # Uses custom page structure
+    icon: BookOpen
+    enabled: true
+    description: Books I'm reading, have read, and thoughts on them.
+    showInNav: true
+
   # Example: Add more content types below
   # - id: bugbash
   #   label: Bug Bash

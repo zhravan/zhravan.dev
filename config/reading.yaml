@@ -1,0 +1,41 @@
+# Books Configuration
+books:
+  - id: atomic-habits
+    title: Atomic Habits
+    author: James Clear
+    status: read
+    rating: 5
+    dateFinished: "2024-03-20"
+    review: "Excellent book on building better habits through small, incremental changes. The framework of identity-based habits is particularly powerful."
+    tags: ["productivity", "self-improvement"]
+
+  - id: pragmatic-programmer
+    title: The Pragmatic Programmer
+    author: Andrew Hunt & David Thomas
+    status: read
+    rating: 5
+    dateFinished: "2023-11-15"
+    review: "Essential reading for any developer. Timeless principles that apply regardless of language or framework."
+    tags: ["programming", "software-engineering"]
+
+  - id: designing-data-intensive
+    title: Designing Data-Intensive Applications
+    author: Martin Kleppmann
+    status: reading
+    dateStarted: "2024-11-01"
+    tags: ["distributed-systems", "databases", "architecture"]
+
+  - id: clean-code
+    title: Clean Code
+    author: Robert C. Martin
+    status: read
+    rating: 4
+    dateFinished: "2023-08-10"
+    review: "Great principles for writing maintainable code. Some examples feel dated but core concepts remain valuable."
+    tags: ["programming", "best-practices"]
+
+  - id: philosophy-software-design
+    title: A Philosophy of Software Design
+    author: John Ousterhout
+    status: to-read
+    tags: ["software-engineering", "design"]
