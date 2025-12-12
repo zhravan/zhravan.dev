@@ -7,11 +7,12 @@ import type { ContentItem } from '@/lib/content';
 interface TabbedWritingViewProps {
   blogPosts: ContentItem[];
   thoughts: ContentItem[];
-  defaultTab?: 'all' | 'blogs' | 'musings';
+  secondBrain: ContentItem[];
+  defaultTab?: 'all' | 'blogs' | 'musings' | 'second-brain';
 }
 
-export function TabbedWritingView({ blogPosts, thoughts, defaultTab = 'all' }: TabbedWritingViewProps) {
-  const [activeTab, setActiveTab] = useState<'all' | 'blogs' | 'musings'>(defaultTab);
+export function TabbedWritingView({ blogPosts, thoughts, secondBrain, defaultTab = 'all' }: TabbedWritingViewProps) {
+  const [activeTab, setActiveTab] = useState<'all' | 'blogs' | 'musings' | 'second-brain'>(defaultTab);
 
   const formatDate = (iso: string) => {
     if (!iso) return '';
@@ -37,18 +38,19 @@ export function TabbedWritingView({ blogPosts, thoughts, defaultTab = 'all' }: T
 
   // Combine and sort all posts by date for 'all' tab
   const allPosts = activeTab === 'all'
-    ? [...blogPosts, ...thoughts].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-    : activeTab === 'blogs' ? blogPosts : thoughts;
+    ? [...blogPosts, ...thoughts, ...secondBrain].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    : activeTab === 'blogs' ? blogPosts : activeTab === 'musings' ? thoughts : secondBrain;
 
   const groupedPosts = groupByYear(allPosts);
 
   // Determine the correct URL based on post type
   const getPostUrl = (post: ContentItem) => {
     if (activeTab === 'all') {
-      // Check if post is from thoughts (musings) or blog
+      // Check if post is from second-brain, thoughts (musings), or blog
+      if (secondBrain.some(s => s.slug === post.slug)) return `/second-brain/${post.slug}`;
       return thoughts.some(t => t.slug === post.slug) ? `/musings/${post.slug}` : `/blogs/${post.slug}`;
     }
-    return activeTab === 'blogs' ? `/blogs/${post.slug}` : `/musings/${post.slug}`;
+    return activeTab === 'blogs' ? `/blogs/${post.slug}` : activeTab === 'musings' ? `/musings/${post.slug}` : `/second-brain/${post.slug}`;
   };
 
   return (
@@ -84,6 +86,16 @@ export function TabbedWritingView({ blogPosts, thoughts, defaultTab = 'all' }: T
           }}
         >
           Musings
+        </button>
+        <button
+          onClick={() => setActiveTab('second-brain')}
+          className="text-xs transition-all hover:opacity-70 pb-1 border-b-2"
+          style={{
+            color: activeTab === 'second-brain' ? 'var(--color-foreground)' : 'var(--color-muted-foreground)',
+            borderColor: activeTab === 'second-brain' ? 'var(--color-foreground)' : 'transparent',
+          }}
+        >
+          Second Brain
         </button>
       </div>
 
