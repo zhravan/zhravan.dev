@@ -5,6 +5,8 @@ export { InlineCode, Pre } from './Code';
 export { ExternalLink } from './ExternalLink';
 export { DocumentViewer, PDF, PPT } from './DocumentViewer';
 export { Gist } from './Gist';
+export { Tweet } from './Tweet';
+export { Reddit } from './Reddit';
 export { Callout, Note, Tip, Important, Warning, Caution, Question, Info, Danger } from './Callout';
 export { Image } from './Image';
 export { ImageRow, ImageCol } from './ImageRow';

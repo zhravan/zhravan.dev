@@ -6,6 +6,8 @@ import { InlineCode, Pre } from '@/components/mdx/Code';
 import { ExternalLink } from '@/components/mdx/ExternalLink';
 import { DocumentViewer, PDF, PPT } from '@/components/mdx/DocumentViewer';
 import { Gist } from '@/components/mdx/Gist';
+import { Tweet } from '@/components/mdx/Tweet';
+import { Reddit } from '@/components/mdx/Reddit';
 import { Callout, Note, Tip, Important, Warning, Caution, Question, Info, Danger } from '@/components/mdx/Callout';
 import { Image } from '@/components/mdx/Image';
 import { ImageRow, ImageCol } from '@/components/mdx/ImageRow';
@@ -38,6 +40,9 @@ export function useMDXComponents(): MDXComponents {
     PPT,
     // Gist embeds
     Gist,
+    // Social embeds
+    Tweet,
+    Reddit,
     // Callouts / Admonitions (GitHub-style)
     Callout,
     Note,
