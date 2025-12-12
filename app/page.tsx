@@ -23,7 +23,7 @@ export default function Home() {
             I work on problems that are interesting, challenging, and have real-world impact. I enjoy optimization challenges, resilient system design, clever abstractions, and performance-focused engineering.
           </p>
           <p style={{ color: 'var(--color-muted-foreground)' }}>
-            In my leisure time, I enjoy exploring ideas—scientific, philosophical, or just strange enough to be interesting. I like gardening, introspection, and discovering how people learn, build, and collaborate.
+            In my leisure time, I enjoy exploring ideas - scientific, philosophical, or just strange enough to be interesting. I like cooking, gardening, introspection, and discovering how people learn, build, and collaborate.
           </p>
         </div>
       </article>

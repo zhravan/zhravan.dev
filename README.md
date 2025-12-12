@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-Personal portfolio and digital garden of Shravan Kumar B — tinkerer, FOSS enthusiast, polymathic indie computer scientist.
+Personal portfolio and digital garden of Shravan Kumar B; a tinkerer, FOSS enthusiast, polymathic indie computer scientist.
 </p>
 
 ## Quick Start
@@ -23,9 +23,9 @@ Visit <http://localhost:3000>
 
 ## Scripts
 
-- `pnpm dev` — Start dev server
-- `pnpm build` — Production build
-- `pnpm new:post` — Create new post
+- `pnpm dev` - Start dev server
+- `pnpm build` - Production build
+- `pnpm new:post` - Create new post
 
 ## Connect
 

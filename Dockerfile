@@ -18,7 +18,7 @@ COPY . .
 # Build the app (Next.js static export)
 RUN pnpm build
 
-# Stage 2 — Serve with Caddy
+# Stage 2 - Serve with Caddy
 FROM caddy:2-alpine
 
 # Copy the exported static site from the builder
