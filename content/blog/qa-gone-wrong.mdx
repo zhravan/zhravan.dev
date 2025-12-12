@@ -1,0 +1,85 @@
+export const frontmatter = {
+  title: "What happens when Everything goes wrong: QA Testing Gone Wrong?",
+  date: "January 11, 2024",
+  description:
+    'An exploration of a bizarre npm prank package called "everything" that dragged in millions of dependencies and caused dependency hell for the ecosystem.',
+  tags: ["deep dive", "technology", "npm", "qa testing", "dependency hell"],
+};
+
+# What happens when &quot;Everything&quot; goes wrong: QA Testing Gone Wrong?
+
+## Overview
+
+This is an article on recent event of QA gone south, causing the chaos in the whole NPM ecosystem
+
+## Background
+
+A software engineer viz., PatrickJS having an NPM user account gdi2290, recently
+orchestrated a notable prank on the NPM registry by introducing a package named "**_everything_**."
+
+## What happened
+
+<Image
+  src="https://substackcdn.com/image/fetch/$s_!zuSV!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F307ca914-57bf-4475-9956-e11235364bd0_888x632.png"
+  alt="image"
+  href="https://substackcdn.com/image/fetch/$s_!zuSV!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F307ca914-57bf-4475-9956-e11235364bd0_888x632.png"
+  caption="Callback Hell? PratickJS be like lemme show what is Dependency Hell!!!"
+/>
+
+Crafted with the deliberate intent of depending on every publicly available NPM package, this package has triggered a cascade of millions of transitive dependencies, precipitating a state of Denial of Service (DOS) for users who choose to install it. The result of the fallout would cause exhaustion of storage/disk space, further leading to breakage of the build pipelines.
+
+**_But, that's just the tip of the iceberg._**
+
+## Fallout
+
+<Image
+  src="https://substackcdn.com/image/fetch/$s_!nQCR!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F6edce6e0-4ed9-40e2-b136-76db13b4a2f1_887x500.png"
+  alt="image"
+  caption="The audience echoed a similar sentiment"
+/>
+
+Even if one might question who would intentionally install such a package, the broader consequence is that the creators of the "everything" package have made it impossible for npm package authors, who have ever published their packages to the npm registry, to remove their packages.
+
+This is due to npm's policy, which prevents the deletion of packages that are currently in use by other projects. In essence, the extensive dependencies created by the "everything" package have inadvertently trapped other packages, hindering their authors from removing them when needed.
+
+## Similar incidents
+
+**_This incident isn't an isolated occurrence._**
+
+<Image
+  src="https://substackcdn.com/image/fetch/$s_!ZKa9!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fdd228983-0a6f-406b-ba20-cab82978a34a_461x322.png"
+  alt="High Quality Shark Tank India Aman Blank Meme Template"
+  caption="Similar incidents have happened in the past too"
+/>
+
+Approximately a year ago, a situation reminiscent of the current one unfolded with the "no-one-left-behind" package. This package intricately wove itself into a convoluted web of dependencies, relying on every publicly available NPM package.
+
+In 2016, involving the removal of the left-pad package from the npm registry and causing widespread internet disruptions, prompted npm to enact changes. A significant policy alteration ensued, making it more challenging for authors to unpublish packages. They could now only do so if no other package on the npm registry depended on it. Ironically, this policy has now left PatrickJS, the mastermind behind "everything," grappling with the difficulty of removing his prank packages due to the extensive dependency chain he meticulously established.
+
+## Current status
+
+<Image
+  src="https://substackcdn.com/image/fetch/$s_!0_PC!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F38b1124d-4702-41fa-883f-d4385802f2e6_1024x614.jpeg"
+  alt="High Quality CHAD Ashneer Blank Meme Template"
+  caption="From different sources, understood that they have made the registry private and that has resolved"
+/>
+
+While "everything" continues to persist on the registry, the numerous "@everything-registry" scoped packages associated with it have been made private, potentially offering a resolution to the [issue](https://github.com/everything-registry/everything/issues/17) (inaccessible since it was made private).
+
+## Links
+
+<Image
+  src="https://substackcdn.com/image/fetch/$s_!u6u_!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F84a0265a-18d4-452a-84dc-fc5caaf2bbbf_680x413.png"
+  alt="image"
+  caption="To amplify the mayhem they instigated, the creators went ahead and secured the domain as well xD"
+/>
+
+Not so fun fact: To further accentuate the chaos they caused, the creators registered the domain [https://everything.npm.lol/](https://everything.npm.lol/).
+
+---
+
+## Closing
+
+That's all for now! Take care until next time.
+Subscribe for free to receive the latest brewed updates.
+Curated with ♥
