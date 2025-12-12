@@ -65,7 +65,7 @@ export function TabbedWritingView({ blogPosts, thoughts, secondBrain, defaultTab
             borderColor: activeTab === 'all' ? 'var(--color-foreground)' : 'transparent',
           }}
         >
-          All
+          All <span className="text-[10px] opacity-40">({[...blogPosts, ...thoughts, ...secondBrain].length})</span>
         </button>
         <button
           onClick={() => setActiveTab('blogs')}
@@ -75,7 +75,7 @@ export function TabbedWritingView({ blogPosts, thoughts, secondBrain, defaultTab
             borderColor: activeTab === 'blogs' ? 'var(--color-foreground)' : 'transparent',
           }}
         >
-          Blogs
+          Blogs <span className="text-[10px] opacity-40">({blogPosts.length})</span>
         </button>
         <button
           onClick={() => setActiveTab('musings')}
@@ -85,7 +85,7 @@ export function TabbedWritingView({ blogPosts, thoughts, secondBrain, defaultTab
             borderColor: activeTab === 'musings' ? 'var(--color-foreground)' : 'transparent',
           }}
         >
-          Musings
+          Musings <span className="text-[10px] opacity-40">({thoughts.length})</span>
         </button>
         <button
           onClick={() => setActiveTab('second-brain')}
@@ -95,7 +95,7 @@ export function TabbedWritingView({ blogPosts, thoughts, secondBrain, defaultTab
             borderColor: activeTab === 'second-brain' ? 'var(--color-foreground)' : 'transparent',
           }}
         >
-          Second Brain
+          Second Brain <span className="text-[10px] opacity-40">({secondBrain.length})</span>
         </button>
       </div>
 
