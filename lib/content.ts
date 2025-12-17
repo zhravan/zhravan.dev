@@ -11,6 +11,7 @@ export interface ContentItem {
   series?: string;
   seriesPart?: number;
   draft?: boolean;
+  ogImage?: string;
   contentType: string;
 }
 
@@ -51,6 +52,9 @@ function parseFrontmatter(content: string): Partial<ContentItem> {
   
   // Extract draft status
   const draftMatch = frontmatterContent.match(/draft:\s*(true|false)/);
+  
+  // Extract ogImage
+  const ogImageMatch = frontmatterContent.match(/ogImage:\s*["']([^"']+)["']/);
 
   return {
     title: titleMatch ? titleMatch[1] : '',
@@ -59,7 +63,8 @@ function parseFrontmatter(content: string): Partial<ContentItem> {
     tags: tags,
     series: seriesMatch ? seriesMatch[1] : undefined,
     seriesPart: seriesPartMatch ? parseInt(seriesPartMatch[1]) : undefined,
-    draft: draftMatch ? draftMatch[1] === 'true' : false
+    draft: draftMatch ? draftMatch[1] === 'true' : false,
+    ogImage: ogImageMatch ? ogImageMatch[1] : undefined
   };
 }
 
@@ -99,6 +104,7 @@ export function getContentForType(
         series: frontmatter.series,
         seriesPart: frontmatter.seriesPart,
         draft: frontmatter.draft || false,
+        ogImage: frontmatter.ogImage,
         contentType: contentType.id
       };
     })

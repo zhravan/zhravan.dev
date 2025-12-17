@@ -50,7 +50,8 @@ export async function generateMetadata({
     description: post.description,
     path: `/blogs/${slug}`,
     date: post.date,
-    tags: post.tags
+    tags: post.tags,
+    ogImage: post.ogImage
   });
 }
 
