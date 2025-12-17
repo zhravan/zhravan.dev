@@ -23,7 +23,8 @@ export default function Home() {
             I work on problems that are interesting, challenging, and have real-world impact. I enjoy optimization challenges, resilient system design, clever abstractions, and performance-focused engineering.
           </p>
           <p style={{ color: 'var(--color-muted-foreground)' }}>
-            In my leisure time, I enjoy exploring ideas - scientific, philosophical, or just strange enough to be interesting. I like cooking, gardening, introspection, and discovering how people learn, build, and collaborate.
+            In my leisure time, I enjoy exploring ideas; scientific, philosophical, or just strange enough to be interesting. <br />
+            I like cooking, gardening, introspection, and discovering how people learn, build, and collaborate.
           </p>
         </div>
       </article>
@@ -55,7 +56,7 @@ export default function Home() {
       <section className="animate-fade-up" style={{ animationDelay: '200ms' }}>
         <p className="" style={{ color: 'var(--color-muted-foreground)' }}>
           You can <Link href="/writing">read my writing</Link>, check out my{' '}
-          <Link href="/work">projects</Link>, or <Link href="/about">learn more about me</Link>. I am always interested in connecting with fellow developers and creators.
+          <Link href="/work">projects</Link>, or <Link href="/about">learn more about me</Link>. I am always interested in connecting with fellow developers and creators. You can reachout to me via <Link href="/contact">shravan [at] ohmyscript [dot] com</Link>.
         </p>
       </section>
     </main>
