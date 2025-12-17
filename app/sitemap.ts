@@ -25,16 +25,17 @@ export default async function sitemap() {
       return items.map((item) => {
         const itemDate = item.date ? new Date(item.date) : new Date();
         return {
-          url: `${siteUrl}${basePath}/${item.slug}`,
+          url: `${siteUrl}${basePath}/${item.slug}/`,
           lastModified: itemDate.toISOString()
         };
       });
     });
 
   // Generate static routes (only routes that actually exist as pages)
+  // Note: Empty string for homepage should not have trailing slash
   const staticRoutes = ['', '/about', '/writing', '/work', '/talks'].map(
     (route) => ({
-      url: `${siteUrl}${route}`,
+      url: route === '' ? `${siteUrl}/` : `${siteUrl}${route}/`,
       lastModified: new Date().toISOString()
     })
   );
