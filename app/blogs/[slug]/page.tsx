@@ -48,7 +48,7 @@ export async function generateMetadata({
   return getPostMetadata({
     title: post.title,
     description: post.description,
-    path: `/blogs/${slug}`,
+    path: `/blogs/${slug}/`,
     date: post.date,
     tags: post.tags,
     ogImage: post.ogImage
@@ -93,20 +93,20 @@ export default async function BlogPost({
   const showSidebar = true; // Always show sidebar for metadata
   
   // Generate share URL
-  const shareUrl = getShareUrl(`/blogs/${slug}`);
+  const shareUrl = getShareUrl(`/blogs/${slug}/`);
 
   const structuredData = getArticleStructuredData({
     title: post.title,
     description: post.description,
-    path: `/blogs/${slug}`,
+    path: `/blogs/${slug}/`,
     date: post.date,
     tags: post.tags
   });
 
   const breadcrumbData = getBreadcrumbStructuredData([
     { name: 'Home', url: '/' },
-    { name: 'Writing', url: '/writing' },
-    { name: post.title, url: `/blogs/${slug}` },
+    { name: 'Writing', url: '/writing/' },
+    { name: post.title, url: `/blogs/${slug}/` },
   ]);
 
   return (
@@ -126,7 +126,7 @@ export default async function BlogPost({
       >
         <div className="space-y-6 text-xxs">
           <div className="flex items-center gap-2 mb-8">
-            <BackLink href="/writing">Back to Writing</BackLink>
+            <BackLink href="/writing/">Back to Writing</BackLink>
             {isDraft(post) && <DraftBadge draft={true} />}
           </div>
 

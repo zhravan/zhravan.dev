@@ -10,7 +10,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return getPageMetadata({
     title: contentType?.label || 'Tech Talks',
     description: contentType?.description || 'Presentations and speaking engagements',
-    path: '/talks'
+    path: '/talks/'
   });
 }
 

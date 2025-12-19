@@ -14,6 +14,14 @@ function normalizePath(input: string): string {
   return input.startsWith("/") ? input : `/${input}`;
 }
 
+function normalizeCanonicalPath(input: string): string {
+  // For canonical URLs, ensure trailing slash matches Next.js trailingSlash: true config
+  // Homepage should be "/" (single slash), all other paths should end with "/"
+  if (!input || input === "/") return "/";
+  const normalized = input.startsWith("/") ? input : `/${input}`;
+  return normalized.endsWith("/") ? normalized : `${normalized}/`;
+}
+
 type TwitterCard = "summary" | "summary_large_image" | "app" | "player";
 
 type OGType =
@@ -233,7 +241,7 @@ export function getPostMetadata({
   modifiedTime?: string;
 }): Metadata {
   const cfg = loadSeoConfig();
-  const canonicalPath = normalizePath(path || (slug ? `/blogs/${slug}` : "/"));
+  const canonicalPath = normalizeCanonicalPath(path || (slug ? `/blogs/${slug}` : "/"));
   const url = `${cfg.siteUrl}${canonicalPath}`;
   const pageTitle: Metadata["title"] = cfg.titleTemplate
     ? { default: cfg.title, template: cfg.titleTemplate.replace("%s", title) }
@@ -351,7 +359,7 @@ export function getArticleStructuredData({
   ogImage?: string;
 }): StructuredData {
   const cfg = loadSeoConfig();
-  const canonicalPath = normalizePath(path || (slug ? `/blogs/${slug}` : "/"));
+  const canonicalPath = normalizeCanonicalPath(path || (slug ? `/blogs/${slug}` : "/"));
   const url = `${cfg.siteUrl}${canonicalPath}`;
   const publishedTime = date ? new Date(date).toISOString() : undefined;
   const modifiedTimeISO = modifiedTime
@@ -425,7 +433,8 @@ export function getPageMetadata({
 }): Metadata {
   const cfg = loadSeoConfig();
 
-  const url = `${cfg.siteUrl}${path}`;
+  const canonicalPath = normalizeCanonicalPath(path);
+  const url = `${cfg.siteUrl}${canonicalPath}`;
   const pageTitle: Metadata["title"] = cfg.titleTemplate
     ? { default: cfg.title, template: cfg.titleTemplate.replace("%s", title) }
     : { default: cfg.title, template: `${title} | ${cfg.title}` };
@@ -449,7 +458,7 @@ export function getPageMetadata({
       ? [{ name: cfg.author.name, url: cfg.author.url }]
       : undefined,
     alternates: {
-      canonical: path,
+      canonical: canonicalPath,
       languages: { "en-US": url }
     },
     openGraph: {

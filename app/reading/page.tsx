@@ -11,7 +11,7 @@ const pageMetadata = {
 export const metadata: Metadata = getPageMetadata({
   title: pageMetadata.title,
   description: pageMetadata.description,
-  path: '/reading'
+  path: '/reading/'
 });
 
 export default function ReadingPage() {

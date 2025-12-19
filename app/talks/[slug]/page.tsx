@@ -48,7 +48,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return getPostMetadata({
     title: item.title,
     description: item.description,
-    path: `${contentType.path}/${slug}`,
+    path: `${contentType.path}/${slug}/`,
     date: item.date,
     tags: item.tags
   });
@@ -80,7 +80,7 @@ export default async function TalksPost({ params }: PageProps) {
   const structuredData = getArticleStructuredData({
     title: item.title,
     description: item.description,
-    path: `${contentType.path}/${item.slug}`,
+    path: `${contentType.path}/${item.slug}/`,
     date: item.date,
     tags: item.tags
   });
@@ -109,7 +109,7 @@ export default async function TalksPost({ params }: PageProps) {
       >
         <div className="space-y-6 text-xxs">
           <div className="flex items-center gap-2 mb-8">
-            <BackLink href="/talks">Back to Talks</BackLink>
+            <BackLink href="/talks/">Back to Talks</BackLink>
             {item.draft && <DraftBadge draft={true} />}
           </div>
         <article>

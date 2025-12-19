@@ -55,7 +55,7 @@ export async function GET() {
   const items = allContent
     .map((post) => {
       const urlPath = post.type === 'blog' ? 'blogs' : post.type;
-      const url = `${siteUrl}/${urlPath}/${post.slug}`;
+      const url = `${siteUrl}/${urlPath}/${post.slug}/`;
       const pubDate = post.date ? new Date(post.date).toUTCString() : new Date().toUTCString();
       const title = post.title || post.slug;
       const description = post.description || '';

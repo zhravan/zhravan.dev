@@ -48,7 +48,7 @@ export async function generateMetadata({
   return getPostMetadata({
     title: note.title,
     description: note.description,
-    path: `/second-brain/${slug}`,
+    path: `/second-brain/${slug}/`,
     date: note.date,
     tags: note.tags
   });
@@ -92,20 +92,20 @@ export default async function SecondBrainNote({
   const showSidebar = true; // Always show sidebar for metadata
   
   // Generate share URL
-  const shareUrl = getShareUrl(`/second-brain/${slug}`);
+  const shareUrl = getShareUrl(`/second-brain/${slug}/`);
 
   const structuredData = getArticleStructuredData({
     title: note.title,
     description: note.description,
-    path: `/second-brain/${slug}`,
+    path: `/second-brain/${slug}/`,
     date: note.date,
     tags: note.tags
   });
 
   const breadcrumbData = getBreadcrumbStructuredData([
     { name: 'Home', url: '/' },
-    { name: 'Writing', url: '/writing' },
-    { name: note.title, url: `/second-brain/${slug}` },
+    { name: 'Writing', url: '/writing/' },
+    { name: note.title, url: `/second-brain/${slug}/` },
   ]);
 
   return (
@@ -125,7 +125,7 @@ export default async function SecondBrainNote({
       >
         <div className="space-y-6 text-xxs">
           <div className="flex items-center gap-2 mb-8">
-            <BackLink href="/writing">Back to Writing</BackLink>
+            <BackLink href="/writing/">Back to Writing</BackLink>
             {isDraft(note) && <DraftBadge draft={true} />}
           </div>
 

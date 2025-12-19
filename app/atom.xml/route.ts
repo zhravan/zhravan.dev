@@ -56,7 +56,7 @@ export async function GET() {
   const entries = allContent
     .map((post) => {
       const urlPath = post.type === 'blog' ? 'blogs' : post.type;
-      const url = `${siteUrl}/${urlPath}/${post.slug}`;
+      const url = `${siteUrl}/${urlPath}/${post.slug}/`;
       const title = post.title || post.slug;
       const summary = post.description || '';
       const content = extractMdxContent(post.type, post.slug);

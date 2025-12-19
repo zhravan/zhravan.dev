@@ -47,10 +47,10 @@ export function TabbedWritingView({ blogPosts, thoughts, secondBrain, defaultTab
   const getPostUrl = (post: ContentItem) => {
     if (activeTab === 'all') {
       // Check if post is from second-brain, thoughts (musings), or blog
-      if (secondBrain.some(s => s.slug === post.slug)) return `/second-brain/${post.slug}`;
-      return thoughts.some(t => t.slug === post.slug) ? `/musings/${post.slug}` : `/blogs/${post.slug}`;
+      if (secondBrain.some(s => s.slug === post.slug)) return `/second-brain/${post.slug}/`;
+      return thoughts.some(t => t.slug === post.slug) ? `/musings/${post.slug}/` : `/blogs/${post.slug}/`;
     }
-    return activeTab === 'blogs' ? `/blogs/${post.slug}` : activeTab === 'musings' ? `/musings/${post.slug}` : `/second-brain/${post.slug}`;
+    return activeTab === 'blogs' ? `/blogs/${post.slug}/` : activeTab === 'musings' ? `/musings/${post.slug}/` : `/second-brain/${post.slug}/`;
   };
 
   return (
