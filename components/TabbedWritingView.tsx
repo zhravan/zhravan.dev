@@ -112,7 +112,7 @@ export function TabbedWritingView({ blogPosts, thoughts, secondBrain, defaultTab
                       <span className="opacity-30">→</span>
                       <Link
                         href={getPostUrl(post)}
-                        className="hover:opacity-70 transition-opacity truncate"
+                        className="hover:opacity-70 transition-opacity truncate font-semibold"
                       >
                         {post.title}
                       </Link>
