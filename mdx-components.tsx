@@ -11,6 +11,7 @@ import { Reddit } from '@/components/mdx/Reddit';
 import { Callout, Note, Tip, Important, Warning, Caution, Question, Info, Danger } from '@/components/mdx/Callout';
 import { Image } from '@/components/mdx/Image';
 import { ImageRow, ImageCol } from '@/components/mdx/ImageRow';
+import { DropCap } from '@/components/mdx/DropCap';
 
 // Allow both sync and async server components
 type MDXComponent = React.ComponentType<any> | ((props: any) => Promise<React.JSX.Element>);
@@ -59,5 +60,7 @@ export function useMDXComponents(): MDXComponents {
     // Side-by-side images
     ImageRow,
     ImageCol,
+    // Drop cap for first letter styling
+    DropCap,
   };
 }

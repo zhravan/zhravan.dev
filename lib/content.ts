@@ -52,7 +52,7 @@ function parseFrontmatter(content: string): Partial<ContentItem> {
   
   // Extract draft status
   const draftMatch = frontmatterContent.match(/draft:\s*(true|false)/);
-  
+
   // Extract ogImage
   const ogImageMatch = frontmatterContent.match(/ogImage:\s*["']([^"']+)["']/);
 
