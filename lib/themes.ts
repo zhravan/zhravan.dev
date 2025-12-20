@@ -1322,6 +1322,811 @@ export const themes = {
     },
     syntaxTheme: 'github-light',
   },
+  'sketchbook-cream': {
+    name: 'Sketchbook Cream',
+    colors: {
+      background: 'hsl(45 45% 94%)', // Rich cream paper
+      foreground: 'hsl(30 8% 25%)', // Pencil/ink gray-brown
+      card: 'hsl(45 40% 92%)',
+      cardForeground: 'hsl(30 8% 25%)',
+      primary: 'hsl(30 8% 25%)',
+      primaryForeground: 'hsl(45 45% 94%)',
+      secondary: 'hsl(45 35% 90%)',
+      secondaryForeground: 'hsl(30 10% 30%)',
+      muted: 'hsl(45 30% 88%)',
+      mutedForeground: 'hsl(30 5% 50%)',
+      accent: 'hsl(48 85% 75%)', // Bright yellow marker
+      accentForeground: 'hsl(30 8% 20%)',
+      border: 'hsl(45 25% 82%)',
+      input: 'hsl(45 35% 90%)',
+      ring: 'hsl(48 90% 65%)', // Vibrant yellow
+      link: 'hsl(30 12% 35%)',
+      linkHover: 'hsl(30 15% 20%)',
+    },
+    syntaxTheme: 'github-light',
+  },
+  'midnight-ink': {
+    name: 'Midnight Ink',
+    colors: {
+      background: 'hsl(220 30% 8%)', // Deep navy-black
+      foreground: 'hsl(200 15% 88%)', // Cool white-blue
+      card: 'hsl(220 28% 10%)',
+      cardForeground: 'hsl(200 15% 88%)',
+      primary: 'hsl(190 90% 55%)', // Electric cyan
+      primaryForeground: 'hsl(220 30% 8%)',
+      secondary: 'hsl(220 25% 13%)',
+      secondaryForeground: 'hsl(200 12% 80%)',
+      muted: 'hsl(220 20% 15%)',
+      mutedForeground: 'hsl(200 8% 55%)',
+      accent: 'hsl(280 70% 65%)', // Purple accent
+      accentForeground: 'hsl(0 0% 100%)',
+      border: 'hsl(220 25% 18%)',
+      input: 'hsl(220 22% 14%)',
+      ring: 'hsl(190 90% 55%)',
+      link: 'hsl(190 85% 60%)',
+      linkHover: 'hsl(280 70% 65%)',
+    },
+    syntaxTheme: 'dracula',
+  },
+  'sakura-blossom': {
+    name: 'Sakura Blossom',
+    colors: {
+      background: 'hsl(350 25% 97%)', // Soft pink-white
+      foreground: 'hsl(340 35% 25%)', // Deep rose-brown
+      card: 'hsl(350 30% 95%)',
+      cardForeground: 'hsl(340 35% 25%)',
+      primary: 'hsl(340 65% 55%)', // Cherry blossom pink
+      primaryForeground: 'hsl(0 0% 100%)',
+      secondary: 'hsl(350 20% 92%)',
+      secondaryForeground: 'hsl(340 30% 30%)',
+      muted: 'hsl(350 15% 90%)',
+      mutedForeground: 'hsl(340 15% 50%)',
+      accent: 'hsl(160 45% 65%)', // Soft jade green
+      accentForeground: 'hsl(340 35% 25%)',
+      border: 'hsl(350 20% 85%)',
+      input: 'hsl(350 22% 93%)',
+      ring: 'hsl(340 65% 55%)',
+      link: 'hsl(340 70% 50%)',
+      linkHover: 'hsl(340 75% 40%)',
+    },
+    syntaxTheme: 'rose-pine-dawn',
+  },
+  'neon-tokyo': {
+    name: 'Neon Tokyo',
+    colors: {
+      background: 'hsl(260 25% 12%)', // Deep purple-black
+      foreground: 'hsl(180 80% 75%)', // Bright cyan
+      card: 'hsl(260 22% 15%)',
+      cardForeground: 'hsl(180 80% 75%)',
+      primary: 'hsl(330 100% 65%)', // Hot pink
+      primaryForeground: 'hsl(260 25% 12%)',
+      secondary: 'hsl(260 20% 18%)',
+      secondaryForeground: 'hsl(180 70% 70%)',
+      muted: 'hsl(260 18% 20%)',
+      mutedForeground: 'hsl(180 30% 55%)',
+      accent: 'hsl(280 90% 70%)', // Electric purple
+      accentForeground: 'hsl(0 0% 100%)',
+      border: 'hsl(280 60% 35%)',
+      input: 'hsl(260 20% 18%)',
+      ring: 'hsl(330 100% 65%)',
+      link: 'hsl(330 95% 70%)',
+      linkHover: 'hsl(280 90% 75%)',
+    },
+    syntaxTheme: 'synthwave-84',
+  },
+  'forest-whisper': {
+    name: 'Forest Whisper',
+    colors: {
+      background: 'hsl(140 20% 12%)', // Deep forest green
+      foreground: 'hsl(85 25% 82%)', // Soft sage
+      card: 'hsl(140 18% 15%)',
+      cardForeground: 'hsl(85 25% 82%)',
+      primary: 'hsl(145 50% 55%)', // Vibrant green
+      primaryForeground: 'hsl(140 20% 12%)',
+      secondary: 'hsl(140 15% 18%)',
+      secondaryForeground: 'hsl(85 20% 75%)',
+      muted: 'hsl(140 12% 20%)',
+      mutedForeground: 'hsl(85 12% 50%)',
+      accent: 'hsl(35 80% 60%)', // Golden amber
+      accentForeground: 'hsl(140 20% 12%)',
+      border: 'hsl(140 15% 25%)',
+      input: 'hsl(140 12% 18%)',
+      ring: 'hsl(145 50% 55%)',
+      link: 'hsl(145 55% 60%)',
+      linkHover: 'hsl(35 80% 65%)',
+    },
+    syntaxTheme: 'everforest-dark',
+  },
+  'arctic-aurora': {
+    name: 'Arctic Aurora',
+    colors: {
+      background: 'hsl(200 30% 10%)', // Deep ice blue
+      foreground: 'hsl(180 20% 90%)', // Pale ice white
+      card: 'hsl(200 28% 12%)',
+      cardForeground: 'hsl(180 20% 90%)',
+      primary: 'hsl(160 70% 60%)', // Aurora green
+      primaryForeground: 'hsl(200 30% 10%)',
+      secondary: 'hsl(200 25% 15%)',
+      secondaryForeground: 'hsl(180 18% 85%)',
+      muted: 'hsl(200 20% 18%)',
+      mutedForeground: 'hsl(180 10% 55%)',
+      accent: 'hsl(280 60% 70%)', // Aurora purple
+      accentForeground: 'hsl(0 0% 100%)',
+      border: 'hsl(200 25% 22%)',
+      input: 'hsl(200 22% 15%)',
+      ring: 'hsl(160 70% 60%)',
+      link: 'hsl(160 75% 65%)',
+      linkHover: 'hsl(280 60% 70%)',
+    },
+    syntaxTheme: 'nord',
+  },
+  'desert-sunset': {
+    name: 'Desert Sunset',
+    colors: {
+      background: 'hsl(25 45% 92%)', // Warm sand
+      foreground: 'hsl(15 30% 25%)', // Desert brown
+      card: 'hsl(25 40% 90%)',
+      cardForeground: 'hsl(15 30% 25%)',
+      primary: 'hsl(15 80% 55%)', // Burnt orange
+      primaryForeground: 'hsl(0 0% 100%)',
+      secondary: 'hsl(25 35% 88%)',
+      secondaryForeground: 'hsl(15 25% 30%)',
+      muted: 'hsl(25 30% 85%)',
+      mutedForeground: 'hsl(15 15% 45%)',
+      accent: 'hsl(340 70% 60%)', // Sunset pink
+      accentForeground: 'hsl(15 30% 25%)',
+      border: 'hsl(25 25% 80%)',
+      input: 'hsl(25 35% 88%)',
+      ring: 'hsl(15 80% 55%)',
+      link: 'hsl(15 75% 50%)',
+      linkHover: 'hsl(340 70% 55%)',
+    },
+    syntaxTheme: 'solarized-light',
+  },
+  'lavender-dream': {
+    name: 'Lavender Dream',
+    colors: {
+      background: 'hsl(270 35% 96%)', // Soft lavender white
+      foreground: 'hsl(260 30% 30%)', // Deep purple-gray
+      card: 'hsl(270 30% 94%)',
+      cardForeground: 'hsl(260 30% 30%)',
+      primary: 'hsl(270 60% 65%)', // Lavender purple
+      primaryForeground: 'hsl(0 0% 100%)',
+      secondary: 'hsl(270 25% 92%)',
+      secondaryForeground: 'hsl(260 25% 35%)',
+      muted: 'hsl(270 20% 90%)',
+      mutedForeground: 'hsl(260 15% 50%)',
+      accent: 'hsl(310 65% 70%)', // Bright magenta
+      accentForeground: 'hsl(260 30% 30%)',
+      border: 'hsl(270 20% 85%)',
+      input: 'hsl(270 25% 92%)',
+      ring: 'hsl(270 60% 65%)',
+      link: 'hsl(270 65% 60%)',
+      linkHover: 'hsl(310 65% 65%)',
+    },
+    syntaxTheme: 'github-light',
+  },
+  'obsidian-flame': {
+    name: 'Obsidian Flame',
+    colors: {
+      background: 'hsl(0 0% 8%)', // Pure black
+      foreground: 'hsl(20 15% 85%)', // Warm gray
+      card: 'hsl(0 0% 11%)',
+      cardForeground: 'hsl(20 15% 85%)',
+      primary: 'hsl(15 95% 60%)', // Burning orange
+      primaryForeground: 'hsl(0 0% 100%)',
+      secondary: 'hsl(0 0% 14%)',
+      secondaryForeground: 'hsl(20 12% 80%)',
+      muted: 'hsl(0 0% 17%)',
+      mutedForeground: 'hsl(20 8% 50%)',
+      accent: 'hsl(35 100% 55%)', // Golden flame
+      accentForeground: 'hsl(0 0% 10%)',
+      border: 'hsl(15 20% 20%)',
+      input: 'hsl(0 0% 14%)',
+      ring: 'hsl(15 95% 60%)',
+      link: 'hsl(15 90% 65%)',
+      linkHover: 'hsl(35 100% 60%)',
+    },
+    syntaxTheme: 'monokai',
+  },
+  'ocean-depths': {
+    name: 'Ocean Depths',
+    colors: {
+      background: 'hsl(210 35% 8%)', // Deep ocean blue
+      foreground: 'hsl(190 25% 88%)', // Sea foam white
+      card: 'hsl(210 32% 10%)',
+      cardForeground: 'hsl(190 25% 88%)',
+      primary: 'hsl(195 85% 55%)', // Bright aqua
+      primaryForeground: 'hsl(210 35% 8%)',
+      secondary: 'hsl(210 28% 13%)',
+      secondaryForeground: 'hsl(190 20% 82%)',
+      muted: 'hsl(210 25% 16%)',
+      mutedForeground: 'hsl(190 12% 55%)',
+      accent: 'hsl(165 70% 60%)', // Turquoise
+      accentForeground: 'hsl(210 35% 8%)',
+      border: 'hsl(210 25% 20%)',
+      input: 'hsl(210 25% 14%)',
+      ring: 'hsl(195 85% 55%)',
+      link: 'hsl(195 80% 60%)',
+      linkHover: 'hsl(165 70% 65%)',
+    },
+    syntaxTheme: 'oceanic-next',
+  },
+  'vintage-sepia': {
+    name: 'Vintage Sepia',
+    colors: {
+      background: 'hsl(35 30% 88%)', // Old paper beige
+      foreground: 'hsl(25 20% 25%)', // Faded ink brown
+      card: 'hsl(35 28% 85%)',
+      cardForeground: 'hsl(25 20% 25%)',
+      primary: 'hsl(25 45% 40%)', // Sepia brown
+      primaryForeground: 'hsl(35 30% 88%)',
+      secondary: 'hsl(35 25% 82%)',
+      secondaryForeground: 'hsl(25 18% 30%)',
+      muted: 'hsl(35 20% 80%)',
+      mutedForeground: 'hsl(25 12% 45%)',
+      accent: 'hsl(200 25% 50%)', // Faded blue
+      accentForeground: 'hsl(35 30% 88%)',
+      border: 'hsl(35 20% 75%)',
+      input: 'hsl(35 25% 84%)',
+      ring: 'hsl(25 45% 40%)',
+      link: 'hsl(25 50% 35%)',
+      linkHover: 'hsl(200 30% 45%)',
+    },
+    syntaxTheme: 'github-light',
+  },
+  'electric-violet': {
+    name: 'Electric Violet',
+    colors: {
+      background: 'hsl(270 40% 10%)', // Deep purple-black
+      foreground: 'hsl(280 20% 90%)', // Pale violet white
+      card: 'hsl(270 38% 12%)',
+      cardForeground: 'hsl(280 20% 90%)',
+      primary: 'hsl(280 90% 65%)', // Electric violet
+      primaryForeground: 'hsl(0 0% 100%)',
+      secondary: 'hsl(270 35% 15%)',
+      secondaryForeground: 'hsl(280 18% 85%)',
+      muted: 'hsl(270 30% 18%)',
+      mutedForeground: 'hsl(280 12% 55%)',
+      accent: 'hsl(320 85% 65%)', // Hot magenta
+      accentForeground: 'hsl(0 0% 100%)',
+      border: 'hsl(270 30% 22%)',
+      input: 'hsl(270 32% 16%)',
+      ring: 'hsl(280 90% 65%)',
+      link: 'hsl(280 85% 70%)',
+      linkHover: 'hsl(320 85% 70%)',
+    },
+    syntaxTheme: 'shades-of-purple',
+  },
+  'mint-breeze': {
+    name: 'Mint Breeze',
+    colors: {
+      background: 'hsl(165 40% 96%)', // Pale mint
+      foreground: 'hsl(170 30% 25%)', // Deep teal-green
+      card: 'hsl(165 35% 94%)',
+      cardForeground: 'hsl(170 30% 25%)',
+      primary: 'hsl(165 60% 50%)', // Fresh mint
+      primaryForeground: 'hsl(0 0% 100%)',
+      secondary: 'hsl(165 30% 92%)',
+      secondaryForeground: 'hsl(170 25% 30%)',
+      muted: 'hsl(165 25% 90%)',
+      mutedForeground: 'hsl(170 15% 45%)',
+      accent: 'hsl(190 70% 60%)', // Sky blue
+      accentForeground: 'hsl(170 30% 25%)',
+      border: 'hsl(165 25% 85%)',
+      input: 'hsl(165 30% 92%)',
+      ring: 'hsl(165 60% 50%)',
+      link: 'hsl(165 65% 45%)',
+      linkHover: 'hsl(190 70% 55%)',
+    },
+    syntaxTheme: 'github-light',
+  },
+  'bubblegum-pop': {
+    name: 'Bubblegum Pop',
+    colors: {
+      background: 'hsl(330 100% 97%)', // Bright bubblegum pink white
+      foreground: 'hsl(280 70% 25%)', // Deep purple
+      card: 'hsl(330 95% 95%)',
+      cardForeground: 'hsl(280 70% 25%)',
+      primary: 'hsl(320 100% 60%)', // Hot pink
+      primaryForeground: 'hsl(0 0% 100%)',
+      secondary: 'hsl(330 90% 92%)',
+      secondaryForeground: 'hsl(280 60% 30%)',
+      muted: 'hsl(330 85% 90%)',
+      mutedForeground: 'hsl(280 40% 45%)',
+      accent: 'hsl(280 100% 70%)', // Electric purple
+      accentForeground: 'hsl(0 0% 100%)',
+      border: 'hsl(320 80% 80%)',
+      input: 'hsl(330 90% 93%)',
+      ring: 'hsl(320 100% 60%)',
+      link: 'hsl(320 95% 55%)',
+      linkHover: 'hsl(280 100% 65%)',
+    },
+    syntaxTheme: 'rose-pine-dawn',
+  },
+  'lemon-lime': {
+    name: 'Lemon Lime',
+    colors: {
+      background: 'hsl(65 100% 95%)', // Bright lemon yellow
+      foreground: 'hsl(120 60% 20%)', // Deep forest green
+      card: 'hsl(65 95% 92%)',
+      cardForeground: 'hsl(120 60% 20%)',
+      primary: 'hsl(85 90% 45%)', // Electric lime
+      primaryForeground: 'hsl(120 60% 10%)',
+      secondary: 'hsl(65 90% 88%)',
+      secondaryForeground: 'hsl(120 50% 25%)',
+      muted: 'hsl(65 85% 85%)',
+      mutedForeground: 'hsl(120 30% 40%)',
+      accent: 'hsl(45 100% 55%)', // Bright yellow
+      accentForeground: 'hsl(120 60% 15%)',
+      border: 'hsl(75 80% 75%)',
+      input: 'hsl(65 90% 90%)',
+      ring: 'hsl(85 90% 45%)',
+      link: 'hsl(85 85% 40%)',
+      linkHover: 'hsl(45 100% 50%)',
+    },
+    syntaxTheme: 'github-light',
+  },
+  'cyber-candy': {
+    name: 'Cyber Candy',
+    colors: {
+      background: 'hsl(180 100% 96%)', // Electric cyan white
+      foreground: 'hsl(300 80% 25%)', // Deep magenta
+      card: 'hsl(180 95% 94%)',
+      cardForeground: 'hsl(300 80% 25%)',
+      primary: 'hsl(190 100% 50%)', // Neon cyan
+      primaryForeground: 'hsl(300 80% 15%)',
+      secondary: 'hsl(180 90% 90%)',
+      secondaryForeground: 'hsl(300 70% 30%)',
+      muted: 'hsl(180 85% 88%)',
+      mutedForeground: 'hsl(300 40% 45%)',
+      accent: 'hsl(310 100% 60%)', // Hot magenta
+      accentForeground: 'hsl(0 0% 100%)',
+      border: 'hsl(190 80% 75%)',
+      input: 'hsl(180 90% 92%)',
+      ring: 'hsl(190 100% 50%)',
+      link: 'hsl(190 95% 45%)',
+      linkHover: 'hsl(310 100% 55%)',
+    },
+    syntaxTheme: 'github-light',
+  },
+  'tangerine-dream': {
+    name: 'Tangerine Dream',
+    colors: {
+      background: 'hsl(30 100% 94%)', // Bright tangerine
+      foreground: 'hsl(0 70% 25%)', // Deep crimson
+      card: 'hsl(30 95% 91%)',
+      cardForeground: 'hsl(0 70% 25%)',
+      primary: 'hsl(20 100% 55%)', // Vibrant orange
+      primaryForeground: 'hsl(0 0% 100%)',
+      secondary: 'hsl(30 90% 87%)',
+      secondaryForeground: 'hsl(0 60% 30%)',
+      muted: 'hsl(30 85% 84%)',
+      mutedForeground: 'hsl(0 35% 45%)',
+      accent: 'hsl(350 100% 65%)', // Hot coral
+      accentForeground: 'hsl(0 0% 100%)',
+      border: 'hsl(25 80% 77%)',
+      input: 'hsl(30 90% 88%)',
+      ring: 'hsl(20 100% 55%)',
+      link: 'hsl(20 95% 50%)',
+      linkHover: 'hsl(350 100% 60%)',
+    },
+    syntaxTheme: 'solarized-light',
+  },
+  'holographic-pearl': {
+    name: 'Holographic Pearl',
+    colors: {
+      background: 'hsl(200 50% 97%)', // Iridescent white-blue
+      foreground: 'hsl(260 60% 30%)', // Rich purple
+      card: 'hsl(200 45% 95%)',
+      cardForeground: 'hsl(260 60% 30%)',
+      primary: 'hsl(280 80% 65%)', // Holographic purple
+      primaryForeground: 'hsl(0 0% 100%)',
+      secondary: 'hsl(200 40% 92%)',
+      secondaryForeground: 'hsl(260 50% 35%)',
+      muted: 'hsl(200 35% 90%)',
+      mutedForeground: 'hsl(260 30% 50%)',
+      accent: 'hsl(170 70% 65%)', // Pearlescent teal
+      accentForeground: 'hsl(260 60% 25%)',
+      border: 'hsl(210 60% 83%)',
+      input: 'hsl(200 40% 93%)',
+      ring: 'hsl(280 80% 65%)',
+      link: 'hsl(280 75% 60%)',
+      linkHover: 'hsl(170 70% 60%)',
+    },
+    syntaxTheme: 'github-light',
+  },
+  'radioactive-lime': {
+    name: 'Radioactive Lime',
+    colors: {
+      background: 'hsl(80 100% 93%)', // Nuclear lime
+      foreground: 'hsl(180 70% 15%)', // Deep cyan-black
+      card: 'hsl(80 95% 90%)',
+      cardForeground: 'hsl(180 70% 15%)',
+      primary: 'hsl(75 100% 50%)', // Toxic lime
+      primaryForeground: 'hsl(180 70% 10%)',
+      secondary: 'hsl(80 90% 86%)',
+      secondaryForeground: 'hsl(180 60% 20%)',
+      muted: 'hsl(80 85% 83%)',
+      mutedForeground: 'hsl(180 35% 35%)',
+      accent: 'hsl(160 100% 40%)', // Neon green
+      accentForeground: 'hsl(0 0% 100%)',
+      border: 'hsl(75 80% 70%)',
+      input: 'hsl(80 90% 88%)',
+      ring: 'hsl(75 100% 50%)',
+      link: 'hsl(75 95% 40%)',
+      linkHover: 'hsl(160 100% 35%)',
+    },
+    syntaxTheme: 'github-light',
+  },
+  'sunset-sorbet': {
+    name: 'Sunset Sorbet',
+    colors: {
+      background: 'hsl(10 100% 95%)', // Peach sorbet
+      foreground: 'hsl(340 70% 25%)', // Deep raspberry
+      card: 'hsl(10 95% 92%)',
+      cardForeground: 'hsl(340 70% 25%)',
+      primary: 'hsl(350 95% 60%)', // Raspberry red
+      primaryForeground: 'hsl(0 0% 100%)',
+      secondary: 'hsl(10 90% 88%)',
+      secondaryForeground: 'hsl(340 60% 30%)',
+      muted: 'hsl(10 85% 85%)',
+      mutedForeground: 'hsl(340 35% 45%)',
+      accent: 'hsl(30 100% 65%)', // Mango orange
+      accentForeground: 'hsl(340 70% 20%)',
+      border: 'hsl(15 80% 78%)',
+      input: 'hsl(10 90% 90%)',
+      ring: 'hsl(350 95% 60%)',
+      link: 'hsl(350 90% 55%)',
+      linkHover: 'hsl(30 100% 60%)',
+    },
+    syntaxTheme: 'rose-pine-dawn',
+  },
+  'cosmic-cotton-candy': {
+    name: 'Cosmic Cotton Candy',
+    colors: {
+      background: 'hsl(290 80% 96%)', // Light purple-pink
+      foreground: 'hsl(200 70% 20%)', // Deep space blue
+      card: 'hsl(290 75% 94%)',
+      cardForeground: 'hsl(200 70% 20%)',
+      primary: 'hsl(310 90% 65%)', // Cosmic pink
+      primaryForeground: 'hsl(0 0% 100%)',
+      secondary: 'hsl(290 70% 91%)',
+      secondaryForeground: 'hsl(200 60% 25%)',
+      muted: 'hsl(290 65% 88%)',
+      mutedForeground: 'hsl(200 35% 45%)',
+      accent: 'hsl(240 90% 75%)', // Nebula blue
+      accentForeground: 'hsl(200 70% 15%)',
+      border: 'hsl(300 70% 80%)',
+      input: 'hsl(290 70% 92%)',
+      ring: 'hsl(310 90% 65%)',
+      link: 'hsl(310 85% 60%)',
+      linkHover: 'hsl(240 90% 70%)',
+    },
+    syntaxTheme: 'rose-pine-dawn',
+  },
+  'electric-banana': {
+    name: 'Electric Banana',
+    colors: {
+      background: 'hsl(55 100% 94%)', // Bright banana yellow
+      foreground: 'hsl(280 80% 20%)', // Deep purple
+      card: 'hsl(55 95% 91%)',
+      cardForeground: 'hsl(280 80% 20%)',
+      primary: 'hsl(50 100% 50%)', // Electric yellow
+      primaryForeground: 'hsl(280 80% 15%)',
+      secondary: 'hsl(55 90% 87%)',
+      secondaryForeground: 'hsl(280 70% 25%)',
+      muted: 'hsl(55 85% 84%)',
+      mutedForeground: 'hsl(280 40% 40%)',
+      accent: 'hsl(280 95% 65%)', // Vibrant purple
+      accentForeground: 'hsl(0 0% 100%)',
+      border: 'hsl(50 80% 75%)',
+      input: 'hsl(55 90% 88%)',
+      ring: 'hsl(50 100% 50%)',
+      link: 'hsl(50 95% 45%)',
+      linkHover: 'hsl(280 95% 60%)',
+    },
+    syntaxTheme: 'github-light',
+  },
+  'strawberry-milkshake': {
+    name: 'Strawberry Milkshake',
+    colors: {
+      background: 'hsl(345 90% 96%)', // Creamy pink
+      foreground: 'hsl(350 70% 25%)', // Deep berry
+      card: 'hsl(345 85% 94%)',
+      cardForeground: 'hsl(350 70% 25%)',
+      primary: 'hsl(340 100% 65%)', // Strawberry pink
+      primaryForeground: 'hsl(0 0% 100%)',
+      secondary: 'hsl(345 80% 91%)',
+      secondaryForeground: 'hsl(350 60% 30%)',
+      muted: 'hsl(345 75% 88%)',
+      mutedForeground: 'hsl(350 35% 45%)',
+      accent: 'hsl(0 85% 70%)', // Cherry red
+      accentForeground: 'hsl(350 70% 20%)',
+      border: 'hsl(340 75% 82%)',
+      input: 'hsl(345 80% 92%)',
+      ring: 'hsl(340 100% 65%)',
+      link: 'hsl(340 95% 60%)',
+      linkHover: 'hsl(0 85% 65%)',
+    },
+    syntaxTheme: 'rose-pine-dawn',
+  },
+  'aurora-borealis': {
+    name: 'Aurora Borealis',
+    colors: {
+      background: 'hsl(210 40% 96%)', // Icy white
+      foreground: 'hsl(220 50% 20%)', // Deep night blue
+      card: 'hsl(210 35% 94%)',
+      cardForeground: 'hsl(220 50% 20%)',
+      primary: 'hsl(160 80% 55%)', // Aurora green
+      primaryForeground: 'hsl(0 0% 100%)',
+      secondary: 'hsl(210 30% 91%)',
+      secondaryForeground: 'hsl(220 45% 25%)',
+      muted: 'hsl(210 25% 88%)',
+      mutedForeground: 'hsl(220 25% 45%)',
+      accent: 'hsl(270 70% 70%)', // Purple aurora
+      accentForeground: 'hsl(220 50% 15%)',
+      border: 'hsl(200 50% 80%)',
+      input: 'hsl(210 30% 92%)',
+      ring: 'hsl(160 80% 55%)',
+      link: 'hsl(160 75% 50%)',
+      linkHover: 'hsl(160 85% 40%)',
+    },
+    syntaxTheme: 'github-light',
+  },
+  'tropical-paradise': {
+    name: 'Tropical Paradise',
+    colors: {
+      background: 'hsl(180 60% 95%)', // Turquoise white
+      foreground: 'hsl(25 70% 20%)', // Warm brown
+      card: 'hsl(180 55% 93%)',
+      cardForeground: 'hsl(25 70% 20%)',
+      primary: 'hsl(165 70% 50%)', // Tropical teal
+      primaryForeground: 'hsl(0 0% 100%)',
+      secondary: 'hsl(180 50% 89%)',
+      secondaryForeground: 'hsl(25 60% 25%)',
+      muted: 'hsl(180 45% 86%)',
+      mutedForeground: 'hsl(25 35% 40%)',
+      accent: 'hsl(35 95% 60%)', // Tropical orange
+      accentForeground: 'hsl(25 70% 15%)',
+      border: 'hsl(175 55% 78%)',
+      input: 'hsl(180 50% 90%)',
+      ring: 'hsl(165 70% 50%)',
+      link: 'hsl(165 65% 45%)',
+      linkHover: 'hsl(165 75% 35%)',
+    },
+    syntaxTheme: 'github-light',
+  },
+  'velvet-luxury': {
+    name: 'Velvet Luxury',
+    colors: {
+      background: 'hsl(340 45% 95%)', // Soft rose white
+      foreground: 'hsl(350 60% 20%)', // Rich burgundy
+      card: 'hsl(340 40% 93%)',
+      cardForeground: 'hsl(350 60% 20%)',
+      primary: 'hsl(330 70% 50%)', // Luxe magenta
+      primaryForeground: 'hsl(0 0% 100%)',
+      secondary: 'hsl(340 35% 90%)',
+      secondaryForeground: 'hsl(350 55% 25%)',
+      muted: 'hsl(340 30% 87%)',
+      mutedForeground: 'hsl(350 30% 40%)',
+      accent: 'hsl(280 65% 65%)', // Royal purple
+      accentForeground: 'hsl(0 0% 100%)',
+      border: 'hsl(335 45% 80%)',
+      input: 'hsl(340 35% 91%)',
+      ring: 'hsl(330 70% 50%)',
+      link: 'hsl(330 65% 45%)',
+      linkHover: 'hsl(330 75% 35%)',
+    },
+    syntaxTheme: 'rose-pine-dawn',
+  },
+  'peachy-keen': {
+    name: 'Peachy Keen',
+    colors: {
+      background: 'hsl(25 85% 95%)', // Soft peach
+      foreground: 'hsl(15 65% 20%)', // Deep terracotta
+      card: 'hsl(25 80% 93%)',
+      cardForeground: 'hsl(15 65% 20%)',
+      primary: 'hsl(20 90% 60%)', // Juicy peach
+      primaryForeground: 'hsl(0 0% 100%)',
+      secondary: 'hsl(25 75% 89%)',
+      secondaryForeground: 'hsl(15 60% 25%)',
+      muted: 'hsl(25 70% 86%)',
+      mutedForeground: 'hsl(15 35% 40%)',
+      accent: 'hsl(340 80% 65%)', // Pink blush
+      accentForeground: 'hsl(15 65% 15%)',
+      border: 'hsl(20 70% 80%)',
+      input: 'hsl(25 75% 90%)',
+      ring: 'hsl(20 90% 60%)',
+      link: 'hsl(20 85% 55%)',
+      linkHover: 'hsl(20 90% 45%)',
+    },
+    syntaxTheme: 'solarized-light',
+  },
+  'oceanic-breeze': {
+    name: 'Oceanic Breeze',
+    colors: {
+      background: 'hsl(195 55% 96%)', // Ocean mist
+      foreground: 'hsl(200 60% 20%)', // Deep ocean
+      card: 'hsl(195 50% 94%)',
+      cardForeground: 'hsl(200 60% 20%)',
+      primary: 'hsl(190 75% 50%)', // Ocean blue
+      primaryForeground: 'hsl(0 0% 100%)',
+      secondary: 'hsl(195 45% 91%)',
+      secondaryForeground: 'hsl(200 55% 25%)',
+      muted: 'hsl(195 40% 88%)',
+      mutedForeground: 'hsl(200 30% 40%)',
+      accent: 'hsl(165 70% 60%)', // Sea foam
+      accentForeground: 'hsl(200 60% 15%)',
+      border: 'hsl(190 50% 80%)',
+      input: 'hsl(195 45% 92%)',
+      ring: 'hsl(190 75% 50%)',
+      link: 'hsl(190 70% 45%)',
+      linkHover: 'hsl(190 80% 35%)',
+    },
+    syntaxTheme: 'github-light',
+  },
+  'golden-hour': {
+    name: 'Golden Hour',
+    colors: {
+      background: 'hsl(45 70% 94%)', // Warm golden glow
+      foreground: 'hsl(30 60% 20%)', // Rich brown
+      card: 'hsl(45 65% 92%)',
+      cardForeground: 'hsl(30 60% 20%)',
+      primary: 'hsl(40 90% 55%)', // Golden yellow
+      primaryForeground: 'hsl(30 60% 15%)',
+      secondary: 'hsl(45 60% 88%)',
+      secondaryForeground: 'hsl(30 55% 25%)',
+      muted: 'hsl(45 55% 85%)',
+      mutedForeground: 'hsl(30 30% 40%)',
+      accent: 'hsl(15 85% 60%)', // Sunset orange
+      accentForeground: 'hsl(30 60% 15%)',
+      border: 'hsl(40 60% 78%)',
+      input: 'hsl(45 60% 89%)',
+      ring: 'hsl(40 90% 55%)',
+      link: 'hsl(40 85% 50%)',
+      linkHover: 'hsl(40 90% 40%)',
+    },
+    syntaxTheme: 'solarized-light',
+  },
+  'cherry-blossom-night': {
+    name: 'Cherry Blossom Night',
+    colors: {
+      background: 'hsl(330 50% 95%)', // Pale pink
+      foreground: 'hsl(270 50% 20%)', // Deep purple-blue
+      card: 'hsl(330 45% 93%)',
+      cardForeground: 'hsl(270 50% 20%)',
+      primary: 'hsl(320 75% 60%)', // Cherry pink
+      primaryForeground: 'hsl(0 0% 100%)',
+      secondary: 'hsl(330 40% 90%)',
+      secondaryForeground: 'hsl(270 45% 25%)',
+      muted: 'hsl(330 35% 87%)',
+      mutedForeground: 'hsl(270 25% 40%)',
+      accent: 'hsl(270 70% 70%)', // Night purple
+      accentForeground: 'hsl(270 50% 15%)',
+      border: 'hsl(325 45% 80%)',
+      input: 'hsl(330 40% 91%)',
+      ring: 'hsl(320 75% 60%)',
+      link: 'hsl(320 70% 55%)',
+      linkHover: 'hsl(320 80% 45%)',
+    },
+    syntaxTheme: 'rose-pine-dawn',
+  },
+  'lime-zest': {
+    name: 'Lime Zest',
+    colors: {
+      background: 'hsl(75 75% 95%)', // Bright lime
+      foreground: 'hsl(140 60% 20%)', // Deep green
+      card: 'hsl(75 70% 93%)',
+      cardForeground: 'hsl(140 60% 20%)',
+      primary: 'hsl(80 85% 50%)', // Zesty lime
+      primaryForeground: 'hsl(140 60% 15%)',
+      secondary: 'hsl(75 65% 89%)',
+      secondaryForeground: 'hsl(140 55% 25%)',
+      muted: 'hsl(75 60% 86%)',
+      mutedForeground: 'hsl(140 30% 40%)',
+      accent: 'hsl(55 90% 55%)', // Lemon yellow
+      accentForeground: 'hsl(140 60% 15%)',
+      border: 'hsl(75 65% 78%)',
+      input: 'hsl(75 65% 90%)',
+      ring: 'hsl(80 85% 50%)',
+      link: 'hsl(80 80% 45%)',
+      linkHover: 'hsl(80 90% 35%)',
+    },
+    syntaxTheme: 'github-light',
+  },
+  'midnight-garden': {
+    name: 'Midnight Garden',
+    colors: {
+      background: 'hsl(155 40% 95%)', // Pale jade
+      foreground: 'hsl(240 50% 20%)', // Midnight blue
+      card: 'hsl(155 35% 93%)',
+      cardForeground: 'hsl(240 50% 20%)',
+      primary: 'hsl(150 65% 50%)', // Garden green
+      primaryForeground: 'hsl(0 0% 100%)',
+      secondary: 'hsl(155 30% 90%)',
+      secondaryForeground: 'hsl(240 45% 25%)',
+      muted: 'hsl(155 25% 87%)',
+      mutedForeground: 'hsl(240 25% 40%)',
+      accent: 'hsl(260 75% 65%)', // Night bloom
+      accentForeground: 'hsl(0 0% 100%)',
+      border: 'hsl(150 35% 80%)',
+      input: 'hsl(155 30% 91%)',
+      ring: 'hsl(150 65% 50%)',
+      link: 'hsl(150 60% 45%)',
+      linkHover: 'hsl(150 70% 35%)',
+    },
+    syntaxTheme: 'github-light',
+  },
+  'coral-reef': {
+    name: 'Coral Reef',
+    colors: {
+      background: 'hsl(10 70% 95%)', // Soft coral
+      foreground: 'hsl(195 60% 20%)', // Ocean depth
+      card: 'hsl(10 65% 93%)',
+      cardForeground: 'hsl(195 60% 20%)',
+      primary: 'hsl(5 85% 60%)', // Living coral
+      primaryForeground: 'hsl(0 0% 100%)',
+      secondary: 'hsl(10 60% 89%)',
+      secondaryForeground: 'hsl(195 55% 25%)',
+      muted: 'hsl(10 55% 86%)',
+      mutedForeground: 'hsl(195 30% 40%)',
+      accent: 'hsl(180 75% 55%)', // Reef turquoise
+      accentForeground: 'hsl(195 60% 15%)',
+      border: 'hsl(5 60% 78%)',
+      input: 'hsl(10 60% 90%)',
+      ring: 'hsl(5 85% 60%)',
+      link: 'hsl(5 80% 55%)',
+      linkHover: 'hsl(5 85% 45%)',
+    },
+    syntaxTheme: 'solarized-light',
+  },
+  'mystic-twilight': {
+    name: 'Mystic Twilight',
+    colors: {
+      background: 'hsl(260 50% 96%)', // Mystical lavender
+      foreground: 'hsl(210 55% 20%)', // Twilight navy
+      card: 'hsl(260 45% 94%)',
+      cardForeground: 'hsl(210 55% 20%)',
+      primary: 'hsl(270 80% 65%)', // Mystic purple
+      primaryForeground: 'hsl(0 0% 100%)',
+      secondary: 'hsl(260 40% 91%)',
+      secondaryForeground: 'hsl(210 50% 25%)',
+      muted: 'hsl(260 35% 88%)',
+      mutedForeground: 'hsl(210 25% 40%)',
+      accent: 'hsl(190 75% 60%)', // Twilight cyan
+      accentForeground: 'hsl(210 55% 15%)',
+      border: 'hsl(265 45% 82%)',
+      input: 'hsl(260 40% 92%)',
+      ring: 'hsl(270 80% 65%)',
+      link: 'hsl(270 75% 60%)',
+      linkHover: 'hsl(270 85% 50%)',
+    },
+    syntaxTheme: 'github-light',
+  },
+  'honey-glow': {
+    name: 'Honey Glow',
+    colors: {
+      background: 'hsl(42 75% 94%)', // Honey cream
+      foreground: 'hsl(25 60% 20%)', // Deep amber
+      card: 'hsl(42 70% 92%)',
+      cardForeground: 'hsl(25 60% 20%)',
+      primary: 'hsl(38 90% 55%)', // Golden honey
+      primaryForeground: 'hsl(25 60% 15%)',
+      secondary: 'hsl(42 65% 88%)',
+      secondaryForeground: 'hsl(25 55% 25%)',
+      muted: 'hsl(42 60% 85%)',
+      mutedForeground: 'hsl(25 30% 40%)',
+      accent: 'hsl(28 85% 60%)', // Warm amber
+      accentForeground: 'hsl(25 60% 15%)',
+      border: 'hsl(38 65% 78%)',
+      input: 'hsl(42 65% 89%)',
+      ring: 'hsl(38 90% 55%)',
+      link: 'hsl(38 85% 50%)',
+      linkHover: 'hsl(38 90% 40%)',
+    },
+    syntaxTheme: 'solarized-light',
+  },
 } as const;
 
 export type ThemeName = keyof typeof themes;

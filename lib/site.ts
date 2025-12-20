@@ -9,9 +9,9 @@ export const SITE_DESCRIPTION =
 /**
  * Theme Configuration
  *
- * Change ACTIVE_THEME to any of these 55 available themes:
+ * Change ACTIVE_THEME to any of these 90 available themes:
  *
- * DARK THEMES (44):
+ * DARK THEMES (52):
  * - 'vitesse-dark'      - VS Code Vitesse theme
  * - 'github-dark'       - GitHub's dark theme
  * - 'dracula'           - Popular Dracula theme
@@ -56,20 +56,63 @@ export const SITE_DESCRIPTION =
  * - 'palefire'          - Palefire theme
  * - 'noctis'            - Noctis theme
  * - 'deep-ocean'        - Deep Ocean
+ * - 'midnight-ink'      - Deep navy with electric cyan
+ * - 'neon-tokyo'        - Cyberpunk purple with hot pink
+ * - 'forest-whisper'    - Deep forest green with golden amber
+ * - 'arctic-aurora'     - Ice blue with aurora colors
+ * - 'obsidian-flame'    - Pure black with burning orange
+ * - 'ocean-depths'      - Deep ocean blue with aqua
+ * - 'electric-violet'   - Deep purple with electric violet
  *
- * LIGHT THEMES (11):
+ * LIGHT THEMES (38):
+ *
+ * CLASSIC (12):
  * - 'atom-one-light'    - Atom One Light
  * - 'cream-light'       - Cream theme
- * - 'github-light'      - Atom One Light
+ * - 'github-light'      - GitHub's light theme
  * - 'light-plus'        - VS Code Light+
  * - 'quiet-light'       - Quiet Light
  * - 'solarized-light'   - Solarized light
  * - 'ayu-light'         - Ayu light theme
- * - 'github-light'      - GitHub's light theme
  * - 'min-light'         - Minimalist light
  * - 'eva-light'         - Eva Light
  * - 'rose-pine-dawn'    - Rosé Pine Dawn
  * - 'everforest-light'  - Everforest Light
  * - 'material-lighter'  - Material Lighter
+ *
+ * AESTHETIC (6):
+ * - 'sketchbook-cream'  - Warm cream paper with pencil tones
+ * - 'sakura-blossom'    - Soft pink with jade green
+ * - 'desert-sunset'     - Warm sand with burnt orange
+ * - 'lavender-dream'    - Soft lavender with magenta
+ * - 'vintage-sepia'     - Old paper with sepia tones
+ * - 'mint-breeze'       - Pale mint with sky blue
+ *
+ * CRAZY VIBRANT (10):
+ * - 'bubblegum-pop'          - Hot pink bubblegum explosion
+ * - 'lemon-lime'             - Nuclear lemon meets electric lime
+ * - 'cyber-candy'            - Neon cyan and hot magenta
+ * - 'tangerine-dream'        - Vibrant orange sorbet
+ * - 'holographic-pearl'      - Iridescent purple shimmer
+ * - 'radioactive-lime'       - Toxic neon lime warning
+ * - 'sunset-sorbet'          - Peach raspberry swirl
+ * - 'cosmic-cotton-candy'    - Space pink and nebula blue
+ * - 'electric-banana'        - Banana yellow meets purple
+ * - 'strawberry-milkshake'   - Creamy strawberry delight
+ *
+ * IMMERSIVE & CAPTIVATING (13):
+ * - 'aurora-borealis'        - Icy white with dancing green & purple auroras
+ * - 'tropical-paradise'      - Turquoise waters meets warm tropical vibes
+ * - 'velvet-luxury'          - Soft rose with luxurious magenta & royal purple
+ * - 'peachy-keen'            - Soft peach with juicy blush tones
+ * - 'oceanic-breeze'         - Ocean mist with sea foam freshness
+ * - 'golden-hour'            - Warm golden glow of perfect sunset
+ * - 'cherry-blossom-night'   - Pale pink petals under purple twilight
+ * - 'lime-zest'              - Bright lime with lemon burst energy
+ * - 'midnight-garden'        - Pale jade with midnight blooms
+ * - 'coral-reef'             - Living coral with turquoise depths
+ * - 'mystic-twilight'        - Mystical lavender meets twilight cyan
+ * - 'honey-glow'             - Golden honey cream with warm amber
+ * - 'tropical-paradise'      - Turquoise white with tropical energy
  */
 export const ACTIVE_THEME: ThemeName = "noctis";
