@@ -80,10 +80,23 @@ a {
   border-bottom: 1px solid var(--color-border);
   padding-bottom: 1px;
   transition: color 150ms;
+  cursor: none !important;
 }
 
 a:hover {
   color: var(--color-link-hover);
+  cursor: none !important;
+}
+
+button,
+[role="button"],
+[role="link"],
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+.project-card,
+.project-card:hover {
+  cursor: none !important;
 }
 
 .max-w-2xl {
@@ -268,10 +281,12 @@ pre.shiki::-webkit-scrollbar-thumb {
 
 .prose a {
   color: var(--color-link);
+  cursor: none !important;
 }
 
 .prose a:hover {
   color: var(--color-link-hover);
+  cursor: none !important;
 }
 
 .prose-sm {
@@ -447,10 +462,12 @@ pre.shiki::-webkit-scrollbar-thumb {
   text-decoration: none;
   color: inherit;
   position: relative;
+  cursor: none !important;
 }
 
 .project-card:hover {
   border-color: var(--color-accent);
+  cursor: none !important;
 }
 
 .project-title {
@@ -550,45 +567,31 @@ pre.shiki::-webkit-scrollbar-thumb {
   right: 0.75rem;
 }
 
-/* Custom Cursor */
-.custom-cursor {
+/* Custom Cursor - Puppy Paw */
+.custom-cursor-paw {
   position: fixed;
-  width: 20px;
-  height: 20px;
-  border: 1px solid var(--color-foreground);
-  border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
-  mix-blend-mode: difference;
-  transition: transform 0.1s ease-out, width 0.2s ease-out, height 0.2s ease-out;
+  transition: transform 0.1s ease-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.custom-cursor-dot {
-  position: fixed;
-  width: 4px;
-  height: 4px;
-  background-color: var(--color-foreground);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 10000;
-  mix-blend-mode: difference;
-  transition: transform 0.15s ease-out, width 0.2s ease-out, height 0.2s ease-out;
+.custom-cursor-paw .paw-image {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+  transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+  opacity: 0.95;
 }
 
-.custom-cursor-dot.hover {
-  width: 8px;
-  height: 8px;
-}
-
-.custom-cursor.hover {
-  width: 40px;
-  height: 40px;
+.custom-cursor-paw.hover .paw-image {
+  transform: scale(1.2);
+  opacity: 1;
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.5));
 }
 
 @media (max-width: 768px) {
-
-  .custom-cursor,
-  .custom-cursor-dot {
+  .custom-cursor-paw {
     display: none;
   }
 }

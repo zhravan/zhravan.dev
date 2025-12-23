@@ -130,24 +130,22 @@ export function CustomCursor() {
   if (!isVisible) return null;
 
   return (
-    <>
-      <div
-        className={`custom-cursor ${isHovering ? 'hover' : ''}`}
-        style={{
-          left: `${position.x}px`,
-          top: `${position.y}px`,
-          transform: 'translate(-50%, -50%)',
-        }}
+    <div
+      className={`custom-cursor-paw ${isHovering ? 'hover' : ''}`}
+      style={{
+        left: `${position.x}px`,
+        top: `${position.y}px`,
+        transform: 'translate(-50%, -50%)',
+      }}
+    >
+      <img
+        src={isHovering ? '/images/cursor-paw-hover.svg' : '/images/cursor-paw.svg'}
+        alt=""
+        className="paw-image"
+        width={isHovering ? 20 : 16}
+        height={isHovering ? 20 : 16}
       />
-      <div
-        className={`custom-cursor-dot ${isHovering ? 'hover' : ''}`}
-        style={{
-          left: `${position.x}px`,
-          top: `${position.y}px`,
-          transform: 'translate(-50%, -50%)',
-        }}
-      />
-    </>
+    </div>
   );
 }
 

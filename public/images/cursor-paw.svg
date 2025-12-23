@@ -1,0 +1,60 @@
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Soft peachy-orange radial gradient -->
+    <radialGradient id="pawGradient" cx="50%" cy="50%">
+      <stop offset="0%" stop-color="#FFE5CC" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#FFB380" stop-opacity="1"/>
+    </radialGradient>
+    <!-- Soft drop shadow -->
+    <filter id="pawShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="0.8"/>
+      <feOffset dx="0" dy="1" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.3"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Light green circular outline -->
+  <circle cx="12" cy="12" r="10.5" fill="none" stroke="#90EE90" stroke-width="1.2"/>
+  
+  <!-- Main paw pad (heart-shaped, wider at top, tapers to bottom center) -->
+  <path d="M12 19 C9.5 19, 6.5 17.5, 6.5 15 C6.5 13.2, 7.5 12, 9 12 C10 12, 10.8 12.4, 12 13.2 C13.2 12.4, 14 12, 15 12 C16.5 12, 17.5 13.2, 17.5 15 C17.5 17.5, 14.5 19, 12 19 Z" 
+        fill="url(#pawGradient)" 
+        stroke="#4A90E2" 
+        stroke-width="1.3"
+        filter="url(#pawShadow)"/>
+  
+  <!-- Top left toe pad (oval) -->
+  <ellipse cx="7.2" cy="9" rx="2.3" ry="2.6" 
+           fill="url(#pawGradient)" 
+           stroke="#4A90E2" 
+           stroke-width="1.3"
+           filter="url(#pawShadow)"/>
+  
+  <!-- Top middle toe pad (oval, slightly higher) -->
+  <ellipse cx="12" cy="7" rx="2.3" ry="2.6" 
+           fill="url(#pawGradient)" 
+           stroke="#4A90E2" 
+           stroke-width="1.3"
+           filter="url(#pawShadow)"/>
+  
+  <!-- Top right toe pad (oval) -->
+  <ellipse cx="16.8" cy="9" rx="2.3" ry="2.6" 
+           fill="url(#pawGradient)" 
+           stroke="#4A90E2" 
+           stroke-width="1.3"
+           filter="url(#pawShadow)"/>
+  
+  <!-- Bottom toe pad (smaller oval, below center, overlapping main pad) -->
+  <ellipse cx="12" cy="13" rx="1.9" ry="2.1" 
+           fill="url(#pawGradient)" 
+           stroke="#4A90E2" 
+           stroke-width="1.3"
+           filter="url(#pawShadow)"/>
+</svg>
+
