@@ -19,6 +19,7 @@ import { getAnalyticsConfig, getAnalyticsScriptSrc, getAnalyticsScriptAttrs } fr
 import { getNavigationContentTypes } from '@/lib/content-types';
 import { LinkTracker } from '@/components/LinkTracker';
 import { SearchAnalytics } from '@/components/SearchAnalytics';
+import { OhMyScript } from '@/components/OhMyScript';
 
 const spaceGrotesk = Space_Grotesk({ subsets: ['latin'] });
 
@@ -115,7 +116,7 @@ export default function RootLayout({
               <div className="max-w-2xl mx-auto px-4 sm:px-8 py-6 sm:py-8">
                 <div className="flex flex-col items-center gap-4">
                   <p className="text-xs" style={{ color: 'var(--color-muted-foreground)', fontSize: '0.65rem' }}>
-                    © {new Date().getFullYear()} • zhravan
+                    © 2019 • OhMyScript
                   </p>
                   <div className="flex items-center gap-4">
                     {socialLinks.github && (

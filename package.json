@@ -1,10 +1,10 @@
 {
-  "name": "zhravan.dev",
+  "name": "ohmyscript.com",
   "private": true,
   "author": {
     "name": "Shravan Kumar B",
     "email": "shravan@ohmyscript.com",
-    "url": "https://zhravan.dev"
+    "url": "https://ohmyscript.com"
   },
   "scripts": {
     "dev": "next dev --turbopack",

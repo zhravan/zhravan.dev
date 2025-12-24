@@ -1,14 +1,14 @@
 # Site-wide SEO configuration
 # Update these values to change global metadata without touching code.
 
-siteUrl: "https://zhravan.dev"
+siteUrl: "https://ohmyscript.com"
 
 # Default <title> and template for pages
 # If titleTemplate is omitted, it falls back to "%s | <title>"
 
-title: "zhravan"
+title: "OhMyScript"
 
-titleTemplate: "%s | zhravan"
+titleTemplate: "%s | OhMyScript"
 
 # Default description used across the site
 
@@ -39,7 +39,7 @@ keywords:
 # Author information
 author:
   name: "Shravan Kumar B"
-  url: "https://zhravan.dev"
+  url: "https://ohmyscript.com"
 
 # PWA Theme Colors (optional)
 # themeColor: "#000000"  # Theme color for browser UI

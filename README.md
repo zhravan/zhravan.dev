@@ -1,11 +1,11 @@
 <samp>
 
 <p align="center">
-  <h1 align="center">zhravan.dev</h1>
+  <h1 align="center">OhMyScript</h1>
 </p>
 
 <p align="center">
-  <a href="https://zhravan.dev"><img src="app/favicon.ico" alt="zhravan"  align="center" width="25%" /></a>
+  <a href="https://ohmyscript.com"><img src="app/favicon.ico" alt="OhMyScript"  align="center" width="25%" /></a>
 </p>
 
 <p align="center">
@@ -29,7 +29,7 @@ Visit <http://localhost:3000>
 
 ## Connect
 
-- Website: [zhravan.dev](https://zhravan.dev)
+- Website: [ohmyscript.com](https://ohmyscript.com)
 - Twitter: [@zhravan](https://x.com/zhravan)
 - LinkedIn: [zhravan](https://linkedin.com/in/zhravan)
 - GitHub: [@zhravan](https://github.com/zhravan)

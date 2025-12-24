@@ -79,7 +79,7 @@ export function MobileNav({ items }: MobileNavProps) {
         <div className="flex flex-col h-full">
           {/* Header */}
           <div className="flex items-center justify-between p-4 border-b" style={{ borderColor: 'var(--color-border)' }}>
-            <span className="text-xs font-medium">zhravan.dev</span>
+            <span className="text-xs font-medium">OhMyScript</span>
             <button
               onClick={() => setIsOpen(false)}
               className="p-1 transition-opacity hover:opacity-80"

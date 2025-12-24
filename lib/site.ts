@@ -1,8 +1,8 @@
 import type { ThemeName } from "./themes";
 
 export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://zhravan.dev";
-export const SITE_TITLE = "zhravan";
+  process.env.NEXT_PUBLIC_SITE_URL || "https://ohmyscript.com";
+export const SITE_TITLE = "OhMyScript";
 export const SITE_DESCRIPTION =
   "tinkerer, polymathic indie computer scientist, systems engineer, data-science aficionado, i write at times.";
 

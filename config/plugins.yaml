@@ -113,7 +113,7 @@ plugins:
     enabled: true # Analytics enabled
     provider: "google-analytics" # Options: "google-analytics", "plausible", "umami", "simple-analytics"
     trackingId: "G-PSVZHQG7Y8" # Your Google Analytics 4 Measurement ID
-    domain: "zhravan.dev" # Your domain
+    domain: "ohmyscript.com" # Your domain
     respectDoNotTrack: true # Respect user privacy preferences
 
   # Draft Preview Mode
