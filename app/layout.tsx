@@ -103,17 +103,17 @@ export default function RootLayout({
                     ))}
                   </div>
                   {/* Mobile Navigation */}
-                <div className="md:hidden flex items-center justify-start">
-                  <MobileNav items={navItems} />
+                  <div className="md:hidden flex items-center justify-start">
+                    <MobileNav items={navItems} />
+                  </div>
                 </div>
-              </div>
-            </nav>
+              </nav>
             </header>
             <main className="max-w-2xl mx-auto px-4 sm:px-8 py-12 sm:py-16">{children}</main>
             <footer className="mt-24">
               <div className="max-w-2xl mx-auto px-4 sm:px-8 py-6 sm:py-8">
-                <div className="flex items-center justify-between">
-                  <p className="text-xs" style={{ color: 'var(--color-muted-foreground)' }}>
+                <div className="flex flex-col items-center gap-4">
+                  <p className="text-xs" style={{ color: 'var(--color-muted-foreground)', fontSize: '0.65rem' }}>
                     © {new Date().getFullYear()} • zhravan
                   </p>
                   <div className="flex items-center gap-4">
