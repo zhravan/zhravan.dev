@@ -93,7 +93,7 @@ export default function RootLayout({
             )}
             <header>
               <nav aria-label="Main navigation">
-                <div className="max-w-2xl mx-auto px-4 sm:px-8 py-6 sm:py-8">
+                <div className="max-w-2xl mx-auto px-4 sm:px-8 py-6 sm:py-8 md:pb-3 md:border-b" style={{ borderColor: 'hsla(220, 12%, 15%, 0.4)' }}>
                   {/* Desktop Navigation */}
                   <div className="hidden md:flex flex-wrap items-center gap-3 sm:gap-6">
                     {navItems.map((item) => (

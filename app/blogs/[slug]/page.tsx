@@ -36,23 +36,30 @@ export async function generateMetadata({
 }: {
   params: Promise<{ slug: string }>;
 }) {
-  const { slug } = await params;
-  const post = getPostBySlug(slug);
+  try {
+    const { slug } = await params;
+    const post = getPostBySlug(slug);
 
-  if (!post) {
+    if (!post) {
+      return {
+        title: 'Post Not Found'
+      };
+    }
+
+    return getPostMetadata({
+      title: post.title,
+      description: post.description,
+      path: `/blogs/${slug}/`,
+      date: post.date,
+      tags: post.tags,
+      ogImage: post.ogImage
+    });
+  } catch (error) {
+    console.error('Error generating metadata for blog post:', error);
     return {
       title: 'Post Not Found'
     };
   }
-
-  return getPostMetadata({
-    title: post.title,
-    description: post.description,
-    path: `/blogs/${slug}/`,
-    date: post.date,
-    tags: post.tags,
-    ogImage: post.ogImage
-  });
 }
 
 export default async function BlogPost({
@@ -64,6 +71,7 @@ export default async function BlogPost({
   const post = getPostBySlug(slug);
 
   if (!post) {
+    console.warn(`Blog post not found: ${slug}. Available posts:`, getAllPosts(true).map(p => p.slug));
     notFound();
   }
 
@@ -71,7 +79,7 @@ export default async function BlogPost({
   try {
     Content = (await import(`@/content/blog/${slug}.mdx`)).default;
   } catch (error) {
-    console.error(`Failed to load blog post: ${slug}`, error);
+    console.error(`Failed to load blog post MDX file: ${slug}`, error);
     notFound();
   }
 
