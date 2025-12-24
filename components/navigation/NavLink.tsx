@@ -26,7 +26,8 @@ export function NavLink({ href, children }: NavLinkProps) {
           : 'var(--color-muted-foreground)',
         textDecoration: 'none',
         borderBottom: 'none',
-        paddingBottom: 0
+        paddingBottom: 0,
+        fontSize: '0.75rem'
       }}
     >
       {isActive && (

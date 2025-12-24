@@ -40,8 +40,9 @@ function getNavItems() {
     });
   });
 
-  // Add About at the end (static page)
+  // Add About and Contact at the end (static pages)
   items.push({ name: 'About', path: '/about' });
+  items.push({ name: 'Contact', path: '/contact' });
 
   return items;
 }
@@ -93,9 +94,9 @@ export default function RootLayout({
             )}
             <header>
               <nav aria-label="Main navigation">
-                <div className="max-w-2xl mx-auto px-4 sm:px-8 py-6 sm:py-8 md:pb-3 md:border-b" style={{ borderColor: 'hsla(220, 12%, 15%, 0.4)' }}>
+                <div className="max-w-2xl mx-auto px-4 sm:px-8 py-4 sm:py-5 md:pb-2 md:border-b" style={{ borderColor: 'hsla(220, 12%, 15%, 0.4)' }}>
                   {/* Desktop Navigation */}
-                  <div className="hidden md:flex flex-wrap items-center gap-3 sm:gap-6">
+                  <div className="hidden md:flex flex-wrap items-center gap-2 sm:gap-4">
                     {navItems.map((item) => (
                       <NavLink key={item.path} href={item.path}>
                         {"/ "} {item.name}
