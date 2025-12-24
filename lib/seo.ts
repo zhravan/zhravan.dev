@@ -245,9 +245,12 @@ export function getPostMetadata({
     path || (slug ? `/blogs/${slug}` : "/")
   );
   const url = `${cfg.siteUrl}${canonicalPath}`;
-  const pageTitle: Metadata["title"] = cfg.titleTemplate
-    ? { default: cfg.title, template: cfg.titleTemplate.replace("%s", title) }
-    : { default: cfg.title, template: `${title} | ${cfg.title}` };
+  // Use absolute to override parent template and ensure correct format
+  const pageTitle: Metadata["title"] = {
+    absolute: cfg.titleTemplate
+      ? cfg.titleTemplate.replace("%s", title)
+      : `${title} | ${cfg.title}`
+  };
 
   // Build keywords from tags and default keywords
   const keywords =
@@ -441,9 +444,13 @@ export function getPageMetadata({
 
   const canonicalPath = normalizeCanonicalPath(path);
   const url = `${cfg.siteUrl}${canonicalPath}`;
-  const pageTitle: Metadata["title"] = cfg.titleTemplate
-    ? { default: cfg.title, template: cfg.titleTemplate.replace("%s", title) }
-    : { default: cfg.title, template: `${title} | ${cfg.title}` };
+  // Construct the full title and use absolute to override parent template
+  const fullTitle = cfg.titleTemplate
+    ? cfg.titleTemplate.replace("%s", title)
+    : `${title} | ${cfg.title}`;
+  const pageTitle: Metadata["title"] = {
+    absolute: fullTitle
+  };
 
   const ogImages = cfg.openGraph?.image
     ? [
