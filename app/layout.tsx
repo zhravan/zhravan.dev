@@ -1,6 +1,7 @@
 import './globals.css';
 import type { Metadata, Viewport } from 'next';
 import { Space_Grotesk } from 'next/font/google';
+import Link from 'next/link';
 import { NavLink, MobileNav } from '@/components/navigation';
 import { ScrollToTop } from '@/components/ScrollToTop';
 import { CommandPaletteWithButton } from '@/components/CommandPaletteWithButton';
@@ -97,16 +98,48 @@ export default function RootLayout({
               <nav aria-label="Main navigation">
                 <div className="max-w-2xl mx-auto px-4 sm:px-8 py-4 sm:py-5 md:pb-2 md:border-b" style={{ borderColor: 'hsla(220, 12%, 15%, 0.4)' }}>
                   {/* Desktop Navigation */}
-                  <div className="hidden md:flex flex-wrap items-center gap-2 sm:gap-4">
-                    {navItems.map((item) => (
-                      <NavLink key={item.path} href={item.path}>
-                        {"/ "} {item.name}
-                      </NavLink>
-                    ))}
+                  <div className="hidden md:block">
+                    <div className="mb-5">
+                      <Link
+                        href="/"
+                        className="text-base font-medium transition-opacity hover:opacity-90 focus:opacity-90 inline-block"
+                        style={{
+                          color: 'var(--color-foreground)',
+                          textDecoration: 'none',
+                          borderBottom: 'none',
+                          paddingBottom: 0
+                        }}
+                      >
+                        <OhMyScript />
+                      </Link>
+                    </div>
+                    <div className="flex flex-wrap items-center gap-2 sm:gap-4">
+                      {navItems.map((item) => (
+                        <NavLink key={item.path} href={item.path}>
+                          {"/ "} {item.name}
+                        </NavLink>
+                      ))}
+                    </div>
                   </div>
                   {/* Mobile Navigation */}
-                  <div className="md:hidden flex items-center justify-start">
-                    <MobileNav items={navItems} />
+                  <div className="md:hidden">
+                    <div className="mb-5">
+                      <Link
+                        href="/"
+                        className="text-sm font-medium transition-opacity hover:opacity-90 focus:opacity-90 inline-block"
+                        style={{
+                          color: 'var(--color-foreground)',
+                          textDecoration: 'none',
+                          borderBottom: 'none',
+                          paddingBottom: 0
+                        }}
+                      >
+                        <OhMyScript />
+                      </Link>
+                    </div>
+                    <div className="flex items-center justify-start">
+                      <MobileNav items={navItems} />
+                    </div>
                   </div>
                 </div>
               </nav>

@@ -78,9 +78,9 @@ export function loadSeoConfig(): YamlSEOConfig {
   if (!fs.existsSync(seoConfigPath)) {
     // Provide sensible defaults if file doesn't exist
     cached = {
-      siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://example.com",
-      title: "Your Name",
-      description: "Engineer, writer, and creator."
+      siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://ohmyscript.com",
+      title: "OhMyScript",
+      description: "Engineer, writer, and creator.",
     };
     return cached;
   }
@@ -91,7 +91,7 @@ export function loadSeoConfig(): YamlSEOConfig {
   const siteUrl = (
     data?.siteUrl ||
     process.env.NEXT_PUBLIC_SITE_URL ||
-    "https://example.com"
+    "https://ohmyscript.com"
   ).replace(/\/$/, "");
 
   cached = {
@@ -106,14 +106,14 @@ export function loadSeoConfig(): YamlSEOConfig {
     openGraph: {
       type: data?.openGraph?.type || "website",
       image: data?.openGraph?.image,
-      locale: data?.openGraph?.locale || "en_US"
+      locale: data?.openGraph?.locale || "en_US",
     },
     twitter: {
       card: data?.twitter?.card || "summary_large_image",
       site: data?.twitter?.site,
-      creator: data?.twitter?.creator
+      creator: data?.twitter?.creator,
     },
-    social: data?.social
+    social: data?.social,
   };
 
   return cached;
@@ -136,8 +136,8 @@ export function getDefaultMetadata(): Metadata {
         {
           url: cfg.openGraph.image.startsWith("http")
             ? cfg.openGraph.image
-            : `${cfg.siteUrl}${cfg.openGraph.image}`
-        }
+            : `${cfg.siteUrl}${cfg.openGraph.image}`,
+        },
       ]
     : undefined;
 
@@ -151,7 +151,7 @@ export function getDefaultMetadata(): Metadata {
       : undefined,
     alternates: {
       canonical: "/",
-      languages: { "en-US": cfg.siteUrl }
+      languages: { "en-US": cfg.siteUrl },
     },
     openGraph: {
       type: (cfg.openGraph?.type || "website") as OGType,
@@ -160,7 +160,7 @@ export function getDefaultMetadata(): Metadata {
       description: cfg.description,
       url: cfg.siteUrl,
       siteName: cfg.title,
-      images: ogImages
+      images: ogImages,
     },
     twitter: {
       card: cfg.twitter?.card || "summary_large_image",
@@ -168,7 +168,7 @@ export function getDefaultMetadata(): Metadata {
       creator: cfg.twitter?.creator,
       title: cfg.title,
       description: cfg.description,
-      images: ogImages as any
+      images: ogImages as any,
     },
     robots: {
       index: true,
@@ -178,28 +178,28 @@ export function getDefaultMetadata(): Metadata {
         follow: true,
         "max-video-preview": -1,
         "max-image-preview": "large",
-        "max-snippet": -1
-      }
+        "max-snippet": -1,
+      },
     },
     manifest: "/manifest.json",
     icons: {
       icon: [
-        { url: "/assets/zhravan.png", sizes: "512x512", type: "image/png" }
+        { url: "/assets/zhravan.png", sizes: "512x512", type: "image/png" },
       ],
       apple: [
-        { url: "/assets/zhravan.png", sizes: "512x512", type: "image/png" }
-      ]
+        { url: "/assets/zhravan.png", sizes: "512x512", type: "image/png" },
+      ],
     },
     appleWebApp: {
       capable: true,
       statusBarStyle: cfg.themeColor ? "black-translucent" : "default",
-      title: cfg.title
+      title: cfg.title,
     },
     other: cfg.backgroundColor
       ? {
-          "msapplication-TileColor": cfg.backgroundColor
+          "msapplication-TileColor": cfg.backgroundColor,
         }
-      : undefined
+      : undefined,
   } satisfies Metadata;
 }
 
@@ -211,7 +211,7 @@ export function getDefaultViewport(): Viewport {
     initialScale: 1,
     maximumScale: 5,
     themeColor: cfg.themeColor || "#000000",
-    colorScheme: "light dark"
+    colorScheme: "light dark",
   };
 }
 
@@ -223,7 +223,7 @@ export function getPostMetadata({
   date,
   tags,
   ogImage,
-  modifiedTime
+  modifiedTime,
 }: {
   title: string;
   description: string;
@@ -241,7 +241,9 @@ export function getPostMetadata({
   modifiedTime?: string;
 }): Metadata {
   const cfg = loadSeoConfig();
-  const canonicalPath = normalizeCanonicalPath(path || (slug ? `/blogs/${slug}` : "/"));
+  const canonicalPath = normalizeCanonicalPath(
+    path || (slug ? `/blogs/${slug}` : "/")
+  );
   const url = `${cfg.siteUrl}${canonicalPath}`;
   const pageTitle: Metadata["title"] = cfg.titleTemplate
     ? { default: cfg.title, template: cfg.titleTemplate.replace("%s", title) }
@@ -255,16 +257,18 @@ export function getPostMetadata({
   const ogImages = ogImage
     ? [
         {
-          url: ogImage.startsWith("http") ? ogImage : `${cfg.siteUrl}${ogImage}`
-        }
+          url: ogImage.startsWith("http")
+            ? ogImage
+            : `${cfg.siteUrl}${ogImage}`,
+        },
       ]
     : cfg.openGraph?.image
     ? [
         {
           url: cfg.openGraph.image.startsWith("http")
             ? cfg.openGraph.image
-            : `${cfg.siteUrl}${cfg.openGraph.image}`
-        }
+            : `${cfg.siteUrl}${cfg.openGraph.image}`,
+        },
       ]
     : undefined;
 
@@ -284,7 +288,7 @@ export function getPostMetadata({
       : undefined,
     alternates: {
       canonical: canonicalPath,
-      languages: { "en-US": url }
+      languages: { "en-US": url },
     },
     openGraph: {
       type: "article",
@@ -297,7 +301,7 @@ export function getPostMetadata({
       modifiedTime: modifiedTimeISO,
       authors: cfg.author?.name ? [cfg.author.name] : undefined,
       tags: tags,
-      images: ogImages
+      images: ogImages,
     },
     twitter: {
       card: cfg.twitter?.card || "summary_large_image",
@@ -305,7 +309,7 @@ export function getPostMetadata({
       creator: cfg.twitter?.creator,
       title,
       description,
-      images: ogImages as any
+      images: ogImages as any,
     },
     robots: {
       index: true,
@@ -315,9 +319,9 @@ export function getPostMetadata({
         follow: true,
         "max-video-preview": -1,
         "max-image-preview": "large",
-        "max-snippet": -1
-      }
-    }
+        "max-snippet": -1,
+      },
+    },
   } satisfies Metadata;
 }
 
@@ -329,7 +333,7 @@ export function getPersonStructuredData(): StructuredData {
     "@type": "Person",
     name: cfg.author?.name || cfg.title,
     url: cfg.siteUrl,
-    sameAs: cfg.author?.url ? [cfg.author.url] : undefined
+    sameAs: cfg.author?.url ? [cfg.author.url] : undefined,
   };
 }
 
@@ -341,7 +345,7 @@ export function getArticleStructuredData({
   date,
   modifiedTime,
   tags,
-  ogImage
+  ogImage,
 }: {
   title: string;
   description: string;
@@ -359,7 +363,9 @@ export function getArticleStructuredData({
   ogImage?: string;
 }): StructuredData {
   const cfg = loadSeoConfig();
-  const canonicalPath = normalizeCanonicalPath(path || (slug ? `/blogs/${slug}` : "/"));
+  const canonicalPath = normalizeCanonicalPath(
+    path || (slug ? `/blogs/${slug}` : "/")
+  );
   const url = `${cfg.siteUrl}${canonicalPath}`;
   const publishedTime = date ? new Date(date).toISOString() : undefined;
   const modifiedTimeISO = modifiedTime
@@ -377,13 +383,13 @@ export function getArticleStructuredData({
     author: {
       "@type": "Person",
       name: cfg.author?.name || cfg.title,
-      url: cfg.author?.url || cfg.siteUrl
+      url: cfg.author?.url || cfg.siteUrl,
     },
     publisher: {
       "@type": "Person",
       name: cfg.author?.name || cfg.title,
-      url: cfg.siteUrl
-    }
+      url: cfg.siteUrl,
+    },
   };
 
   if (tags && tags.length > 0) {
@@ -417,15 +423,15 @@ export function getWebsiteStructuredData(): StructuredData {
     author: {
       "@type": "Person",
       name: cfg.author?.name || cfg.title,
-      url: cfg.author?.url || cfg.siteUrl
-    }
+      url: cfg.author?.url || cfg.siteUrl,
+    },
   };
 }
 
 export function getPageMetadata({
   title,
   description,
-  path
+  path,
 }: {
   title: string;
   description: string;
@@ -444,8 +450,8 @@ export function getPageMetadata({
         {
           url: cfg.openGraph.image.startsWith("http")
             ? cfg.openGraph.image
-            : `${cfg.siteUrl}${cfg.openGraph.image}`
-        }
+            : `${cfg.siteUrl}${cfg.openGraph.image}`,
+        },
       ]
     : undefined;
 
@@ -459,7 +465,7 @@ export function getPageMetadata({
       : undefined,
     alternates: {
       canonical: canonicalPath,
-      languages: { "en-US": url }
+      languages: { "en-US": url },
     },
     openGraph: {
       type: (cfg.openGraph?.type || "website") as OGType,
@@ -468,7 +474,7 @@ export function getPageMetadata({
       description,
       url,
       siteName: cfg.title,
-      images: ogImages
+      images: ogImages,
     },
     twitter: {
       card: cfg.twitter?.card || "summary_large_image",
@@ -476,7 +482,7 @@ export function getPageMetadata({
       creator: cfg.twitter?.creator,
       title,
       description,
-      images: ogImages as any
+      images: ogImages as any,
     },
     robots: {
       index: true,
@@ -486,8 +492,8 @@ export function getPageMetadata({
         follow: true,
         "max-video-preview": -1,
         "max-image-preview": "large",
-        "max-snippet": -1
-      }
-    }
+        "max-snippet": -1,
+      },
+    },
   } satisfies Metadata;
 }

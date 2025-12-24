@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
+import { OhMyScript } from '@/components/OhMyScript';
 
 interface NavItem {
   name: string;
@@ -79,7 +80,19 @@ export function MobileNav({ items }: MobileNavProps) {
         <div className="flex flex-col h-full">
           {/* Header */}
           <div className="flex items-center justify-between p-4 border-b" style={{ borderColor: 'var(--color-border)' }}>
-            <span className="text-xs font-medium">OhMyScript</span>
+            <Link
+              href="/"
+              className="text-sm font-medium transition-opacity hover:opacity-90 focus:opacity-90"
+              style={{
+                color: 'var(--color-foreground)',
+                textDecoration: 'none',
+                borderBottom: 'none',
+                paddingBottom: 0
+              }}
+              onClick={() => setIsOpen(false)}
+            >
+              <OhMyScript />
+            </Link>
             <button
               onClick={() => setIsOpen(false)}
               className="p-1 transition-opacity hover:opacity-80"
