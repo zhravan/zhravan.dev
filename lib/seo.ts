@@ -184,10 +184,10 @@ export function getDefaultMetadata(): Metadata {
     manifest: "/manifest.json",
     icons: {
       icon: [
-        { url: "/assets/zhravan.png", sizes: "512x512", type: "image/png" },
+        { url: "/assets/ohmyscript.png", sizes: "512x512", type: "image/png" },
       ],
       apple: [
-        { url: "/assets/zhravan.png", sizes: "512x512", type: "image/png" },
+        { url: "/assets/ohmyscript.png", sizes: "512x512", type: "image/png" },
       ],
     },
     appleWebApp: {
