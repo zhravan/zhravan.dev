@@ -27,7 +27,7 @@ export default function Contact() {
       <section className="prose animate-fade-up" style={{ animationDelay: '100ms' }}>
         <h2 className="text-sm">Contact Me</h2>
         <p style={{ color: 'var(--color-muted-foreground)' }}>
-          Email: <a href="mailto:hi@ohmyscript.com" className="transition-opacity hover:opacity-70">hi at ohmyscript.com</a>
+          Email: <a href="mailto:hi@ohmyscript.com" className="transition-opacity hover:opacity-70">hi [at] ohmyscript [dot] com</a>
         </p>
 
         <h2 className="text-sm mt-8">My other identities:</h2>

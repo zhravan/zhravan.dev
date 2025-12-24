@@ -33,7 +33,7 @@ Visit <http://localhost:3000>
 - Twitter: [@zhravan](https://x.com/zhravan)
 - LinkedIn: [zhravan](https://linkedin.com/in/zhravan)
 - GitHub: [@zhravan](https://github.com/zhravan)
-- Email: [shravan [at] ohmyscript [dot] com](mailto:shravan@ohmyscript.com)
+- Email: [hi [at] ohmyscript [dot] com](mailto:hi@ohmyscript.com)
 
 ## License
 

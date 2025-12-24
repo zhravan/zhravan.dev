@@ -56,7 +56,7 @@ export default function Home() {
       <section className="animate-fade-up" style={{ animationDelay: '200ms' }}>
         <p className="" style={{ color: 'var(--color-muted-foreground)' }}>
           You can <Link href="/writing/">read my writing</Link>, check out my{' '}
-          <Link href="/work/">projects</Link>, or <Link href="/about/">learn more about me</Link>. I am always interested in connecting with fellow developers and creators. You can reachout to me via <Link href="/contact">shravan [at] ohmyscript [dot] com</Link>.
+          <Link href="/work/">projects</Link>, or <Link href="/about/">learn more about me</Link>. I am always interested in connecting with fellow developers and creators. You can reachout to me via <a href="mailto:hi@ohmyscript.com" className="transition-opacity hover:opacity-70">hi [at] ohmyscript [dot] com</a>.
         </p>
       </section>
     </main>
