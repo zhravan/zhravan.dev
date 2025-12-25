@@ -1,4 +1,4 @@
 export function OhMyScript() {
-  return <span>OhMyScript</span>;
+  return <span>{"<OhMyScript/>"}</span>;
 }
 

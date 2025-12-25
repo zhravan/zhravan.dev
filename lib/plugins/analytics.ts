@@ -1,96 +1,77 @@
 import { getPluginConfig } from './registry';
 
-// TypeScript declarations for analytics providers
+// TypeScript declarations for PostHog
 declare global {
   interface Window {
-    gtag?: (
-      command: 'config' | 'event' | 'js',
-      targetId: string | Date,
-      config?: Record<string, any>
-    ) => void;
-    dataLayer?: any[];
-    plausible?: (eventName: string, options?: { props?: Record<string, any> }) => void;
-    umami?: {
-      track: (eventName: string | { url: string }, props?: Record<string, any>) => void;
+    posthog?: {
+      capture: (eventName: string, properties?: Record<string, any>) => void;
+      identify: (distinctId: string, properties?: Record<string, any>) => void;
+      reset: () => void;
     };
-    sa_event?: (eventName: string) => void;
   }
 }
 
-export interface AnalyticsConfig {
+export interface PostHogConfig {
   enabled: boolean;
-  provider: 'google-analytics' | 'plausible' | 'umami' | 'simple-analytics';
-  trackingId?: string;
-  domain: string;
+  trackingId: string; // PostHog Project API Key
   respectDoNotTrack?: boolean;
+  host?: string; // PostHog host URL (optional, defaults to app.posthog.com)
+  // Session Replay options
+  sessionReplay?: {
+    enabled?: boolean; // Enable session replay (default: true in PostHog)
+    maskAllInputs?: boolean; // Mask all input fields for privacy (default: false)
+    maskTextSelector?: string; // CSS selector for elements to mask (e.g., '.sensitive')
+    recordCrossOriginIframes?: boolean; // Record cross-origin iframes (default: false)
+  };
 }
 
 /**
- * Get analytics configuration
+ * Get PostHog configuration
  */
-export function getAnalyticsConfig(): AnalyticsConfig | null {
-  return getPluginConfig<AnalyticsConfig>('analytics');
-}
-
-/**
- * Get script source URL based on provider
- */
-export function getAnalyticsScriptSrc(provider: string, trackingId?: string): string {
-  switch (provider) {
-    case 'google-analytics':
-      return trackingId ? `https://www.googletagmanager.com/gtag/js?id=${trackingId}` : '';
-    case 'plausible':
-      return 'https://plausible.io/js/script.js';
-    case 'umami':
-      return 'https://analytics.umami.is/script.js';
-    case 'simple-analytics':
-      return 'https://scripts.simpleanalyticscdn.com/latest.js';
-    default:
-      return '';
-  }
-}
-
-/**
- * Get script attributes based on provider
- */
-export function getAnalyticsScriptAttrs(config: AnalyticsConfig): Record<string, string> {
-  const attrs: Record<string, string> = {};
-
-  switch (config.provider) {
-    case 'google-analytics':
-      // Google Analytics loads via gtag script, no special attributes needed
-      break;
-    case 'plausible':
-      if (config.domain) {
-        attrs['data-domain'] = config.domain;
-      }
-      break;
-    case 'umami':
-      if (config.domain) {
-        attrs['data-website-id'] = config.domain;
-      }
-      break;
-    case 'simple-analytics':
-      // Simple Analytics doesn't need special attributes
-      break;
+export function getPostHogConfig(): PostHogConfig | null {
+  const config = getPluginConfig<any>('analytics');
+  if (!config?.enabled) {
+    return null;
   }
 
-  return attrs;
+  // Get trackingId from environment variable first, then fallback to config
+  const trackingId = process.env.NEXT_PUBLIC_POSTHOG_API_KEY || config.trackingId;
+
+  // Support both new format (direct PostHog config) and old format (providers array)
+  if (trackingId && config.provider === 'posthog') {
+    return {
+      enabled: config.enabled,
+      trackingId: trackingId,
+      respectDoNotTrack: config.respectDoNotTrack,
+      host: process.env.NEXT_PUBLIC_POSTHOG_HOST || config.host,
+      sessionReplay: config.sessionReplay,
+    };
+  }
+
+  // Support providers array format
+  if (config.providers && Array.isArray(config.providers)) {
+    const posthogProvider = config.providers.find((p: any) => p.provider === 'posthog');
+    if (posthogProvider) {
+      const providerTrackingId = process.env.NEXT_PUBLIC_POSTHOG_API_KEY || posthogProvider.trackingId;
+      return {
+        enabled: config.enabled,
+        trackingId: providerTrackingId,
+        respectDoNotTrack: posthogProvider.respectDoNotTrack ?? config.respectDoNotTrack,
+        host: process.env.NEXT_PUBLIC_POSTHOG_HOST || posthogProvider.host ?? config.host,
+        sessionReplay: posthogProvider.sessionReplay,
+      };
+    }
+  }
+
+  return null;
 }
 
 /**
- * Check if analytics should be loaded
+ * Check if PostHog should be loaded
  */
-export function shouldLoadAnalytics(): boolean {
-  const config = getAnalyticsConfig();
-  if (!config?.enabled) return false;
-  
-  // Google Analytics requires trackingId instead of domain
-  if (config.provider === 'google-analytics') {
-    return !!config.trackingId;
-  }
-  
-  return !!config.domain;
+export function shouldLoadPostHog(): boolean {
+  const config = getPostHogConfig();
+  return config !== null && config.enabled && !!config.trackingId;
 }
 
 /**
@@ -101,41 +82,17 @@ export function shouldLoadAnalytics(): boolean {
 export function trackEvent(eventName: string, props?: Record<string, any>): void {
   if (typeof window === 'undefined') return;
   
-  const config = getAnalyticsConfig();
+  const config = getPostHogConfig();
   if (!config?.enabled) return;
 
   try {
-    switch (config.provider) {
-      case 'google-analytics':
-        if (window.gtag && config.trackingId) {
-          window.gtag('event', eventName, props);
-        }
-        break;
-      
-      case 'plausible':
-        // @ts-ignore - Plausible is loaded externally
-        if (window.plausible) {
-          window.plausible(eventName, { props });
-        }
-        break;
-      
-      case 'umami':
-        // @ts-ignore - Umami is loaded externally
-        if (window.umami) {
-          window.umami.track(eventName, props);
-        }
-        break;
-      
-      case 'simple-analytics':
-        // @ts-ignore - Simple Analytics is loaded externally
-        if (window.sa_event) {
-          window.sa_event(eventName);
-        }
-        break;
+    // @ts-ignore - PostHog is loaded via npm package
+    if (window.posthog) {
+      window.posthog.capture(eventName, props);
     }
   } catch (error) {
     // Silently fail - analytics should never break the app
-    console.warn('Analytics tracking error:', error);
+    console.warn('PostHog tracking error:', error);
   }
 }
 
@@ -146,40 +103,19 @@ export function trackEvent(eventName: string, props?: Record<string, any>): void
 export function trackPageView(url?: string): void {
   if (typeof window === 'undefined') return;
   
-  const config = getAnalyticsConfig();
+  const config = getPostHogConfig();
   if (!config?.enabled) return;
 
   const pageUrl = url || window.location.pathname + window.location.search;
 
   try {
-    switch (config.provider) {
-      case 'google-analytics':
-        if (window.gtag && config.trackingId) {
-          window.gtag('config', config.trackingId, {
-            page_path: pageUrl,
-          });
-        }
-        break;
-      
-      case 'plausible':
-        // @ts-ignore
-        if (window.plausible) {
-          window.plausible('pageview', { props: { url: pageUrl } });
-        }
-        break;
-      
-      case 'umami':
-        // @ts-ignore
-        if (window.umami) {
-          window.umami.track({ url: pageUrl });
-        }
-        break;
-      
-      case 'simple-analytics':
-        // Simple Analytics automatically tracks page views
-        break;
+    // @ts-ignore - PostHog is loaded via npm package
+    if (window.posthog) {
+      window.posthog.capture('$pageview', {
+        $current_url: pageUrl,
+      });
     }
   } catch (error) {
-    console.warn('Analytics page view tracking error:', error);
+    console.warn('PostHog page view tracking error:', error);
   }
 }

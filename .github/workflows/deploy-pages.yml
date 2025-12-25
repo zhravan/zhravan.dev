@@ -62,7 +62,12 @@ jobs:
           NEXT_BASE_PATH: "${{ steps.pages.outputs.base }}"
           NEXT_PUBLIC_SITE_URL: "${{ steps.pages.outputs.site }}"
           NEXT_TELEMETRY_DISABLED: 1
+          # PostHog configuration
+          NEXT_PUBLIC_POSTHOG_API_KEY: ${{ secrets.NEXT_PUBLIC_POSTHOG_API_KEY }}
+          NEXT_PUBLIC_POSTHOG_HOST: ${{ secrets.NEXT_PUBLIC_POSTHOG_HOST }}
         run: |
+          echo "PostHog API Key: ${NEXT_PUBLIC_POSTHOG_API_KEY:+Set (${#NEXT_PUBLIC_POSTHOG_API_KEY} chars)}${NEXT_PUBLIC_POSTHOG_API_KEY:-Not set}"
+          echo "PostHog Host: ${NEXT_PUBLIC_POSTHOG_HOST:-https://app.posthog.com (default)}"
           pnpm run build
           # Static export is produced in ./out when output: 'export' is set in next.config.ts
           touch out/.nojekyll
@@ -70,6 +75,7 @@ jobs:
           if [ -f public/CNAME ]; then
             cp public/CNAME out/CNAME
           fi
+          echo "Build completed successfully!"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

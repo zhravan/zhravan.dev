@@ -9,6 +9,7 @@ import { ScrollProgress } from '@/components/ScrollProgress';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import ThemeStyleTag from '@/components/ThemeStyleTag';
 import { Analytics } from '@/components/Analytics';
+import { PostHogProvider } from '@/components/PostHogProvider';
 import { CustomCursor } from '@/components/CustomCursor';
 import { getAllPosts } from '@/lib/blog';
 import { getDefaultMetadata, getDefaultViewport, getWebsiteStructuredData, getPersonStructuredData, getSocialLinks } from '@/lib/seo';
@@ -16,7 +17,7 @@ import { StructuredData } from '@/components/StructuredData';
 import { getCommandPaletteConfig } from '@/lib/plugins/command-palette';
 import { getScrollProgressConfig } from '@/lib/plugins/scroll-progress';
 import { getScrollToTopConfig } from '@/lib/plugins/scroll-to-top';
-import { getAnalyticsConfig, getAnalyticsScriptSrc, getAnalyticsScriptAttrs } from '@/lib/plugins/analytics';
+import { getPostHogConfig } from '@/lib/plugins/analytics';
 import { getNavigationContentTypes } from '@/lib/content-types';
 import { LinkTracker } from '@/components/LinkTracker';
 import { SearchAnalytics } from '@/components/SearchAnalytics';
@@ -61,11 +62,7 @@ export default function RootLayout({
   const commandPaletteConfig = getCommandPaletteConfig();
   const scrollProgressConfig = getScrollProgressConfig();
   const scrollToTopConfig = getScrollToTopConfig();
-
-  // Analytics configuration
-  const analyticsConfig = getAnalyticsConfig();
-  const analyticsScriptSrc = analyticsConfig ? getAnalyticsScriptSrc(analyticsConfig.provider, analyticsConfig.trackingId) : '';
-  const analyticsScriptAttrs = analyticsConfig ? getAnalyticsScriptAttrs(analyticsConfig) : {};
+  const postHogConfig = getPostHogConfig();
 
   const websiteStructuredData = getWebsiteStructuredData();
   const personStructuredData = getPersonStructuredData();
@@ -79,11 +76,8 @@ export default function RootLayout({
       </head>
       <body className="antialiased">
         <CustomCursor />
-        <Analytics
-          config={analyticsConfig}
-          scriptSrc={analyticsScriptSrc}
-          scriptAttrs={analyticsScriptAttrs}
-        />
+        <Analytics />
+        <PostHogProvider config={postHogConfig} />
         <LinkTracker />
         <SearchAnalytics />
         <ThemeProvider>
