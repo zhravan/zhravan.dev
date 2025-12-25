@@ -34,13 +34,16 @@ export function getPostHogConfig(): PostHogConfig | null {
     return null;
   }
 
+  // Get trackingId from environment variable first, then fallback to config
+  const trackingId = process.env.NEXT_PUBLIC_POSTHOG_API_KEY || config.trackingId;
+
   // Support both new format (direct PostHog config) and old format (providers array)
-  if (config.trackingId && config.provider === 'posthog') {
+  if (trackingId && config.provider === 'posthog') {
     return {
       enabled: config.enabled,
-      trackingId: config.trackingId,
+      trackingId: trackingId,
       respectDoNotTrack: config.respectDoNotTrack,
-      host: config.host,
+      host: process.env.NEXT_PUBLIC_POSTHOG_HOST || config.host,
       sessionReplay: config.sessionReplay,
     };
   }
@@ -49,11 +52,12 @@ export function getPostHogConfig(): PostHogConfig | null {
   if (config.providers && Array.isArray(config.providers)) {
     const posthogProvider = config.providers.find((p: any) => p.provider === 'posthog');
     if (posthogProvider) {
+      const providerTrackingId = process.env.NEXT_PUBLIC_POSTHOG_API_KEY || posthogProvider.trackingId;
       return {
         enabled: config.enabled,
-        trackingId: posthogProvider.trackingId,
+        trackingId: providerTrackingId,
         respectDoNotTrack: posthogProvider.respectDoNotTrack ?? config.respectDoNotTrack,
-        host: posthogProvider.host ?? config.host,
+        host: process.env.NEXT_PUBLIC_POSTHOG_HOST || posthogProvider.host ?? config.host,
         sessionReplay: posthogProvider.sessionReplay,
       };
     }

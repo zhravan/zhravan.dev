@@ -112,9 +112,9 @@ plugins:
   analytics:
     enabled: true # Analytics enabled
     provider: "posthog"
-    trackingId: "phc_pXh89fotfri50BVii2rEGtHG5aQA9V8vHO0VxO5Pfr3" # Your PostHog Project API Key (get from PostHog project settings)
+    # trackingId: "YOUR_POSTHOG_API_KEY" # Optional: Set via NEXT_PUBLIC_POSTHOG_API_KEY env var instead (recommended)
     respectDoNotTrack: true # Respect user privacy preferences (Do Not Track)
-    host: "https://us.i.posthog.com" # Optional: defaults to app.posthog.com (use for self-hosted PostHog)
+    # host: "https://app.posthog.com" # Optional: Set via NEXT_PUBLIC_POSTHOG_HOST env var or defaults to app.posthog.com
     
     # Session Replay configuration (optional)
     sessionReplay:
