@@ -1,9 +1,7 @@
 'use client';
 
 /**
- * Client-side analytics tracking utilities
- * These functions work directly with the global analytics objects
- * without requiring server-side configuration
+ * Client-side analytics tracking utilities for PostHog
  */
 
 /**
@@ -15,33 +13,12 @@ export function trackEvent(eventName: string, props?: Record<string, any>): void
   if (typeof window === 'undefined') return;
 
   try {
-    // Try Google Analytics (gtag)
-    if (window.gtag) {
-      window.gtag('event', eventName, props);
-      return;
-    }
-    
-    // Try Plausible
-    if (window.plausible) {
-      window.plausible(eventName, { props });
-      return;
-    }
-    
-    // Try Umami
-    if (window.umami) {
-      window.umami.track(eventName, props);
-      return;
-    }
-    
-    // Try Simple Analytics
-    if (window.sa_event) {
-      window.sa_event(eventName);
-      return;
+    if (window.posthog) {
+      window.posthog.capture(eventName, props);
     }
   } catch (error) {
-    // Silently fail - analytics should never break the app
     if (process.env.NODE_ENV === 'development') {
-      console.warn('Analytics tracking error:', error);
+      console.warn('PostHog tracking error:', error);
     }
   }
 }
@@ -56,47 +33,25 @@ export function trackPageView(url?: string): void {
   const pageUrl = url || window.location.pathname + window.location.search;
 
   try {
-    // Try Google Analytics (gtag)
-    if (window.gtag) {
-      window.gtag('event', 'page_view', {
-        page_path: pageUrl,
+    if (window.posthog) {
+      window.posthog.capture('$pageview', {
+        $current_url: pageUrl,
       });
-      return;
     }
-    
-    // Try Plausible
-    if (window.plausible) {
-      window.plausible('pageview', { props: { url: pageUrl } });
-      return;
-    }
-    
-    // Try Umami
-    if (window.umami) {
-      window.umami.track({ url: pageUrl });
-      return;
-    }
-    
-    // Simple Analytics automatically tracks page views
   } catch (error) {
     if (process.env.NODE_ENV === 'development') {
-      console.warn('Analytics page view tracking error:', error);
+      console.warn('PostHog pageview error:', error);
     }
   }
 }
 
-// TypeScript declarations for analytics providers
+// TypeScript declarations for PostHog
 declare global {
   interface Window {
-    gtag?: (
-      command: 'config' | 'event' | 'js',
-      targetId: string | Date,
-      config?: Record<string, any>
-    ) => void;
-    dataLayer?: any[];
-    plausible?: (eventName: string, options?: { props?: Record<string, any> }) => void;
-    umami?: {
-      track: (eventName: string | { url: string }, props?: Record<string, any>) => void;
+    posthog?: {
+      capture: (eventName: string, properties?: Record<string, any>) => void;
+      identify: (distinctId: string, properties?: Record<string, any>) => void;
+      reset: () => void;
     };
-    sa_event?: (eventName: string) => void;
   }
 }

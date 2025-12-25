@@ -108,13 +108,20 @@ plugins:
       - tags
       - headings
 
-  # Analytics (privacy-friendly)
+  # Analytics - PostHog (Product Analytics + Web Analytics + Session Replay)
   analytics:
     enabled: true # Analytics enabled
-    provider: "google-analytics" # Options: "google-analytics", "plausible", "umami", "simple-analytics"
-    trackingId: "G-PSVZHQG7Y8" # Your Google Analytics 4 Measurement ID
-    domain: "ohmyscript.com" # Your domain
-    respectDoNotTrack: true # Respect user privacy preferences
+    provider: "posthog"
+    trackingId: "phc_pXh89fotfri50BVii2rEGtHG5aQA9V8vHO0VxO5Pfr3" # Your PostHog Project API Key (get from PostHog project settings)
+    respectDoNotTrack: true # Respect user privacy preferences (Do Not Track)
+    host: "https://us.i.posthog.com" # Optional: defaults to app.posthog.com (use for self-hosted PostHog)
+    
+    # Session Replay configuration (optional)
+    sessionReplay:
+      enabled: true # Enable session replay (default: true in PostHog)
+      maskAllInputs: false # Mask all input fields for privacy (default: false)
+      # maskTextSelector: ".sensitive" # CSS selector for elements to mask (e.g., ".sensitive, .private")
+      # recordCrossOriginIframes: false # Record cross-origin iframes (default: false)
 
   # Draft Preview Mode
   drafts:
