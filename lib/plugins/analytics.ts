@@ -57,7 +57,7 @@ export function getPostHogConfig(): PostHogConfig | null {
         enabled: config.enabled,
         trackingId: providerTrackingId,
         respectDoNotTrack: posthogProvider.respectDoNotTrack ?? config.respectDoNotTrack,
-        host: process.env.NEXT_PUBLIC_POSTHOG_HOST || posthogProvider.host ?? config.host,
+        host: process.env.NEXT_PUBLIC_POSTHOG_HOST || (posthogProvider.host ?? config.host),
         sessionReplay: posthogProvider.sessionReplay,
       };
     }
