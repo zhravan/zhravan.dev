@@ -104,7 +104,7 @@ export function MobileNav({ items }: MobileNavProps) {
 
           {/* Navigation Items */}
           <nav className="flex-1 overflow-y-auto p-4">
-            <ul className="space-y-1">
+            <ul className="space-y-2">
               {items.map((item) => {
                 const active = isActive(item.path);
                 return (
@@ -112,20 +112,17 @@ export function MobileNav({ items }: MobileNavProps) {
                     <Link
                       href={item.path}
                       onClick={() => setIsOpen(false)}
-                      className="block px-3 py-2 text-xs rounded transition-colors"
+                      className="block py-1.5 transition-opacity hover:opacity-70"
                       style={{
+                        fontSize: '0.75rem',
                         color: active
                           ? 'var(--color-foreground)'
                           : 'var(--color-muted-foreground)',
-                        backgroundColor: active ? 'var(--color-muted)' : 'transparent',
+                        textDecoration: active ? 'underline' : 'none',
+                        textUnderlineOffset: '3px',
                       }}
                     >
-                      <span className="flex items-center gap-2">
-                        {active && (
-                          <span style={{ color: 'var(--color-foreground)' }}>•</span>
-                        )}
-                        / {" "} {item.name}
-                      </span>
+                      {item.name}
                     </Link>
                   </li>
                 );

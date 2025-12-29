@@ -2,7 +2,7 @@ import './globals.css';
 import type { Metadata, Viewport } from 'next';
 import { Space_Grotesk } from 'next/font/google';
 import Link from 'next/link';
-import { NavLink, MobileNav } from '@/components/navigation';
+import { NavPill, MobileNav } from '@/components/navigation';
 import { ScrollToTop } from '@/components/ScrollToTop';
 import { CommandPaletteWithButton } from '@/components/CommandPaletteWithButton';
 import { ScrollProgress } from '@/components/ScrollProgress';
@@ -107,11 +107,11 @@ export default function RootLayout({
                         <OhMyScript />
                       </Link>
                     </div>
-                    <div className="flex flex-wrap items-center gap-2 sm:gap-4">
+                    <div className="flex flex-wrap items-center gap-5">
                       {navItems.map((item) => (
-                        <NavLink key={item.path} href={item.path}>
-                          {"/ "} {item.name}
-                        </NavLink>
+                        <NavPill key={item.path} href={item.path}>
+                          {item.name}
+                        </NavPill>
                       ))}
                     </div>
                   </div>
