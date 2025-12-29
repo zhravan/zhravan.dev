@@ -24,6 +24,11 @@ export default function Contact() {
       />
       <PageHeader metadata={pageMetadata} hideTitle={true} />
 
+      {/* Availability */}
+      <p className="animate-fade-up text-xxs italic" style={{ animationDelay: '50ms', color: 'var(--color-muted-foreground)' }}>
+        Currently available for freelance projects and consulting engagements. Response time is typically within 24-48 hours.
+      </p>
+
       <section className="prose animate-fade-up" style={{ animationDelay: '100ms' }}>
         <h2 className="text-sm">Contact Me</h2>
         <p style={{ color: 'var(--color-muted-foreground)' }}>
