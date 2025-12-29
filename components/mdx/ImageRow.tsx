@@ -74,3 +74,4 @@ export function ImageCol({ src, alt, caption, width = '48%' }: ImageColProps) {
 
 
 
+

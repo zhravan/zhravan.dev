@@ -11,10 +11,10 @@ contentTypes:
     description: Thoughts on technology, development, and building products.
     showInNav: true
     
-  - id: work
-    label: Work
-    path: /work
-    contentDir: null  # Work uses projects.yaml instead of MDX files
+  - id: projects
+    label: Projects
+    path: /projects
+    contentDir: null  # Projects uses projects.yaml instead of MDX files
     icon: null
     enabled: true
     description: A selection of projects I have built and contributed to.
