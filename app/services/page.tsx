@@ -34,47 +34,8 @@ export default function Services() {
         <HeroAnimation />
       </section>
 
-      {/* Stats - Compact Preview */}
-      <section className="prose animate-fade-up" style={{ animationDelay: '100ms' }}>
-        <div className="flex justify-center mb-6">
-          <div className="grid grid-cols-3 gap-3 md:gap-6">
-            <div className="px-3 py-3 border rounded text-center" style={{ borderColor: 'var(--color-border)', backgroundColor: 'var(--color-card)' }}>
-              <div className="text-lg md:text-xl mb-1 font-light tracking-tight" style={{ color: 'var(--color-foreground)' }}>6+</div>
-              <div className="text-xs uppercase tracking-wider" style={{ color: 'var(--color-muted-foreground)', fontFamily: 'var(--code-font-family)' }}>Years</div>
-            </div>
-            <div className="px-3 py-3 border rounded text-center" style={{ borderColor: 'var(--color-border)', backgroundColor: 'var(--color-card)' }}>
-              <div className="text-lg md:text-xl mb-1 font-light tracking-tight" style={{ color: 'var(--color-foreground)' }}>10+</div>
-              <div className="text-xs uppercase tracking-wider" style={{ color: 'var(--color-muted-foreground)', fontFamily: 'var(--code-font-family)' }}>Projects</div>
-            </div>
-            <div className="px-3 py-3 border rounded text-center" style={{ borderColor: 'var(--color-border)', backgroundColor: 'var(--color-card)' }}>
-              <div className="text-lg md:text-xl mb-1 font-light tracking-tight" style={{ color: 'var(--color-foreground)' }}>∞</div>
-              <div className="text-xs uppercase tracking-wider" style={{ color: 'var(--color-muted-foreground)', fontFamily: 'var(--code-font-family)' }}>Problems</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Clientele Section */}
-      <section className="animate-fade-up" style={{ animationDelay: '150ms' }}>
-        <div className="mb-6">
-          <h2 className="text-sm mb-2">Clientele</h2>
-          <div className="h-px w-12" style={{ backgroundColor: 'var(--color-border)' }}></div>
-        </div>
-        <ClienteleList
-          clients={[
-            { name: 'Acies', url: 'https://www.acies.consulting/' },
-            { name: 'Codive', url: 'https://codive.co/' },
-            { name: 'Freight Tiger', url: 'https://www.freighttiger.com/about/' },
-            { name: 'CodeVyasa', url: 'https://www.codevyasa.com/' },
-            { name: 'AbsorbX', url: 'https://www.linkedin.com/company/absorbx/' },
-            { name: 'Waste Wallet' },
-            { name: 'Indie Products' },
-          ]}
-        />
-      </section>
-
       {/* Services Section */}
-      <section className="animate-fade-up" style={{ animationDelay: '200ms' }}>
+      <section className="animate-fade-up" style={{ animationDelay: '100ms' }}>
         <div className="mb-6">
           <h2 className="text-sm mb-2">Services</h2>
           <div className="h-px w-12" style={{ backgroundColor: 'var(--color-border)' }}></div>
@@ -112,7 +73,7 @@ export default function Services() {
       </section>
 
       {/* Process Section */}
-      <section className="animate-fade-up" style={{ animationDelay: '200ms' }}>
+      <section className="animate-fade-up" style={{ animationDelay: '150ms' }}>
         <div className="mb-6">
           <h2 className="text-sm mb-2">Process</h2>
           <div className="h-px w-12" style={{ backgroundColor: 'var(--color-border)' }}></div>
@@ -147,6 +108,45 @@ export default function Services() {
         </div>
       </section>
 
+      {/* Stats - Compact Preview */}
+      <section className="prose animate-fade-up" style={{ animationDelay: '200ms' }}>
+        <div className="flex justify-center mb-6">
+          <div className="grid grid-cols-3 gap-3 md:gap-6">
+            <div className="px-3 py-3 border rounded text-center" style={{ borderColor: 'var(--color-border)', backgroundColor: 'var(--color-card)' }}>
+              <div className="text-lg md:text-xl mb-1 font-light tracking-tight" style={{ color: 'var(--color-foreground)' }}>6+</div>
+              <div className="text-xs uppercase tracking-wider" style={{ color: 'var(--color-muted-foreground)', fontFamily: 'var(--code-font-family)' }}>Years</div>
+            </div>
+            <div className="px-3 py-3 border rounded text-center" style={{ borderColor: 'var(--color-border)', backgroundColor: 'var(--color-card)' }}>
+              <div className="text-lg md:text-xl mb-1 font-light tracking-tight" style={{ color: 'var(--color-foreground)' }}>10+</div>
+              <div className="text-xs uppercase tracking-wider" style={{ color: 'var(--color-muted-foreground)', fontFamily: 'var(--code-font-family)' }}>Projects</div>
+            </div>
+            <div className="px-3 py-3 border rounded text-center" style={{ borderColor: 'var(--color-border)', backgroundColor: 'var(--color-card)' }}>
+              <div className="text-lg md:text-xl mb-1 font-light tracking-tight" style={{ color: 'var(--color-foreground)' }}>∞</div>
+              <div className="text-xs uppercase tracking-wider" style={{ color: 'var(--color-muted-foreground)', fontFamily: 'var(--code-font-family)' }}>Problems</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Clientele Section */}
+      <section className="animate-fade-up" style={{ animationDelay: '250ms' }}>
+        <div className="mb-6">
+          <h2 className="text-sm mb-2">Clientele</h2>
+          <div className="h-px w-12" style={{ backgroundColor: 'var(--color-border)' }}></div>
+        </div>
+        <ClienteleList
+          clients={[
+            { name: 'Acies', url: 'https://www.acies.consulting/' },
+            { name: 'Codive', url: 'https://codive.co/' },
+            { name: 'Freight Tiger', url: 'https://www.freighttiger.com/about/' },
+            { name: 'CodeVyasa', url: 'https://www.codevyasa.com/' },
+            { name: 'AbsorbX', url: 'https://www.linkedin.com/company/absorbx/' },
+            { name: 'Waste Wallet' },
+            { name: '7+ Independent Products' },
+          ]}
+        />
+      </section>
+
       {/* FAQ Section */}
       <FAQSection />
 
@@ -156,8 +156,11 @@ export default function Services() {
           <h2 className="text-sm mb-2">Let's Talk</h2>
           <div className="h-px w-12" style={{ backgroundColor: 'var(--color-border)' }}></div>
         </div>
+        <p className="text-xs leading-relaxed mb-4" style={{ color: 'var(--color-muted-foreground)', fontSize: '0.7rem' }}>
+          Whether you're a solo founder with a napkin sketch or a team ready to scale; I'm interested in hearing about ambitious problems worth solving.
+        </p>
         <p className="text-xs leading-relaxed" style={{ color: 'var(--color-muted-foreground)', fontSize: '0.7rem' }}>
-          Got a problem worth solving? Reach out via <a href="/contact" className="transition-opacity hover:opacity-70">contact</a> or email <a href="mailto:hi@ohmyscript.com" className="transition-opacity hover:opacity-70">hi [at] ohmyscript [dot] com</a>.
+          Reach out via <a href="/contact" className="transition-opacity hover:opacity-70">contact</a> or email <a href="mailto:hi@ohmyscript.com" className="transition-opacity hover:opacity-70">hi [at] ohmyscript [dot] com</a>.
         </p>
       </section>
     </div>
