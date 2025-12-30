@@ -45,15 +45,15 @@ export function ClienteleList({ clients }: ClienteleListProps) {
                 minHeight: '60px',
               }}
             >
-              {/* Status - shows on hover */}
+              {/* Status - always visible */}
               {client.status && (
                 <div
-                  className="absolute top-1 left-1 text-xs transition-opacity duration-150"
+                  className="absolute top-1 left-1 text-xs"
                   style={{
                     color: isActive ? 'var(--color-link)' : 'var(--color-muted-foreground)',
-                    opacity: isHovered ? 1 : 0,
                     fontSize: '0.6rem',
                     fontFamily: 'var(--code-font-family)',
+                    opacity: 0.7,
                   }}
                 >
                   {isActive ? 'Active' : 'Past'}
