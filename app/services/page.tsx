@@ -6,6 +6,7 @@ import { ServiceCard } from '@/components/ServiceCard';
 import { ProcessStep } from '@/components/ProcessStep';
 import { FAQSection } from '@/components/FAQSection';
 import { ClienteleList } from '@/components/ClienteleList';
+import { Calendar, Mail } from 'lucide-react';
 import type { Metadata } from 'next';
 
 const pageMetadata = {
@@ -79,7 +80,7 @@ export default function Services() {
           <div className="h-px w-12" style={{ backgroundColor: 'var(--color-border)' }}></div>
         </div>
 
-        <div className="flex flex-col md:flex-row items-start gap-4 md:gap-2">
+        <div className="flex flex-col md:flex-row items-stretch gap-3 md:gap-2">
           <ProcessStep
             number="01"
             iconName="MessageSquare"
@@ -108,6 +109,7 @@ export default function Services() {
         </div>
       </section>
 
+      <hr></hr>
       {/* Stats - Compact Preview */}
       <section className="prose animate-fade-up" style={{ animationDelay: '200ms' }}>
         <div className="flex justify-center mb-6">
@@ -128,6 +130,7 @@ export default function Services() {
         </div>
       </section>
 
+      <hr></hr>
       {/* Clientele Section */}
       <section className="animate-fade-up" style={{ animationDelay: '250ms' }}>
         <div className="mb-6">
@@ -150,18 +153,44 @@ export default function Services() {
       {/* FAQ Section */}
       <FAQSection />
 
-      {/* CTA - Simple */}
+      {/* CTA - Beautiful Minimalistic */}
       <section className="animate-fade-up" style={{ animationDelay: '300ms' }}>
         <div className="mb-6">
           <h2 className="text-sm mb-2">Let's Talk</h2>
           <div className="h-px w-12" style={{ backgroundColor: 'var(--color-border)' }}></div>
         </div>
-        <p className="text-xs leading-relaxed mb-4" style={{ color: 'var(--color-muted-foreground)', fontSize: '0.7rem' }}>
+        <p className="text-xs leading-relaxed mb-5" style={{ color: 'var(--color-muted-foreground)', fontSize: '0.7rem', lineHeight: '1.6' }}>
           Whether you're a solo founder with a napkin sketch or a team ready to scale; I'm interested in hearing about ambitious problems worth solving.
         </p>
-        <p className="text-xs leading-relaxed" style={{ color: 'var(--color-muted-foreground)', fontSize: '0.7rem' }}>
-          Reach out via <a href="/contact" className="transition-opacity hover:opacity-70">contact</a> or email <a href="mailto:hi@ohmyscript.com" className="transition-opacity hover:opacity-70">hi [at] ohmyscript [dot] com</a>.
-        </p>
+        <div className="flex flex-wrap items-center gap-4">
+          <a
+            href="https://cal.com/zhravan/1hr-discussion?overlayCalendar=true&duration=30"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 transition-opacity hover:opacity-70"
+            style={{
+              color: 'var(--color-link)',
+              borderBottom: 'none',
+              paddingBottom: '0',
+            }}
+          >
+            <Calendar size={16} strokeWidth={2} />
+            <span className="text-xs font-medium">Schedule a meeting</span>
+          </a>
+          <span className="text-xs" style={{ color: 'var(--color-muted-foreground)', opacity: 0.5 }}>or</span>
+          <a
+            href="mailto:hi@ohmyscript.com"
+            className="flex items-center gap-2 transition-opacity hover:opacity-70"
+            style={{
+              color: 'var(--color-link)',
+              borderBottom: 'none',
+              paddingBottom: '0',
+            }}
+          >
+            <Mail size={16} strokeWidth={2} />
+            <span className="text-xs font-medium">Email</span>
+          </a>
+        </div>
       </section>
     </div>
   );
