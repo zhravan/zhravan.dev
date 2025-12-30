@@ -131,10 +131,11 @@ export default function Services() {
       </section>
 
       <hr></hr>
+      <br />
       {/* Clientele Section */}
       <section className="animate-fade-up" style={{ animationDelay: '250ms' }}>
         <div className="mb-6">
-          <h2 className="text-sm mb-2">Clientele</h2>
+          <h2 className="text-sm mb-2">Brands I've worked with</h2>
           <div className="h-px w-12" style={{ backgroundColor: 'var(--color-border)' }}></div>
         </div>
         <ClienteleList
@@ -144,15 +145,15 @@ export default function Services() {
             { name: 'Freight Tiger', url: 'https://www.freighttiger.com/about/' },
             { name: 'CodeVyasa', url: 'https://www.codevyasa.com/' },
             { name: 'AbsorbX', url: 'https://www.linkedin.com/company/absorbx/' },
-            { name: 'Waste Wallet' },
-            { name: '7+ Independent Products' },
-          ]}
+            { name: 'Furrever', url: 'https://furrever.io/' },
+            { name: 'Waste Wallet' }
+          ].sort((a, b) => a.name.localeCompare(b.name))}
         />
       </section>
 
       {/* FAQ Section */}
       <FAQSection />
-
+      <br />
       {/* CTA - Beautiful Minimalistic */}
       <section className="animate-fade-up" style={{ animationDelay: '300ms' }}>
         <div className="mb-6">
