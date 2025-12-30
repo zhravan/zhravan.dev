@@ -48,10 +48,10 @@ export function HeroAnimation() {
   }, [lineIndex, isVisible]);
 
   return (
-    <div className="mb-12 pb-8">
+    <div className="mb-0 pb-6 border-b -mt-2" style={{ borderColor: 'var(--color-border)' }}>
       {/* Title */}
       {showCommand && (
-        <div className="mb-6">
+        <div className="mb-4">
           <h2 className="text-sm mb-2">Who am I</h2>
           <div className="h-px w-12" style={{ backgroundColor: 'var(--color-border)' }}></div>
         </div>

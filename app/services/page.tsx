@@ -22,7 +22,7 @@ export const metadata: Metadata = getPageMetadata({
 
 export default function Services() {
   return (
-    <div className="space-y-8 text-xxs">
+    <div className="space-y-6 text-xxs">
       <AnalyticsTracker
         contentType="page"
         contentTitle={pageMetadata.title}
@@ -31,7 +31,7 @@ export default function Services() {
       <PageHeader metadata={pageMetadata} hideTitle={true} />
 
       {/* Hero Section - Beautiful Preview */}
-      <section className="prose animate-fade-up" style={{ animationDelay: '50ms' }}>
+      <section className="prose animate-fade-up -mt-18" style={{ animationDelay: '50ms' }}>
         <HeroAnimation />
       </section>
 
