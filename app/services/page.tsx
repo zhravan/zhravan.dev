@@ -183,7 +183,7 @@ export default function Services() {
           </a>
           <a
             href="mailto:hi@ohmyscript.com"
-            className="flex items-center gap-2 transition-opacity hover:opacity-70"
+            className="flex items-center gap-2 transition-all duration-200 hover:opacity-100 email-link-hover"
             style={{
               color: 'var(--color-muted-foreground)',
               borderBottom: 'none',
@@ -191,8 +191,8 @@ export default function Services() {
               opacity: 0.7,
             }}
           >
-            <Mail size={14} strokeWidth={2} />
-            <span className="text-xs">Email</span>
+            <Mail size={18} strokeWidth={2} />
+            <span className="text-sm">Email</span>
           </a>
         </div>
       </section>

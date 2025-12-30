@@ -687,3 +687,8 @@ pre.shiki::-webkit-scrollbar-thumb {
     background: var(--color-card);
   }
 }
+
+/* Email link hover effect */
+.email-link-hover:hover {
+  color: var(--color-link) !important;
+}
