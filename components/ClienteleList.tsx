@@ -1,10 +1,13 @@
 'use client';
 
 import { ExternalLink } from 'lucide-react';
+import { useState } from 'react';
 
 interface Client {
   name: string;
   url?: string;
+  logo?: string;
+  status?: 'active' | 'past';
 }
 
 interface ClienteleListProps {
@@ -12,38 +15,91 @@ interface ClienteleListProps {
 }
 
 export function ClienteleList({ clients }: ClienteleListProps) {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
   return (
-    <div className="flex flex-wrap gap-3">
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
       {clients.map((client, index) => {
+        const isHovered = hoveredIndex === index;
+        const isActive = client.status === 'active';
+        
         const content = (
           <div
-            className={`px-5 py-2.5 rounded-lg transition-all duration-300 relative group inline-flex items-center justify-between ${
-              client.url 
-                ? 'cursor-pointer hover:opacity-80' 
-                : ''
-            }`}
+            className="clientele-card relative group"
             style={{
-              backgroundColor: 'var(--color-card)',
+              animationDelay: `${index * 30}ms`,
             }}
+            onMouseEnter={() => setHoveredIndex(index)}
+            onMouseLeave={() => setHoveredIndex(null)}
           >
-            <span 
-              className="text-xs font-medium text-left"
-              style={{ 
-                color: 'var(--color-foreground)',
-                fontSize: '0.7rem',
-                letterSpacing: '0.01em'
+            <div
+              className={`
+                relative flex items-center justify-center transition-colors duration-150
+                ${client.url ? 'cursor-pointer' : ''}
+              `}
+              style={{
+                backgroundColor: 'var(--color-card)',
+                border: `1px solid ${isHovered ? 'var(--color-link)' : 'var(--color-border)'}`,
+                borderRadius: '4px',
+                padding: '0.75rem',
+                minHeight: '60px',
               }}
             >
-              {client.name}
-            </span>
-            {client.url && (
-              <ExternalLink
-                size={14}
-                strokeWidth={2}
-                className="opacity-0 group-hover:opacity-50 transition-opacity duration-300 flex-shrink-0 ml-2"
-                style={{ color: 'var(--color-link)' }}
-              />
-            )}
+              {/* Status - shows on hover */}
+              {client.status && (
+                <div
+                  className="absolute top-1 left-1 text-xs transition-opacity duration-150"
+                  style={{
+                    color: isActive ? 'var(--color-link)' : 'var(--color-muted-foreground)',
+                    opacity: isHovered ? 1 : 0,
+                    fontSize: '0.6rem',
+                    fontFamily: 'var(--code-font-family)',
+                  }}
+                >
+                  {isActive ? 'Active' : 'Past'}
+                </div>
+              )}
+
+              {/* Content */}
+              {client.logo ? (
+                <div className="w-full h-8 flex items-center justify-center">
+                  <img
+                    src={client.logo}
+                    alt={client.name}
+                    className="max-w-full max-h-full object-contain"
+                    loading="lazy"
+                  />
+                </div>
+              ) : (
+                <span
+                  className="text-xs text-center"
+                  style={{
+                    color: 'var(--color-foreground)',
+                    fontSize: '0.65rem',
+                    letterSpacing: '0.01em',
+                  }}
+                >
+                  {client.name}
+                </span>
+              )}
+              
+              {client.url && (
+                <div
+                  className="absolute top-1 right-1 transition-opacity duration-150"
+                  style={{
+                    opacity: isHovered ? 0.5 : 0,
+                  }}
+                >
+                  <ExternalLink
+                    size={10}
+                    strokeWidth={1.5}
+                    style={{
+                      color: 'var(--color-link)',
+                    }}
+                  />
+                </div>
+              )}
+            </div>
           </div>
         );
 
@@ -53,7 +109,7 @@ export function ClienteleList({ clients }: ClienteleListProps) {
             href={client.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="no-underline"
+            className="no-underline block"
             style={{
               borderBottom: 'none',
               paddingBottom: '0',
@@ -70,4 +126,3 @@ export function ClienteleList({ clients }: ClienteleListProps) {
     </div>
   );
 }
-

@@ -140,14 +140,14 @@ export default function Services() {
         </div>
         <ClienteleList
           clients={[
-            { name: 'Acies', url: 'https://www.acies.consulting/' },
-            { name: 'Codive', url: 'https://codive.co/' },
-            { name: 'Freight Tiger', url: 'https://www.freighttiger.com/about/' },
-            { name: 'CodeVyasa', url: 'https://www.codevyasa.com/' },
-            { name: 'AbsorbX', url: 'https://www.linkedin.com/company/absorbx/' },
-            { name: 'Furrever', url: 'https://furrever.io/' },
-            { name: 'Waste Wallet' }
-          ].sort((a, b) => a.name.localeCompare(b.name))}
+            { name: 'AbsorbX', url: 'https://www.linkedin.com/company/absorbx/', status: 'active' },
+            { name: 'Acies', url: 'https://www.acies.consulting/', status: 'past' },
+            { name: 'CodeVyasa', url: 'https://www.codevyasa.com/', status: 'past' },
+            { name: 'Codive', url: 'https://codive.co/', status: 'past' },
+            { name: 'Freight Tiger', url: 'https://www.freighttiger.com/about/', status: 'past' },
+            { name: 'Furrever', url: 'https://furrever.io/', status: 'active' },
+            { name: 'Waste Wallet', status: 'active' },
+          ]}
         />
       </section>
 
