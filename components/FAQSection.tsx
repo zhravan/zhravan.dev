@@ -9,6 +9,10 @@ const faqs = [
     answer: "MVPs: 4-8 weeks. Complex systems: 2-4 months. I'll give you an accurate estimate after our discovery call."
   },
   {
+    question: "What if the project overruns scope?",
+    answer: "We'll discuss scope changes upfront. Additional work is billed separately, and I'll always get your approval before proceeding."
+  },
+  {
     question: "Do you work with early-stage startups?",
     answer: "Absolutely. I love working with founders who have a clear vision. I offer flexible engagement models for pre-funded startups."
   },
