@@ -151,7 +151,10 @@ export function getDefaultMetadata(): Metadata {
       : undefined,
     alternates: {
       canonical: "/",
-      languages: { "en-US": cfg.siteUrl },
+      languages: { 
+        "en-US": cfg.siteUrl,
+        "x-default": cfg.siteUrl
+      },
     },
     openGraph: {
       type: (cfg.openGraph?.type || "website") as OGType,
@@ -291,7 +294,10 @@ export function getPostMetadata({
       : undefined,
     alternates: {
       canonical: canonicalPath,
-      languages: { "en-US": url },
+      languages: { 
+        "en-US": url,
+        "x-default": url
+      },
     },
     openGraph: {
       type: "article",
@@ -472,7 +478,10 @@ export function getPageMetadata({
       : undefined,
     alternates: {
       canonical: canonicalPath,
-      languages: { "en-US": url },
+      languages: { 
+        "en-US": url,
+        "x-default": url
+      },
     },
     openGraph: {
       type: (cfg.openGraph?.type || "website") as OGType,
