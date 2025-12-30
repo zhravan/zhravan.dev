@@ -2,6 +2,7 @@ import { loadSeoConfig } from '@/lib/seo';
 import { filterDrafts } from '@/lib/plugins/drafts';
 import { getAllContentTypes } from '@/lib/content-types';
 import { getContentForType } from '@/lib/content';
+import { getAllTags, slugifyTag } from '@/lib/tags';
 
 export const dynamic = 'force-static';
 
@@ -31,6 +32,12 @@ export default async function sitemap() {
       });
     });
 
+  // Generate tag pages
+  const tagUrls = getAllTags().map((tag) => ({
+    url: `${siteUrl}/tags/${slugifyTag(tag)}/`,
+    lastModified: new Date().toISOString()
+  }));
+
   // Generate static routes (only routes that actually exist as pages)
   // Note: Empty string for homepage should not have trailing slash
   const staticRoutes = ['', '/about', '/writing', '/work', '/talks'].map(
@@ -40,5 +47,5 @@ export default async function sitemap() {
     })
   );
 
-  return [...staticRoutes, ...contentItemUrls];
+  return [...staticRoutes, ...contentItemUrls, ...tagUrls];
 }

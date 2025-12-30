@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation';
+import Link from 'next/link';
 import { getPostBySlug, getAllPosts } from '@/lib/blog';
 import { getPostMetadata, getArticleStructuredData } from '@/lib/seo';
 import { BackLink } from '@/components/navigation';
@@ -11,6 +12,7 @@ import { getPostNavigation } from '@/lib/plugins/post-navigation';
 import { isDraft } from '@/lib/plugins/drafts';
 import { getShareUrl } from '@/lib/plugins/social-share';
 import { getSeriesForPost } from '@/lib/plugins/series';
+import { findRelatedPosts } from '@/lib/plugins/related-posts';
 import { ReadingTimeBadge } from '@/components/ReadingTimeBadge';
 import { TableOfContents } from '@/components/TableOfContents';
 import { MobileTOC } from '@/components/MobileTOC';
@@ -20,6 +22,8 @@ import { SocialShare } from '@/components/SocialShare';
 import { DraftBadge } from '@/components/DraftBadge';
 import { DraftPreviewGate } from '@/components/DraftPreviewGate';
 import { SeriesNavigator } from '@/components/SeriesNavigator';
+import { RelatedPosts } from '@/components/RelatedPosts';
+import { getContentByTag, slugifyTag } from '@/lib/tags';
 import { Suspense } from 'react';
 import { getBreadcrumbStructuredData } from '@/lib/breadcrumbs';
 import { AnalyticsTracker } from '@/components/AnalyticsTracker';
@@ -95,6 +99,14 @@ export default async function BlogPost({
   const draftsConfig = getPluginConfig<{ enabled: boolean; previewToken: string }>('drafts');
   const socialShareConfig = getPluginConfig<{ enabled: boolean; showIcon: boolean }>('social-share');
   const seriesConfig = getPluginConfig<{ enabled: boolean }>('series');
+  const relatedPostsConfig = getPluginConfig<{ enabled: boolean; count: number; showDate: boolean; showDescription: boolean }>('related-posts');
+  
+  // Get related posts
+  const relatedPosts = relatedPostsConfig?.enabled ? findRelatedPosts(slug) : null;
+  
+  // Get "more from this tag" posts (posts with the same primary tag)
+  const primaryTag = post.tags && post.tags.length > 0 ? post.tags[0] : null;
+  const moreFromTag = primaryTag ? getContentByTag(primaryTag).filter(p => p.slug !== slug).slice(0, 3) : null;
   
   const showTocSidebar = tocHeadings && tocConfig && tocConfig.position !== 'inline';
   const showTocInline = tocHeadings && tocConfig && tocConfig.position === 'inline';
@@ -185,6 +197,37 @@ export default async function BlogPost({
           <Content />
 
           <PostNavigation previous={postNav.previous} next={postNav.next} />
+
+          {/* Related Posts */}
+          {relatedPosts && relatedPosts.length > 0 && (
+            <RelatedPosts 
+              posts={relatedPosts} 
+              showDate={relatedPostsConfig?.showDate ?? true}
+              showDescription={relatedPostsConfig?.showDescription ?? false}
+            />
+          )}
+
+          {/* More from this tag */}
+          {moreFromTag && moreFromTag.length > 0 && primaryTag && (
+            <section className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-[10px] font-medium opacity-40 uppercase tracking-wider">
+                  More from <Link href={`/tags/${slugifyTag(primaryTag)}/`} className="hover:opacity-100 transition-opacity">{primaryTag}</Link>
+                </h2>
+                <Link 
+                  href={`/tags/${slugifyTag(primaryTag)}/`}
+                  className="text-[10px] opacity-50 hover:opacity-100 transition-opacity"
+                >
+                  View all →
+                </Link>
+              </div>
+              <RelatedPosts 
+                posts={moreFromTag} 
+                showDate={true}
+                showDescription={false}
+              />
+            </section>
+          )}
 
           {/* Giscus comments plugin (self-contained enable/disable via config) */}
           <br/>

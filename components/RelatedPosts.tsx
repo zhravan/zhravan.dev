@@ -1,10 +1,26 @@
 import Link from 'next/link';
 import { BlogPost } from '@/lib/blog';
+import { ContentItem } from '@/lib/content';
+import { getContentTypeById } from '@/lib/content-types';
 
 interface RelatedPostsProps {
-  posts: BlogPost[];
+  posts: BlogPost[] | ContentItem[];
   showDate?: boolean;
   showDescription?: boolean;
+}
+
+function getPostPath(post: BlogPost | ContentItem): string {
+  // Handle ContentItem with contentType field
+  if ('contentType' in post && post.contentType) {
+    const contentType = getContentTypeById(post.contentType);
+    if (contentType) {
+      // The "blog" content type lists at /writing, but detail routes live at /blogs/[slug]
+      const basePath = contentType.id === 'blog' ? '/blogs' : contentType.path || '';
+      return `${basePath}/${post.slug}`;
+    }
+  }
+  // Fallback for BlogPost (backward compatibility)
+  return `/blogs/${post.slug}`;
 }
 
 export function RelatedPosts({ 
@@ -29,32 +45,35 @@ export function RelatedPosts({
       </h2>
       <nav aria-label="Related posts">
         <ul className="space-y-2" role="list">
-          {posts.map((post) => (
-            <li key={post.slug}>
-              <Link
-                href={`/blog/${post.slug}`}
-                className="group block py-1.5 hover:opacity-100 opacity-60 transition-opacity text-xs"
-                aria-label={showDate && post.date
-                  ? `${post.title}, published ${new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}`
-                  : post.title
-                }
-              >
-                <span className="block">{post.title}</span>
-                {showDate && post.date && (
-                  <time
-                    className="text-[10px] opacity-50 block mt-0.5"
-                    dateTime={post.date}
-                  >
-                    {new Date(post.date).toLocaleDateString('en-US', {
-                      year: 'numeric',
-                      month: 'short',
-                      day: 'numeric'
-                    })}
-                  </time>
-                )}
-              </Link>
-            </li>
-          ))}
+          {posts.map((post) => {
+            const postPath = getPostPath(post);
+            return (
+              <li key={post.slug}>
+                <Link
+                  href={postPath}
+                  className="group block py-1.5 hover:opacity-100 opacity-60 transition-opacity text-xs"
+                  aria-label={showDate && post.date
+                    ? `${post.title}, published ${new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}`
+                    : post.title
+                  }
+                >
+                  <span className="block">{post.title}</span>
+                  {showDate && post.date && (
+                    <time
+                      className="text-[10px] opacity-50 block mt-0.5"
+                      dateTime={post.date}
+                    >
+                      {new Date(post.date).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'short',
+                        day: 'numeric'
+                      })}
+                    </time>
+                  )}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </nav>
     </section>
