@@ -6,6 +6,7 @@ import { ServiceCard } from '@/components/ServiceCard';
 import { ProcessStep } from '@/components/ProcessStep';
 import { FAQSection } from '@/components/FAQSection';
 import { ClienteleList } from '@/components/ClienteleList';
+import { AnimatedCounter } from '@/components/AnimatedCounter';
 import { Calendar, Mail } from 'lucide-react';
 import type { Metadata } from 'next';
 
@@ -22,7 +23,7 @@ export const metadata: Metadata = getPageMetadata({
 
 export default function Services() {
   return (
-    <div className="space-y-6 text-xxs">
+    <div className="space-y-12 text-xxs">
       <AnalyticsTracker
         contentType="page"
         contentTitle={pageMetadata.title}
@@ -37,16 +38,16 @@ export default function Services() {
 
       {/* Services Section */}
       <section className="animate-fade-up" style={{ animationDelay: '100ms' }}>
-        <div className="mb-6">
-          <h2 className="text-sm mb-2">Services</h2>
+        <div className="mb-8">
+          <h2 className="text-base mb-2 font-semibold">Services</h2>
           <div className="h-px w-12" style={{ backgroundColor: 'var(--color-border)' }}></div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <ServiceCard
             iconName="Rocket"
-            title="Driving zero to one"
-            description="Turn your vision into a working product. I help founders validate ideas fast with lean, scalable MVPs that can grow with your business."
+            title="Zero to One"
+            description="Build MVPs fast. Validate ideas. Scale."
             tag="build"
             bgColor="var(--color-card)"
             borderColor="var(--color-border)"
@@ -54,8 +55,8 @@ export default function Services() {
           />
           <ServiceCard
             iconName="TrendingUp"
-            title="Startup Scaling"
-            description="Systems that worked at 100 users break at 10,000. I architect for scale before it becomes a crisis."
+            title="Scaling"
+            description="Architect for growth. Before it breaks."
             tag="scale"
             bgColor="var(--color-card)"
             borderColor="var(--color-border)"
@@ -63,8 +64,8 @@ export default function Services() {
           />
           <ServiceCard
             iconName="MessageSquare"
-            title="Technical Advisory"
-            description="Architecture reviews, tech stack decisions, team mentorship. Sometimes the best code is the code you don't write."
+            title="Advisory"
+            description="Architecture. Tech decisions. Mentorship."
             tag="consult"
             bgColor="var(--color-card)"
             borderColor="var(--color-border)"
@@ -73,10 +74,11 @@ export default function Services() {
         </div>
       </section>
 
+
       {/* Process Section */}
       <section className="animate-fade-up" style={{ animationDelay: '150ms' }}>
-        <div className="mb-6">
-          <h2 className="text-sm mb-2">Process</h2>
+        <div className="mb-8">
+          <h2 className="text-base mb-2 font-semibold">Process</h2>
           <div className="h-px w-12" style={{ backgroundColor: 'var(--color-border)' }}></div>
         </div>
 
@@ -85,57 +87,61 @@ export default function Services() {
             number="01"
             iconName="MessageSquare"
             title="Discovery"
-            description="Understand your vision, constraints, and success metrics."
           />
           <ProcessStep
             number="02"
             iconName="FileText"
             title="Proposal"
-            description="Clear scope, timeline, and investment. No surprises."
           />
           <ProcessStep
             number="03"
             iconName="Code"
-            title="Build"
-            description="Iterative development with regular demos and feedback."
+            title="Iteratively Build"
           />
           <ProcessStep
             number="04"
             iconName="Rocket"
             title="Launch"
-            description="Deployment, documentation, and knowledge transfer."
             showArrow={false}
           />
         </div>
       </section>
 
-      <hr></hr>
       {/* Stats - Compact Preview */}
       <section className="prose animate-fade-up" style={{ animationDelay: '200ms' }}>
+        <div className="mb-8">
+          <h2 className="text-base mb-2 font-semibold">Experience</h2>
+          <div className="h-px w-12 mb-6" style={{ backgroundColor: 'var(--color-border)' }}></div>
+        </div>
         <div className="flex justify-center mb-6">
           <div className="grid grid-cols-3 gap-3 md:gap-6">
-            <div className="px-3 py-3 border rounded text-center" style={{ borderColor: 'var(--color-border)', backgroundColor: 'var(--color-card)' }}>
-              <div className="text-lg md:text-xl mb-1 font-light tracking-tight" style={{ color: 'var(--color-foreground)' }}>6+</div>
+            <div className="px-3 py-3 border rounded text-center" style={{ borderColor: 'rgba(0, 0, 0, 0.2)', borderWidth: '1px', backgroundColor: 'var(--color-card)' }}>
+              <div className="text-lg md:text-xl mb-1 font-light tracking-tight" style={{ color: 'var(--color-foreground)' }}>
+                <AnimatedCounter end={6} duration={2000} suffix="+" />
+              </div>
               <div className="text-xs uppercase tracking-wider" style={{ color: 'var(--color-muted-foreground)', fontFamily: 'var(--code-font-family)' }}>Years</div>
             </div>
-            <div className="px-3 py-3 border rounded text-center" style={{ borderColor: 'var(--color-border)', backgroundColor: 'var(--color-card)' }}>
-              <div className="text-lg md:text-xl mb-1 font-light tracking-tight" style={{ color: 'var(--color-foreground)' }}>10+</div>
+            <div className="px-3 py-3 border rounded text-center" style={{ borderColor: 'rgba(0, 0, 0, 0.2)', borderWidth: '1px', backgroundColor: 'var(--color-card)' }}>
+              <div className="text-lg md:text-xl mb-1 font-light tracking-tight" style={{ color: 'var(--color-foreground)' }}>
+                <AnimatedCounter end={10} duration={2500} suffix="+" />
+              </div>
               <div className="text-xs uppercase tracking-wider" style={{ color: 'var(--color-muted-foreground)', fontFamily: 'var(--code-font-family)' }}>Projects</div>
             </div>
-            <div className="px-3 py-3 border rounded text-center" style={{ borderColor: 'var(--color-border)', backgroundColor: 'var(--color-card)' }}>
-              <div className="text-lg md:text-xl mb-1 font-light tracking-tight" style={{ color: 'var(--color-foreground)' }}>∞</div>
+            <div className="px-3 py-3 border rounded text-center" style={{ borderColor: 'rgba(0, 0, 0, 0.2)', borderWidth: '1px', backgroundColor: 'var(--color-card)' }}>
+              <div className="text-lg md:text-xl mb-1 font-light tracking-tight" style={{ color: 'var(--color-foreground)' }}>
+                <AnimatedCounter infinity={true} />
+              </div>
               <div className="text-xs uppercase tracking-wider" style={{ color: 'var(--color-muted-foreground)', fontFamily: 'var(--code-font-family)' }}>Problems</div>
             </div>
           </div>
         </div>
       </section>
 
-      <hr></hr>
-      <br />
+
       {/* Clientele Section */}
       <section className="animate-fade-up" style={{ animationDelay: '250ms' }}>
-        <div className="mb-6">
-          <h2 className="text-sm mb-2">Brands I've worked with</h2>
+        <div className="mb-8">
+          <h2 className="text-base mb-2 font-semibold">Clients</h2>
           <div className="h-px w-12" style={{ backgroundColor: 'var(--color-border)' }}></div>
         </div>
         <ClienteleList
@@ -153,17 +159,14 @@ export default function Services() {
 
       {/* FAQ Section */}
       <FAQSection />
-      <br />
+      
       {/* CTA - Beautiful Minimalistic */}
       <section className="animate-fade-up" style={{ animationDelay: '300ms' }}>
-        <div className="mb-6">
-          <h2 className="text-sm mb-2">Let's Talk</h2>
+        <div className="mb-8">
+          <h2 className="text-base mb-2 font-semibold">Let's Talk</h2>
           <div className="h-px w-12" style={{ backgroundColor: 'var(--color-border)' }}></div>
         </div>
-        <p className="text-xs leading-relaxed mb-5" style={{ color: 'var(--color-muted-foreground)', fontSize: '0.7rem', lineHeight: '1.6' }}>
-          Whether you're a solo founder with a napkin sketch or a team ready to scale; I'm interested in hearing about ambitious problems worth solving.
-        </p>
-        <div className="flex flex-wrap items-center gap-4">
+        <div className="flex flex-wrap items-center gap-4 mb-6">
           <a
             href="https://cal.com/zhravan/1hr-discussion?overlayCalendar=true&duration=30"
             target="_blank"
@@ -175,21 +178,21 @@ export default function Services() {
               paddingBottom: '0',
             }}
           >
-            <Calendar size={16} strokeWidth={2} />
-            <span className="text-xs font-medium">Schedule a meeting</span>
+            <Calendar size={18} strokeWidth={2} />
+            <span className="text-sm font-semibold">Schedule a meeting</span>
           </a>
-          <span className="text-xs" style={{ color: 'var(--color-muted-foreground)', opacity: 0.5 }}>or</span>
           <a
             href="mailto:hi@ohmyscript.com"
             className="flex items-center gap-2 transition-opacity hover:opacity-70"
             style={{
-              color: 'var(--color-link)',
+              color: 'var(--color-muted-foreground)',
               borderBottom: 'none',
               paddingBottom: '0',
+              opacity: 0.7,
             }}
           >
-            <Mail size={16} strokeWidth={2} />
-            <span className="text-xs font-medium">Email</span>
+            <Mail size={14} strokeWidth={2} />
+            <span className="text-xs">Email</span>
           </a>
         </div>
       </section>

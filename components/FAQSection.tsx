@@ -39,8 +39,8 @@ export function FAQSection() {
 
   return (
     <section className="animate-fade-up" style={{ animationDelay: '250ms' }}>
-      <div className="mb-6">
-        <h2 className="text-sm mb-2">FAQ</h2>
+      <div className="mb-8">
+        <h2 className="text-base mb-2 font-semibold">FAQ</h2>
         <div className="h-px w-12" style={{ backgroundColor: 'var(--color-border)' }}></div>
       </div>
 

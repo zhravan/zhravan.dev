@@ -6,7 +6,7 @@ const lines = [
   'I am an engineer',
   'I am a strategist',
   'I am a pragmatic product builder',
-  'I help breaking down and solving complex problems',
+  'I break down and solve complex problems',
   'I help founders & teams to build product 0 to 1.',
   'I help systems to scale from 10 to 10m',
   'I am a freelancer',
@@ -48,7 +48,7 @@ export function HeroAnimation() {
   }, [lineIndex, isVisible]);
 
   return (
-    <div className="mb-0 pb-6 border-b -mt-2" style={{ borderColor: 'var(--color-border)' }}>
+    <div className="mb-0 pb-6 -mt-2">
       {/* Title */}
       {showCommand && (
         <div className="mb-4">

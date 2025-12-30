@@ -21,7 +21,9 @@ export function ServiceCard({ iconName, title, description, tag, bgColor, border
       className="p-5 border rounded-lg relative h-full flex flex-col"
       style={{
         backgroundColor: bgColor,
-        borderColor: borderColor,
+        borderColor: 'rgba(0, 0, 0, 0.2)',
+        borderWidth: '1px',
+        borderStyle: 'solid',
       }}
     >
       {/* Tag in top-right corner */}
@@ -42,19 +44,20 @@ export function ServiceCard({ iconName, title, description, tag, bgColor, border
         {IconComponent && (
           <div className="flex-shrink-0">
             <IconComponent
-              size={28}
+              size={20}
               strokeWidth={1.5}
               style={{
                 color: iconColor,
+                opacity: 0.7,
               }}
             />
           </div>
         )}
-        <h3 className="pr-12 whitespace-nowrap flex-1 font-semibold" style={{ color: 'var(--color-foreground)', fontSize: '0.65rem !important' }}>
+        <h3 className="pr-12 whitespace-nowrap flex-1 font-semibold" style={{ color: 'var(--color-foreground)', fontSize: '0.75rem' }}>
           {title}
         </h3>
       </div>
-      <p className="leading-relaxed text-left flex-1" style={{ color: 'var(--color-muted-foreground)', fontSize: '0.6rem !important', lineHeight: '1.6', letterSpacing: '0.01em' }}>
+      <p className="leading-relaxed text-left flex-1" style={{ color: 'var(--color-muted-foreground)', fontSize: '0.65rem', lineHeight: '1.5', letterSpacing: '0.01em' }}>
         {description}
       </p>
     </div>

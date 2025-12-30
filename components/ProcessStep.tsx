@@ -7,11 +7,10 @@ interface ProcessStepProps {
   number: string;
   iconName: string;
   title: string;
-  description: string;
   showArrow?: boolean;
 }
 
-export function ProcessStep({ number, iconName, title, description, showArrow = true }: ProcessStepProps) {
+export function ProcessStep({ number, iconName, title, showArrow = true }: ProcessStepProps) {
   const IconComponent = LucideIcons[iconName as keyof typeof LucideIcons] as LucideIcon;
 
   return (
@@ -21,7 +20,9 @@ export function ProcessStep({ number, iconName, title, description, showArrow = 
           className="p-4 border rounded-lg h-full flex flex-col"
           style={{
             backgroundColor: 'var(--color-card)',
-            borderColor: 'var(--color-border)',
+            borderColor: 'rgba(0, 0, 0, 0.2)',
+            borderWidth: '1px',
+            borderStyle: 'solid',
           }}
         >
           <div className="flex items-center gap-2 mb-3">
@@ -30,14 +31,17 @@ export function ProcessStep({ number, iconName, title, description, showArrow = 
               style={{
                 backgroundColor: 'var(--color-muted)',
                 border: '1px solid var(--color-border)',
+                borderWidth: '1px',
+                opacity: 0.6,
               }}
             >
               {IconComponent && (
                 <IconComponent
-                  size={16}
-                  strokeWidth={2}
+                  size={14}
+                  strokeWidth={1.5}
                   style={{
                     color: 'var(--color-link)',
+                    opacity: 0.7,
                   }}
                 />
               )}
@@ -58,9 +62,6 @@ export function ProcessStep({ number, iconName, title, description, showArrow = 
               </h3>
             </div>
           </div>
-          <p className="text-xs leading-relaxed flex-1" style={{ color: 'var(--color-muted-foreground)', fontSize: '0.65rem', lineHeight: '1.5' }}>
-            {description}
-          </p>
         </div>
       </div>
       {showArrow && (
