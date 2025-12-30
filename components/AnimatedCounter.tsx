@@ -3,13 +3,13 @@
 import { useEffect, useState } from 'react';
 
 interface AnimatedCounterProps {
-  end: number;
+  end?: number;
   duration?: number;
   suffix?: string;
   infinity?: boolean;
 }
 
-export function AnimatedCounter({ end, duration = 2000, suffix = '+', infinity = false }: AnimatedCounterProps) {
+export function AnimatedCounter({ end = 0, duration = 2000, suffix = '+', infinity = false }: AnimatedCounterProps) {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
