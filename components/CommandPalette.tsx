@@ -11,13 +11,16 @@ interface SearchItem {
   description?: string;
 }
 
+interface ContentItemForPalette {
+  slug: string;
+  title: string;
+  date: string;
+  description: string;
+  path: string;
+}
+
 interface CommandPaletteProps {
-  posts: Array<{
-    slug: string;
-    title: string;
-    date: string;
-    description: string;
-  }>;
+  contentItems: ContentItemForPalette[];
   fuzzyThreshold?: number;
   showPages?: boolean;
   showPosts?: boolean;
@@ -30,7 +33,7 @@ export interface CommandPaletteHandle {
 }
 
 export const CommandPalette = forwardRef<CommandPaletteHandle, CommandPaletteProps>(({ 
-  posts, 
+  contentItems, 
   fuzzyThreshold = 0.3,
   showPages = true,
   showPosts = true 
@@ -53,15 +56,19 @@ export const CommandPalette = forwardRef<CommandPaletteHandle, CommandPalettePro
   const items: SearchItem[] = [
     ...(showPages ? [
       { title: 'Home', path: '/', type: 'page' as const },
-      { title: 'Blog', path: '/blog', type: 'page' as const },
-      { title: 'Work', path: '/work', type: 'page' as const },
+      { title: 'Blog', path: '/writing', type: 'page' as const },
+      { title: 'Projects', path: '/projects', type: 'page' as const },
+      { title: 'Tech Talks', path: '/talks', type: 'page' as const },
+      { title: 'Reading', path: '/reading', type: 'page' as const },
+      { title: 'Services', path: '/services', type: 'page' as const },
       { title: 'About', path: '/about', type: 'page' as const },
+      { title: 'Contact', path: '/contact', type: 'page' as const },
     ] : []),
-    ...(showPosts ? posts.map(post => ({
-      title: post.title,
-      path: `/blog/${post.slug}`,
+    ...(showPosts ? contentItems.map(item => ({
+      title: item.title,
+      path: item.path,
       type: 'post' as const,
-      description: post.description
+      description: item.description
     })) : [])
   ];
 

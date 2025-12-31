@@ -24,7 +24,7 @@ export function SeriesNavigator({ series }: SeriesNavigatorProps) {
               {isCurrent ? (
                 <span className="font-medium">{post.title}</span>
               ) : (
-                <Link href={`/blog/${post.slug}`} className="opacity-60 hover:opacity-100">
+                <Link href={`/blogs/${post.slug}`} className="opacity-60 hover:opacity-100">
                   {post.title}
                 </Link>
               )}

@@ -4,13 +4,16 @@ import { useRef } from 'react';
 import { CommandPalette, CommandPaletteHandle } from './CommandPalette';
 import { MobileSearchButton } from './MobileSearchButton';
 
+interface ContentItemForPalette {
+  slug: string;
+  title: string;
+  date: string;
+  description: string;
+  path: string;
+}
+
 interface CommandPaletteWithButtonProps {
-  posts: Array<{
-    slug: string;
-    title: string;
-    date: string;
-    description: string;
-  }>;
+  contentItems: ContentItemForPalette[];
   fuzzyThreshold?: number;
   showPages?: boolean;
   showPosts?: boolean;

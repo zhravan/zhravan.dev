@@ -17,7 +17,7 @@ export function PostNavigation({ previous, next }: PostNavigationProps) {
         <div className="col-span-1">
           {previous && (
             <Link
-              href={`/blog/${previous.slug}`}
+              href={`/blogs/${previous.slug}`}
               className="group block hover:opacity-100 opacity-60 transition-opacity"
             >
               <div className="text-[10px] font-medium mb-2 opacity-40 uppercase tracking-wider">
@@ -30,7 +30,7 @@ export function PostNavigation({ previous, next }: PostNavigationProps) {
         <div className="col-span-1 text-right">
           {next && (
             <Link
-              href={`/blog/${next.slug}`}
+              href={`/blogs/${next.slug}`}
               className="group block hover:opacity-100 opacity-60 transition-opacity"
             >
               <div className="text-[10px] font-medium mb-2 opacity-40 uppercase tracking-wider">

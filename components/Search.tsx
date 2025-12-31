@@ -38,7 +38,7 @@ export function Search({ onClose }: SearchProps) {
   }, [query]);
 
   const handleResultClick = (slug: string) => {
-    router.push(`/blog/${slug}`);
+    router.push(`/blogs/${slug}`);
     onClose?.();
   };
 

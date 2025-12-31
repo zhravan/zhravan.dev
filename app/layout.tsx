@@ -12,6 +12,8 @@ import { Analytics } from '@/components/Analytics';
 import { PostHogProvider } from '@/components/PostHogProvider';
 import { CustomCursor } from '@/components/CustomCursor';
 import { getAllPosts } from '@/lib/blog';
+import { getContentByType, ContentItem } from '@/lib/content';
+import { getAllContentTypes, getContentTypeById } from '@/lib/content-types';
 import { getDefaultMetadata, getDefaultViewport, getWebsiteStructuredData, getPersonStructuredData, getSocialLinks } from '@/lib/seo';
 import { StructuredData } from '@/components/StructuredData';
 import { getCommandPaletteConfig } from '@/lib/plugins/command-palette';
@@ -19,6 +21,7 @@ import { getScrollProgressConfig } from '@/lib/plugins/scroll-progress';
 import { getScrollToTopConfig } from '@/lib/plugins/scroll-to-top';
 import { getPostHogConfig } from '@/lib/plugins/analytics';
 import { getNavigationContentTypes } from '@/lib/content-types';
+import { filterDrafts } from '@/lib/plugins/drafts';
 import { LinkTracker } from '@/components/LinkTracker';
 import { SearchAnalytics } from '@/components/SearchAnalytics';
 import { OhMyScript } from '@/components/OhMyScript';
@@ -56,8 +59,43 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const posts = getAllPosts();
   const navItems = getNavItems();
+  
+  // Get all content items for command palette
+  const blogPosts = getAllPosts();
+  const allContentTypes = getAllContentTypes();
+  
+  // Get other content types (talks, musings, second-brain)
+  const otherContentItems = allContentTypes
+    .filter(ct => ct.id !== 'blog' && ct.contentDir) // Only content types with MDX files
+    .flatMap(ct => getContentByType(ct.id));
+  
+  // Combine all content items
+  const allContentItems = [...blogPosts, ...otherContentItems];
+  const filteredContentItems = filterDrafts(allContentItems);
+  
+  // Compute paths for each content item (server-side)
+  function getContentItemPath(item: ContentItem): string {
+    if (item.contentType) {
+      const contentType = getContentTypeById(item.contentType);
+      if (contentType) {
+        // The "blog" content type lists at /writing, but detail routes live at /blogs/[slug]
+        const basePath = contentType.id === 'blog' ? '/blogs' : contentType.path || '';
+        return `${basePath}/${item.slug}`;
+      }
+    }
+    // Fallback
+    return `/blogs/${item.slug}`;
+  }
+  
+  // Map content items to include computed paths
+  const contentItemsWithPaths = filteredContentItems.map(item => ({
+    slug: item.slug,
+    title: item.title,
+    date: item.date,
+    description: item.description,
+    path: getContentItemPath(item)
+  }));
 
   // Load plugin configurations
   const commandPaletteConfig = getCommandPaletteConfig();
@@ -198,7 +236,7 @@ export default function RootLayout({
             )}
             {commandPaletteConfig && (
               <CommandPaletteWithButton
-                posts={posts}
+                contentItems={contentItemsWithPaths}
                 fuzzyThreshold={commandPaletteConfig.fuzzyThreshold}
                 showPages={commandPaletteConfig.showPages}
                 showPosts={commandPaletteConfig.showPosts}
