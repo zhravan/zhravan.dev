@@ -30,7 +30,7 @@ export default function About() {
       >
         <h2 className="text-sm">Background</h2>
         <p className="" style={{ color: 'var(--color-muted-foreground)' }}>
-          I am a tinkerer, FOSS enthusiast, polymathic indie computer scientist, systems engineer, and data-science aficionado. My experience spans backend architectures, platform engineering, distributed systems, AI agents, developer tools, and routing solvers.
+          I am a tinkerer, FOSS enthusiast, polymathic indie computer scientist, systems engineer, and data-science aficionado. My experience spans backend architectures, platform engineering, distributed systems, AI agents, developer tools, and Vehicle Routing solvers (CVRPTW/VRPTW).
           <br /><br />
           I have built products in edutech, logistics optimization, supply chain management,
           cloud infrastructure, developer utilities, and AI workflows.

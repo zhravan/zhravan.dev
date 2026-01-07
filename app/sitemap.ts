@@ -40,7 +40,7 @@ export default async function sitemap() {
 
   // Generate static routes (only routes that actually exist as pages)
   // Note: Empty string for homepage should not have trailing slash
-  const staticRoutes = ['', '/about', '/writing', '/work', '/talks'].map(
+  const staticRoutes = ['', '/about', '/writing', '/projects', '/talks'].map(
     (route) => ({
       url: route === '' ? `${siteUrl}/` : `${siteUrl}${route}/`,
       lastModified: new Date().toISOString()

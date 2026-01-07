@@ -44,9 +44,9 @@ function loadContentTypesConfig(): ContentTypesConfig {
           showInNav: true,
         },
         {
-          id: 'work',
-          label: 'Work',
-          path: '/work',
+          id: 'projects',
+          label: 'Projects',
+          path: '/projects',
           contentDir: null,
           enabled: true,
           showInNav: true,
