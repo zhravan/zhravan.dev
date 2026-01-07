@@ -32,7 +32,7 @@ export function NavLink({ href, children }: NavLinkProps) {
     >
       {isActive && (
         <span aria-hidden className="leading-none" style={{ color: 'var(--color-foreground)' }}>
-          •
+          #
         </span>
       )}
       {children}

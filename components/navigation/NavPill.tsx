@@ -26,6 +26,7 @@ export function NavPill({ href, children }: NavPillProps) {
         textUnderlineOffset: '3px',
       }}
     >
+      {isActive && '#'}
       {children}
     </Link>
   );

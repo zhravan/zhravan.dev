@@ -122,6 +122,7 @@ export function MobileNav({ items }: MobileNavProps) {
                         textUnderlineOffset: '3px',
                       }}
                     >
+                      {active && '#'}
                       {item.name}
                     </Link>
                   </li>
