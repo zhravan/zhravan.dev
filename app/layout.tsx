@@ -177,8 +177,8 @@ export default function RootLayout({
                 </div>
               </nav>
             </header>
-            <main className="max-w-2xl mx-auto px-4 sm:px-8 py-12 sm:py-16">{children}</main>
-            <footer className="mt-24">
+            <main className="max-w-2xl mx-auto px-4 sm:px-8 pt-12 pb-8 sm:pt-16 sm:pb-16">{children}</main>
+            <footer className="mt-12 md:mt-24 pb-8">
               <div className="max-w-2xl mx-auto px-4 sm:px-8 py-6 sm:py-8">
                 <div className="flex flex-col items-center gap-4">
                   <p className="text-xs" style={{ color: 'var(--color-muted-foreground)', fontSize: '0.65rem' }}>

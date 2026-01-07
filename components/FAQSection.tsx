@@ -27,6 +27,10 @@ const faqs = [
   {
     question: "Do you offer ongoing support?",
     answer: "Yes. Retainer packages include maintenance, bug fixes, and feature development at discounted pay."
+  },
+  {
+    question: "What technologies do you use?",
+    answer: "Whatever fits the problem. Tools are choices, not identities."
   }
 ];
 
