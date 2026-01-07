@@ -11,7 +11,7 @@ const pageMetadata = {
 export const metadata: Metadata = getPageMetadata({
   title: pageMetadata.title,
   description: pageMetadata.description,
-  path: '/reading/'
+  path: '/reading'
 });
 
 export default function ReadingPage() {
@@ -40,11 +40,11 @@ export default function ReadingPage() {
   };
 
   return (
-    <div className="space-y-8 text-xxs">
+    <div className="space-y-6 sm:space-y-8 text-xxs">
       <PageHeader metadata={pageMetadata} hideTitle={true} />
 
       {/* Stats */}
-      <div className="flex gap-6 text-xs">
+      <div className="flex flex-wrap gap-4 sm:gap-6 text-xs">
         <div>
           <span className="opacity-40">Read </span>
           <span className="font-medium">{totalBooks}</span>
@@ -63,19 +63,21 @@ export default function ReadingPage() {
       {reading.length > 0 && (
         <section className="space-y-3">
           <h2 className="text-xs opacity-50">Currently Reading</h2>
-          <ul className="list-none p-0 m-0 space-y-2.5 sm:space-y-1.5">
+          <ul className="list-none p-0 m-0 space-y-3 sm:space-y-1.5">
             {reading.map((book) => (
               <li key={book.id} className="group">
-                <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-2 text-xs leading-relaxed">
-                  <div className="flex items-baseline gap-2 min-w-0 flex-1">
-                    <span className="opacity-30">→</span>
-                    <span className="group-hover:opacity-70 transition-opacity truncate font-medium">
-                      {book.title}
-                    </span>
-                    <span className="text-[11px] opacity-50">{book.author}</span>
+                <div className="flex flex-col gap-1.5 sm:flex-row sm:items-baseline sm:gap-2 text-xs leading-relaxed">
+                  <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-2 min-w-0 flex-1">
+                    <div className="flex items-baseline gap-2 min-w-0">
+                      <span className="opacity-30 shrink-0">→</span>
+                      <span className="group-hover:opacity-70 transition-opacity font-medium break-words">
+                        {book.title}
+                      </span>
+                    </div>
+                    <span className="text-[11px] opacity-50 pl-5 sm:pl-0">{book.author}</span>
                   </div>
                   {book.tags && book.tags.length > 0 && (
-                    <div className="opacity-0 group-hover:opacity-70 text-[10px] transition-all duration-200 flex gap-1 flex-wrap pl-0 sm:pl-2">
+                    <div className="opacity-100 sm:opacity-0 sm:group-hover:opacity-70 text-[10px] transition-all duration-200 flex gap-1 flex-wrap pl-5 sm:pl-2">
                       {book.tags.map((tag) => (
                         <span
                           key={tag}
@@ -98,29 +100,33 @@ export default function ReadingPage() {
       {read.length > 0 && (
         <section className="space-y-3">
           <h2 className="text-xs opacity-50">Read</h2>
-          <ul className="list-none p-0 m-0 space-y-2.5 sm:space-y-1.5">
+          <ul className="list-none p-0 m-0 space-y-3 sm:space-y-1.5">
             {read.map((book) => (
               <li key={book.id} className="group">
-                <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-2 text-xs leading-relaxed">
-                  <div className="flex items-baseline gap-2 min-w-0 flex-1">
-                    <span className="opacity-30">→</span>
-                    <span className="group-hover:opacity-70 transition-opacity truncate font-medium">
-                      {book.title}
-                    </span>
-                    <span className="text-[11px] opacity-50">{book.author}</span>
-                    {book.rating && (
-                      <span className="text-[10px] opacity-30">
-                        {book.rating}/5
+                <div className="flex flex-col gap-1.5 sm:flex-row sm:items-baseline sm:gap-2 text-xs leading-relaxed">
+                  <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-2 min-w-0 flex-1">
+                    <div className="flex items-baseline gap-2 min-w-0">
+                      <span className="opacity-30 shrink-0">→</span>
+                      <span className="group-hover:opacity-70 transition-opacity font-medium break-words">
+                        {book.title}
                       </span>
-                    )}
-                    {book.dateFinished && (
-                      <time className="text-[10px] opacity-30 shrink-0" dateTime={book.dateFinished}>
-                        {formatDate(book.dateFinished)}
-                      </time>
-                    )}
+                    </div>
+                    <div className="flex flex-wrap items-baseline gap-1.5 sm:gap-2 pl-5 sm:pl-0">
+                      <span className="text-[11px] opacity-50">{book.author}</span>
+                      {book.rating && (
+                        <span className="text-[10px] opacity-30 shrink-0">
+                          {book.rating}/5
+                        </span>
+                      )}
+                      {book.dateFinished && (
+                        <time className="text-[10px] opacity-30 shrink-0" dateTime={book.dateFinished}>
+                          {formatDate(book.dateFinished)}
+                        </time>
+                      )}
+                    </div>
                   </div>
                   {book.tags && book.tags.length > 0 && (
-                    <div className="opacity-0 group-hover:opacity-70 text-[10px] transition-all duration-200 flex gap-1 flex-wrap pl-0 sm:pl-2">
+                    <div className="opacity-100 sm:opacity-0 sm:group-hover:opacity-70 text-[10px] transition-all duration-200 flex gap-1 flex-wrap pl-5 sm:pl-2">
                       {book.tags.map((tag) => (
                         <span
                           key={tag}
@@ -143,15 +149,19 @@ export default function ReadingPage() {
       {toRead.length > 0 && (
         <section className="space-y-3">
           <h2 className="text-xs opacity-50">Want to Read</h2>
-          <ul className="list-none p-0 m-0 space-y-2.5 sm:space-y-1.5">
+          <ul className="list-none p-0 m-0 space-y-3 sm:space-y-1.5">
             {toRead.map((book) => (
               <li key={book.id} className="group">
-                <div className="flex items-baseline gap-2 text-xs leading-relaxed">
-                  <span className="opacity-30">→</span>
-                  <span className="group-hover:opacity-70 transition-opacity truncate font-medium">
-                    {book.title}
-                  </span>
-                  <span className="text-[11px] opacity-50">{book.author}</span>
+                <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-2 text-xs leading-relaxed">
+                  <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-2 min-w-0">
+                    <div className="flex items-baseline gap-2 min-w-0">
+                      <span className="opacity-30 shrink-0">→</span>
+                      <span className="group-hover:opacity-70 transition-opacity font-medium break-words">
+                        {book.title}
+                      </span>
+                    </div>
+                    <span className="text-[11px] opacity-50 pl-5 sm:pl-0">{book.author}</span>
+                  </div>
                 </div>
               </li>
             ))}
