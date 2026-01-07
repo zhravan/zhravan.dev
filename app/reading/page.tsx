@@ -70,7 +70,7 @@ export default function ReadingPage() {
                   <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-2 min-w-0 flex-1">
                     <div className="flex items-baseline gap-2 min-w-0">
                       <span className="opacity-30 shrink-0">→</span>
-                      <span className="group-hover:opacity-70 transition-opacity font-medium break-words">
+                      <span className="group-hover:opacity-70 transition-opacity font-medium break-words min-w-0">
                         {book.title}
                       </span>
                     </div>
@@ -107,19 +107,19 @@ export default function ReadingPage() {
                   <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-2 min-w-0 flex-1">
                     <div className="flex items-baseline gap-2 min-w-0">
                       <span className="opacity-30 shrink-0">→</span>
-                      <span className="group-hover:opacity-70 transition-opacity font-medium break-words">
+                      <span className="group-hover:opacity-70 transition-opacity font-medium break-words min-w-0">
                         {book.title}
                       </span>
                     </div>
                     <div className="flex flex-wrap items-baseline gap-1.5 sm:gap-2 pl-5 sm:pl-0">
                       <span className="text-[11px] opacity-50">{book.author}</span>
                       {book.rating && (
-                        <span className="text-[10px] opacity-30 shrink-0">
+                        <span className="text-[10px] opacity-30 shrink-0 whitespace-nowrap">
                           {book.rating}/5
                         </span>
                       )}
                       {book.dateFinished && (
-                        <time className="text-[10px] opacity-30 shrink-0" dateTime={book.dateFinished}>
+                        <time className="text-[10px] opacity-30 shrink-0 whitespace-nowrap" dateTime={book.dateFinished}>
                           {formatDate(book.dateFinished)}
                         </time>
                       )}
@@ -156,7 +156,7 @@ export default function ReadingPage() {
                   <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-2 min-w-0">
                     <div className="flex items-baseline gap-2 min-w-0">
                       <span className="opacity-30 shrink-0">→</span>
-                      <span className="group-hover:opacity-70 transition-opacity font-medium break-words">
+                      <span className="group-hover:opacity-70 transition-opacity font-medium break-words min-w-0">
                         {book.title}
                       </span>
                     </div>

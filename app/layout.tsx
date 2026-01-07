@@ -129,7 +129,7 @@ export default function RootLayout({
             )}
             <header>
               <nav aria-label="Main navigation">
-                <div className="max-w-2xl mx-auto px-4 sm:px-8 py-4 sm:py-5 md:pb-2 md:border-b" style={{ borderColor: 'hsla(220, 12%, 15%, 0.4)' }}>
+                <div className="max-w-2xl mx-auto px-4 sm:px-8 py-4 sm:py-5 md:pb-2 md:border-b nav-border">
                   {/* Desktop Navigation */}
                   <div className="hidden md:block">
                     <div className="mb-5">
@@ -146,7 +146,7 @@ export default function RootLayout({
                         <OhMyScript />
                       </Link>
                     </div>
-                    <div className="flex flex-wrap items-center gap-5">
+                    <div className="flex flex-wrap items-center gap-4 sm:gap-5">
                       {navItems.map((item) => (
                         <NavPill key={item.path} href={item.path}>
                           {item.name}
@@ -171,7 +171,7 @@ export default function RootLayout({
                       </Link>
                     </div>
                     <div className="flex items-center justify-start">
-                      <MobileNav items={navItems} />
+                      <MobileNav items={navItems} socialLinks={socialLinks} />
                     </div>
                   </div>
                 </div>

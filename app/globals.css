@@ -66,6 +66,7 @@ body::before {
   --code-radius: 0.75rem;
   --code-padding: 0.6rem;
   --code-border: 1px solid var(--color-border);
+  --nav-border-color: hsla(220, 12%, 15%, 0.4);
 }
 
 h1,
@@ -695,4 +696,9 @@ pre.shiki::-webkit-scrollbar-thumb {
 /* Email link hover effect */
 .email-link-hover:hover {
   color: var(--color-link) !important;
+}
+
+/* Navigation border styling */
+.nav-border {
+  border-color: var(--nav-border-color);
 }
