@@ -26,6 +26,9 @@ interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
+// Disable dynamic params for static export - only pre-generated slugs are valid
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   const contentType = getContentTypeById('talks');
   if (!contentType) return [];

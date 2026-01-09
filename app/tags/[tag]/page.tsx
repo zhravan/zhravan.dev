@@ -10,6 +10,9 @@ interface PageProps {
   params: Promise<{ tag: string }>;
 }
 
+// Disable dynamic params for static export - only pre-generated slugs are valid
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   const allTags = getAllTags();
   return allTags.map((tag) => ({

@@ -1,0 +1,182 @@
+export const frontmatter = {
+  title: "Lessons from PostgreSQL Incident Story at Nixopus",
+  date: "2026-01-08",
+  description:
+    "Takeaways from discovering a bug that was a security breach in disguise",
+  tags: [
+    "security",
+    "postgresql",
+    "devops",
+    "bug-bash",
+    "database",
+    "docker",
+    "container",
+    "incident-response"
+  ],
+  draft: true,
+  previewToken: "nixopus"
+};
+
+# Lessons from PostgreSQL Incident Story at Nixopus
+
+This article is about a bug, or at least started out to surface as a bug, only to find out that it was a security breach in disguise.
+
+<Image
+  src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/14z84luptmlz4i41gf7w.png"
+  alt="Thats a bug I havent heard of"
+  caption="Thats a bug I havent heard of"
+/>
+
+Initially spent time to find the root cause, reproduce the bug and chasing the symtoms and container logs, where as the real problem was hiding in plain sight; a security vulnerability as a stability issue.
+
+I am pretty sure, most of you might have spent hours debugging something, only to find that you were looking at the wrong problem entirely. If yes, you will definitely resonate.
+
+To follow along, some basic context around <i>docker, docker-compose,</i> and <i>docker volumes</i> will help. Otherwise it would be like a goldfish reading a user manual for the ocean.
+
+> That gold fish reading manual in ocean is absurd incongruity analogy
+
+## How did it all start?
+
+We began noticing the issue around the month of September/October 2025. This coincided with the period during which we had just completed integrating SuperTokens for Identity and Access Management. To give a glimpse about our architecture, SuperTokens was self hosted, connected to our existing postgreSQL database and smoothly, and everything was wired together using docker-compose.
+
+> Fun fact: But here's the thing, the problem did not start in October, rather now that we look back through our git history, it has been there for around 5-6 months.
+
+<Note>
+  Currently, Nixopus is (and still is, dated 8 Jan. 2025) on alpha stage.
+</Note>
+
+It must have been happened way back then too. Since database used to restart and our backend would reconnect and things appeared to recover on their own, hence did not really catch our attention.
+
+Once the IAM responsibilities were moved to SuperTokens, the cracks started becoming visible. We started observing that every once in 1-3 days, logins would fail, & when inspecting Supertokens was going down.
+
+Initially started directly assuming that it was a SuperToken issue, eventually to find that, all containers are running from X days back whereas DB been running less than X days, mostly when we debugged, few hours back.
+
+This directed our focus to database being the reason for failure.
+
+The symtoms by then were clear:
+
+- PostgreSQL Database container restarted unexpectedly
+- Impacted SuperTokens service as downstream effect
+- As side effect to above 2 issues, service and IAM were instable, making unable to use the application at all.
+
+So far, we only knew symptoms, but the root cause was still a puzzle to be solved, unclear and undiscovered from all directions.
+
+### Hypothesis 1
+
+Earliest hypothesis was simple, maybe it is a volume permission issue. Since we were mounting the database directory from host file system, and PostgreSQL couldn't write to it on restart for some reason. As said, this was just a hunch, hence to verify, we started with moving away mounted volume for docker database container.
+
+<Image
+  src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/eya3xol91xnok97ohsua.png"
+  alt="Occam's Razor: The simplest explanation is usually the right one"
+  caption="Sometimes the simplest explanation is the right one, but not this time"
+/>
+
+The fix was to keep name volume, leaving docker to take care of the storage and handle the persistence.
+
+- **Date**: October 15, 2025
+- **Commit**: `f8fd7964d`
+- **PR**: [#507](https://github.com/raghavyuva/nixopus/pull/507)
+
+As a result, by the end of a day or so, we observed that this issue of database container restarting still persisted.
+
+### Hypothesis 2
+
+[Raghav(Creator of Nixopus)](https://github.com/raghavyuva) started digging quite a lot in the GitHub issues, where such issues were raised or observed. We had found couple of similar concerns, with similar symptoms and failures. This time, it was pointing to JIT compilation being memory intensive, and due to Out of Memory (OOM) issue.
+
+![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/41c7ytvng1xwpjhtu8s1.png)
+
+Though, this was very unlikely to happen, made a quick fix to explicitly to disable JIT compilation so that we can avoid any memory spike/OOM causing the container to fail.
+
+- **Date**: October 25, 2025
+- **Commit**: `b2c35bd29`
+- **PR**: [#539](https://github.com/raghavyuva/nixopus/pull/539)
+
+Our suspect was that PostgreSQL's Just In Time compilation is memory intensive(from what we understood from existing similar issues), it might cause the database to run out of memory and crash.
+
+Sounds great and hopeful, isnt it? Sadly this fix did not help us resolve the issue as well.
+
+### Hypothesis 3
+
+By December, we were really frustrated and annoyed enough. Every time we merged a fix PR, we thought it would resolve the problem, but symptoms persisted and there was no clear progress.
+
+At this point, we had one wild hunch, though unlikely, we decided to dig a little deeper and verify the same.
+
+So far, we had found that there were no specific failure messages on the container, None. That kind of got us thinking, this could be somewhere related to security or authentication.
+
+To verify the same, we planned to support a feature where postgreSQL database could be an external source instead of self hosted via the docker-compose of the project.
+
+This would help us figure out whether it is a symptom caused due to load by the application or something else as we guessed, related to security/hacking that is causing this. Given we had a base setup and exposing those default username and passsword on the codebase. This was very likely a possibility that default username/password was causing someone to get remote access to it.
+
+## Culprit we caught
+
+As part of the exercise, we added support for providing external database connection instead of self hosted database container.
+
+This activity helped us isolate a lot of our assumption and confirm that this was related to security and authentication. Given 3-4 days, we saw no issues with setup and everything was running smoothly.
+
+<Image
+  src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/kyhyrb3s47alchtu4n6u.png"
+  alt="Scooby Doooooo"
+  caption="...no one would have ever suspected me, if not for you meddling kids"
+/>
+
+At this point when we started reviewing everything in detail, found a big blunder that we missed out in the very initial stage.
+
+It was the postgreSQL configuration that caused all the trouble.
+
+```yaml
+# the culprit
+environment:
+  - POSTGRES_HOST_AUTH_METHOD=trust # Anyone can connect without password
+ports:
+  - "${DB_PORT:-5432}:5432" # Exposed to the entire internet
+```
+
+The `trust` authentication method means PostgreSQL trusts anyone who connects. No password required. No authentication checks. Just... trust.
+
+> And we had exposed the database port to the entire internet (`0.0.0.0:5432`), not just localhost.
+
+This configuration is a critical security vulnerability. It was real world exploitation of a vulnerability that has been has been seen in attacks like the [Kinsing malware targeting Kubernetes environments](https://securityaffairs.com/140581/hacking/kinsing-malware-kubernetes-environments.html), where attackers actively scan for misconfigured PostgreSQL instances with trust authentication.
+
+Github issues like [1](https://github.com/docker-library/postgres/issues/770#issuecomment-704460980) and [2](https://github.com/docker-library/postgres/issues/1054#issuecomment-1447091521) document similar issues, and real cases exact similar misconfigured postgreSQL instances were compromised for cryptocurrency mining.
+
+## Post Mortem Analysis
+
+You might be wondering, how does this actually happen? How does unauthorized access cause database restarts?
+
+Let us understand it better with an analogy. Imagine your house is open, and strangers keep coming in. Assuming, too many of them are coming in, opening 100s or 1000s of connections, exhausting you `max_connections` limit, blocking legit valid connections, making DB slow and unresponsive.
+
+The database becomes too overwhelmed by these and their health checks fail, ending the service to restart.
+
+## Patchwork
+
+By now, we had a clear understanding about the issue, the solution was much clearer.
+
+- **Date**: December 15, 2025
+- **Commit**: `cb765ed14`
+- **PR**: [#723](https://github.com/raghavyuva/nixopus/pull/723)
+
+What did we have to do? Lock the doors, so as to ensure authorized access only.
+
+Move away from `POSTGRES_HOST_AUTH_METHOD`, use `POSTGRES_INITDB_ARGS` to set authentication method during database initialization. This was a very crucial learning.
+
+Ideally, moving from `trust` authentication to `SCRAM-SHA-256` based authentication, which was much secure approach. At this point, we did fix PostgresQL, and also secured rest of the services too.
+
+After reviewing, we add Redis for password protection, exposing Caddy admin, SuperTokens for localhost to server only.
+
+## Aftermath
+
+When you find one security issue, it is more often a sign that others might exist too.
+
+After implementing these changes, voila, there were no more unexpected crashes. This issue did not just pull our database security issue but also pointed out how vulnerable our whole setup was. This bug bash taught us that sometimes, the most challenging bugs are not bugs rather misconfigurations hiding in plain sight.
+
+As developers we often say "it works on my machine", but in production, we need to ensure it works securely, relaibly and correctly. This incident was our reminder to ourselves that security is not optional rather fundamental.
+
+---
+
+I hope you enjoy smashing the bug along side me.
+
+Thats all for now.
+
+Thank you. Stay tuned for more freshly brewed contents.
+
+Happy learning!!
