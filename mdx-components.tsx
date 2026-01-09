@@ -12,6 +12,7 @@ import { Callout, Note, Tip, Important, Warning, Caution, Question, Info, Danger
 import { Image } from '@/components/mdx/Image';
 import { ImageRow, ImageCol } from '@/components/mdx/ImageRow';
 import { DropCap } from '@/components/mdx/DropCap';
+import { TalkMetadata } from '@/components/mdx/TalkMetadata';
 
 // Allow both sync and async server components
 type MDXComponent = React.ComponentType<any> | ((props: any) => Promise<React.JSX.Element>);
@@ -62,5 +63,7 @@ export function useMDXComponents(): MDXComponents {
     ImageCol,
     // Drop cap for first letter styling
     DropCap,
+    // Talk metadata
+    TalkMetadata,
   };
 }
