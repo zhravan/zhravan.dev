@@ -6,10 +6,11 @@ import { useSearchParams, useRouter } from 'next/navigation';
 interface DraftPreviewGateProps {
   isDraft: boolean;
   previewToken: string;
+  postPreviewToken?: string; // Per-post preview token from frontmatter
   children: React.ReactNode;
 }
 
-export function DraftPreviewGate({ isDraft, previewToken, children }: DraftPreviewGateProps) {
+export function DraftPreviewGate({ isDraft, previewToken, postPreviewToken, children }: DraftPreviewGateProps) {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [isAuthorized, setIsAuthorized] = useState(false);
@@ -18,6 +19,9 @@ export function DraftPreviewGate({ isDraft, previewToken, children }: DraftPrevi
   const [inputToken, setInputToken] = useState('');
   const [error, setError] = useState('');
   const [attempts, setAttempts] = useState(0);
+
+  // Use post-specific token if available, otherwise fall back to global token
+  const effectivePreviewToken = postPreviewToken || previewToken;
 
   useEffect(() => {
     // If not a draft, always show content
@@ -29,8 +33,8 @@ export function DraftPreviewGate({ isDraft, previewToken, children }: DraftPrevi
 
     const previewParam = searchParams.get('preview');
     
-    // Check if token matches
-    if (previewToken && previewParam === previewToken) {
+    // Check if token matches (use post-specific token if available)
+    if (effectivePreviewToken && previewParam === effectivePreviewToken) {
       setIsAuthorized(true);
       setIsChecking(false);
       return;
@@ -39,12 +43,12 @@ export function DraftPreviewGate({ isDraft, previewToken, children }: DraftPrevi
     // Show modal to enter token
     setIsChecking(false);
     setShowModal(true);
-  }, [isDraft, previewToken, searchParams]);
+  }, [isDraft, effectivePreviewToken, searchParams]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (inputToken === previewToken) {
+    if (inputToken === effectivePreviewToken) {
       setError('');
       setIsAuthorized(true);
       setShowModal(false);

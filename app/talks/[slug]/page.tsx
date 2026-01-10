@@ -133,6 +133,7 @@ export default async function TalksPost({ params }: PageProps) {
       <DraftPreviewGate 
         isDraft={isDraft(item)}
         previewToken={draftsConfig?.previewToken || ''}
+        postPreviewToken={item.previewToken}
       >
         <div className="space-y-6 text-xxs">
           <div className="flex items-center gap-2 mb-8">
