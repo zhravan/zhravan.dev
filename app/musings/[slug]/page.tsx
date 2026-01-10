@@ -37,7 +37,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const thought = getContentItemBySlug('thoughts', slug);
+  const thought = getContentItemBySlug('thoughts', slug, true); // Include drafts for static generation
 
   if (!thought) {
     return {
@@ -60,7 +60,7 @@ export default async function ThoughtPost({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const thought = getContentItemBySlug('thoughts', slug);
+  const thought = getContentItemBySlug('thoughts', slug, true); // Include drafts for static generation
 
   if (!thought) {
     notFound();

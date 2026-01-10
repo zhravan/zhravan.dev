@@ -20,10 +20,10 @@ export function getAllPosts(includeDrafts = false): BlogPost[] {
  * Get a blog post by slug
  * @deprecated Use getContentBySlug with blog content type instead
  */
-export function getPostBySlug(slug: string): BlogPost | undefined {
+export function getPostBySlug(slug: string, includeDrafts = false): BlogPost | undefined {
   const blogContentType = getContentTypeById('blog');
   if (!blogContentType) {
     return undefined;
   }
-  return getGenericContentBySlug(blogContentType, slug);
+  return getGenericContentBySlug(blogContentType, slug, includeDrafts);
 }

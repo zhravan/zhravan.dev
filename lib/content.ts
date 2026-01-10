@@ -109,13 +109,14 @@ export function getContentForType(
         series: frontmatter.series,
         seriesPart: frontmatter.seriesPart,
         draft: frontmatter.draft || false,
+        previewToken: frontmatter.previewToken,
         ogImage: frontmatter.ogImage,
         contentType: contentType.id
       };
     })
     .filter(item => {
-      // In development, always include drafts
-      if (process.env.NODE_ENV === 'development') {
+      // In development mode (when not in production), always include drafts
+      if (process.env.NODE_ENV !== 'production') {
         return true;
       }
       // In production, respect the includeDrafts parameter
@@ -132,11 +133,13 @@ export function getContentForType(
  */
 export function getContentBySlug(
   contentType: ContentType,
-  slug: string
+  slug: string,
+  includeDrafts = false
 ): ContentItem | undefined {
-  // In development, include drafts when looking up by slug
-  const includeDrafts = process.env.NODE_ENV === 'development';
-  return getContentForType(contentType, includeDrafts).find((item) => item.slug === slug);
+  // In development mode (when not in production), always include drafts
+  // In production, respect the includeDrafts parameter (for static generation)
+  const shouldIncludeDrafts = process.env.NODE_ENV !== 'production' || includeDrafts;
+  return getContentForType(contentType, shouldIncludeDrafts).find((item) => item.slug === slug);
 }
 
 /**
@@ -158,13 +161,14 @@ export function getContentByType(
  */
 export function getContentItemBySlug(
   contentTypeId: string,
-  slug: string
+  slug: string,
+  includeDrafts = false
 ): ContentItem | undefined {
   const contentType = getContentTypeById(contentTypeId);
   if (!contentType) {
     return undefined;
   }
-  return getContentBySlug(contentType, slug);
+  return getContentBySlug(contentType, slug, includeDrafts);
 }
 
 /**

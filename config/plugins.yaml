@@ -127,7 +127,7 @@ plugins:
   drafts:
     enabled: true
     showInList: false # Show drafts in blog list (dev mode only)
-    previewToken: "secret" # Optional: secret token for preview URLs
+    previewToken: "nixopus" # Optional: secret token for preview URLs
 
   # Social Share Buttons - Share posts on social platforms
   social-share:

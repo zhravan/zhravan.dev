@@ -42,7 +42,7 @@ export async function generateMetadata({
 }) {
   try {
     const { slug } = await params;
-    const post = getPostBySlug(slug);
+    const post = getPostBySlug(slug, true); // Include drafts for static generation
 
     if (!post) {
       return {
@@ -72,7 +72,7 @@ export default async function BlogPost({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = getPostBySlug(slug, true); // Include drafts for static generation
 
   if (!post) {
     console.warn(`Blog post not found: ${slug}. Available posts:`, getAllPosts(true).map(p => p.slug));

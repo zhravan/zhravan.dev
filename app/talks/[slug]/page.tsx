@@ -48,7 +48,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
   
-  const item = getContentBySlug(contentType, slug);
+  const item = getContentBySlug(contentType, slug, true); // Include drafts for static generation
   if (!item) {
     return {
       title: 'Talk Not Found'
@@ -72,7 +72,7 @@ export default async function TalksPost({ params }: PageProps) {
     notFound();
   }
   
-  const item = getContentBySlug(contentType, slug);
+  const item = getContentBySlug(contentType, slug, true); // Include drafts for static generation
   if (!item) {
     notFound();
   }

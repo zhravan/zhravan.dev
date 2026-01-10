@@ -37,7 +37,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const note = getContentItemBySlug('second-brain', slug);
+  const note = getContentItemBySlug('second-brain', slug, true); // Include drafts for static generation
 
   if (!note) {
     return {
@@ -60,7 +60,7 @@ export default async function SecondBrainNote({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const note = getContentItemBySlug('second-brain', slug);
+  const note = getContentItemBySlug('second-brain', slug, true); // Include drafts for static generation
 
   if (!note) {
     notFound();
