@@ -54,8 +54,8 @@ function parseFrontmatter(content: string): Partial<ContentItem> {
   // Extract draft status
   const draftMatch = frontmatterContent.match(/draft:\s*(true|false)/);
 
-  // Extract previewToken
-  const previewTokenMatch = frontmatterContent.match(/previewToken:\s*["']([^"']+)["']/);
+  // Extract previewToken (handle both quoted and unquoted)
+  const previewTokenMatch = frontmatterContent.match(/previewToken:\s*(?:["']([^"']+)["']|([^,\s}]+))/);
 
   // Extract ogImage
   const ogImageMatch = frontmatterContent.match(/ogImage:\s*["']([^"']+)["']/);
@@ -68,7 +68,7 @@ function parseFrontmatter(content: string): Partial<ContentItem> {
     series: seriesMatch ? seriesMatch[1] : undefined,
     seriesPart: seriesPartMatch ? parseInt(seriesPartMatch[1]) : undefined,
     draft: draftMatch ? draftMatch[1] === 'true' : false,
-    previewToken: previewTokenMatch ? previewTokenMatch[1] : undefined,
+    previewToken: previewTokenMatch ? (previewTokenMatch[1] || previewTokenMatch[2]) : undefined,
     ogImage: ogImageMatch ? ogImageMatch[1] : undefined
   };
 }
