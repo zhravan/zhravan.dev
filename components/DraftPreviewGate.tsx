@@ -178,13 +178,9 @@ export function DraftPreviewGate({ isDraft, previewToken, children }: DraftPrevi
               </button>
               <button
                 type="submit"
-                className="flex-1 px-4 py-2 text-sm rounded hover:opacity-90 transition-opacity font-medium"
-                style={{
-                  backgroundColor: 'var(--color-text)',
-                  color: 'var(--color-background)',
-                }}
+                className="flex-1 px-4 py-2 text-sm rounded hover:opacity-90 transition-opacity font-medium bg-black text-white dark:bg-white dark:text-black"
               >
-                Access Draft
+                Submit
               </button>
             </div>
           </form>

@@ -127,7 +127,9 @@ plugins:
   drafts:
     enabled: true
     showInList: false # Show drafts in blog list (dev mode only)
-    previewToken: "nixopus" # Optional: secret token for preview URLs
+    # previewToken is now set per-article in frontmatter (e.g., previewToken: "your-token")
+    # A global fallback can still be set here if needed:
+    # previewToken: "fallback-secret"
 
   # Social Share Buttons - Share posts on social platforms
   social-share:
