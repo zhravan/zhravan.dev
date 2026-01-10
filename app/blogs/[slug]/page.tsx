@@ -104,6 +104,9 @@ export default async function BlogPost({
   const seriesConfig = getPluginConfig<{ enabled: boolean }>('series');
   const relatedPostsConfig = getPluginConfig<{ enabled: boolean; count: number; showDate: boolean; showDescription: boolean }>('related-posts');
   
+  // Use article-specific preview token if available, fallback to global token
+  const previewToken = (post as any).previewToken || draftsConfig?.previewToken || '';
+  
   // Get related posts
   const relatedPosts = relatedPostsConfig?.enabled ? findRelatedPosts(slug) : null;
   
@@ -145,7 +148,7 @@ export default async function BlogPost({
       />
       <DraftPreviewGate 
         isDraft={isDraft(post)} 
-        previewToken={draftsConfig?.previewToken || ''}
+        previewToken={previewToken}
       >
         <div className="space-y-6 text-xxs">
           <div className="flex items-center gap-2 mb-8">
