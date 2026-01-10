@@ -24,9 +24,6 @@ import { getBreadcrumbStructuredData } from '@/lib/breadcrumbs';
 import { AnalyticsTracker } from '@/components/AnalyticsTracker';
 import { getShareUrl } from '@/lib/plugins/social-share';
 
-// Disable dynamic params for static export - only pre-generated slugs are valid
-export const dynamicParams = false;
-
 export async function generateStaticParams() {
   const allThoughts = getContentByType('thoughts', true); // Include drafts for static generation
   return allThoughts.map((thought) => ({

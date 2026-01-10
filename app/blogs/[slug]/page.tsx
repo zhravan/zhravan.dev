@@ -28,9 +28,6 @@ import { Suspense } from 'react';
 import { getBreadcrumbStructuredData } from '@/lib/breadcrumbs';
 import { AnalyticsTracker } from '@/components/AnalyticsTracker';
 
-// Disable dynamic params for static export - only pre-generated slugs are valid
-export const dynamicParams = false;
-
 export async function generateStaticParams() {
   const allPosts = getAllPosts(true); // Include drafts for static generation
   return allPosts.map((post) => ({
