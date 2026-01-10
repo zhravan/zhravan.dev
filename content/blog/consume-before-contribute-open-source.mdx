@@ -1,0 +1,872 @@
+export const frontmatter = {
+  title: "Become a Consumer Before a Contributor",
+  date: "2025-12-23",
+  description:
+    "Why using open source deeply matters more than making your first PR. A different perspective on contributing to open source.",
+  tags: [
+    "open-source",
+    "contribution",
+    "software-development",
+    "learning",
+    "community",
+  ],
+};
+
+# Become a Consumer Before a Contributor
+
+Hi everyone!
+
+This article is about a different perspective on contributing to open source—one that I wish I had known when I started my journey.
+
+<DropCap>Most developers are told to "contribute to open source" to build their portfolio, but very few are told how to contribute meaningfully. This article explores why consuming open source deeply matters more than making your first PR, and how being a user first makes you a better contributor later.</DropCap>
+
+I'll share my personal journey—from copying Arduino code without knowing what "open source" meant, to building [Nixopus](https://github.com/raghavyuva/nixopus/) (an open source VPS management platform), to finally understanding what meaningful contribution looks like. Along the way, I'll explain what consumption teaches you, why shallow contributions get rejected, and how to approach open source in a way that benefits both you and the projects you care about.
+
+If you're someone who's been trying to contribute to open source but feels lost, or if you're wondering why your contributions keep getting rejected, this article is for you.
+
+---
+
+Everyone wants to contribute to open source.
+
+It's the advice you hear everywhere:
+
+- "Contribute to open source to build your portfolio"
+- "Make your first PR during Hacktoberfest"
+- "Add open source contributions to your resume"
+
+So developers hunt for "good first issue" labels, fix typos in README files, and submit PRs to projects they've never used.
+
+**I did this too.**
+
+My first open source contribution was a documentation fix to a project I'd never touched. I found it through a "beginner-friendly" issue list, made the change, submitted the PR, got it merged.
+
+I felt accomplished.
+
+**But I had learned nothing.**
+
+I didn't understand the project. I didn't know the problem it solved. I didn't feel the pain it addressed.
+
+I was a **tourist**, not a member of the community.
+
+<Note>
+  Are you someone who's been trying to contribute to open source? Do drop your
+  reviews and experiences. Since I am sharing my journey, your reviews would
+  mean a lot. If there's anything wrong in the below article, please feel free
+  to drop a comment.
+</Note>
+
+---
+
+## The Problem With "Contribute First"
+
+Here's what happens when you prioritize contributing over consuming:
+
+### 1. You Fix Surface-Level Issues
+
+The issues labeled "good first issue" are usually:
+
+- Documentation typos
+- Adding examples
+- Updating dependencies
+- Formatting code
+
+**Nothing wrong with these.** Every project needs them.
+
+But they don't require understanding the project. You're not solving real problems. You're doing chores.
+
+When you fix surface-level issues without context, you're essentially a bot that can write code. You're not adding value—you're just moving pixels around.
+
+### 2. You Don't Understand Context
+
+When you jump straight to contributing, you miss:
+
+- **Why** the project exists
+- **What** problems it solves
+- **How** people actually use it
+- **Where** the pain points are
+
+You're coding in a vacuum.
+
+**Without context, your contributions are guesses.**
+
+I learned this lesson the hard way during a [freelancing project](/blogs/on-freelancing) where I was migrating a legacy Django application. There was no documentation, no knowledge transfer—just a black box. I couldn't contribute meaningfully because I didn't understand the context. The same applies to open source.
+
+### 3. Your Contributions Are Shallow
+
+Without using the project, your contributions are:
+
+- Generic documentation improvements
+- Obvious bug fixes
+- Surface-level suggestions
+
+The **best contributions** come from people who've **lived with the pain**.
+
+**Shallow contributions get rejected. Deep contributions get merged.**
+
+### 4. You're Optimizing for the Wrong Metric
+
+"I made 50 open source contributions" sounds impressive.
+
+But if those 50 contributions were typo fixes across 50 projects you've never used?
+
+**That's not impressive. That's resume padding.**
+
+I've seen developers with hundreds of contributions on their GitHub profile. But when you look at them:
+- 80% are typo fixes
+- 15% are dependency updates
+- 5% are actual meaningful changes
+
+And even those 5% are often rejected because they don't fit the project's needs.
+
+**Quantity doesn't equal quality.**
+
+A developer with 5 meaningful contributions to projects they use daily is infinitely more valuable than someone with 50 random PRs.
+
+---
+
+## Consume First: What That Means
+
+**Consuming open source** means:
+
+- **Use it** in your real projects—not just tutorials
+- **Struggle** with its limitations
+- **Read** the source code when things break
+- **Understand** its design decisions
+- **Join** the community discussions
+
+This isn't passive. It's active engagement with the tools that power your work.
+
+Let me share my journey with you—from copying code without understanding, to building and maintaining open source projects.
+
+---
+
+## My Open Source Journey: From Unaware User to Conscious Contributor
+
+Let me take you back to the beginning of my open source journey.
+
+### The Early Days: Copying Code Without Knowing
+
+During my undergraduate years, I used many open source tools and projects to build my projects. I was working on a final year major project that involved interfacing with various sensors—temperature sensors, humidity sensors, motion detectors. I needed to read data from these sensors and process them.
+
+So I did what any student would do: I Googled "how to read sensor data Arduino" and found code examples.
+
+I copied code, modified it, made it work. I didn't think about where that code came from. I didn't realize I was using open source libraries. I was just trying to make my project work.
+
+**But I never really knew the existence of OSS, or anything around it.**
+
+I was consuming open source code, learning from it, building with it—but I didn't recognize it as a movement, a philosophy, or a community. I thought it was just "code on the internet."
+
+Looking back, I realize I was using:
+- Arduino libraries (open source)
+- Sensor driver libraries (open source)
+- Code examples from forums (open source)
+- Documentation from community wikis (open source)
+
+But I had no idea what "open source" meant. I was just a user, completely unaware of the ecosystem I was part of.
+
+---
+
+### Connecting the Dots: First Job Revelations
+
+Once I got into my first workplace, I had quite a lot of dots, and it was during my first professional experience where I was able to connect those dots and make sense of it.
+
+My first job was at a startup. On my first day, my manager said, "We use React for the frontend, Node.js for the backend, and PostgreSQL for the database. All open source."
+
+That's when it clicked. **Open source wasn't just code on the internet—it was a philosophy, a community, a way of building software.**
+
+As I wrote in my [journey from intern to developer](/blogs/from-intern-to-developer), this was also the time when I learned that nothing beats the **OFFICIAL DOCUMENTATION**. Every technology I wanted to learn had its own documentation—and I realized these were all open source projects maintained by communities.
+
+I started noticing:
+- How we used open source tools daily
+- How we contributed back when we found bugs
+- How the community helped us when we got stuck
+- How we could see the source code and understand how things worked
+
+**That's when I truly understood what open source was.**
+
+---
+
+### First Collaboration: Solving Real Problems Together
+
+My first open source collaboration was with colleagues at my first workplace: [custom-input-types](https://github.com/atish31/custom-input-types). This wasn't a "good first issue" hunt—it was solving a real problem we faced together.
+
+We were building a form system and needed custom input types that weren't available in standard HTML. Instead of building from scratch, we found this library. But it was missing a feature we needed—a way to test the input sniffing functionality.
+
+So we built a dummy server for testing: [PR #80](https://github.com/atish31/custom-input-types/pull/80). It wasn't glamorous, but it solved our problem. And we contributed it back because we thought others might need it too.
+
+**That's what real contribution looks like—solving your own problem and sharing the solution.**
+
+---
+
+### From Consumer to Contributor: The Natural Evolution
+
+From the day I got to know about OSS, I have always tried my best to find better alternatives to proprietary tools and use FOSS tools.
+
+I started as a consumer and eventually turned into a contributor—not with code initially, but by raising issues I faced over time. Eventually, I started contributing to issues I encountered as I used various projects.
+
+Let me walk you through this evolution:
+
+**Phase 1: Just Using (and Breaking Things)**
+
+I started using Forem (a community platform) for a project. I integrated it, configured it, and started using it. I hit bugs, I found confusing documentation, but I just worked around them.
+
+This is similar to what I described in my [self-hosting journey](/blogs/self-hosting-vs-cloud-economics)—when I started managing my own VPS, I used Docker, Nginx, PostgreSQL. I broke things constantly. But with each break, I learned something.
+
+**Phase 2: Reporting Issues (The First Real Contribution)**
+
+After a few months of using Forem, I hit a bug that I couldn't work around. So I filed [Issue #12000](https://github.com/forem/forem/issues/12000). I provided:
+- What I was trying to do
+- What happened instead
+- Steps to reproduce
+- What I expected to happen
+
+The maintainers appreciated the detailed report. They fixed it. And I learned that **reporting issues well is a contribution.**
+
+**Phase 3: Small Contributions (Documentation That Actually Helps)**
+
+After using Forem for almost a year, I noticed that an API endpoint we were using didn't have Swagger documentation. This made it hard for other developers to understand how to use it. So I added the documentation: [PR #559](https://github.com/forem/forem/pull/559).
+
+It wasn't code that fixed a bug. It was documentation that helped other users. But it was valuable because I understood the pain—I had experienced it myself.
+
+**Phase 4: Feature Contributions (Building What You Need)**
+
+With custom-input-types, we needed a feature that didn't exist—a dummy server for testing. So we built it and contributed it: [PR #80](https://github.com/atish31/custom-input-types/pull/80).
+
+These minor contributions were the initial stepping stones. They weren't glamorous, but they came from **real problems I faced** while using these tools.
+
+**Ideally, I would always suggest being a consumer and then a contributor of OSS.**
+
+That's the path that worked for me, and it's the path I recommend to others.
+
+---
+
+## What Consumption Teaches You
+
+### 1. The Problem Domain
+
+Every open source project solves a problem.
+
+- React solves UI state management
+- Docker solves environment consistency
+- Nginx solves traffic routing and reverse proxying
+
+**You can't meaningfully contribute without understanding the problem.**
+
+When I was learning to [self-host my projects](/blogs/nixopus-vps-manager), I had to understand what problems Docker, Nginx, and Certbot solved. I couldn't just copy commands—I had to understand why I was running them. That understanding came from consumption.
+
+When you consume first, you learn:
+
+- What problem space the project operates in
+- What trade-offs the maintainers made
+- Why certain features exist (or don't)
+
+**Understanding the problem domain is crucial for meaningful contributions.**
+
+### 2. The User Perspective
+
+Maintainers often lose touch with beginner experiences.
+
+When you're a new user, you notice:
+
+- Confusing documentation
+- Missing examples
+- Unclear error messages
+- Assumptions the docs make
+
+**These insights are gold** for contributions.
+
+I remember when I was learning Node.js—as I wrote in my [intern to developer journey](/blogs/from-intern-to-developer), the tutorials I followed didn't cover Promises and async-await. For around a month, I handled every DB call and asynchronous function as callbacks. It was painful.
+
+**The best time to improve documentation is when you're still learning.**
+
+### 3. The Codebase Architecture
+
+Reading code to use it is different from reading code to contribute.
+
+As a consumer, when things break, you:
+
+- Dive into source code to debug
+- Trace execution flow
+- Understand module boundaries
+- See design patterns in action
+
+**This is how you actually learn a codebase.**
+
+When we built [Nixopus](/blogs/building-nixopus-technical-retrospective), we had to make deep decisions about Go vs Node.js, SSH connection pooling, and state management. These decisions came from years of consuming other projects and understanding how they solved similar problems.
+
+**Real understanding comes from debugging, not reading.**
+
+### 4. The Community Dynamics
+
+Every open source project has a community culture:
+
+- How do maintainers communicate?
+- What's the tone in discussions?
+- How quickly are issues addressed?
+- Are PRs welcomed or scrutinized heavily?
+
+**You learn this by lurking.**
+
+Watch how others interact. See what kinds of contributions get accepted. Notice what maintainers prioritize.
+
+I've seen projects where:
+- Some maintainers are very welcoming and help beginners
+- Others are strict and expect high-quality contributions
+- Some projects move fast and merge quickly
+- Others move slowly and review thoroughly
+
+**Understanding the culture helps you contribute in ways that get accepted.**
+
+---
+
+## Real Contributions Come From Real Pain
+
+The **best open source contributions** I've seen come from people who:
+
+### Scratched Their Own Itch
+
+> "I needed feature X for my project, so I built it and contributed it back."
+
+This is exactly how Nixopus started. As I wrote in my [VPS management article](/blogs/nixopus-vps-manager), I was tired of the manual deployment routine:
+
+1. SSH into the server
+2. Pull the latest code
+3. Install dependencies
+4. Configure environment variables
+5. Set up Nginx
+6. Configure SSL with Let's Encrypt
+7. Restart services
+8. Check logs to see what broke
+
+Multiply this by 5-10 projects, and you're spending more time SSH'ing into servers than actually writing code.
+
+We built Nixopus because **we lived with the pain**. We weren't trying to contribute to open source—we were trying to solve our problem. The contribution happened naturally because we thought others might benefit too.
+
+These contributions are:
+
+- Well-motivated (solves real problems)
+- Well-tested (already used in production)
+- Well-documented (the contributor needed to understand it)
+
+**Contributions that solve your own problems are always better.**
+
+### Fixed What Frustrated Them
+
+> "I kept hitting this error and the message was unclear, so I improved it."
+
+When I was [learning about self-hosting](/blogs/self-hosting-vs-cloud-economics), I spent $847/year on cloud services for hobby projects. When I moved to a VPS, I hit problem after problem—SSL renewal, monitoring, backups, security. Each problem I solved, I documented.
+
+These contributions are:
+
+- User-focused
+- Practical
+- High-impact (other users hit the same issue)
+
+**Fixing what frustrates you helps everyone.**
+
+### Filled Gaps They Discovered
+
+> "I was trying to do X and realized there's no example, so I wrote one."
+
+When I started using Forem, the API endpoint I needed didn't have Swagger documentation. I spent hours figuring out how to use it. After figuring it out, I wrote it down so others wouldn't struggle.
+
+I've contributed documentation several times. Not because I was hunting for contributions, but because I needed to understand something and the docs were missing.
+
+**None of these contributions happen without consumption first.**
+
+---
+
+## The Consumption Ladder
+
+Here's how I recommend approaching open source:
+
+### Level 1: Passive Consumer
+
+- Use the tool in a project
+- Read the documentation
+- Follow basic tutorials
+
+**Time: 1-2 weeks**
+
+At this level, you're just using the tool. You're not thinking about contributing. You're just trying to get your work done.
+
+This is where I was with Arduino libraries during my undergrad—just copying code and making it work.
+
+### Level 2: Active Consumer
+
+- Hit edge cases and limitations
+- Read source code when debugging
+- Search GitHub issues for your problems
+- Join community channels (Discord, Slack, forums)
+
+**Time: 1-2 months**
+
+Now you're actively engaging. When something breaks, you don't just Google it—you look at the source code. You join Discord to ask questions. You start understanding how the tool works.
+
+This is like what happened when I started [managing my own VPS](/blogs/nixopus-vps-manager). When SSL certificates expired, I didn't just panic—I dug into how Certbot works. When monitoring failed, I set up Uptime Kuma and understood the problem space.
+
+### Level 3: Community Member
+
+- Answer questions from other users
+- Share your use cases and patterns
+- Report detailed bug reports
+- Suggest features based on experience
+
+**Time: 2-4 months**
+
+You're now part of the community. You help others. You share your experiences. You report bugs with detailed reproduction steps. You suggest features based on real needs.
+
+This is where I started filing issues like [Issue #12000](https://github.com/forem/forem/issues/12000) on Forem—detailed reports that helped maintainers understand and fix problems quickly.
+
+### Level 4: Contributor
+
+- Submit PRs that solve your pain points
+- Improve documentation based on your learning curve
+- Add examples that would've helped you
+
+**Time: 3-6 months after starting consumption**
+
+Now you contribute code. But not random contributions—contributions that solve problems you've actually faced.
+
+**Notice:** Contributing is **Level 4**, not Level 1.
+
+Most developers try to jump straight to Level 4. That's why we get so many low-quality contributions.
+
+---
+
+## Consumption Is Not Passive
+
+"But I'm just using the tool, not contributing anything!"
+
+**Wrong.**
+
+Consumption is active participation:
+
+### 1. You're Validating the Project
+
+Every user validates that the project solves real problems.
+
+Downloads, GitHub stars, and adoption metrics matter to maintainers.
+
+**Your usage is contribution.**
+
+When you use a tool, you're saying "this solves my problem." That validation helps the project grow. More users mean more contributors, more funding, more development.
+
+When I write about tools like [PostgreSQL](/blogs/inside-nixopus-managing-database-migrations) or [Docker](/blogs/nixopus-vps-manager) in my blog posts, I'm spreading awareness. That's contribution.
+
+### 2. You're Testing It
+
+You're hitting edge cases, finding bugs, discovering unclear documentation.
+
+Even if you don't file issues, **you're doing QA work**.
+
+Every time you use a tool, you're testing it. You're finding bugs (even if you don't report them). You're discovering edge cases. You're validating that it works in your environment.
+
+When I [moved from cloud to self-hosting](/blogs/self-hosting-vs-cloud-economics), I tested Docker, Nginx, Certbot, and PostgreSQL in ways the documentation didn't cover. I found edge cases. I learned workarounds. That's valuable knowledge.
+
+### 3. You're Spreading Awareness
+
+When you use a tool, you:
+
+- Mention it in conversations
+- Write about it in blog posts
+- Recommend it to others
+- Increase its visibility
+
+**Word of mouth is the best marketing open source projects have.**
+
+I've discovered many tools because someone recommended them to me. And I've recommended tools to others. That's contribution.
+
+### 4. You're Learning to Contribute Better
+
+The time spent consuming is **not wasted**.
+
+You're building context, understanding, and expertise.
+
+When you do contribute, it'll be **10x more valuable** than a rushed "good first issue" PR.
+
+<Note>
+  Remember, every expert was once a beginner. Every contributor was once just a
+  user.
+</Note>
+
+---
+
+## The Hacktoberfest Problem
+
+Every October, Hacktoberfest encourages developers to make PRs.
+
+The result? Spam.
+
+- Typo fixes to random projects
+- Whitespace changes
+- "Adding my name to contributors list"
+- PRs to projects the contributor has never used
+
+**Maintainers hate it.**
+
+Some projects add a `SPAM.md` file and redirect contributors there just to avoid spam PRs.
+
+**Why does this happen?**
+
+Because the incentive is wrong. The goal becomes "make 4 PRs" instead of "contribute meaningfully."
+
+Hacktoberfest is great in theory. But in practice, it encourages quantity over quality. Developers rush to make 4 PRs to get a t-shirt, without caring about the quality or value of their contributions.
+
+**A better goal:**
+
+"Become a deep user of 1 project, then contribute when you naturally encounter something to improve."
+
+That's slower. That's less impressive on a spreadsheet.
+
+But it's **infinitely more valuable**.
+
+This is what happened with Nixopus. We didn't set out to "contribute to open source." We set out to solve our problem—the painful manual deployment routine I kept hitting. The contribution happened naturally because we thought others might benefit too.
+
+---
+
+## How to Consume Open Source Properly
+
+Here's my framework:
+
+### 1. Pick a Project You'll Actually Use
+
+Don't pick projects to contribute to. Pick projects to **use**.
+
+Ask yourself:
+
+- Do I have a problem this solves?
+- Will I use this in my work or side projects?
+- Am I genuinely curious about this problem space?
+
+If the answer is no, move on.
+
+When I picked Forem, it wasn't because I wanted to contribute—it was because I needed a community platform. When I picked Docker, it was because I was tired of "works on my machine" problems during my [freelancing projects](/blogs/on-freelancing).
+
+### 2. Use It in a Real Project
+
+Don't just follow tutorials. Build something real.
+
+- Integrate it into a side project
+- Use it at work (if appropriate)
+- Build a demo that pushes its limits
+
+**Real usage reveals real problems.**
+
+When I started [self-hosting](/blogs/self-hosting-vs-cloud-economics), I moved all my hobby projects to a VPS. That's when I discovered the problems—SSL renewal, monitoring gaps, backup needs, security hardening. Tutorials don't show you these edge cases.
+
+### 3. Read the Source When Things Break
+
+Don't just Google errors. Read the code.
+
+- Clone the repository
+- Use a debugger to step through
+- Understand why it behaves the way it does
+
+**This is how you become an expert.**
+
+As I wrote in my [intern to developer journey](/blogs/from-intern-to-developer), "KEEP CODE-READING from different GitHub repositories." I used to randomly code-read just to get a glimpse of different approaches to solving problems and writing code. This actually helped me improvise the way I wrote code.
+
+### 4. Engage With the Community
+
+- Join Discord/Slack channels
+- Read GitHub discussions
+- Follow maintainers on Twitter
+- Watch how decisions are made
+
+**Community context matters.**
+
+Understanding how decisions are made helps you contribute in ways that align with the project's goals. You learn what the maintainers value, what they're working on, what they need help with.
+
+### 5. Help Others
+
+Before you submit code, help users:
+
+- Answer questions in Discord
+- Comment on GitHub issues
+- Share your learnings in blog posts
+
+**Teaching others solidifies your understanding.**
+
+This is why I write articles like [Inside Nixopus: Managing Database Migrations](/blogs/inside-nixopus-managing-database-migrations). It forces me to understand the system deeply enough to explain it clearly.
+
+### 6. Contribute When You Have Something to Say
+
+Don't force contributions. Wait until you:
+
+- Hit a real problem
+- Have a genuine improvement
+- Understand the project deeply
+
+**Quality over quantity.**
+
+I've gone months without contributing to a project I use daily. That's okay. I'm still consuming, still learning, still helping others. When I have something meaningful to contribute, I will.
+
+---
+
+## What Maintainers Actually Want
+
+I've maintained open source projects. Here's what I value:
+
+### High-Value Contributions:
+
+1. **Detailed bug reports** with reproduction steps
+2. **Feature requests** that explain the use case
+3. **Improved documentation** based on real confusion
+4. **Examples** that show real-world usage
+5. **Answering questions** from other users
+
+Let me explain why these matter:
+
+**Detailed bug reports** save maintainers hours. Instead of trying to reproduce a bug, they can just follow your steps. That's valuable. When I filed [Issue #12000](https://github.com/forem/forem/issues/12000) on Forem, I included exactly what I was doing, what happened, and how to reproduce it.
+
+**Feature requests with use cases** help maintainers understand what users actually need. Not what they think users need, but what users actually need.
+
+**Improved documentation** helps everyone. If you were confused, others will be too. Fixing documentation helps the entire community. My [PR #559](https://github.com/forem/forem/pull/559) adding Swagger documentation came from my own frustration with undocumented APIs.
+
+**Real-world examples** are gold. They show how the tool is actually used, not just how it's supposed to be used.
+
+**Answering questions** reduces maintainer workload. When users help each other, maintainers can focus on development. With Nixopus, we have users helping each other in Discord—that's contribution.
+
+### Low-Value Contributions:
+
+1. Typo fixes with no context
+2. Dependency updates without testing
+3. PRs that don't match project goals
+4. "Good first issue" hunting without understanding
+
+**The difference?**
+
+High-value contributions come from **consumption**.
+
+Low-value contributions come from **contribution hunting**.
+
+---
+
+## The Uncomfortable Truth
+
+Here's what nobody tells you:
+
+> **Most developers will never make meaningful open source contributions. And that's okay.**
+
+Not everyone needs to be a contributor.
+
+The open source ecosystem needs:
+
+- **Users** (the largest group)
+- **Evangelists** (spreading awareness)
+- **Bug reporters** (finding problems)
+- **Documentation writers** (explaining things)
+- **Code contributors** (writing features)
+- **Maintainers** (guiding the project)
+
+**All roles matter.**
+
+Using a tool well and recommending it to others is **valuable contribution**.
+
+You don't need to write code to be part of open source.
+
+As I wrote in my [philosophy on programming](/blogs/programming-philosophy), programming is fundamentally about thinking, decision-making, and problem-solving. Open source contribution is the same—the code is just one expression of it.
+
+**These are all contributions:**
+- Using the tool and validating it works
+- Recommending it to others
+- Writing about your experience
+- Answering questions in forums
+- Filing detailed bug reports
+- Improving documentation
+
+---
+
+## My Recommendation
+
+If you're early in your career and want to "contribute to open source," here's what I'd do:
+
+### Year 1: Consume Heavily
+
+- Pick 3-5 tools you use regularly
+- Become an expert user
+- Read their documentation cover to cover
+- Join their communities
+- Help other users
+
+**Goal: Depth over breadth**
+
+Don't try to contribute to 10 projects. Focus on 3-5 tools you actually use. Become an expert. Understand them deeply.
+
+This is what I did during my first year as a developer. I focused on Node.js, React, PostgreSQL. I read documentation. I broke things. I fixed them. I asked questions in forums and started answering them.
+
+### Year 2: Contribute Naturally
+
+By now, you'll have:
+
+- Opinions on what could be better
+- Real problems you've encountered
+- Context to make meaningful contributions
+
+Submit PRs when you **naturally** have something to improve.
+
+**Goal: Quality over quantity**
+
+Don't force contributions. Wait until you have something meaningful to say. One good contribution is worth 10 rushed ones.
+
+### Year 3+: Maybe Maintain or Build
+
+If you've fallen in love with a project, consider:
+
+- Becoming a core contributor
+- Helping with issue triage
+- Maybe even co-maintaining
+- Or... building your own
+
+**Goal: Sustained impact**
+
+This is where Nixopus came from. After years of consuming VPS management tools, cloud platforms, and deployment systems, we decided to build something that addressed the gaps we kept encountering.
+
+As I wrote in the [Nixopus technical retrospective](/blogs/building-nixopus-technical-retrospective):
+
+> "If you want something done right, build it yourself and suffer through the consequences."
+
+That suffering—the architectural decisions, the security nightmares, the state management headaches—all of it was possible because we had consumed deeply first.
+
+---
+
+## Real-World Example: My Current Projects
+
+Let me show you my open source involvement today:
+
+### Projects I Consume Daily:
+
+- **Next.js** (frontend framework) - Powers my blog and several client projects
+- **PostgreSQL** (database) - The backbone of everything I build
+- **Docker** (containerization) - Can't imagine deploying without it
+- **Caddy** (web server) - Simpler than Nginx for my use cases
+- **Bun ORM** (database migrations) - We use this extensively in Nixopus
+
+**My contributions:**
+
+- Filed 3 bug reports for Next.js (with reproductions)
+- Answered 20+ questions in Docker forums
+- Wrote blog posts about PostgreSQL patterns and [database migrations](/blogs/inside-nixopus-managing-database-migrations)
+- Shared Caddy configs in their Discord
+
+**My code contributions:** Zero PRs.
+
+**Yet I feel like I'm contributing meaningfully.**
+
+I'm helping users, sharing knowledge, reporting bugs. These are all contributions, even if they're not code.
+
+---
+
+### Projects I've Built and Contributed To:
+
+**Nixopus** (VPS management platform):
+
+This is the project I'm most invested in. As I wrote in the [technical retrospective](/blogs/building-nixopus-technical-retrospective), building Nixopus taught me:
+
+- Why Go was the right choice for SSH connection management
+- How to design database migration systems
+- The complexity of managing remote servers at scale
+
+We're not just consuming open source tools here—we're building one. And we're doing it because we consumed enough tools to understand what was missing.
+
+**Forem** (community platform):
+
+- [Issue #12000](https://github.com/forem/forem/issues/12000) - Reported a problem I encountered while using it
+- [PR #559](https://github.com/forem/forem/pull/559) - Added Swagger documentation for an API endpoint
+
+**custom-input-types** (with colleagues):
+
+- [PR #80](https://github.com/atish31/custom-input-types/pull/80) - Added dummy server to test sniffing
+
+**Why did these contributions happen?** Because I **used these tools**, I **understood their problems**, and I was **invested in solving real issues**.
+
+**These contributions matter because they come from real usage.**
+
+---
+
+## The Best Contribution You Can Make
+
+Want to contribute to open source **right now**?
+
+Here's the highest-impact thing you can do:
+
+**Pick one tool you already use and love.**
+
+Then:
+
+1. Write a blog post about how you use it
+2. Create a tutorial for a common use case
+3. Share your experience on social media
+4. Recommend it to others who'd benefit
+
+**This is contribution.**
+
+You're:
+
+- Validating the project
+- Teaching others
+- Increasing adoption
+- Building the community
+
+**And you don't need to write a single line of code.**
+
+This is why I write articles like:
+- [Nixopus: Simplifying VPS Management](/blogs/nixopus-vps-manager)
+- [Inside Nixopus: Managing Database Migrations](/blogs/inside-nixopus-managing-database-migrations)
+- [What Self-Hosting Taught Me About Cloud Economics](/blogs/self-hosting-vs-cloud-economics)
+
+Each article shares knowledge about the tools I consume. Each helps someone else understand these tools better. Each is a contribution to the open source ecosystem—even without a single PR.
+
+---
+
+## Conclusion
+
+Contributing to open source is valuable.
+
+But **consuming** open source is the foundation.
+
+You can't contribute meaningfully to something you don't understand deeply.
+
+You can't improve what you haven't used.
+
+You can't fix problems you haven't felt.
+
+**So consume first.**
+
+Use tools. Break things. Learn deeply. Understand context.
+
+Then, when you have something meaningful to say, contribute.
+
+My journey went like this:
+- **Undergrad**: Copying Arduino code without knowing what open source was
+- **First job**: Connecting the dots, understanding the ecosystem
+- **First contribution**: Solving a real problem with colleagues
+- **Deeper engagement**: Filing issues, improving documentation
+- **Now**: Building and maintaining Nixopus
+
+Each step built on the previous. I couldn't have built Nixopus without years of consuming Docker, Nginx, PostgreSQL, and Go libraries. I couldn't have written meaningful documentation without experiencing the pain of missing documentation myself.
+
+**Quality over quantity.**
+
+**Depth over breadth.**
+
+**Understanding over PRs.**
+
+That's how you make open source contributions that actually matter.
+
+---
+
+**What about you?**
+
+What open source tools do you consume deeply? Have you contributed back? What stopped you or motivated you?
+
+I'd love to hear your experiences.
+
+Find me on [Twitter/X](https://x.com/zhravan) or [Discord](https://discord.com/invite/skdcq39Wpv).
+
+Until next time, be a **user** before you're a **contributor**.
+
+**Signing off.**
+
+Happy Learning!!
