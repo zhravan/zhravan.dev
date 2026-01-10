@@ -125,6 +125,7 @@ export default async function ThoughtPost({
       <DraftPreviewGate
         isDraft={isDraft(thought)}
         previewToken={draftsConfig?.previewToken || ''}
+        postPreviewToken={thought.previewToken}
       >
         <div className="space-y-6 text-xxs">
           <div className="flex items-center gap-2 mb-8">

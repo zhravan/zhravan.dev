@@ -232,8 +232,25 @@ date: "2024-01-01"            # Auto-set to today
 description: "Brief summary"   # For SEO & listings
 tags: ["tag1", "tag2"]        # For categorization
 draft: false                   # Hide from production
+previewToken: "your-secret"    # Optional: Per-post preview token for drafts
 readingTime: 10               # Minutes (auto-calculated if omitted)
 ```
+
+### Draft Preview Feature
+
+When `draft: true` is set, you can optionally specify a `previewToken` to allow specific users to preview the draft:
+
+```yaml
+draft: true
+previewToken: "nixopus"  # Custom token for this post
+```
+
+To access a draft post with a preview token, append `?preview=<token>` to the URL:
+```
+https://yoursite.com/blogs/post-slug/?preview=nixopus
+```
+
+**Note:** If no `previewToken` is specified in the post frontmatter, the global preview token from `config/plugins.yaml` will be used instead.
 
 ### Optional Fields
 

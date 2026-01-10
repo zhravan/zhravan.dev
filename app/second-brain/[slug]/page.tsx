@@ -125,6 +125,7 @@ export default async function SecondBrainNote({
       <DraftPreviewGate 
         isDraft={isDraft(note)} 
         previewToken={draftsConfig?.previewToken || ''}
+        postPreviewToken={note.previewToken}
       >
         <div className="space-y-6 text-xxs">
           <div className="flex items-center gap-2 mb-8">
