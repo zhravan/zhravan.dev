@@ -9,9 +9,9 @@ export const SITE_DESCRIPTION =
 /**
  * Theme Configuration
  *
- * Change ACTIVE_THEME to any of these 90 available themes:
+ * Change ACTIVE_THEME to any of these 145+ available themes:
  *
- * DARK THEMES (52):
+ * DARK THEMES (72):
  * - 'vitesse-dark'      - VS Code Vitesse theme
  * - 'github-dark'       - GitHub's dark theme
  * - 'dracula'           - Popular Dracula theme
@@ -64,6 +64,64 @@ export const SITE_DESCRIPTION =
  * - 'ocean-depths'      - Deep ocean blue with aqua
  * - 'electric-violet'   - Deep purple with electric violet
  *
+ * PREMIUM DARK THEMES (20) - Top-notch intuitive themes:
+ * - 'noir-elegance'     - Sophisticated black with champagne gold
+ * - 'deep-space'        - Cosmic void with nebula purple
+ * - 'carbon-fiber'      - Sleek industrial with electric cyan
+ * - 'velvet-midnight'   - Rich purple-black with rose gold
+ * - 'slate-storm'       - Professional blue-gray with electric blue
+ * - 'ember-glow'        - Warm charcoal with ember orange
+ * - 'graphite-pro'      - Ultra-clean minimal graphite
+ * - 'phantom'           - Ghostly void with phantom gray
+ * - 'obsidian-emerald'  - Deep obsidian with emerald green
+ * - 'charcoal-bloom'    - Warm charcoal with coral pink
+ * - 'ink-stars'         - Deep ink with starlight gold
+ * - 'copper-dusk'       - Bronze dark with polished copper
+ * - 'aurora-dark'       - Northern night with aurora colors
+ * - 'midnight-sapphire' - Sapphire black with royal blue
+ * - 'smoky-quartz'      - Earthy smoky brown tones
+ * - 'cyber-matrix'      - Matrix black with neon green
+ * - 'volcanic-ash'      - Volcanic black with lava orange
+ * - 'arctic-night'      - Frozen night with ice blue
+ * - 'shadow-realm'      - Deep shadow with mystic purple
+ * - 'nebula-pink'       - Cosmic pink nebula theme
+ * - 'royal-amethyst'    - Deep amethyst with gold accents
+ *
+ * NEW PREMIUM DARK THEMES (35) - Additional top-notch themes:
+ * - 'moonlit-ocean'     - Deep ocean with moonlight silver
+ * - 'crimson-night'     - Blood dark with crimson red
+ * - 'jade-shadow'       - Imperial jade with gold accents
+ * - 'twilight-haze'     - Purple twilight with sunset gold
+ * - 'storm-cloud'       - Dark gray with lightning blue
+ * - 'burnt-sienna'      - Earthy dark with sienna orange
+ * - 'frozen-dusk'       - Ice blue with dusk purple
+ * - 'bamboo-night'      - Japanese-inspired dark green
+ * - 'onyx-gold'         - Pure black with luxurious gold
+ * - 'midnight-rose'     - Dark with rose pink accents
+ * - 'thunder-gray'      - Storm cloud with electric blue
+ * - 'black-pearl'       - Pearl iridescence on deep black
+ * - 'neon-noir'         - Film noir with neon pink/cyan
+ * - 'cosmic-dust'       - Space purple with nebula blue
+ * - 'steel-forge'       - Industrial steel with molten orange
+ * - 'mystic-fog'        - Foggy night with purple mist
+ * - 'raven-wing'        - Blue-black with silver moonlight
+ * - 'terracotta-night'  - Warm terracotta with sage green
+ * - 'northern-lights'   - Arctic sky with aurora colors
+ * - 'vintage-noir'      - Sepia black with vintage gold
+ * - 'electric-dreams'   - Dream purple with neon accents
+ * - 'moss-stone'        - Forest moss with stone teal
+ * - 'cherry-cola'       - Cola dark with cherry red
+ * - 'galactic-purple'   - Galaxy purple with nebula pink
+ * - 'ocean-abyss'       - Deep ocean with bioluminescent cyan
+ * - 'warm-charcoal'     - Cozy warm dark with amber
+ * - 'neon-sunset'       - Sunset purple with neon orange/pink
+ * - 'ice-cave'          - Glacial blue with crystal cyan
+ * - 'royal-navy'        - Deep navy with naval gold
+ * - 'autumn-ember'      - Autumn night with golden leaves
+ * - 'lavender-mist'     - Soft lavender with magenta
+ * - 'midnight-forest'   - Forest dark with firefly yellow
+ * - 'wine-cellar'       - Wine dark with oak barrel tones
+ *
  * LIGHT THEMES (38):
  *
  * CLASSIC (12):
@@ -115,4 +173,4 @@ export const SITE_DESCRIPTION =
  * - 'honey-glow'             - Golden honey cream with warm amber
  * - 'tropical-paradise'      - Turquoise white with tropical energy
  */
-export const ACTIVE_THEME: ThemeName = "noctis";
+export const ACTIVE_THEME: ThemeName = "northern-lights";

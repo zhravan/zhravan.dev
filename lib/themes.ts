@@ -2127,6 +2127,1253 @@ export const themes = {
     },
     syntaxTheme: 'solarized-light',
   },
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // PREMIUM DARK THEMES - Top-notch, intuitive dark themes
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  'noir-elegance': {
+    name: 'Noir Elegance',
+    colors: {
+      background: 'hsl(0 0% 4%)', // True black elegance
+      foreground: 'hsl(45 20% 88%)', // Warm cream white
+      card: 'hsl(0 0% 7%)',
+      cardForeground: 'hsl(45 20% 88%)',
+      primary: 'hsl(42 70% 55%)', // Champagne gold
+      primaryForeground: 'hsl(0 0% 4%)',
+      secondary: 'hsl(0 0% 10%)',
+      secondaryForeground: 'hsl(45 15% 80%)',
+      muted: 'hsl(0 0% 12%)',
+      mutedForeground: 'hsl(45 8% 50%)',
+      accent: 'hsl(35 55% 60%)', // Soft gold accent
+      accentForeground: 'hsl(0 0% 4%)',
+      border: 'hsl(45 10% 15%)',
+      input: 'hsl(0 0% 10%)',
+      ring: 'hsl(42 70% 55%)',
+      link: 'hsl(42 65% 60%)',
+      linkHover: 'hsl(42 75% 70%)',
+    },
+    syntaxTheme: 'dark-plus',
+  },
+  'deep-space': {
+    name: 'Deep Space',
+    colors: {
+      background: 'hsl(240 25% 6%)', // Cosmic void
+      foreground: 'hsl(220 30% 92%)', // Starlight white
+      card: 'hsl(240 22% 9%)',
+      cardForeground: 'hsl(220 30% 92%)',
+      primary: 'hsl(270 80% 70%)', // Nebula purple
+      primaryForeground: 'hsl(0 0% 100%)',
+      secondary: 'hsl(240 20% 12%)',
+      secondaryForeground: 'hsl(220 25% 85%)',
+      muted: 'hsl(240 18% 14%)',
+      mutedForeground: 'hsl(220 15% 55%)',
+      accent: 'hsl(200 90% 65%)', // Cosmic blue
+      accentForeground: 'hsl(240 25% 6%)',
+      border: 'hsl(250 25% 18%)',
+      input: 'hsl(240 18% 12%)',
+      ring: 'hsl(270 80% 70%)',
+      link: 'hsl(270 75% 72%)',
+      linkHover: 'hsl(200 90% 70%)',
+    },
+    syntaxTheme: 'tokyo-night',
+  },
+  'carbon-fiber': {
+    name: 'Carbon Fiber',
+    colors: {
+      background: 'hsl(210 15% 7%)', // Deep carbon
+      foreground: 'hsl(0 0% 92%)', // Clean white
+      card: 'hsl(210 14% 10%)',
+      cardForeground: 'hsl(0 0% 92%)',
+      primary: 'hsl(185 100% 50%)', // Electric cyan
+      primaryForeground: 'hsl(210 15% 7%)',
+      secondary: 'hsl(210 12% 13%)',
+      secondaryForeground: 'hsl(0 0% 85%)',
+      muted: 'hsl(210 10% 15%)',
+      mutedForeground: 'hsl(210 8% 50%)',
+      accent: 'hsl(165 80% 50%)', // Tech teal
+      accentForeground: 'hsl(210 15% 7%)',
+      border: 'hsl(210 12% 18%)',
+      input: 'hsl(210 10% 12%)',
+      ring: 'hsl(185 100% 50%)',
+      link: 'hsl(185 95% 55%)',
+      linkHover: 'hsl(165 80% 55%)',
+    },
+    syntaxTheme: 'material-theme',
+  },
+  'velvet-midnight': {
+    name: 'Velvet Midnight',
+    colors: {
+      background: 'hsl(280 30% 8%)', // Deep velvet purple
+      foreground: 'hsl(280 15% 90%)', // Soft lavender white
+      card: 'hsl(280 28% 11%)',
+      cardForeground: 'hsl(280 15% 90%)',
+      primary: 'hsl(340 75% 70%)', // Rose gold pink
+      primaryForeground: 'hsl(280 30% 8%)',
+      secondary: 'hsl(280 25% 14%)',
+      secondaryForeground: 'hsl(280 12% 82%)',
+      muted: 'hsl(280 22% 16%)',
+      mutedForeground: 'hsl(280 10% 50%)',
+      accent: 'hsl(25 70% 65%)', // Warm rose gold
+      accentForeground: 'hsl(280 30% 8%)',
+      border: 'hsl(280 25% 20%)',
+      input: 'hsl(280 22% 13%)',
+      ring: 'hsl(340 75% 70%)',
+      link: 'hsl(340 70% 72%)',
+      linkHover: 'hsl(25 70% 70%)',
+    },
+    syntaxTheme: 'dracula',
+  },
+  'slate-storm': {
+    name: 'Slate Storm',
+    colors: {
+      background: 'hsl(215 28% 10%)', // Storm slate
+      foreground: 'hsl(210 20% 90%)', // Cool white
+      card: 'hsl(215 26% 13%)',
+      cardForeground: 'hsl(210 20% 90%)',
+      primary: 'hsl(210 100% 60%)', // Electric blue
+      primaryForeground: 'hsl(0 0% 100%)',
+      secondary: 'hsl(215 24% 16%)',
+      secondaryForeground: 'hsl(210 18% 82%)',
+      muted: 'hsl(215 22% 18%)',
+      mutedForeground: 'hsl(215 15% 52%)',
+      accent: 'hsl(195 90% 55%)', // Sky blue accent
+      accentForeground: 'hsl(215 28% 10%)',
+      border: 'hsl(215 22% 22%)',
+      input: 'hsl(215 22% 15%)',
+      ring: 'hsl(210 100% 60%)',
+      link: 'hsl(210 95% 65%)',
+      linkHover: 'hsl(195 90% 60%)',
+    },
+    syntaxTheme: 'one-dark-pro',
+  },
+  'ember-glow': {
+    name: 'Ember Glow',
+    colors: {
+      background: 'hsl(15 20% 7%)', // Warm charcoal
+      foreground: 'hsl(35 25% 88%)', // Warm cream
+      card: 'hsl(15 18% 10%)',
+      cardForeground: 'hsl(35 25% 88%)',
+      primary: 'hsl(25 95% 55%)', // Ember orange
+      primaryForeground: 'hsl(15 20% 7%)',
+      secondary: 'hsl(15 15% 13%)',
+      secondaryForeground: 'hsl(35 20% 80%)',
+      muted: 'hsl(15 12% 15%)',
+      mutedForeground: 'hsl(20 12% 48%)',
+      accent: 'hsl(40 90% 55%)', // Golden amber
+      accentForeground: 'hsl(15 20% 7%)',
+      border: 'hsl(18 18% 18%)',
+      input: 'hsl(15 14% 12%)',
+      ring: 'hsl(25 95% 55%)',
+      link: 'hsl(25 90% 60%)',
+      linkHover: 'hsl(40 90% 60%)',
+    },
+    syntaxTheme: 'monokai',
+  },
+  'graphite-pro': {
+    name: 'Graphite Pro',
+    colors: {
+      background: 'hsl(220 8% 9%)', // Pure graphite
+      foreground: 'hsl(220 5% 88%)', // Neutral white
+      card: 'hsl(220 8% 12%)',
+      cardForeground: 'hsl(220 5% 88%)',
+      primary: 'hsl(220 5% 88%)', // Clean white primary
+      primaryForeground: 'hsl(220 8% 9%)',
+      secondary: 'hsl(220 7% 15%)',
+      secondaryForeground: 'hsl(220 5% 78%)',
+      muted: 'hsl(220 6% 17%)',
+      mutedForeground: 'hsl(220 5% 48%)',
+      accent: 'hsl(220 7% 22%)',
+      accentForeground: 'hsl(220 5% 88%)',
+      border: 'hsl(220 8% 18%)',
+      input: 'hsl(220 7% 14%)',
+      ring: 'hsl(220 5% 88%)',
+      link: 'hsl(220 5% 70%)',
+      linkHover: 'hsl(220 5% 88%)',
+    },
+    syntaxTheme: 'dark-plus',
+  },
+  'phantom': {
+    name: 'Phantom',
+    colors: {
+      background: 'hsl(240 5% 5%)', // Void black
+      foreground: 'hsl(0 0% 80%)', // Ghost white
+      card: 'hsl(240 5% 8%)',
+      cardForeground: 'hsl(0 0% 80%)',
+      primary: 'hsl(0 0% 75%)', // Phantom gray
+      primaryForeground: 'hsl(240 5% 5%)',
+      secondary: 'hsl(240 4% 11%)',
+      secondaryForeground: 'hsl(0 0% 72%)',
+      muted: 'hsl(240 4% 13%)',
+      mutedForeground: 'hsl(0 0% 45%)',
+      accent: 'hsl(0 0% 20%)',
+      accentForeground: 'hsl(0 0% 80%)',
+      border: 'hsl(240 4% 15%)',
+      input: 'hsl(240 4% 10%)',
+      ring: 'hsl(0 0% 75%)',
+      link: 'hsl(0 0% 60%)',
+      linkHover: 'hsl(0 0% 80%)',
+    },
+    syntaxTheme: 'dark-plus',
+  },
+  'obsidian-emerald': {
+    name: 'Obsidian Emerald',
+    colors: {
+      background: 'hsl(160 20% 6%)', // Deep obsidian green
+      foreground: 'hsl(140 15% 88%)', // Soft sage white
+      card: 'hsl(160 18% 9%)',
+      cardForeground: 'hsl(140 15% 88%)',
+      primary: 'hsl(155 70% 55%)', // Emerald green
+      primaryForeground: 'hsl(160 20% 6%)',
+      secondary: 'hsl(160 15% 12%)',
+      secondaryForeground: 'hsl(140 12% 80%)',
+      muted: 'hsl(160 12% 14%)',
+      mutedForeground: 'hsl(150 10% 48%)',
+      accent: 'hsl(170 65% 50%)', // Bright teal
+      accentForeground: 'hsl(160 20% 6%)',
+      border: 'hsl(160 15% 17%)',
+      input: 'hsl(160 14% 11%)',
+      ring: 'hsl(155 70% 55%)',
+      link: 'hsl(155 65% 58%)',
+      linkHover: 'hsl(170 65% 55%)',
+    },
+    syntaxTheme: 'dark-plus',
+  },
+  'charcoal-bloom': {
+    name: 'Charcoal Bloom',
+    colors: {
+      background: 'hsl(350 12% 8%)', // Warm charcoal
+      foreground: 'hsl(350 10% 88%)', // Soft pink white
+      card: 'hsl(350 11% 11%)',
+      cardForeground: 'hsl(350 10% 88%)',
+      primary: 'hsl(350 75% 65%)', // Soft coral pink
+      primaryForeground: 'hsl(0 0% 100%)',
+      secondary: 'hsl(350 10% 14%)',
+      secondaryForeground: 'hsl(350 8% 80%)',
+      muted: 'hsl(350 8% 16%)',
+      mutedForeground: 'hsl(350 6% 48%)',
+      accent: 'hsl(15 70% 60%)', // Warm coral
+      accentForeground: 'hsl(350 12% 8%)',
+      border: 'hsl(350 10% 18%)',
+      input: 'hsl(350 9% 13%)',
+      ring: 'hsl(350 75% 65%)',
+      link: 'hsl(350 70% 68%)',
+      linkHover: 'hsl(15 70% 65%)',
+    },
+    syntaxTheme: 'rose-pine',
+  },
+  'ink-stars': {
+    name: 'Ink & Stars',
+    colors: {
+      background: 'hsl(225 30% 7%)', // Deep ink
+      foreground: 'hsl(220 25% 92%)', // Starlight silver
+      card: 'hsl(225 28% 10%)',
+      cardForeground: 'hsl(220 25% 92%)',
+      primary: 'hsl(45 80% 70%)', // Star gold
+      primaryForeground: 'hsl(225 30% 7%)',
+      secondary: 'hsl(225 25% 13%)',
+      secondaryForeground: 'hsl(220 20% 84%)',
+      muted: 'hsl(225 22% 15%)',
+      mutedForeground: 'hsl(225 15% 50%)',
+      accent: 'hsl(210 70% 60%)', // Twilight blue
+      accentForeground: 'hsl(0 0% 100%)',
+      border: 'hsl(225 22% 18%)',
+      input: 'hsl(225 24% 12%)',
+      ring: 'hsl(45 80% 70%)',
+      link: 'hsl(45 75% 72%)',
+      linkHover: 'hsl(210 70% 65%)',
+    },
+    syntaxTheme: 'tokyo-night',
+  },
+  'copper-dusk': {
+    name: 'Copper Dusk',
+    colors: {
+      background: 'hsl(20 15% 8%)', // Bronze dark
+      foreground: 'hsl(30 18% 86%)', // Warm parchment
+      card: 'hsl(20 14% 11%)',
+      cardForeground: 'hsl(30 18% 86%)',
+      primary: 'hsl(25 75% 55%)', // Polished copper
+      primaryForeground: 'hsl(0 0% 100%)',
+      secondary: 'hsl(20 12% 14%)',
+      secondaryForeground: 'hsl(30 15% 78%)',
+      muted: 'hsl(20 10% 16%)',
+      mutedForeground: 'hsl(25 10% 48%)',
+      accent: 'hsl(35 70% 55%)', // Bronze accent
+      accentForeground: 'hsl(20 15% 8%)',
+      border: 'hsl(22 14% 18%)',
+      input: 'hsl(20 11% 13%)',
+      ring: 'hsl(25 75% 55%)',
+      link: 'hsl(25 70% 58%)',
+      linkHover: 'hsl(35 70% 60%)',
+    },
+    syntaxTheme: 'monokai',
+  },
+  'aurora-dark': {
+    name: 'Aurora Dark',
+    colors: {
+      background: 'hsl(220 25% 8%)', // Northern night
+      foreground: 'hsl(180 20% 90%)', // Aurora white
+      card: 'hsl(220 23% 11%)',
+      cardForeground: 'hsl(180 20% 90%)',
+      primary: 'hsl(160 85% 55%)', // Aurora green
+      primaryForeground: 'hsl(220 25% 8%)',
+      secondary: 'hsl(220 20% 14%)',
+      secondaryForeground: 'hsl(180 15% 82%)',
+      muted: 'hsl(220 18% 16%)',
+      mutedForeground: 'hsl(200 12% 50%)',
+      accent: 'hsl(280 75% 70%)', // Aurora purple
+      accentForeground: 'hsl(0 0% 100%)',
+      border: 'hsl(220 18% 19%)',
+      input: 'hsl(220 19% 13%)',
+      ring: 'hsl(160 85% 55%)',
+      link: 'hsl(160 80% 58%)',
+      linkHover: 'hsl(280 75% 72%)',
+    },
+    syntaxTheme: 'nord',
+  },
+  'midnight-sapphire': {
+    name: 'Midnight Sapphire',
+    colors: {
+      background: 'hsl(230 35% 8%)', // Deep sapphire black
+      foreground: 'hsl(215 30% 90%)', // Cool crystal white
+      card: 'hsl(230 32% 11%)',
+      cardForeground: 'hsl(215 30% 90%)',
+      primary: 'hsl(220 90% 60%)', // Royal sapphire
+      primaryForeground: 'hsl(0 0% 100%)',
+      secondary: 'hsl(230 28% 14%)',
+      secondaryForeground: 'hsl(215 25% 82%)',
+      muted: 'hsl(230 25% 16%)',
+      mutedForeground: 'hsl(220 18% 50%)',
+      accent: 'hsl(260 70% 65%)', // Amethyst accent
+      accentForeground: 'hsl(0 0% 100%)',
+      border: 'hsl(228 26% 20%)',
+      input: 'hsl(230 28% 13%)',
+      ring: 'hsl(220 90% 60%)',
+      link: 'hsl(220 85% 65%)',
+      linkHover: 'hsl(260 70% 68%)',
+    },
+    syntaxTheme: 'tokyo-night',
+  },
+  'smoky-quartz': {
+    name: 'Smoky Quartz',
+    colors: {
+      background: 'hsl(30 8% 9%)', // Smoky brown-black
+      foreground: 'hsl(30 10% 85%)', // Warm stone white
+      card: 'hsl(30 8% 12%)',
+      cardForeground: 'hsl(30 10% 85%)',
+      primary: 'hsl(30 25% 60%)', // Quartz beige
+      primaryForeground: 'hsl(30 8% 9%)',
+      secondary: 'hsl(30 7% 15%)',
+      secondaryForeground: 'hsl(30 8% 76%)',
+      muted: 'hsl(30 6% 17%)',
+      mutedForeground: 'hsl(30 6% 48%)',
+      accent: 'hsl(25 35% 55%)', // Warm amber
+      accentForeground: 'hsl(30 8% 9%)',
+      border: 'hsl(30 7% 19%)',
+      input: 'hsl(30 7% 14%)',
+      ring: 'hsl(30 25% 60%)',
+      link: 'hsl(30 22% 62%)',
+      linkHover: 'hsl(25 35% 58%)',
+    },
+    syntaxTheme: 'dark-plus',
+  },
+  'cyber-matrix': {
+    name: 'Cyber Matrix',
+    colors: {
+      background: 'hsl(120 30% 4%)', // Matrix black
+      foreground: 'hsl(120 60% 75%)', // Matrix green text
+      card: 'hsl(120 28% 7%)',
+      cardForeground: 'hsl(120 60% 75%)',
+      primary: 'hsl(120 100% 50%)', // Bright matrix green
+      primaryForeground: 'hsl(120 30% 4%)',
+      secondary: 'hsl(120 25% 10%)',
+      secondaryForeground: 'hsl(120 50% 65%)',
+      muted: 'hsl(120 22% 12%)',
+      mutedForeground: 'hsl(120 30% 40%)',
+      accent: 'hsl(180 100% 45%)', // Cyber cyan
+      accentForeground: 'hsl(120 30% 4%)',
+      border: 'hsl(120 25% 15%)',
+      input: 'hsl(120 24% 9%)',
+      ring: 'hsl(120 100% 50%)',
+      link: 'hsl(120 90% 55%)',
+      linkHover: 'hsl(180 100% 50%)',
+    },
+    syntaxTheme: 'dark-plus',
+  },
+  'volcanic-ash': {
+    name: 'Volcanic Ash',
+    colors: {
+      background: 'hsl(0 5% 7%)', // Volcanic black
+      foreground: 'hsl(0 3% 82%)', // Ash gray
+      card: 'hsl(0 5% 10%)',
+      cardForeground: 'hsl(0 3% 82%)',
+      primary: 'hsl(15 90% 55%)', // Lava orange
+      primaryForeground: 'hsl(0 0% 100%)',
+      secondary: 'hsl(0 4% 13%)',
+      secondaryForeground: 'hsl(0 3% 74%)',
+      muted: 'hsl(0 4% 15%)',
+      mutedForeground: 'hsl(0 3% 45%)',
+      accent: 'hsl(5 85% 50%)', // Magma red
+      accentForeground: 'hsl(0 0% 100%)',
+      border: 'hsl(0 4% 18%)',
+      input: 'hsl(0 4% 12%)',
+      ring: 'hsl(15 90% 55%)',
+      link: 'hsl(15 85% 58%)',
+      linkHover: 'hsl(5 85% 55%)',
+    },
+    syntaxTheme: 'monokai',
+  },
+  'arctic-night': {
+    name: 'Arctic Night',
+    colors: {
+      background: 'hsl(200 30% 8%)', // Frozen night
+      foreground: 'hsl(195 25% 92%)', // Ice white
+      card: 'hsl(200 28% 11%)',
+      cardForeground: 'hsl(195 25% 92%)',
+      primary: 'hsl(190 80% 60%)', // Ice blue
+      primaryForeground: 'hsl(200 30% 8%)',
+      secondary: 'hsl(200 25% 14%)',
+      secondaryForeground: 'hsl(195 20% 84%)',
+      muted: 'hsl(200 22% 16%)',
+      mutedForeground: 'hsl(200 15% 50%)',
+      accent: 'hsl(175 70% 55%)', // Glacier teal
+      accentForeground: 'hsl(200 30% 8%)',
+      border: 'hsl(200 22% 19%)',
+      input: 'hsl(200 24% 13%)',
+      ring: 'hsl(190 80% 60%)',
+      link: 'hsl(190 75% 63%)',
+      linkHover: 'hsl(175 70% 58%)',
+    },
+    syntaxTheme: 'nord',
+  },
+  'shadow-realm': {
+    name: 'Shadow Realm',
+    colors: {
+      background: 'hsl(260 25% 6%)', // Deep shadow purple
+      foreground: 'hsl(260 15% 88%)', // Ethereal white
+      card: 'hsl(260 23% 9%)',
+      cardForeground: 'hsl(260 15% 88%)',
+      primary: 'hsl(280 100% 70%)', // Mystic purple
+      primaryForeground: 'hsl(0 0% 100%)',
+      secondary: 'hsl(260 20% 12%)',
+      secondaryForeground: 'hsl(260 12% 80%)',
+      muted: 'hsl(260 18% 14%)',
+      mutedForeground: 'hsl(260 10% 48%)',
+      accent: 'hsl(320 90% 65%)', // Shadow pink
+      accentForeground: 'hsl(0 0% 100%)',
+      border: 'hsl(260 18% 17%)',
+      input: 'hsl(260 19% 11%)',
+      ring: 'hsl(280 100% 70%)',
+      link: 'hsl(280 95% 72%)',
+      linkHover: 'hsl(320 90% 68%)',
+    },
+    syntaxTheme: 'dracula',
+  },
+  'nebula-pink': {
+    name: 'Nebula Pink',
+    colors: {
+      background: 'hsl(320 25% 7%)', // Deep cosmic pink
+      foreground: 'hsl(320 15% 90%)', // Soft nebula white
+      card: 'hsl(320 23% 10%)',
+      cardForeground: 'hsl(320 15% 90%)',
+      primary: 'hsl(330 90% 65%)', // Bright nebula pink
+      primaryForeground: 'hsl(0 0% 100%)',
+      secondary: 'hsl(320 20% 13%)',
+      secondaryForeground: 'hsl(320 12% 82%)',
+      muted: 'hsl(320 18% 15%)',
+      mutedForeground: 'hsl(320 10% 48%)',
+      accent: 'hsl(280 80% 68%)', // Purple dust
+      accentForeground: 'hsl(0 0% 100%)',
+      border: 'hsl(320 18% 18%)',
+      input: 'hsl(320 19% 12%)',
+      ring: 'hsl(330 90% 65%)',
+      link: 'hsl(330 85% 68%)',
+      linkHover: 'hsl(280 80% 70%)',
+    },
+    syntaxTheme: 'dracula',
+  },
+  'royal-amethyst': {
+    name: 'Royal Amethyst',
+    colors: {
+      background: 'hsl(270 30% 8%)', // Deep amethyst
+      foreground: 'hsl(270 18% 90%)', // Crystal white
+      card: 'hsl(270 28% 11%)',
+      cardForeground: 'hsl(270 18% 90%)',
+      primary: 'hsl(280 70% 60%)', // Royal purple
+      primaryForeground: 'hsl(0 0% 100%)',
+      secondary: 'hsl(270 25% 14%)',
+      secondaryForeground: 'hsl(270 15% 82%)',
+      muted: 'hsl(270 22% 16%)',
+      mutedForeground: 'hsl(270 12% 50%)',
+      accent: 'hsl(45 80% 60%)', // Gold accent
+      accentForeground: 'hsl(270 30% 8%)',
+      border: 'hsl(270 22% 19%)',
+      input: 'hsl(270 24% 13%)',
+      ring: 'hsl(280 70% 60%)',
+      link: 'hsl(280 65% 63%)',
+      linkHover: 'hsl(45 80% 65%)',
+    },
+    syntaxTheme: 'shades-of-purple',
+  },
+  'moonlit-ocean': {
+    name: 'Moonlit Ocean',
+    colors: {
+      background: 'hsl(210 40% 7%)', // Deep ocean night
+      foreground: 'hsl(200 30% 92%)', // Moonlight silver
+      card: 'hsl(210 38% 10%)',
+      cardForeground: 'hsl(200 30% 92%)',
+      primary: 'hsl(195 85% 60%)', // Moonlit water
+      primaryForeground: 'hsl(210 40% 7%)',
+      secondary: 'hsl(210 35% 13%)',
+      secondaryForeground: 'hsl(200 25% 84%)',
+      muted: 'hsl(210 32% 15%)',
+      mutedForeground: 'hsl(205 20% 50%)',
+      accent: 'hsl(220 70% 65%)', // Deep sea blue
+      accentForeground: 'hsl(0 0% 100%)',
+      border: 'hsl(210 32% 18%)',
+      input: 'hsl(210 34% 12%)',
+      ring: 'hsl(195 85% 60%)',
+      link: 'hsl(195 80% 63%)',
+      linkHover: 'hsl(220 70% 68%)',
+    },
+    syntaxTheme: 'tokyo-night',
+  },
+  'crimson-night': {
+    name: 'Crimson Night',
+    colors: {
+      background: 'hsl(0 25% 6%)', // Blood dark
+      foreground: 'hsl(0 10% 90%)', // Pale white
+      card: 'hsl(0 23% 9%)',
+      cardForeground: 'hsl(0 10% 90%)',
+      primary: 'hsl(355 85% 55%)', // Crimson red
+      primaryForeground: 'hsl(0 0% 100%)',
+      secondary: 'hsl(0 20% 12%)',
+      secondaryForeground: 'hsl(0 8% 82%)',
+      muted: 'hsl(0 18% 14%)',
+      mutedForeground: 'hsl(0 8% 48%)',
+      accent: 'hsl(340 75% 55%)', // Dark rose
+      accentForeground: 'hsl(0 0% 100%)',
+      border: 'hsl(0 18% 17%)',
+      input: 'hsl(0 19% 11%)',
+      ring: 'hsl(355 85% 55%)',
+      link: 'hsl(355 80% 58%)',
+      linkHover: 'hsl(340 75% 58%)',
+    },
+    syntaxTheme: 'dracula',
+  },
+  'jade-shadow': {
+    name: 'Jade Shadow',
+    colors: {
+      background: 'hsl(160 30% 6%)', // Deep jade dark
+      foreground: 'hsl(150 20% 88%)', // Soft jade white
+      card: 'hsl(160 28% 9%)',
+      cardForeground: 'hsl(150 20% 88%)',
+      primary: 'hsl(155 65% 50%)', // Imperial jade
+      primaryForeground: 'hsl(160 30% 6%)',
+      secondary: 'hsl(160 25% 12%)',
+      secondaryForeground: 'hsl(150 15% 80%)',
+      muted: 'hsl(160 22% 14%)',
+      mutedForeground: 'hsl(155 12% 48%)',
+      accent: 'hsl(42 75% 55%)', // Gold accent
+      accentForeground: 'hsl(160 30% 6%)',
+      border: 'hsl(160 22% 17%)',
+      input: 'hsl(160 24% 11%)',
+      ring: 'hsl(155 65% 50%)',
+      link: 'hsl(155 60% 53%)',
+      linkHover: 'hsl(42 75% 58%)',
+    },
+    syntaxTheme: 'dark-plus',
+  },
+  'twilight-haze': {
+    name: 'Twilight Haze',
+    colors: {
+      background: 'hsl(265 28% 9%)', // Twilight purple
+      foreground: 'hsl(260 18% 90%)', // Hazy white
+      card: 'hsl(265 26% 12%)',
+      cardForeground: 'hsl(260 18% 90%)',
+      primary: 'hsl(45 85% 65%)', // Warm sunset gold
+      primaryForeground: 'hsl(265 28% 9%)',
+      secondary: 'hsl(265 23% 15%)',
+      secondaryForeground: 'hsl(260 15% 82%)',
+      muted: 'hsl(265 20% 17%)',
+      mutedForeground: 'hsl(260 12% 50%)',
+      accent: 'hsl(280 70% 65%)', // Twilight purple
+      accentForeground: 'hsl(0 0% 100%)',
+      border: 'hsl(265 20% 20%)',
+      input: 'hsl(265 22% 14%)',
+      ring: 'hsl(45 85% 65%)',
+      link: 'hsl(45 80% 68%)',
+      linkHover: 'hsl(280 70% 68%)',
+    },
+    syntaxTheme: 'tokyo-night',
+  },
+  'storm-cloud': {
+    name: 'Storm Cloud',
+    colors: {
+      background: 'hsl(210 18% 8%)', // Storm dark
+      foreground: 'hsl(210 12% 88%)', // Cloud white
+      card: 'hsl(210 17% 11%)',
+      cardForeground: 'hsl(210 12% 88%)',
+      primary: 'hsl(200 90% 55%)', // Lightning blue
+      primaryForeground: 'hsl(0 0% 100%)',
+      secondary: 'hsl(210 15% 14%)',
+      secondaryForeground: 'hsl(210 10% 80%)',
+      muted: 'hsl(210 13% 16%)',
+      mutedForeground: 'hsl(210 8% 50%)',
+      accent: 'hsl(45 90% 60%)', // Lightning flash
+      accentForeground: 'hsl(210 18% 8%)',
+      border: 'hsl(210 13% 19%)',
+      input: 'hsl(210 14% 13%)',
+      ring: 'hsl(200 90% 55%)',
+      link: 'hsl(200 85% 58%)',
+      linkHover: 'hsl(45 90% 63%)',
+    },
+    syntaxTheme: 'one-dark-pro',
+  },
+  'burnt-sienna': {
+    name: 'Burnt Sienna',
+    colors: {
+      background: 'hsl(18 25% 8%)', // Earth dark
+      foreground: 'hsl(25 18% 86%)', // Warm clay white
+      card: 'hsl(18 23% 11%)',
+      cardForeground: 'hsl(25 18% 86%)',
+      primary: 'hsl(20 75% 50%)', // Burnt sienna
+      primaryForeground: 'hsl(0 0% 100%)',
+      secondary: 'hsl(18 20% 14%)',
+      secondaryForeground: 'hsl(25 14% 78%)',
+      muted: 'hsl(18 18% 16%)',
+      mutedForeground: 'hsl(20 12% 48%)',
+      accent: 'hsl(35 70% 55%)', // Terracotta
+      accentForeground: 'hsl(18 25% 8%)',
+      border: 'hsl(18 18% 19%)',
+      input: 'hsl(18 20% 13%)',
+      ring: 'hsl(20 75% 50%)',
+      link: 'hsl(20 70% 53%)',
+      linkHover: 'hsl(35 70% 58%)',
+    },
+    syntaxTheme: 'monokai',
+  },
+  'frozen-dusk': {
+    name: 'Frozen Dusk',
+    colors: {
+      background: 'hsl(210 25% 9%)', // Frozen night
+      foreground: 'hsl(200 35% 92%)', // Frost white
+      card: 'hsl(210 23% 12%)',
+      cardForeground: 'hsl(200 35% 92%)',
+      primary: 'hsl(190 70% 65%)', // Ice blue
+      primaryForeground: 'hsl(210 25% 9%)',
+      secondary: 'hsl(210 20% 15%)',
+      secondaryForeground: 'hsl(200 28% 84%)',
+      muted: 'hsl(210 18% 17%)',
+      mutedForeground: 'hsl(205 15% 52%)',
+      accent: 'hsl(280 55% 65%)', // Dusk purple
+      accentForeground: 'hsl(0 0% 100%)',
+      border: 'hsl(210 18% 20%)',
+      input: 'hsl(210 19% 14%)',
+      ring: 'hsl(190 70% 65%)',
+      link: 'hsl(190 65% 68%)',
+      linkHover: 'hsl(280 55% 68%)',
+    },
+    syntaxTheme: 'nord',
+  },
+  'bamboo-night': {
+    name: 'Bamboo Night',
+    colors: {
+      background: 'hsl(140 20% 7%)', // Dark bamboo forest
+      foreground: 'hsl(120 15% 88%)', // Bamboo white
+      card: 'hsl(140 18% 10%)',
+      cardForeground: 'hsl(120 15% 88%)',
+      primary: 'hsl(135 55% 50%)', // Bamboo green
+      primaryForeground: 'hsl(140 20% 7%)',
+      secondary: 'hsl(140 15% 13%)',
+      secondaryForeground: 'hsl(120 12% 80%)',
+      muted: 'hsl(140 13% 15%)',
+      mutedForeground: 'hsl(130 10% 48%)',
+      accent: 'hsl(45 60% 55%)', // Lantern gold
+      accentForeground: 'hsl(140 20% 7%)',
+      border: 'hsl(140 13% 18%)',
+      input: 'hsl(140 14% 12%)',
+      ring: 'hsl(135 55% 50%)',
+      link: 'hsl(135 50% 53%)',
+      linkHover: 'hsl(45 60% 58%)',
+    },
+    syntaxTheme: 'dark-plus',
+  },
+  'onyx-gold': {
+    name: 'Onyx Gold',
+    colors: {
+      background: 'hsl(0 0% 4%)', // Pure onyx black
+      foreground: 'hsl(45 35% 88%)', // Warm gold white
+      card: 'hsl(0 0% 7%)',
+      cardForeground: 'hsl(45 35% 88%)',
+      primary: 'hsl(45 90% 55%)', // Luxurious gold
+      primaryForeground: 'hsl(0 0% 4%)',
+      secondary: 'hsl(0 0% 10%)',
+      secondaryForeground: 'hsl(45 25% 80%)',
+      muted: 'hsl(0 0% 12%)',
+      mutedForeground: 'hsl(45 15% 50%)',
+      accent: 'hsl(38 85% 60%)', // Bright gold
+      accentForeground: 'hsl(0 0% 4%)',
+      border: 'hsl(45 20% 15%)',
+      input: 'hsl(0 0% 10%)',
+      ring: 'hsl(45 90% 55%)',
+      link: 'hsl(45 85% 58%)',
+      linkHover: 'hsl(38 85% 63%)',
+    },
+    syntaxTheme: 'dark-plus',
+  },
+  'midnight-rose': {
+    name: 'Midnight Rose',
+    colors: {
+      background: 'hsl(340 22% 7%)', // Dark rose night
+      foreground: 'hsl(340 15% 90%)', // Rose white
+      card: 'hsl(340 20% 10%)',
+      cardForeground: 'hsl(340 15% 90%)',
+      primary: 'hsl(345 80% 60%)', // Rose pink
+      primaryForeground: 'hsl(0 0% 100%)',
+      secondary: 'hsl(340 17% 13%)',
+      secondaryForeground: 'hsl(340 12% 82%)',
+      muted: 'hsl(340 15% 15%)',
+      mutedForeground: 'hsl(340 10% 50%)',
+      accent: 'hsl(320 70% 60%)', // Deep magenta
+      accentForeground: 'hsl(0 0% 100%)',
+      border: 'hsl(340 15% 18%)',
+      input: 'hsl(340 16% 12%)',
+      ring: 'hsl(345 80% 60%)',
+      link: 'hsl(345 75% 63%)',
+      linkHover: 'hsl(320 70% 63%)',
+    },
+    syntaxTheme: 'rose-pine',
+  },
+  'thunder-gray': {
+    name: 'Thunder Gray',
+    colors: {
+      background: 'hsl(220 12% 8%)', // Thunder cloud dark
+      foreground: 'hsl(220 8% 88%)', // Storm white
+      card: 'hsl(220 11% 11%)',
+      cardForeground: 'hsl(220 8% 88%)',
+      primary: 'hsl(210 100% 60%)', // Electric blue
+      primaryForeground: 'hsl(0 0% 100%)',
+      secondary: 'hsl(220 10% 14%)',
+      secondaryForeground: 'hsl(220 7% 80%)',
+      muted: 'hsl(220 9% 16%)',
+      mutedForeground: 'hsl(220 6% 50%)',
+      accent: 'hsl(55 100% 55%)', // Lightning yellow
+      accentForeground: 'hsl(220 12% 8%)',
+      border: 'hsl(220 9% 19%)',
+      input: 'hsl(220 10% 13%)',
+      ring: 'hsl(210 100% 60%)',
+      link: 'hsl(210 95% 63%)',
+      linkHover: 'hsl(55 100% 58%)',
+    },
+    syntaxTheme: 'one-dark-pro',
+  },
+  'black-pearl': {
+    name: 'Black Pearl',
+    colors: {
+      background: 'hsl(200 20% 6%)', // Deep pearl black
+      foreground: 'hsl(200 30% 92%)', // Pearl iridescence
+      card: 'hsl(200 18% 9%)',
+      cardForeground: 'hsl(200 30% 92%)',
+      primary: 'hsl(185 60% 65%)', // Pearl cyan
+      primaryForeground: 'hsl(200 20% 6%)',
+      secondary: 'hsl(200 15% 12%)',
+      secondaryForeground: 'hsl(200 22% 84%)',
+      muted: 'hsl(200 13% 14%)',
+      mutedForeground: 'hsl(200 12% 50%)',
+      accent: 'hsl(280 50% 70%)', // Pearl purple
+      accentForeground: 'hsl(0 0% 100%)',
+      border: 'hsl(200 13% 17%)',
+      input: 'hsl(200 14% 11%)',
+      ring: 'hsl(185 60% 65%)',
+      link: 'hsl(185 55% 68%)',
+      linkHover: 'hsl(280 50% 72%)',
+    },
+    syntaxTheme: 'material-theme',
+  },
+  'neon-noir': {
+    name: 'Neon Noir',
+    colors: {
+      background: 'hsl(240 10% 5%)', // Film noir black
+      foreground: 'hsl(0 0% 88%)', // Classic white
+      card: 'hsl(240 9% 8%)',
+      cardForeground: 'hsl(0 0% 88%)',
+      primary: 'hsl(340 100% 60%)', // Neon pink
+      primaryForeground: 'hsl(0 0% 100%)',
+      secondary: 'hsl(240 8% 11%)',
+      secondaryForeground: 'hsl(0 0% 80%)',
+      muted: 'hsl(240 7% 13%)',
+      mutedForeground: 'hsl(0 0% 48%)',
+      accent: 'hsl(180 100% 50%)', // Neon cyan
+      accentForeground: 'hsl(240 10% 5%)',
+      border: 'hsl(340 30% 15%)',
+      input: 'hsl(240 8% 10%)',
+      ring: 'hsl(340 100% 60%)',
+      link: 'hsl(340 95% 63%)',
+      linkHover: 'hsl(180 100% 55%)',
+    },
+    syntaxTheme: 'synthwave-84',
+  },
+  'cosmic-dust': {
+    name: 'Cosmic Dust',
+    colors: {
+      background: 'hsl(250 25% 8%)', // Space dust purple
+      foreground: 'hsl(245 20% 90%)', // Starlight white
+      card: 'hsl(250 23% 11%)',
+      cardForeground: 'hsl(245 20% 90%)',
+      primary: 'hsl(260 65% 65%)', // Cosmic purple
+      primaryForeground: 'hsl(0 0% 100%)',
+      secondary: 'hsl(250 20% 14%)',
+      secondaryForeground: 'hsl(245 17% 82%)',
+      muted: 'hsl(250 18% 16%)',
+      mutedForeground: 'hsl(250 12% 50%)',
+      accent: 'hsl(200 75% 60%)', // Nebula blue
+      accentForeground: 'hsl(0 0% 100%)',
+      border: 'hsl(250 18% 19%)',
+      input: 'hsl(250 19% 13%)',
+      ring: 'hsl(260 65% 65%)',
+      link: 'hsl(260 60% 68%)',
+      linkHover: 'hsl(200 75% 63%)',
+    },
+    syntaxTheme: 'tokyo-night',
+  },
+  'steel-forge': {
+    name: 'Steel Forge',
+    colors: {
+      background: 'hsl(215 15% 9%)', // Forged steel
+      foreground: 'hsl(210 10% 88%)', // Metal white
+      card: 'hsl(215 14% 12%)',
+      cardForeground: 'hsl(210 10% 88%)',
+      primary: 'hsl(210 50% 60%)', // Steel blue
+      primaryForeground: 'hsl(0 0% 100%)',
+      secondary: 'hsl(215 12% 15%)',
+      secondaryForeground: 'hsl(210 8% 80%)',
+      muted: 'hsl(215 10% 17%)',
+      mutedForeground: 'hsl(210 6% 50%)',
+      accent: 'hsl(25 85% 55%)', // Molten orange
+      accentForeground: 'hsl(0 0% 100%)',
+      border: 'hsl(215 10% 20%)',
+      input: 'hsl(215 11% 14%)',
+      ring: 'hsl(210 50% 60%)',
+      link: 'hsl(210 45% 63%)',
+      linkHover: 'hsl(25 85% 58%)',
+    },
+    syntaxTheme: 'material-theme',
+  },
+  'mystic-fog': {
+    name: 'Mystic Fog',
+    colors: {
+      background: 'hsl(230 15% 10%)', // Foggy night
+      foreground: 'hsl(225 15% 85%)', // Misty white
+      card: 'hsl(230 14% 13%)',
+      cardForeground: 'hsl(225 15% 85%)',
+      primary: 'hsl(225 40% 65%)', // Fog blue
+      primaryForeground: 'hsl(0 0% 100%)',
+      secondary: 'hsl(230 12% 16%)',
+      secondaryForeground: 'hsl(225 12% 77%)',
+      muted: 'hsl(230 10% 18%)',
+      mutedForeground: 'hsl(225 8% 50%)',
+      accent: 'hsl(270 45% 65%)', // Mystic purple
+      accentForeground: 'hsl(0 0% 100%)',
+      border: 'hsl(230 10% 21%)',
+      input: 'hsl(230 11% 15%)',
+      ring: 'hsl(225 40% 65%)',
+      link: 'hsl(225 35% 68%)',
+      linkHover: 'hsl(270 45% 68%)',
+    },
+    syntaxTheme: 'dark-plus',
+  },
+  'raven-wing': {
+    name: 'Raven Wing',
+    colors: {
+      background: 'hsl(225 30% 6%)', // Raven black-blue
+      foreground: 'hsl(220 25% 92%)', // Silver moonlight
+      card: 'hsl(225 28% 9%)',
+      cardForeground: 'hsl(220 25% 92%)',
+      primary: 'hsl(220 60% 65%)', // Raven blue
+      primaryForeground: 'hsl(0 0% 100%)',
+      secondary: 'hsl(225 25% 12%)',
+      secondaryForeground: 'hsl(220 20% 84%)',
+      muted: 'hsl(225 22% 14%)',
+      mutedForeground: 'hsl(220 15% 50%)',
+      accent: 'hsl(0 0% 75%)', // Silver accent
+      accentForeground: 'hsl(225 30% 6%)',
+      border: 'hsl(225 22% 17%)',
+      input: 'hsl(225 24% 11%)',
+      ring: 'hsl(220 60% 65%)',
+      link: 'hsl(220 55% 68%)',
+      linkHover: 'hsl(0 0% 80%)',
+    },
+    syntaxTheme: 'tokyo-night',
+  },
+  'terracotta-night': {
+    name: 'Terracotta Night',
+    colors: {
+      background: 'hsl(15 18% 8%)', // Warm terracotta dark
+      foreground: 'hsl(25 15% 88%)', // Clay white
+      card: 'hsl(15 17% 11%)',
+      cardForeground: 'hsl(25 15% 88%)',
+      primary: 'hsl(18 70% 55%)', // Terracotta orange
+      primaryForeground: 'hsl(0 0% 100%)',
+      secondary: 'hsl(15 15% 14%)',
+      secondaryForeground: 'hsl(25 12% 80%)',
+      muted: 'hsl(15 13% 16%)',
+      mutedForeground: 'hsl(20 10% 48%)',
+      accent: 'hsl(165 50% 50%)', // Sage green
+      accentForeground: 'hsl(0 0% 100%)',
+      border: 'hsl(15 13% 19%)',
+      input: 'hsl(15 14% 13%)',
+      ring: 'hsl(18 70% 55%)',
+      link: 'hsl(18 65% 58%)',
+      linkHover: 'hsl(165 50% 53%)',
+    },
+    syntaxTheme: 'monokai',
+  },
+  'northern-lights': {
+    name: 'Northern Lights',
+    colors: {
+      background: 'hsl(220 30% 7%)', // Arctic night sky
+      foreground: 'hsl(180 25% 92%)', // Aurora white
+      card: 'hsl(220 28% 10%)',
+      cardForeground: 'hsl(180 25% 92%)',
+      primary: 'hsl(150 90% 55%)', // Aurora green
+      primaryForeground: 'hsl(220 30% 7%)',
+      secondary: 'hsl(220 25% 13%)',
+      secondaryForeground: 'hsl(180 20% 84%)',
+      muted: 'hsl(220 22% 15%)',
+      mutedForeground: 'hsl(200 15% 50%)',
+      accent: 'hsl(280 80% 65%)', // Aurora purple
+      accentForeground: 'hsl(0 0% 100%)',
+      border: 'hsl(220 22% 18%)',
+      input: 'hsl(220 24% 12%)',
+      ring: 'hsl(150 90% 55%)',
+      link: 'hsl(150 85% 58%)',
+      linkHover: 'hsl(280 80% 68%)',
+    },
+    syntaxTheme: 'nord',
+  },
+  'vintage-noir': {
+    name: 'Vintage Noir',
+    colors: {
+      background: 'hsl(30 8% 7%)', // Sepia black
+      foreground: 'hsl(35 20% 82%)', // Vintage cream
+      card: 'hsl(30 8% 10%)',
+      cardForeground: 'hsl(35 20% 82%)',
+      primary: 'hsl(35 45% 55%)', // Vintage gold
+      primaryForeground: 'hsl(30 8% 7%)',
+      secondary: 'hsl(30 7% 13%)',
+      secondaryForeground: 'hsl(35 15% 74%)',
+      muted: 'hsl(30 6% 15%)',
+      mutedForeground: 'hsl(35 10% 48%)',
+      accent: 'hsl(20 50% 50%)', // Sepia accent
+      accentForeground: 'hsl(0 0% 100%)',
+      border: 'hsl(30 6% 18%)',
+      input: 'hsl(30 7% 12%)',
+      ring: 'hsl(35 45% 55%)',
+      link: 'hsl(35 40% 58%)',
+      linkHover: 'hsl(20 50% 53%)',
+    },
+    syntaxTheme: 'dark-plus',
+  },
+  'electric-dreams': {
+    name: 'Electric Dreams',
+    colors: {
+      background: 'hsl(255 30% 8%)', // Dream purple
+      foreground: 'hsl(250 20% 92%)', // Dream white
+      card: 'hsl(255 28% 11%)',
+      cardForeground: 'hsl(250 20% 92%)',
+      primary: 'hsl(315 100% 60%)', // Electric magenta
+      primaryForeground: 'hsl(0 0% 100%)',
+      secondary: 'hsl(255 25% 14%)',
+      secondaryForeground: 'hsl(250 17% 84%)',
+      muted: 'hsl(255 22% 16%)',
+      mutedForeground: 'hsl(255 12% 50%)',
+      accent: 'hsl(185 100% 50%)', // Electric cyan
+      accentForeground: 'hsl(255 30% 8%)',
+      border: 'hsl(260 22% 19%)',
+      input: 'hsl(255 24% 13%)',
+      ring: 'hsl(315 100% 60%)',
+      link: 'hsl(315 95% 63%)',
+      linkHover: 'hsl(185 100% 55%)',
+    },
+    syntaxTheme: 'synthwave-84',
+  },
+  'moss-stone': {
+    name: 'Moss Stone',
+    colors: {
+      background: 'hsl(120 12% 8%)', // Mossy stone dark
+      foreground: 'hsl(110 10% 86%)', // Lichen white
+      card: 'hsl(120 11% 11%)',
+      cardForeground: 'hsl(110 10% 86%)',
+      primary: 'hsl(130 45% 50%)', // Forest moss
+      primaryForeground: 'hsl(0 0% 100%)',
+      secondary: 'hsl(120 10% 14%)',
+      secondaryForeground: 'hsl(110 8% 78%)',
+      muted: 'hsl(120 9% 16%)',
+      mutedForeground: 'hsl(115 7% 48%)',
+      accent: 'hsl(180 40% 50%)', // Stone teal
+      accentForeground: 'hsl(0 0% 100%)',
+      border: 'hsl(120 9% 19%)',
+      input: 'hsl(120 10% 13%)',
+      ring: 'hsl(130 45% 50%)',
+      link: 'hsl(130 40% 53%)',
+      linkHover: 'hsl(180 40% 53%)',
+    },
+    syntaxTheme: 'dark-plus',
+  },
+  'cherry-cola': {
+    name: 'Cherry Cola',
+    colors: {
+      background: 'hsl(0 20% 7%)', // Cola dark
+      foreground: 'hsl(0 12% 88%)', // Cream white
+      card: 'hsl(0 18% 10%)',
+      cardForeground: 'hsl(0 12% 88%)',
+      primary: 'hsl(350 80% 55%)', // Cherry red
+      primaryForeground: 'hsl(0 0% 100%)',
+      secondary: 'hsl(0 15% 13%)',
+      secondaryForeground: 'hsl(0 10% 80%)',
+      muted: 'hsl(0 13% 15%)',
+      mutedForeground: 'hsl(0 8% 48%)',
+      accent: 'hsl(30 70% 50%)', // Caramel
+      accentForeground: 'hsl(0 0% 100%)',
+      border: 'hsl(0 13% 18%)',
+      input: 'hsl(0 14% 12%)',
+      ring: 'hsl(350 80% 55%)',
+      link: 'hsl(350 75% 58%)',
+      linkHover: 'hsl(30 70% 53%)',
+    },
+    syntaxTheme: 'dracula',
+  },
+  'galactic-purple': {
+    name: 'Galactic Purple',
+    colors: {
+      background: 'hsl(275 35% 7%)', // Galaxy purple
+      foreground: 'hsl(275 18% 92%)', // Star white
+      card: 'hsl(275 33% 10%)',
+      cardForeground: 'hsl(275 18% 92%)',
+      primary: 'hsl(285 90% 65%)', // Galactic violet
+      primaryForeground: 'hsl(0 0% 100%)',
+      secondary: 'hsl(275 30% 13%)',
+      secondaryForeground: 'hsl(275 15% 84%)',
+      muted: 'hsl(275 27% 15%)',
+      mutedForeground: 'hsl(275 12% 50%)',
+      accent: 'hsl(340 85% 65%)', // Nebula pink
+      accentForeground: 'hsl(0 0% 100%)',
+      border: 'hsl(275 27% 18%)',
+      input: 'hsl(275 29% 12%)',
+      ring: 'hsl(285 90% 65%)',
+      link: 'hsl(285 85% 68%)',
+      linkHover: 'hsl(340 85% 68%)',
+    },
+    syntaxTheme: 'shades-of-purple',
+  },
+  'ocean-abyss': {
+    name: 'Ocean Abyss',
+    colors: {
+      background: 'hsl(210 45% 5%)', // Deep ocean abyss
+      foreground: 'hsl(195 30% 90%)', // Deep sea glow
+      card: 'hsl(210 42% 8%)',
+      cardForeground: 'hsl(195 30% 90%)',
+      primary: 'hsl(185 80% 55%)', // Bioluminescent cyan
+      primaryForeground: 'hsl(210 45% 5%)',
+      secondary: 'hsl(210 38% 11%)',
+      secondaryForeground: 'hsl(195 25% 82%)',
+      muted: 'hsl(210 35% 13%)',
+      mutedForeground: 'hsl(200 18% 48%)',
+      accent: 'hsl(200 70% 55%)', // Deep sea blue
+      accentForeground: 'hsl(0 0% 100%)',
+      border: 'hsl(210 35% 16%)',
+      input: 'hsl(210 37% 10%)',
+      ring: 'hsl(185 80% 55%)',
+      link: 'hsl(185 75% 58%)',
+      linkHover: 'hsl(200 70% 58%)',
+    },
+    syntaxTheme: 'material-theme',
+  },
+  'warm-charcoal': {
+    name: 'Warm Charcoal',
+    colors: {
+      background: 'hsl(25 10% 8%)', // Warm charcoal
+      foreground: 'hsl(30 12% 88%)', // Warm white
+      card: 'hsl(25 9% 11%)',
+      cardForeground: 'hsl(30 12% 88%)',
+      primary: 'hsl(30 65% 55%)', // Warm amber
+      primaryForeground: 'hsl(25 10% 8%)',
+      secondary: 'hsl(25 8% 14%)',
+      secondaryForeground: 'hsl(30 10% 80%)',
+      muted: 'hsl(25 7% 16%)',
+      mutedForeground: 'hsl(28 7% 48%)',
+      accent: 'hsl(15 60% 55%)', // Warm coral
+      accentForeground: 'hsl(0 0% 100%)',
+      border: 'hsl(25 7% 19%)',
+      input: 'hsl(25 8% 13%)',
+      ring: 'hsl(30 65% 55%)',
+      link: 'hsl(30 60% 58%)',
+      linkHover: 'hsl(15 60% 58%)',
+    },
+    syntaxTheme: 'monokai',
+  },
+  'neon-sunset': {
+    name: 'Neon Sunset',
+    colors: {
+      background: 'hsl(280 25% 8%)', // Sunset purple
+      foreground: 'hsl(35 30% 92%)', // Warm sunset white
+      card: 'hsl(280 23% 11%)',
+      cardForeground: 'hsl(35 30% 92%)',
+      primary: 'hsl(35 100% 55%)', // Neon orange
+      primaryForeground: 'hsl(280 25% 8%)',
+      secondary: 'hsl(280 20% 14%)',
+      secondaryForeground: 'hsl(35 25% 84%)',
+      muted: 'hsl(280 18% 16%)',
+      mutedForeground: 'hsl(300 12% 50%)',
+      accent: 'hsl(330 100% 60%)', // Neon pink
+      accentForeground: 'hsl(0 0% 100%)',
+      border: 'hsl(290 18% 19%)',
+      input: 'hsl(280 19% 13%)',
+      ring: 'hsl(35 100% 55%)',
+      link: 'hsl(35 95% 58%)',
+      linkHover: 'hsl(330 100% 63%)',
+    },
+    syntaxTheme: 'synthwave-84',
+  },
+  'ice-cave': {
+    name: 'Ice Cave',
+    colors: {
+      background: 'hsl(200 35% 8%)', // Ice cave dark
+      foreground: 'hsl(195 40% 94%)', // Ice white
+      card: 'hsl(200 33% 11%)',
+      cardForeground: 'hsl(195 40% 94%)',
+      primary: 'hsl(195 80% 65%)', // Glacial blue
+      primaryForeground: 'hsl(200 35% 8%)',
+      secondary: 'hsl(200 30% 14%)',
+      secondaryForeground: 'hsl(195 35% 86%)',
+      muted: 'hsl(200 27% 16%)',
+      mutedForeground: 'hsl(195 22% 52%)',
+      accent: 'hsl(185 70% 60%)', // Crystal cyan
+      accentForeground: 'hsl(200 35% 8%)',
+      border: 'hsl(200 27% 19%)',
+      input: 'hsl(200 29% 13%)',
+      ring: 'hsl(195 80% 65%)',
+      link: 'hsl(195 75% 68%)',
+      linkHover: 'hsl(185 70% 63%)',
+    },
+    syntaxTheme: 'nord',
+  },
+  'royal-navy': {
+    name: 'Royal Navy',
+    colors: {
+      background: 'hsl(220 40% 8%)', // Deep navy
+      foreground: 'hsl(215 25% 90%)', // Naval white
+      card: 'hsl(220 38% 11%)',
+      cardForeground: 'hsl(215 25% 90%)',
+      primary: 'hsl(215 70% 55%)', // Royal blue
+      primaryForeground: 'hsl(0 0% 100%)',
+      secondary: 'hsl(220 35% 14%)',
+      secondaryForeground: 'hsl(215 20% 82%)',
+      muted: 'hsl(220 32% 16%)',
+      mutedForeground: 'hsl(215 15% 50%)',
+      accent: 'hsl(45 85% 55%)', // Naval gold
+      accentForeground: 'hsl(220 40% 8%)',
+      border: 'hsl(220 32% 19%)',
+      input: 'hsl(220 34% 13%)',
+      ring: 'hsl(215 70% 55%)',
+      link: 'hsl(215 65% 58%)',
+      linkHover: 'hsl(45 85% 58%)',
+    },
+    syntaxTheme: 'one-dark-pro',
+  },
+  'autumn-ember': {
+    name: 'Autumn Ember',
+    colors: {
+      background: 'hsl(20 22% 8%)', // Autumn night
+      foreground: 'hsl(30 20% 88%)', // Warm leaf white
+      card: 'hsl(20 20% 11%)',
+      cardForeground: 'hsl(30 20% 88%)',
+      primary: 'hsl(25 85% 55%)', // Autumn orange
+      primaryForeground: 'hsl(0 0% 100%)',
+      secondary: 'hsl(20 17% 14%)',
+      secondaryForeground: 'hsl(30 15% 80%)',
+      muted: 'hsl(20 15% 16%)',
+      mutedForeground: 'hsl(25 12% 48%)',
+      accent: 'hsl(45 80% 50%)', // Golden leaf
+      accentForeground: 'hsl(20 22% 8%)',
+      border: 'hsl(20 15% 19%)',
+      input: 'hsl(20 16% 13%)',
+      ring: 'hsl(25 85% 55%)',
+      link: 'hsl(25 80% 58%)',
+      linkHover: 'hsl(45 80% 53%)',
+    },
+    syntaxTheme: 'monokai',
+  },
+  'lavender-mist': {
+    name: 'Lavender Mist',
+    colors: {
+      background: 'hsl(265 22% 10%)', // Lavender night
+      foreground: 'hsl(260 18% 90%)', // Soft lavender white
+      card: 'hsl(265 20% 13%)',
+      cardForeground: 'hsl(260 18% 90%)',
+      primary: 'hsl(270 60% 65%)', // Lavender purple
+      primaryForeground: 'hsl(0 0% 100%)',
+      secondary: 'hsl(265 17% 16%)',
+      secondaryForeground: 'hsl(260 15% 82%)',
+      muted: 'hsl(265 15% 18%)',
+      mutedForeground: 'hsl(265 10% 50%)',
+      accent: 'hsl(300 50% 65%)', // Soft magenta
+      accentForeground: 'hsl(0 0% 100%)',
+      border: 'hsl(265 15% 21%)',
+      input: 'hsl(265 16% 15%)',
+      ring: 'hsl(270 60% 65%)',
+      link: 'hsl(270 55% 68%)',
+      linkHover: 'hsl(300 50% 68%)',
+    },
+    syntaxTheme: 'rose-pine',
+  },
+  'midnight-forest': {
+    name: 'Midnight Forest',
+    colors: {
+      background: 'hsl(150 25% 6%)', // Forest midnight
+      foreground: 'hsl(140 18% 88%)', // Moonlit leaves
+      card: 'hsl(150 23% 9%)',
+      cardForeground: 'hsl(140 18% 88%)',
+      primary: 'hsl(145 60% 50%)', // Forest green
+      primaryForeground: 'hsl(150 25% 6%)',
+      secondary: 'hsl(150 20% 12%)',
+      secondaryForeground: 'hsl(140 15% 80%)',
+      muted: 'hsl(150 18% 14%)',
+      mutedForeground: 'hsl(145 12% 48%)',
+      accent: 'hsl(55 70% 55%)', // Firefly yellow
+      accentForeground: 'hsl(150 25% 6%)',
+      border: 'hsl(150 18% 17%)',
+      input: 'hsl(150 19% 11%)',
+      ring: 'hsl(145 60% 50%)',
+      link: 'hsl(145 55% 53%)',
+      linkHover: 'hsl(55 70% 58%)',
+    },
+    syntaxTheme: 'dark-plus',
+  },
+  'wine-cellar': {
+    name: 'Wine Cellar',
+    colors: {
+      background: 'hsl(345 25% 7%)', // Wine dark
+      foreground: 'hsl(345 15% 88%)', // Aged white
+      card: 'hsl(345 23% 10%)',
+      cardForeground: 'hsl(345 15% 88%)',
+      primary: 'hsl(350 65% 50%)', // Wine red
+      primaryForeground: 'hsl(0 0% 100%)',
+      secondary: 'hsl(345 20% 13%)',
+      secondaryForeground: 'hsl(345 12% 80%)',
+      muted: 'hsl(345 18% 15%)',
+      mutedForeground: 'hsl(345 10% 48%)',
+      accent: 'hsl(30 60% 50%)', // Oak barrel
+      accentForeground: 'hsl(0 0% 100%)',
+      border: 'hsl(345 18% 18%)',
+      input: 'hsl(345 19% 12%)',
+      ring: 'hsl(350 65% 50%)',
+      link: 'hsl(350 60% 53%)',
+      linkHover: 'hsl(30 60% 53%)',
+    },
+    syntaxTheme: 'dracula',
+  },
 } as const;
 
 export type ThemeName = keyof typeof themes;
