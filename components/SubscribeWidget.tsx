@@ -2,12 +2,16 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Script from 'next/script';
-import { Bell } from 'lucide-react';
+import { Bell, CrossIcon, X } from 'lucide-react';
+
+const EMBED_WIDTH = 404;
+const EMBED_HEIGHT = 143;
 
 export function SubscribeWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const [mobileScale, setMobileScale] = useState(1);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(max-width: 768px)');
@@ -25,6 +29,29 @@ export function SubscribeWidget() {
     mediaQuery.addListener(updateIsMobile);
     return () => mediaQuery.removeListener(updateIsMobile);
   }, []);
+
+  useEffect(() => {
+    if (!isOpen || !isMobile) {
+      return;
+    }
+
+    const updateScale = () => {
+      const safeHorizontalPadding = 24;
+      const maxDrawerHeight = window.innerHeight * 0.7;
+      const availableWidth = Math.max(0, window.innerWidth - safeHorizontalPadding * 2);
+      const availableHeight = Math.max(0, maxDrawerHeight - 56);
+      const widthScale = availableWidth / EMBED_WIDTH;
+      const heightScale = availableHeight / EMBED_HEIGHT;
+      const nextScale = Math.min(1, widthScale, heightScale);
+
+      setMobileScale(Number.isFinite(nextScale) ? Math.max(0.6, nextScale) : 1);
+    };
+
+    updateScale();
+    window.addEventListener('resize', updateScale);
+
+    return () => window.removeEventListener('resize', updateScale);
+  }, [isOpen, isMobile]);
 
   useEffect(() => {
     if (!isOpen) {
@@ -69,12 +96,13 @@ export function SubscribeWidget() {
             className="fixed bottom-0 left-0 right-0 rounded-t-lg border p-3 shadow-lg"
             style={{
               backgroundColor: 'var(--color-background)',
-              borderColor: 'var(--color-border)'
+              borderColor: 'var(--color-border)',
+              maxHeight: '70vh'
             }}
           >
             <div className="flex items-center justify-between gap-3 px-2 py-1">
               <span className="text-xs" style={{ color: 'var(--color-muted-foreground)' }}>
-                Subscribe
+                
               </span>
               <button
                 type="button"
@@ -83,24 +111,35 @@ export function SubscribeWidget() {
                 style={{ color: 'var(--color-muted-foreground)' }}
                 aria-label="Close subscribe drawer"
               >
-                Close
+                <X />
               </button>
             </div>
-            <iframe
-              src="https://subscribe-forms.beehiiv.com/c88407a4-7de6-40b9-8ce4-e4dabc062f21"
-              className="beehiiv-embed"
-              data-test-id="beehiiv-embed"
-              frameBorder={0}
-              scrolling="no"
-              style={{
-                width: '100%',
-                height: 143,
-                margin: 0,
-                borderRadius: '0px 0px 0px 0px',
-                backgroundColor: 'transparent',
-                boxShadow: '0 0 #0000'
-              }}
-            />
+            <div className="flex justify-center px-2 pb-2">
+              <div
+                style={{
+                  width: EMBED_WIDTH * mobileScale,
+                  height: EMBED_HEIGHT * mobileScale
+                }}
+              >
+                <iframe
+                  src="https://subscribe-forms.beehiiv.com/c88407a4-7de6-40b9-8ce4-e4dabc062f21"
+                  className="beehiiv-embed"
+                  data-test-id="beehiiv-embed"
+                  frameBorder={0}
+                  scrolling="no"
+                  style={{
+                    width: EMBED_WIDTH,
+                    height: EMBED_HEIGHT,
+                    margin: 0,
+                    borderRadius: '0px 0px 0px 0px',
+                    backgroundColor: 'transparent',
+                    boxShadow: '0 0 #0000',
+                    transform: `scale(${mobileScale})`,
+                    transformOrigin: 'top left'
+                  }}
+                />
+              </div>
+            </div>
           </div>
         </div>
       )}
@@ -135,8 +174,8 @@ export function SubscribeWidget() {
             frameBorder={0}
             scrolling="no"
             style={{
-              width: 404,
-              height: 143,
+              width: EMBED_WIDTH,
+              height: EMBED_HEIGHT,
               margin: 0,
               borderRadius: '0px 0px 0px 0px',
               backgroundColor: 'transparent',
