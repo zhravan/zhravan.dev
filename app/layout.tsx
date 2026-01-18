@@ -25,6 +25,7 @@ import { filterDrafts } from '@/lib/plugins/drafts';
 import { LinkTracker } from '@/components/LinkTracker';
 import { SearchAnalytics } from '@/components/SearchAnalytics';
 import { OhMyScript } from '@/components/OhMyScript';
+import { SubscribeWidget } from '@/components/SubscribeWidget';
 
 const spaceGrotesk = Space_Grotesk({ subsets: ['latin'] });
 
@@ -178,6 +179,7 @@ export default function RootLayout({
               </nav>
             </header>
             <main className="max-w-2xl mx-auto px-4 sm:px-8 pt-12 pb-8 sm:pt-16 sm:pb-16">{children}</main>
+            <SubscribeWidget />
             <footer className="mt-12 md:mt-24 pb-8">
               <div className="max-w-2xl mx-auto px-4 sm:px-8 py-6 sm:py-8">
                 <div className="flex flex-col items-center gap-4">

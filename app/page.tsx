@@ -59,6 +59,7 @@ export default function Home() {
           <Link href="/projects/">projects</Link>, or <Link href="/about/">learn more about me</Link>. I am always interested in connecting with fellow developers and creators. You can reachout to me via <a href="mailto:hi@ohmyscript.com" className="transition-opacity hover:opacity-70">hi@ohmyscript.com</a>.
         </p>
       </section>
+
     </main>
   );
 }

@@ -1,0 +1,148 @@
+"use client";
+
+import { useEffect, useState } from 'react';
+import Script from 'next/script';
+import { Bell } from 'lucide-react';
+
+export function SubscribeWidget() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(max-width: 768px)');
+    const updateIsMobile = (event: MediaQueryListEvent | MediaQueryList) => {
+      setIsMobile(event.matches);
+    };
+
+    updateIsMobile(mediaQuery);
+
+    if (mediaQuery.addEventListener) {
+      mediaQuery.addEventListener('change', updateIsMobile);
+      return () => mediaQuery.removeEventListener('change', updateIsMobile);
+    }
+
+    mediaQuery.addListener(updateIsMobile);
+    return () => mediaQuery.removeListener(updateIsMobile);
+  }, []);
+
+  return (
+    <div className="fixed bottom-6 left-6 z-50 flex flex-col items-start gap-2">
+      <Script
+        src="https://subscribe-forms.beehiiv.com/embed.js"
+        strategy="afterInteractive"
+        async
+      />
+
+      {isMobile && isOpen && (
+        <div className="fixed inset-0 z-50">
+          <button
+            type="button"
+            className="absolute inset-0 h-full w-full"
+            style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}
+            onClick={() => setIsOpen(false)}
+            aria-label="Close subscribe drawer"
+          />
+          <div
+            id="subscribe-widget"
+            className="fixed bottom-0 left-0 right-0 rounded-t-lg border p-3 shadow-lg"
+            style={{
+              backgroundColor: 'var(--color-background)',
+              borderColor: 'var(--color-border)'
+            }}
+          >
+            <div className="flex items-center justify-between gap-3 px-2 py-1">
+              <span className="text-xs" style={{ color: 'var(--color-muted-foreground)' }}>
+                Subscribe
+              </span>
+              <button
+                type="button"
+                onClick={() => setIsOpen(false)}
+                className="text-xs transition-opacity hover:opacity-70"
+                style={{ color: 'var(--color-muted-foreground)' }}
+                aria-label="Close subscribe drawer"
+              >
+                Close
+              </button>
+            </div>
+            <iframe
+              src="https://subscribe-forms.beehiiv.com/c88407a4-7de6-40b9-8ce4-e4dabc062f21"
+              className="beehiiv-embed"
+              data-test-id="beehiiv-embed"
+              frameBorder={0}
+              scrolling="no"
+              style={{
+                width: '100%',
+                height: 143,
+                margin: 0,
+                borderRadius: '0px 0px 0px 0px',
+                backgroundColor: 'transparent',
+                boxShadow: '0 0 #0000'
+              }}
+            />
+          </div>
+        </div>
+      )}
+
+      {!isMobile && isOpen && (
+        <div
+          id="subscribe-widget"
+          className="rounded-md border p-2 shadow-lg"
+          style={{
+            backgroundColor: 'var(--color-background)',
+            borderColor: 'var(--color-border)'
+          }}
+        >
+          <div className="flex items-center justify-between gap-3 px-2 py-1">
+            <span className="text-xs" style={{ color: 'var(--color-muted-foreground)' }}>
+              Subscribe
+            </span>
+            <button
+              type="button"
+              onClick={() => setIsOpen(false)}
+              className="text-xs transition-opacity hover:opacity-70"
+              style={{ color: 'var(--color-muted-foreground)' }}
+              aria-label="Close subscribe form"
+            >
+              Close
+            </button>
+          </div>
+          <iframe
+            src="https://subscribe-forms.beehiiv.com/c88407a4-7de6-40b9-8ce4-e4dabc062f21"
+            className="beehiiv-embed"
+            data-test-id="beehiiv-embed"
+            frameBorder={0}
+            scrolling="no"
+            style={{
+              width: 404,
+              height: 143,
+              margin: 0,
+              borderRadius: '0px 0px 0px 0px',
+              backgroundColor: 'transparent',
+              boxShadow: '0 0 #0000',
+              maxWidth: '100%'
+            }}
+          />
+        </div>
+      )}
+
+      <button
+        type="button"
+        onClick={() => setIsOpen((prev) => !prev)}
+        className="p-2 transition-opacity hover:opacity-80"
+        style={{
+          backgroundColor: 'var(--color-muted)',
+          color: 'var(--color-foreground)',
+          border: '1px solid var(--color-border)',
+          borderRadius: '0.375rem',
+          fontSize: '0.75rem',
+          lineHeight: '1'
+        }}
+        aria-expanded={isOpen}
+        aria-controls="subscribe-widget"
+        aria-label={isOpen ? 'Hide subscribe' : 'Subscribe'}
+      >
+        <Bell size={14} aria-hidden="true" />
+      </button>
+    </div>
+  );
+}
