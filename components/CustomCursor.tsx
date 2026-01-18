@@ -1,129 +1,55 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 export function CustomCursor() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const rafRef = useRef<number | null>(null);
+  const positionRef = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
+    // Skip on touch devices
+    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return;
+
     const updateCursor = (e: MouseEvent) => {
-      setPosition({ x: e.clientX, y: e.clientY });
-      setIsVisible(true);
-    };
-
-    const handleDocumentMouseEnter = () => setIsVisible(true);
-    const handleDocumentMouseLeave = () => setIsVisible(false);
-
-    // Check for interactive elements
-    const checkHover = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      if (!target) return;
+      positionRef.current = { x: e.clientX, y: e.clientY };
       
-      // Check if target or any parent is interactive
-      let element: HTMLElement | null = target;
-      let isInteractive = false;
-      
-      // Walk up the DOM tree to find interactive elements
-      while (element && !isInteractive) {
-        const tagName = element.tagName?.toLowerCase();
-        const computedStyle = window.getComputedStyle(element);
-        
-        // Check various conditions for interactivity
-        isInteractive = 
-          tagName === 'a' ||
-          tagName === 'button' ||
-          element.closest('a') !== null ||
-          element.closest('button') !== null ||
-          element.closest('.project-card') !== null ||
-          element.closest('nav')?.querySelector('a') !== null ||
-          computedStyle.cursor === 'pointer' ||
-          element.onclick !== null ||
-          element.getAttribute('role') === 'button' ||
-          element.getAttribute('role') === 'link' ||
-          element.hasAttribute('href') ||
-          (element.parentElement?.tagName?.toLowerCase() === 'a');
-        
-        // Special check for navigation area - if we're inside nav, check for links
-        if (!isInteractive && element.closest('nav')) {
-          const navElement = element.closest('nav');
-          if (navElement) {
-            const linkElements = navElement.querySelectorAll('a');
-            linkElements.forEach(link => {
-              if (link.contains(element)) {
-                isInteractive = true;
-              }
-            });
-          }
-        }
-        
-        element = element.parentElement;
+      // Throttle updates with requestAnimationFrame
+      if (rafRef.current === null) {
+        rafRef.current = requestAnimationFrame(() => {
+          setPosition(positionRef.current);
+          setIsVisible(true);
+          rafRef.current = null;
+        });
       }
-      
-      setIsHovering(isInteractive);
-    };
-    
-    // Also listen for mouseover/mouseout on interactive elements
-    const handleInteractiveMouseOver = (e: MouseEvent) => {
+
+      // Simple hover check - just check if target is interactive
       const target = e.target as HTMLElement;
-      if (target && (
-        target.tagName === 'A' ||
-        target.closest('a') !== null ||
-        target.closest('button') !== null ||
-        target.closest('.project-card') !== null ||
-        target.closest('nav a') !== null
-      )) {
-        setIsHovering(true);
-      }
-    };
-    
-    const handleInteractiveMouseOut = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      if (target && (
-        target.tagName === 'A' ||
-        target.closest('a') !== null ||
-        target.closest('button') !== null ||
-        target.closest('.project-card') !== null ||
-        target.closest('nav a') !== null
-      )) {
-        setIsHovering(false);
+      if (target) {
+        const isInteractive = !!(
+          target.closest('a') ||
+          target.closest('button') ||
+          target.closest('[role="button"]') ||
+          target.closest('.project-card')
+        );
+        setIsHovering(isInteractive);
       }
     };
 
-    // Handler for navigation links specifically
-    const handleNavLinkHover = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      if (target && target.closest('nav a')) {
-        setIsHovering(true);
-      }
-    };
-    
-    const handleNavLinkLeave = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      if (target && !target.closest('nav a')) {
-        setIsHovering(false);
-      }
-    };
+    const handleMouseLeave = () => setIsVisible(false);
+    const handleMouseEnter = () => setIsVisible(true);
 
-    window.addEventListener('mousemove', updateCursor);
-    window.addEventListener('mousemove', checkHover);
-    document.addEventListener('mouseenter', handleDocumentMouseEnter);
-    document.addEventListener('mouseleave', handleDocumentMouseLeave);
-    document.addEventListener('mouseover', handleInteractiveMouseOver);
-    document.addEventListener('mouseout', handleInteractiveMouseOut);
-    document.addEventListener('mouseover', handleNavLinkHover, true);
-    document.addEventListener('mouseout', handleNavLinkLeave, true);
+    window.addEventListener('mousemove', updateCursor, { passive: true });
+    document.addEventListener('mouseleave', handleMouseLeave);
+    document.addEventListener('mouseenter', handleMouseEnter);
 
     return () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
       window.removeEventListener('mousemove', updateCursor);
-      window.removeEventListener('mousemove', checkHover);
-      document.removeEventListener('mouseenter', handleDocumentMouseEnter);
-      document.removeEventListener('mouseleave', handleDocumentMouseLeave);
-      document.removeEventListener('mouseover', handleInteractiveMouseOver);
-      document.removeEventListener('mouseout', handleInteractiveMouseOut);
-      document.removeEventListener('mouseover', handleNavLinkHover, true);
-      document.removeEventListener('mouseout', handleNavLinkLeave, true);
+      document.removeEventListener('mouseleave', handleMouseLeave);
+      document.removeEventListener('mouseenter', handleMouseEnter);
     };
   }, []);
 
