@@ -7,7 +7,7 @@
     "url": "https://ohmyscript.com"
   },
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev --turbopack -p 5151",
     "build": "next build",
     "export": "next export",
     "preview": "npx serve -s out",
