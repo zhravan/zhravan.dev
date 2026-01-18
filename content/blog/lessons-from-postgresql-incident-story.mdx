@@ -12,7 +12,8 @@ export const frontmatter = {
     "docker",
     "container",
     "incident-response"
-  ]
+  ],
+  ogImage: "https://dev-to-uploads.s3.amazonaws.com/uploads/articles/14z84luptmlz4i41gf7w.png"
 };
 
 # Lessons from PostgreSQL Incident Story at Nixopus
@@ -81,7 +82,11 @@ As a result, by the end of a day or so, we observed that this issue of database 
 
 [Raghav(Creator of Nixopus)](https://github.com/raghavyuva) started digging quite a lot in the GitHub issues, where such issues were raised or observed. We had found a couple of similar concerns, with similar symptoms and failures. This time, it was pointing to JIT compilation being memory intensive, and due to Out of Memory (OOM) issue.
 
-![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/41c7ytvng1xwpjhtu8s1.png)
+<Image
+  src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/41c7ytvng1xwpjhtu8s1.png"
+  alt="Just In Time Compiler"
+  caption="JIT.. Just in Time Compiler"
+/>
 
 Though, this was very unlikely to happen, made a quick fix to explicitly disable JIT compilation so that we can avoid any memory spike/OOM causing the container to fail.
 
