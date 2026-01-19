@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from 'react';
-import Script from 'next/script';
 import { Bell, CrossIcon, X } from 'lucide-react';
 
 const EMBED_WIDTH = 404;
@@ -12,6 +11,7 @@ export function SubscribeWidget() {
   const [isMobile, setIsMobile] = useState(false);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [mobileScale, setMobileScale] = useState(1);
+  const [isEmbedReady, setIsEmbedReady] = useState(false);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(max-width: 768px)');
@@ -29,6 +29,15 @@ export function SubscribeWidget() {
     mediaQuery.addListener(updateIsMobile);
     return () => mediaQuery.removeListener(updateIsMobile);
   }, []);
+
+  useEffect(() => {
+    if (!isOpen) {
+      return;
+    }
+
+    const timer = window.setTimeout(() => setIsEmbedReady(true), 50);
+    return () => window.clearTimeout(timer);
+  }, [isOpen]);
 
   useEffect(() => {
     if (!isOpen || !isMobile) {
@@ -76,12 +85,6 @@ export function SubscribeWidget() {
 
   return (
     <div ref={containerRef} className="fixed bottom-6 left-6 z-50 flex flex-col items-start gap-2">
-      <Script
-        src="https://subscribe-forms.beehiiv.com/embed.js"
-        strategy="afterInteractive"
-        async
-      />
-
       {isMobile && isOpen && (
         <div className="fixed inset-0 z-50">
           <button
@@ -93,17 +96,14 @@ export function SubscribeWidget() {
           />
           <div
             id="subscribe-widget"
-            className="fixed bottom-0 left-0 right-0 rounded-t-lg border p-3 shadow-lg"
+            className="fixed bottom-0 left-0 right-0 rounded-t-lg border-t border-l border-r shadow-lg"
             style={{
               backgroundColor: 'var(--color-background)',
               borderColor: 'var(--color-border)',
-              maxHeight: '70vh'
+              overflow: 'hidden'
             }}
           >
-            <div className="flex items-center justify-between gap-3 px-2 py-1">
-              <span className="text-xs" style={{ color: 'var(--color-muted-foreground)' }}>
-                
-              </span>
+            <div className="flex items-center justify-end px-3 py-2">
               <button
                 type="button"
                 onClick={() => setIsOpen(false)}
@@ -114,30 +114,53 @@ export function SubscribeWidget() {
                 <X />
               </button>
             </div>
-            <div className="flex justify-center px-2 pb-2">
+            <div
+              style={{
+                width: '100%',
+                overflow: 'hidden',
+                display: 'flex',
+                justifyContent: 'center',
+                paddingBottom: 8
+              }}
+            >
               <div
                 style={{
-                  width: EMBED_WIDTH * mobileScale,
-                  height: EMBED_HEIGHT * mobileScale
+                  width: (EMBED_WIDTH - 48) * mobileScale,
+                  height: (EMBED_HEIGHT - 12) * mobileScale,
+                  overflow: 'hidden',
+                  position: 'relative'
                 }}
               >
-                <iframe
-                  src="https://subscribe-forms.beehiiv.com/c88407a4-7de6-40b9-8ce4-e4dabc062f21"
-                  className="beehiiv-embed"
-                  data-test-id="beehiiv-embed"
-                  frameBorder={0}
-                  scrolling="no"
+                <div
                   style={{
-                    width: EMBED_WIDTH,
-                    height: EMBED_HEIGHT,
-                    margin: 0,
-                    borderRadius: '0px 0px 0px 0px',
-                    backgroundColor: 'transparent',
-                    boxShadow: '0 0 #0000',
+                    width: EMBED_WIDTH - 48,
+                    height: EMBED_HEIGHT - 12,
+                    overflow: 'hidden',
                     transform: `scale(${mobileScale})`,
                     transformOrigin: 'top left'
                   }}
-                />
+                >
+                  {isEmbedReady && (
+                    <iframe
+                      src="https://subscribe-forms.beehiiv.com/c88407a4-7de6-40b9-8ce4-e4dabc062f21"
+                      className="beehiiv-embed"
+                      data-test-id="beehiiv-embed"
+                      frameBorder={0}
+                      scrolling="no"
+                      style={{
+                        width: EMBED_WIDTH,
+                        height: EMBED_HEIGHT,
+                        marginLeft: -8,
+                        marginTop: 0,
+                        borderRadius: 0,
+                        backgroundColor: 'transparent',
+                        boxShadow: 'none',
+                        display: 'block',
+                        border: 0
+                      }}
+                    />
+                  )}
+                </div>
               </div>
             </div>
           </div>
@@ -167,22 +190,33 @@ export function SubscribeWidget() {
               Close
             </button>
           </div>
-          <iframe
-            src="https://subscribe-forms.beehiiv.com/c88407a4-7de6-40b9-8ce4-e4dabc062f21"
-            className="beehiiv-embed"
-            data-test-id="beehiiv-embed"
-            frameBorder={0}
-            scrolling="no"
+          <div
             style={{
-              width: EMBED_WIDTH,
+              width: EMBED_WIDTH - 20,
               height: EMBED_HEIGHT,
-              margin: 0,
-              borderRadius: '0px 0px 0px 0px',
-              backgroundColor: 'transparent',
-              boxShadow: '0 0 #0000',
-              maxWidth: '100%'
+              overflow: 'hidden'
             }}
-          />
+          >
+            {isEmbedReady && (
+              <iframe
+                src="https://subscribe-forms.beehiiv.com/c88407a4-7de6-40b9-8ce4-e4dabc062f21"
+                className="beehiiv-embed"
+                data-test-id="beehiiv-embed"
+                frameBorder={0}
+                scrolling="no"
+                style={{
+                  width: EMBED_WIDTH,
+                  height: EMBED_HEIGHT,
+                  marginLeft: -10,
+                  borderRadius: 0,
+                  backgroundColor: 'transparent',
+                  boxShadow: 'none',
+                  display: 'block',
+                  border: 0
+                }}
+              />
+            )}
+          </div>
         </div>
       )}
 
