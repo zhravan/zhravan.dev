@@ -4,15 +4,39 @@ import { useState, useMemo, useEffect } from 'react';
 import Link from 'next/link';
 import type { ContentItem } from '@/lib/content';
 
+function basePathForContentItem(post: ContentItem): string {
+  switch (post.contentType) {
+    case 'blog':
+      return '/blogs';
+    case 'thoughts':
+      return '/musings';
+    case 'second-brain':
+      return '/second-brain';
+    case 'newsletter':
+      return '/newsletter';
+    default:
+      return '/blogs';
+  }
+}
+
 interface TabbedWritingViewProps {
   blogPosts: ContentItem[];
   thoughts: ContentItem[];
   secondBrain: ContentItem[];
-  defaultTab?: 'all' | 'blogs' | 'musings' | 'second-brain';
+  newsletterPosts: ContentItem[];
+  defaultTab?: 'all' | 'blogs' | 'musings' | 'second-brain' | 'newsletter';
 }
 
-export function TabbedWritingView({ blogPosts, thoughts, secondBrain, defaultTab = 'all' }: TabbedWritingViewProps) {
-  const [activeTab, setActiveTab] = useState<'all' | 'blogs' | 'musings' | 'second-brain'>(defaultTab);
+export function TabbedWritingView({
+  blogPosts,
+  thoughts,
+  secondBrain,
+  newsletterPosts,
+  defaultTab = 'all',
+}: TabbedWritingViewProps) {
+  const [activeTab, setActiveTab] = useState<
+    'all' | 'blogs' | 'musings' | 'second-brain' | 'newsletter'
+  >(defaultTab);
   const [selectedTags, setSelectedTags] = useState<Set<string>>(new Set());
 
   const formatDate = (iso: string) => {
@@ -37,10 +61,21 @@ export function TabbedWritingView({ blogPosts, thoughts, secondBrain, defaultTab
       .map(year => ({ year, items: byYear[year] }));
   };
 
+  const writingItems = [...blogPosts, ...thoughts, ...secondBrain, ...newsletterPosts];
+
   // Combine and sort all posts by date for 'all' tab
-  const allPostsUnfiltered = activeTab === 'all'
-    ? [...blogPosts, ...thoughts, ...secondBrain].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-    : activeTab === 'blogs' ? blogPosts : activeTab === 'musings' ? thoughts : secondBrain;
+  const allPostsUnfiltered =
+    activeTab === 'all'
+      ? [...writingItems].sort(
+          (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+        )
+      : activeTab === 'blogs'
+        ? blogPosts
+        : activeTab === 'musings'
+          ? thoughts
+          : activeTab === 'second-brain'
+            ? secondBrain
+            : newsletterPosts;
 
   // Extract unique tags from current tab's posts
   const availableTags = useMemo(() => {
@@ -82,15 +117,8 @@ export function TabbedWritingView({ blogPosts, thoughts, secondBrain, defaultTab
     });
   };
 
-  // Determine the correct URL based on post type
-  const getPostUrl = (post: ContentItem) => {
-    if (activeTab === 'all') {
-      // Check if post is from second-brain, thoughts (musings), or blog
-      if (secondBrain.some(s => s.slug === post.slug)) return `/second-brain/${post.slug}/`;
-      return thoughts.some(t => t.slug === post.slug) ? `/musings/${post.slug}/` : `/blogs/${post.slug}/`;
-    }
-    return activeTab === 'blogs' ? `/blogs/${post.slug}/` : activeTab === 'musings' ? `/musings/${post.slug}/` : `/second-brain/${post.slug}/`;
-  };
+  const getPostUrl = (post: ContentItem) =>
+    `${basePathForContentItem(post)}/${post.slug}/`;
 
   return (
     <div className="space-y-6 text-xxs">
@@ -104,7 +132,7 @@ export function TabbedWritingView({ blogPosts, thoughts, secondBrain, defaultTab
             borderColor: activeTab === 'all' ? 'var(--color-foreground)' : 'transparent',
           }}
         >
-          All <span className="text-[10px] opacity-40">({[...blogPosts, ...thoughts, ...secondBrain].length})</span>
+          All <span className="text-[10px] opacity-40">({writingItems.length})</span>
         </button>
         <button
           onClick={() => setActiveTab('blogs')}
@@ -135,6 +163,16 @@ export function TabbedWritingView({ blogPosts, thoughts, secondBrain, defaultTab
           }}
         >
           Second Brain <span className="text-[10px] opacity-40">({secondBrain.length})</span>
+        </button>
+        <button
+          onClick={() => setActiveTab('newsletter')}
+          className="text-xs transition-all hover:opacity-70 pb-1 border-b-2"
+          style={{
+            color: activeTab === 'newsletter' ? 'var(--color-foreground)' : 'var(--color-muted-foreground)',
+            borderColor: activeTab === 'newsletter' ? 'var(--color-foreground)' : 'transparent',
+          }}
+        >
+          Newsletter <span className="text-[10px] opacity-40">({newsletterPosts.length})</span>
         </button>
       </div>
 

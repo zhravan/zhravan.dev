@@ -47,6 +47,15 @@ contentTypes:
     description: A digital garden for storing and organizing knowledge, ideas, and personal insights.
     showInNav: false
 
+  - id: newsletter
+    label: Newsletter
+    path: /newsletter
+    contentDir: content/newsletter
+    icon: Mail
+    enabled: true
+    description: Occasional updates, essays, and links—what I would send to friends who build software.
+    showInNav: false
+
   - id: reading
     label: Reading
     path: /reading

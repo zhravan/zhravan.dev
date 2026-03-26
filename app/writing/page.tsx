@@ -8,7 +8,8 @@ import type { Metadata } from 'next';
 
 const pageMetadata = {
   title: 'Writing',
-  description: 'Sometimes write blogs, personal musings, and use space as a second brain'
+  description:
+    'Blogs, musings, second-brain notes, and occasional newsletter issues.'
 };
 
 export const metadata: Metadata = getPageMetadata({
@@ -27,10 +28,19 @@ export default function Blog() {
   const allSecondBrain = getContentByType('second-brain');
   const secondBrain = filterDrafts(allSecondBrain);
 
+  const allNewsletter = getContentByType('newsletter');
+  const newsletterPosts = filterDrafts(allNewsletter);
+
   return (
     <div className="space-y-6 text-xxs">
       <PageHeader metadata={pageMetadata} hideTitle={true} />
-      <TabbedWritingView blogPosts={blogPosts} thoughts={thoughts} secondBrain={secondBrain} defaultTab="all" />
+      <TabbedWritingView
+        blogPosts={blogPosts}
+        thoughts={thoughts}
+        secondBrain={secondBrain}
+        newsletterPosts={newsletterPosts}
+        defaultTab="all"
+      />
     </div>
   );
 }
