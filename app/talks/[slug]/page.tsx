@@ -11,7 +11,7 @@ import { getTocForPost } from '@/lib/plugins/toc';
 import { getShareUrl } from '@/lib/plugins/social-share';
 import { getPostMetadata, getArticleStructuredData } from '@/lib/seo';
 import { StructuredData } from '@/components/StructuredData';
-import { BackLink } from '@/components/navigation';
+import { Breadcrumbs } from '@/components/navigation';
 import { DraftBadge } from '@/components/DraftBadge';
 import { TagsList } from '@/components/TagsList';
 import { ReadingTimeBadge } from '@/components/ReadingTimeBadge';
@@ -19,7 +19,7 @@ import { TableOfContents } from '@/components/TableOfContents';
 import { MobileTOC } from '@/components/MobileTOC';
 import { SocialShare } from '@/components/SocialShare';
 import { AnalyticsTracker } from '@/components/AnalyticsTracker';
-import { getBreadcrumbStructuredData } from '@/lib/breadcrumbs';
+import { getBreadcrumbStructuredData, type BreadcrumbItem } from '@/lib/breadcrumbs';
 import type { Metadata } from 'next';
 
 interface PageProps {
@@ -110,11 +110,12 @@ export default async function TalksPost({ params }: PageProps) {
     tags: item.tags
   });
 
-  const breadcrumbData = getBreadcrumbStructuredData([
+  const breadcrumbItems: BreadcrumbItem[] = [
     { name: 'Home', url: '/' },
     { name: 'Talks', url: '/talks/' },
     { name: item.title, url: `/talks/${slug}/` },
-  ]);
+  ];
+  const breadcrumbData = getBreadcrumbStructuredData(breadcrumbItems);
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
@@ -132,8 +133,8 @@ export default async function TalksPost({ params }: PageProps) {
         previewToken={draftsConfig?.previewToken || ''}
       >
         <div className="space-y-6 text-xxs">
-          <div className="flex items-center gap-2 mb-8">
-            <BackLink href="/talks/">Back to Talks</BackLink>
+          <div className="flex flex-wrap items-center gap-2 mb-8">
+            <Breadcrumbs items={breadcrumbItems} />
             {isDraft(item) && <DraftBadge draft={true} />}
           </div>
 
