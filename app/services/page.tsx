@@ -146,7 +146,7 @@ export default function Services() {
         </div>
         <ClienteleList
           clients={[
-            { name: 'AbsorbX', url: 'https://www.linkedin.com/company/absorbx/', status: 'active' },
+            { name: 'AbsorbX', url: 'https://www.linkedin.com/company/absorbx/', status: 'past' },
             { name: 'Acies', url: 'https://www.acies.consulting/', status: 'past' },
             { name: 'CodeVyasa', url: 'https://www.codevyasa.com/', status: 'past' },
             { name: 'Codive', url: 'https://codive.co/', status: 'past' },
