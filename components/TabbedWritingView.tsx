@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useCallback, useLayoutEffect, useEffect } from 'react';
+import { useMemo, useCallback, useLayoutEffect, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import type { ContentItem } from '@/lib/content';
@@ -38,6 +38,14 @@ function persistWritingState(tab: WritingTab, tags: string[]) {
   }
 }
 
+function tagsEqual(a: Set<string>, b: Set<string>): boolean {
+  if (a.size !== b.size) return false;
+  for (const x of a) {
+    if (!b.has(x)) return false;
+  }
+  return true;
+}
+
 function basePathForContentItem(post: ContentItem): string {
   switch (post.contentType) {
     case 'blog':
@@ -61,6 +69,12 @@ interface TabbedWritingViewProps {
   defaultTab?: WritingTab;
 }
 
+type ViewState = {
+  ready: boolean;
+  tab: WritingTab;
+  tags: Set<string>;
+};
+
 export function TabbedWritingView({
   blogPosts,
   thoughts,
@@ -72,15 +86,11 @@ export function TabbedWritingView({
   const router = useRouter();
   const pathname = usePathname();
 
-  const activeTab = useMemo(
-    () => parseTabParam(searchParams.get('tab'), defaultTab),
-    [searchParams, defaultTab]
-  );
-
-  const selectedTags = useMemo(
-    () => new Set(searchParams.getAll('tag').filter(Boolean)),
-    [searchParams]
-  );
+  const [view, setView] = useState<ViewState>(() => ({
+    ready: false,
+    tab: defaultTab,
+    tags: new Set<string>(),
+  }));
 
   const buildUrl = useCallback(
     (tab: WritingTab, tags: Set<string>) => {
@@ -95,9 +105,111 @@ export function TabbedWritingView({
     [pathname, defaultTab]
   );
 
+  /**
+   * Resolve tab/tags from the real URL and sessionStorage before paint, so we never
+   * flash "All" while useSearchParams / router.replace catch up.
+   */
+  useLayoutEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    if (!isWritingRoute(pathname)) {
+      setView({ ready: true, tab: defaultTab, tags: new Set() });
+      return;
+    }
+
+    const sp = new URLSearchParams(window.location.search);
+    let tab = parseTabParam(sp.get('tab'), defaultTab);
+    let tags = new Set(sp.getAll('tag').filter(Boolean));
+
+    if (!sp.toString()) {
+      try {
+        const raw = sessionStorage.getItem(WRITING_VIEW_STATE_KEY);
+        if (raw) {
+          const parsed = JSON.parse(raw) as { tab?: string; tags?: string[] };
+          tab = parseTabParam(parsed.tab ?? null, defaultTab);
+          tags = new Set(Array.isArray(parsed.tags) ? parsed.tags.filter(Boolean) : []);
+          const params = new URLSearchParams();
+          if (tab !== defaultTab) params.set('tab', tab);
+          tags.forEach((t) => params.append('tag', t));
+          const qs = params.toString();
+          if (qs) {
+            router.replace(`${pathname}?${qs}`, { scroll: false });
+          }
+        }
+      } catch {
+        /* ignore */
+      }
+    }
+
+    persistWritingState(tab, [...tags]);
+    setView({ ready: true, tab, tags });
+  }, [pathname, router, defaultTab]);
+
+  /**
+   * Browser back/forward and client navigations: align view with the URL.
+   * Skip while `searchParams` is still empty so we do not flash/overwrite the tab
+   * that `useLayoutEffect` already set from `window.location` / sessionStorage
+   * before `router.replace` updates Next’s searchParams.
+   */
+  useEffect(() => {
+    if (!view.ready) return;
+    if (!searchParams.toString()) return;
+
+    const t = parseTabParam(searchParams.get('tab'), defaultTab);
+    const g = new Set(searchParams.getAll('tag').filter(Boolean));
+    setView((prev) => {
+      if (prev.tab === t && tagsEqual(prev.tags, g)) return prev;
+      persistWritingState(t, [...g]);
+      return { ...prev, tab: t, tags: g };
+    });
+  }, [searchParams, defaultTab, view.ready]);
+
+  /**
+   * Client navigation to bare `/writing/` (e.g. header link): no query string, so
+   * `searchParams` stays empty — restore from sessionStorage like the first visit.
+   */
+  useEffect(() => {
+    if (!view.ready) return;
+    if (!isWritingRoute(pathname)) return;
+    if (searchParams.toString()) return;
+    if (typeof window === 'undefined') return;
+    if (window.location.search) return;
+
+    try {
+      const raw = sessionStorage.getItem(WRITING_VIEW_STATE_KEY);
+      if (raw) {
+        const parsed = JSON.parse(raw) as { tab?: string; tags?: string[] };
+        const tab = parseTabParam(parsed.tab ?? null, defaultTab);
+        const tags = new Set(Array.isArray(parsed.tags) ? parsed.tags.filter(Boolean) : []);
+        const params = new URLSearchParams();
+        if (tab !== defaultTab) params.set('tab', tab);
+        tags.forEach((x) => params.append('tag', x));
+        const qs = params.toString();
+        if (qs) {
+          router.replace(`${pathname}?${qs}`, { scroll: false });
+        }
+        setView((prev) => {
+          if (prev.tab === tab && tagsEqual(prev.tags, tags)) return prev;
+          persistWritingState(tab, [...tags]);
+          return { ...prev, tab, tags };
+        });
+        return;
+      }
+    } catch {
+      /* ignore */
+    }
+
+    setView((prev) => {
+      if (prev.tab === defaultTab && prev.tags.size === 0) return prev;
+      persistWritingState(defaultTab, []);
+      return { ...prev, tab: defaultTab, tags: new Set() };
+    });
+  }, [pathname, searchParams, view.ready, defaultTab, router]);
+
   const setTab = useCallback(
     (tab: WritingTab) => {
       const nextTags = new Set<string>();
+      setView((v) => ({ ...v, ready: true, tab, tags: nextTags }));
       persistWritingState(tab, []);
       router.replace(buildUrl(tab, nextTags), { scroll: false });
     },
@@ -106,48 +218,20 @@ export function TabbedWritingView({
 
   const toggleTag = useCallback(
     (tag: string) => {
-      const next = new Set(selectedTags);
-      if (next.has(tag)) {
-        next.delete(tag);
-      } else {
-        next.add(tag);
-      }
-      persistWritingState(activeTab, [...next]);
-      router.replace(buildUrl(activeTab, next), { scroll: false });
+      setView((v) => {
+        const next = new Set(v.tags);
+        if (next.has(tag)) next.delete(tag);
+        else next.add(tag);
+        persistWritingState(v.tab, [...next]);
+        router.replace(buildUrl(v.tab, next), { scroll: false });
+        return { ...v, tags: next };
+      });
     },
-    [activeTab, selectedTags, router, buildUrl]
+    [router, buildUrl]
   );
 
-  /** Bare /writing/ with no query: restore last tab/tags from session (e.g. main nav). */
-  useLayoutEffect(() => {
-    if (typeof window === 'undefined') return;
-    if (!isWritingRoute(pathname)) return;
-    if (searchParams.toString()) return;
-    try {
-      const raw = sessionStorage.getItem(WRITING_VIEW_STATE_KEY);
-      if (!raw) return;
-      const parsed = JSON.parse(raw) as { tab?: string; tags?: string[] };
-      const tab = parseTabParam(parsed.tab ?? null, defaultTab);
-      const tags = Array.isArray(parsed.tags) ? parsed.tags.filter(Boolean) : [];
-      const params = new URLSearchParams();
-      if (tab !== defaultTab) params.set('tab', tab);
-      tags.forEach((t) => params.append('tag', t));
-      const qs = params.toString();
-      if (!qs) return;
-      router.replace(`${pathname}?${qs}`, { scroll: false });
-    } catch {
-      /* ignore invalid JSON */
-    }
-  }, [pathname, searchParams, router, defaultTab]);
-
-  /** When URL has filters, persist so “Writing” nav without query can restore them. */
-  useEffect(() => {
-    if (!isWritingRoute(pathname)) return;
-    if (!searchParams.toString()) return;
-    const tab = parseTabParam(searchParams.get('tab'), defaultTab);
-    const tags = searchParams.getAll('tag').filter(Boolean);
-    persistWritingState(tab, tags);
-  }, [pathname, searchParams, defaultTab]);
+  const activeTab = view.tab;
+  const selectedTags = view.tags;
 
   const formatDate = (iso: string) => {
     if (!iso) return '';
@@ -168,12 +252,11 @@ export function TabbedWritingView({
 
     return Object.keys(byYear)
       .sort((a, b) => (b === 'Unknown' ? -1 : a === 'Unknown' ? 1 : Number(b) - Number(a)))
-      .map(year => ({ year, items: byYear[year] }));
+      .map((year) => ({ year, items: byYear[year] }));
   };
 
   const writingItems = [...blogPosts, ...thoughts, ...secondBrain, ...newsletterPosts];
 
-  // Combine and sort all posts by date for 'all' tab
   const allPostsUnfiltered =
     activeTab === 'all'
       ? [...writingItems].sort(
@@ -187,24 +270,22 @@ export function TabbedWritingView({
             ? secondBrain
             : newsletterPosts;
 
-  // Extract unique tags from current tab's posts
   const availableTags = useMemo(() => {
     const tagSet = new Set<string>();
-    allPostsUnfiltered.forEach(post => {
+    allPostsUnfiltered.forEach((post) => {
       if (post.tags) {
-        post.tags.forEach(tag => tagSet.add(tag));
+        post.tags.forEach((t) => tagSet.add(t));
       }
     });
     return Array.from(tagSet).sort();
   }, [allPostsUnfiltered]);
 
-  // Filter posts based on selected tags
   const allPosts = useMemo(() => {
     if (selectedTags.size === 0) {
       return allPostsUnfiltered;
     }
-    return allPostsUnfiltered.filter(post => 
-      post.tags && post.tags.some(tag => selectedTags.has(tag))
+    return allPostsUnfiltered.filter(
+      (post) => post.tags && post.tags.some((t) => selectedTags.has(t))
     );
   }, [allPostsUnfiltered, selectedTags]);
 
@@ -216,10 +297,43 @@ export function TabbedWritingView({
   const postTitleLinkClass =
     'hover:opacity-70 transition-opacity truncate font-semibold inline-flex items-center gap-1 min-w-0';
 
+  if (!view.ready) {
+    return (
+      <div
+        className="space-y-6 text-xxs min-h-[280px]"
+        aria-busy="true"
+        aria-label="Loading writing list"
+      >
+        <div className="flex flex-wrap gap-4 pb-2">
+          {[1, 2, 3, 4, 5].map((i) => (
+            <div
+              key={i}
+              className="h-5 w-14 rounded animate-pulse opacity-30"
+              style={{ backgroundColor: 'var(--color-muted)' }}
+            />
+          ))}
+        </div>
+        <div className="space-y-3 opacity-30">
+          <div
+            className="h-3 w-20 rounded animate-pulse"
+            style={{ backgroundColor: 'var(--color-muted)' }}
+          />
+          <div
+            className="h-4 max-w-md rounded animate-pulse"
+            style={{ backgroundColor: 'var(--color-muted)' }}
+          />
+          <div
+            className="h-4 max-w-sm rounded animate-pulse"
+            style={{ backgroundColor: 'var(--color-muted)' }}
+          />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-6 text-xxs">
-      {/* Tabs */}
-      <div className="flex items-center gap-4 pb-2">
+      <div className="flex items-center gap-4 pb-2 flex-wrap">
         <button
           type="button"
           onClick={() => setTab('all')}
@@ -258,8 +372,12 @@ export function TabbedWritingView({
           onClick={() => setTab('second-brain')}
           className="text-xs transition-all hover:opacity-70 pb-1 border-b-2"
           style={{
-            color: activeTab === 'second-brain' ? 'var(--color-foreground)' : 'var(--color-muted-foreground)',
-            borderColor: activeTab === 'second-brain' ? 'var(--color-foreground)' : 'transparent',
+            color:
+              activeTab === 'second-brain'
+                ? 'var(--color-foreground)'
+                : 'var(--color-muted-foreground)',
+            borderColor:
+              activeTab === 'second-brain' ? 'var(--color-foreground)' : 'transparent',
           }}
         >
           Second Brain <span className="text-[10px] opacity-40">({secondBrain.length})</span>
@@ -269,15 +387,18 @@ export function TabbedWritingView({
           onClick={() => setTab('newsletter')}
           className="text-xs transition-all hover:opacity-70 pb-1 border-b-2"
           style={{
-            color: activeTab === 'newsletter' ? 'var(--color-foreground)' : 'var(--color-muted-foreground)',
-            borderColor: activeTab === 'newsletter' ? 'var(--color-foreground)' : 'transparent',
+            color:
+              activeTab === 'newsletter'
+                ? 'var(--color-foreground)'
+                : 'var(--color-muted-foreground)',
+            borderColor:
+              activeTab === 'newsletter' ? 'var(--color-foreground)' : 'transparent',
           }}
         >
           Newsletter <span className="text-[10px] opacity-40">({newsletterPosts.length})</span>
         </button>
       </div>
 
-      {/* Content */}
       <div className="space-y-5">
         {groupedPosts.length > 0 ? (
           groupedPosts.map(({ year, items }) => (
@@ -330,16 +451,12 @@ export function TabbedWritingView({
             </section>
           ))
         ) : (
-          <div className="text-xs opacity-50 py-8">
-            No posts found matching selected tags.
-          </div>
+          <div className="text-xs opacity-50 py-8">No posts found matching selected tags.</div>
         )}
       </div>
 
-      {/* Tags Section */}
       {availableTags.length > 0 && (
         <div className="pt-8 mt-8 border-t" style={{ borderColor: 'hsla(220, 12%, 15%, 0.4)' }}>
-          {/* Selected Tags Preview */}
           {selectedTags.size > 0 && (
             <div className="mb-4">
               <div className="text-[10px] opacity-50 mb-2">Selected tags:</div>
@@ -347,12 +464,13 @@ export function TabbedWritingView({
                 {Array.from(selectedTags).map((tag) => (
                   <button
                     key={tag}
+                    type="button"
                     onClick={() => toggleTag(tag)}
                     className="px-2 py-1 rounded border text-[10px] transition-all"
                     style={{
                       borderColor: 'var(--color-foreground)',
                       backgroundColor: 'var(--color-muted)',
-                      color: 'var(--color-foreground)'
+                      color: 'var(--color-foreground)',
                     }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.opacity = '0.8';
@@ -370,7 +488,6 @@ export function TabbedWritingView({
             </div>
           )}
 
-          {/* All Tags */}
           <div>
             <div className="text-[10px] opacity-50 mb-2">
               {selectedTags.size > 0 ? 'Filter by tags:' : 'Tags:'}
@@ -381,13 +498,14 @@ export function TabbedWritingView({
                 return (
                   <button
                     key={tag}
+                    type="button"
                     onClick={() => toggleTag(tag)}
                     className="px-1.5 py-0.5 rounded border text-[10px] transition-all"
                     style={{
                       borderColor: isSelected ? 'var(--color-foreground)' : 'var(--color-border)',
                       backgroundColor: isSelected ? 'var(--color-muted)' : 'transparent',
                       color: isSelected ? 'var(--color-foreground)' : 'var(--color-muted-foreground)',
-                      opacity: isSelected ? 1 : 0.7
+                      opacity: isSelected ? 1 : 0.7,
                     }}
                     onMouseEnter={(e) => {
                       if (!isSelected) {
