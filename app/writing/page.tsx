@@ -1,6 +1,7 @@
 import { getAllPosts } from '@/lib/blog';
 import { getContentByType } from '@/lib/content';
 import { filterDrafts } from '@/lib/plugins/drafts';
+import { getNewsletterListItems } from '@/lib/newsletter-feeds';
 import { PageHeader } from '@/components/PageHeader';
 import { TabbedWritingView } from '@/components/TabbedWritingView';
 import { getPageMetadata } from '@/lib/seo';
@@ -9,7 +10,7 @@ import type { Metadata } from 'next';
 const pageMetadata = {
   title: 'Writing',
   description:
-    'Blogs, musings, second-brain notes, and occasional newsletter issues.'
+    'Blogs, musings, second-brain notes, and newsletter issues (site + Beehiiv RSS).'
 };
 
 export const metadata: Metadata = getPageMetadata({
@@ -18,7 +19,7 @@ export const metadata: Metadata = getPageMetadata({
   path: '/writing/'
 });
 
-export default function Blog() {
+export default async function Blog() {
   const allBlogPosts = getAllPosts();
   const blogPosts = filterDrafts(allBlogPosts);
 
@@ -28,8 +29,7 @@ export default function Blog() {
   const allSecondBrain = getContentByType('second-brain');
   const secondBrain = filterDrafts(allSecondBrain);
 
-  const allNewsletter = getContentByType('newsletter');
-  const newsletterPosts = filterDrafts(allNewsletter);
+  const newsletterPosts = await getNewsletterListItems();
 
   return (
     <div className="space-y-6 text-xxs">

@@ -53,7 +53,7 @@ contentTypes:
     contentDir: content/newsletter
     icon: Mail
     enabled: true
-    description: Occasional updates, essays, and links—what I would send to friends who build software.
+    description: Site-written issues plus syndicated posts from configured RSS (e.g. Beehiiv).
     showInNav: false
 
   - id: reading

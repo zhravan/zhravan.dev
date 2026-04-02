@@ -120,6 +120,9 @@ export function TabbedWritingView({
   const getPostUrl = (post: ContentItem) =>
     `${basePathForContentItem(post)}/${post.slug}/`;
 
+  const postTitleLinkClass =
+    'hover:opacity-70 transition-opacity truncate font-semibold inline-flex items-center gap-1 min-w-0';
+
   return (
     <div className="space-y-6 text-xxs">
       {/* Tabs */}
@@ -188,12 +191,23 @@ export function TabbedWritingView({
                     <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-2 text-xs leading-relaxed">
                       <div className="flex items-baseline gap-2 min-w-0 flex-1">
                         <span className="opacity-30">→</span>
-                        <Link
-                          href={getPostUrl(post)}
-                          className="hover:opacity-70 transition-opacity truncate font-semibold"
-                        >
-                          {post.title}
-                        </Link>
+                        {post.externalUrl ? (
+                          <a
+                            href={post.externalUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={postTitleLinkClass}
+                          >
+                            <span className="truncate">{post.title}</span>
+                            <span className="opacity-40 shrink-0 text-[10px]" aria-hidden>
+                              ↗
+                            </span>
+                          </a>
+                        ) : (
+                          <Link href={getPostUrl(post)} className={postTitleLinkClass}>
+                            {post.title}
+                          </Link>
+                        )}
                         <time className="opacity-50 text-[11px] shrink-0" dateTime={post.date}>
                           {formatDate(post.date)}
                         </time>
