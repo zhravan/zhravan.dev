@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { getAllPosts } from '@/lib/blog';
 import { getContentByType } from '@/lib/content';
 import { filterDrafts } from '@/lib/plugins/drafts';
@@ -10,7 +11,7 @@ import type { Metadata } from 'next';
 const pageMetadata = {
   title: 'Writing',
   description:
-    'Blogs, musings, second-brain notes, and newsletter issues (site + Beehiiv RSS).'
+    'Blogs, musings, second-brain notes, and newsletter issues.'
 };
 
 export const metadata: Metadata = getPageMetadata({
@@ -34,13 +35,21 @@ export default async function Blog() {
   return (
     <div className="space-y-6 text-xxs">
       <PageHeader metadata={pageMetadata} hideTitle={true} />
-      <TabbedWritingView
-        blogPosts={blogPosts}
-        thoughts={thoughts}
-        secondBrain={secondBrain}
-        newsletterPosts={newsletterPosts}
-        defaultTab="all"
-      />
+      <Suspense
+        fallback={
+          <div className="text-xs opacity-50 py-6" aria-live="polite">
+            Loading writing…
+          </div>
+        }
+      >
+        <TabbedWritingView
+          blogPosts={blogPosts}
+          thoughts={thoughts}
+          secondBrain={secondBrain}
+          newsletterPosts={newsletterPosts}
+          defaultTab="all"
+        />
+      </Suspense>
     </div>
   );
 }

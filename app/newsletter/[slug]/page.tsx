@@ -21,6 +21,7 @@ import { DraftPreviewGate } from '@/components/DraftPreviewGate';
 import { SeriesNavigator } from '@/components/SeriesNavigator';
 import { Suspense } from 'react';
 import { getBreadcrumbStructuredData, type BreadcrumbItem } from '@/lib/breadcrumbs';
+import { getWritingSubsectionCrumb } from '@/lib/writing-section-breadcrumb';
 import { AnalyticsTracker } from '@/components/AnalyticsTracker';
 import { getShareUrl } from '@/lib/plugins/social-share';
 
@@ -99,9 +100,11 @@ export default async function NewsletterIssuePage({
     tags: issue.tags,
   });
 
+  const subsection = getWritingSubsectionCrumb('newsletter');
   const breadcrumbItems: BreadcrumbItem[] = [
     { name: 'Home', url: '/' },
     { name: 'Writing', url: '/writing/' },
+    { name: subsection.name, url: subsection.url },
     { name: issue.title, url: `/newsletter/${slug}/` },
   ];
   const breadcrumbData = getBreadcrumbStructuredData(breadcrumbItems);

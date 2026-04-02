@@ -1,8 +1,42 @@
 'use client';
 
-import { useState, useMemo, useEffect } from 'react';
+import { useMemo, useCallback, useLayoutEffect, useEffect } from 'react';
 import Link from 'next/link';
+import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import type { ContentItem } from '@/lib/content';
+
+const WRITING_VIEW_STATE_KEY = 'ohmyscript:writing-view';
+
+type WritingTab = 'all' | 'blogs' | 'musings' | 'second-brain' | 'newsletter';
+
+const VALID_TABS: WritingTab[] = [
+  'all',
+  'blogs',
+  'musings',
+  'second-brain',
+  'newsletter',
+];
+
+function parseTabParam(raw: string | null, fallback: WritingTab): WritingTab {
+  if (raw && VALID_TABS.includes(raw as WritingTab)) {
+    return raw as WritingTab;
+  }
+  return fallback;
+}
+
+function isWritingRoute(path: string): boolean {
+  const normalized = path.replace(/\/$/, '') || '/';
+  return normalized.endsWith('/writing');
+}
+
+function persistWritingState(tab: WritingTab, tags: string[]) {
+  if (typeof window === 'undefined') return;
+  try {
+    sessionStorage.setItem(WRITING_VIEW_STATE_KEY, JSON.stringify({ tab, tags }));
+  } catch {
+    /* quota / private mode */
+  }
+}
 
 function basePathForContentItem(post: ContentItem): string {
   switch (post.contentType) {
@@ -24,7 +58,7 @@ interface TabbedWritingViewProps {
   thoughts: ContentItem[];
   secondBrain: ContentItem[];
   newsletterPosts: ContentItem[];
-  defaultTab?: 'all' | 'blogs' | 'musings' | 'second-brain' | 'newsletter';
+  defaultTab?: WritingTab;
 }
 
 export function TabbedWritingView({
@@ -34,10 +68,86 @@ export function TabbedWritingView({
   newsletterPosts,
   defaultTab = 'all',
 }: TabbedWritingViewProps) {
-  const [activeTab, setActiveTab] = useState<
-    'all' | 'blogs' | 'musings' | 'second-brain' | 'newsletter'
-  >(defaultTab);
-  const [selectedTags, setSelectedTags] = useState<Set<string>>(new Set());
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const activeTab = useMemo(
+    () => parseTabParam(searchParams.get('tab'), defaultTab),
+    [searchParams, defaultTab]
+  );
+
+  const selectedTags = useMemo(
+    () => new Set(searchParams.getAll('tag').filter(Boolean)),
+    [searchParams]
+  );
+
+  const buildUrl = useCallback(
+    (tab: WritingTab, tags: Set<string>) => {
+      const params = new URLSearchParams();
+      if (tab !== defaultTab) {
+        params.set('tab', tab);
+      }
+      tags.forEach((t) => params.append('tag', t));
+      const qs = params.toString();
+      return qs ? `${pathname}?${qs}` : pathname;
+    },
+    [pathname, defaultTab]
+  );
+
+  const setTab = useCallback(
+    (tab: WritingTab) => {
+      const nextTags = new Set<string>();
+      persistWritingState(tab, []);
+      router.replace(buildUrl(tab, nextTags), { scroll: false });
+    },
+    [router, buildUrl]
+  );
+
+  const toggleTag = useCallback(
+    (tag: string) => {
+      const next = new Set(selectedTags);
+      if (next.has(tag)) {
+        next.delete(tag);
+      } else {
+        next.add(tag);
+      }
+      persistWritingState(activeTab, [...next]);
+      router.replace(buildUrl(activeTab, next), { scroll: false });
+    },
+    [activeTab, selectedTags, router, buildUrl]
+  );
+
+  /** Bare /writing/ with no query: restore last tab/tags from session (e.g. main nav). */
+  useLayoutEffect(() => {
+    if (typeof window === 'undefined') return;
+    if (!isWritingRoute(pathname)) return;
+    if (searchParams.toString()) return;
+    try {
+      const raw = sessionStorage.getItem(WRITING_VIEW_STATE_KEY);
+      if (!raw) return;
+      const parsed = JSON.parse(raw) as { tab?: string; tags?: string[] };
+      const tab = parseTabParam(parsed.tab ?? null, defaultTab);
+      const tags = Array.isArray(parsed.tags) ? parsed.tags.filter(Boolean) : [];
+      const params = new URLSearchParams();
+      if (tab !== defaultTab) params.set('tab', tab);
+      tags.forEach((t) => params.append('tag', t));
+      const qs = params.toString();
+      if (!qs) return;
+      router.replace(`${pathname}?${qs}`, { scroll: false });
+    } catch {
+      /* ignore invalid JSON */
+    }
+  }, [pathname, searchParams, router, defaultTab]);
+
+  /** When URL has filters, persist so “Writing” nav without query can restore them. */
+  useEffect(() => {
+    if (!isWritingRoute(pathname)) return;
+    if (!searchParams.toString()) return;
+    const tab = parseTabParam(searchParams.get('tab'), defaultTab);
+    const tags = searchParams.getAll('tag').filter(Boolean);
+    persistWritingState(tab, tags);
+  }, [pathname, searchParams, defaultTab]);
 
   const formatDate = (iso: string) => {
     if (!iso) return '';
@@ -100,23 +210,6 @@ export function TabbedWritingView({
 
   const groupedPosts = groupByYear(allPosts);
 
-  // Clear selected tags when tab changes
-  useEffect(() => {
-    setSelectedTags(new Set());
-  }, [activeTab]);
-
-  const toggleTag = (tag: string) => {
-    setSelectedTags(prev => {
-      const newSet = new Set(prev);
-      if (newSet.has(tag)) {
-        newSet.delete(tag);
-      } else {
-        newSet.add(tag);
-      }
-      return newSet;
-    });
-  };
-
   const getPostUrl = (post: ContentItem) =>
     `${basePathForContentItem(post)}/${post.slug}/`;
 
@@ -128,7 +221,8 @@ export function TabbedWritingView({
       {/* Tabs */}
       <div className="flex items-center gap-4 pb-2">
         <button
-          onClick={() => setActiveTab('all')}
+          type="button"
+          onClick={() => setTab('all')}
           className="text-xs transition-all hover:opacity-70 pb-1 border-b-2"
           style={{
             color: activeTab === 'all' ? 'var(--color-foreground)' : 'var(--color-muted-foreground)',
@@ -138,7 +232,8 @@ export function TabbedWritingView({
           All <span className="text-[10px] opacity-40">({writingItems.length})</span>
         </button>
         <button
-          onClick={() => setActiveTab('blogs')}
+          type="button"
+          onClick={() => setTab('blogs')}
           className="text-xs transition-all hover:opacity-70 pb-1 border-b-2"
           style={{
             color: activeTab === 'blogs' ? 'var(--color-foreground)' : 'var(--color-muted-foreground)',
@@ -148,7 +243,8 @@ export function TabbedWritingView({
           Blogs <span className="text-[10px] opacity-40">({blogPosts.length})</span>
         </button>
         <button
-          onClick={() => setActiveTab('musings')}
+          type="button"
+          onClick={() => setTab('musings')}
           className="text-xs transition-all hover:opacity-70 pb-1 border-b-2"
           style={{
             color: activeTab === 'musings' ? 'var(--color-foreground)' : 'var(--color-muted-foreground)',
@@ -158,7 +254,8 @@ export function TabbedWritingView({
           Musings <span className="text-[10px] opacity-40">({thoughts.length})</span>
         </button>
         <button
-          onClick={() => setActiveTab('second-brain')}
+          type="button"
+          onClick={() => setTab('second-brain')}
           className="text-xs transition-all hover:opacity-70 pb-1 border-b-2"
           style={{
             color: activeTab === 'second-brain' ? 'var(--color-foreground)' : 'var(--color-muted-foreground)',
@@ -168,7 +265,8 @@ export function TabbedWritingView({
           Second Brain <span className="text-[10px] opacity-40">({secondBrain.length})</span>
         </button>
         <button
-          onClick={() => setActiveTab('newsletter')}
+          type="button"
+          onClick={() => setTab('newsletter')}
           className="text-xs transition-all hover:opacity-70 pb-1 border-b-2"
           style={{
             color: activeTab === 'newsletter' ? 'var(--color-foreground)' : 'var(--color-muted-foreground)',

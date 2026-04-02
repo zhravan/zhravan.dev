@@ -26,6 +26,7 @@ import { RelatedPosts } from '@/components/RelatedPosts';
 import { getContentByTag, slugifyTag } from '@/lib/tags';
 import { Suspense } from 'react';
 import { getBreadcrumbStructuredData, type BreadcrumbItem } from '@/lib/breadcrumbs';
+import { getWritingSubsectionCrumb } from '@/lib/writing-section-breadcrumb';
 import { AnalyticsTracker } from '@/components/AnalyticsTracker';
 
 export async function generateStaticParams() {
@@ -126,9 +127,11 @@ export default async function BlogPost({
     tags: post.tags
   });
 
+  const subsection = getWritingSubsectionCrumb('blog');
   const breadcrumbItems: BreadcrumbItem[] = [
     { name: 'Home', url: '/' },
     { name: 'Writing', url: '/writing/' },
+    { name: subsection.name, url: subsection.url },
     { name: post.title, url: `/blogs/${slug}/` },
   ];
   const breadcrumbData = getBreadcrumbStructuredData(breadcrumbItems);

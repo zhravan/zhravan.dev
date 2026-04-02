@@ -21,6 +21,7 @@ import { DraftPreviewGate } from '@/components/DraftPreviewGate';
 import { SeriesNavigator } from '@/components/SeriesNavigator';
 import { Suspense } from 'react';
 import { getBreadcrumbStructuredData, type BreadcrumbItem } from '@/lib/breadcrumbs';
+import { getWritingSubsectionCrumb } from '@/lib/writing-section-breadcrumb';
 import { AnalyticsTracker } from '@/components/AnalyticsTracker';
 import { getShareUrl } from '@/lib/plugins/social-share';
 
@@ -102,9 +103,11 @@ export default async function ThoughtPost({
     tags: thought.tags
   });
 
+  const subsection = getWritingSubsectionCrumb('thoughts');
   const breadcrumbItems: BreadcrumbItem[] = [
     { name: 'Home', url: '/' },
     { name: 'Writing', url: '/writing/' },
+    { name: subsection.name, url: subsection.url },
     { name: thought.title, url: `/musings/${slug}/` },
   ];
   const breadcrumbData = getBreadcrumbStructuredData(breadcrumbItems);
