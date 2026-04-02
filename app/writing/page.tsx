@@ -1,6 +1,8 @@
+import { Suspense } from 'react';
 import { getAllPosts } from '@/lib/blog';
 import { getContentByType } from '@/lib/content';
 import { filterDrafts } from '@/lib/plugins/drafts';
+import { getNewsletterListItems } from '@/lib/newsletter-feeds';
 import { PageHeader } from '@/components/PageHeader';
 import { TabbedWritingView } from '@/components/TabbedWritingView';
 import { getPageMetadata } from '@/lib/seo';
@@ -8,7 +10,8 @@ import type { Metadata } from 'next';
 
 const pageMetadata = {
   title: 'Writing',
-  description: 'Sometimes write blogs, personal musings, and use space as a second brain'
+  description:
+    'Blogs, musings, second-brain notes, and newsletter issues.'
 };
 
 export const metadata: Metadata = getPageMetadata({
@@ -17,7 +20,7 @@ export const metadata: Metadata = getPageMetadata({
   path: '/writing/'
 });
 
-export default function Blog() {
+export default async function Blog() {
   const allBlogPosts = getAllPosts();
   const blogPosts = filterDrafts(allBlogPosts);
 
@@ -27,10 +30,26 @@ export default function Blog() {
   const allSecondBrain = getContentByType('second-brain');
   const secondBrain = filterDrafts(allSecondBrain);
 
+  const newsletterPosts = await getNewsletterListItems();
+
   return (
     <div className="space-y-6 text-xxs">
       <PageHeader metadata={pageMetadata} hideTitle={true} />
-      <TabbedWritingView blogPosts={blogPosts} thoughts={thoughts} secondBrain={secondBrain} defaultTab="all" />
+      <Suspense
+        fallback={
+          <div className="text-xs opacity-50 py-6" aria-live="polite">
+            Loading writing…
+          </div>
+        }
+      >
+        <TabbedWritingView
+          blogPosts={blogPosts}
+          thoughts={thoughts}
+          secondBrain={secondBrain}
+          newsletterPosts={newsletterPosts}
+          defaultTab="all"
+        />
+      </Suspense>
     </div>
   );
 }

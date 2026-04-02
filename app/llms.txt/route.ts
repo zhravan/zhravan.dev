@@ -67,6 +67,11 @@ Path: ${siteUrl}/second-brain/
 Description: A digital garden for storing and organizing knowledge, ideas, and personal insights.
 ${contentStats.find(s => s.type === 'Second Brain') ? `Content count: ${contentStats.find(s => s.type === 'Second Brain')?.count} notes` : ''}
 
+### Newsletter
+Path: ${siteUrl}/newsletter/
+Description: Occasional updates and longer-form notes published on the site (aligned with email newsletter).
+${contentStats.find(s => s.type === 'Newsletter') ? `Content count: ${contentStats.find(s => s.type === 'Newsletter')?.count} issues` : ''}
+
 ### Reading
 Path: ${siteUrl}/reading/
 Description: Books I'm reading, have read, and thoughts on them.

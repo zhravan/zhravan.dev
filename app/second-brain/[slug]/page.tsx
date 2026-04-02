@@ -22,6 +22,7 @@ import { DraftPreviewGate } from '@/components/DraftPreviewGate';
 import { SeriesNavigator } from '@/components/SeriesNavigator';
 import { Suspense } from 'react';
 import { getBreadcrumbStructuredData, type BreadcrumbItem } from '@/lib/breadcrumbs';
+import { getWritingSubsectionCrumb } from '@/lib/writing-section-breadcrumb';
 import { AnalyticsTracker } from '@/components/AnalyticsTracker';
 
 export async function generateStaticParams() {
@@ -102,9 +103,11 @@ export default async function SecondBrainNote({
     tags: note.tags
   });
 
+  const subsection = getWritingSubsectionCrumb('second-brain');
   const breadcrumbItems: BreadcrumbItem[] = [
     { name: 'Home', url: '/' },
     { name: 'Writing', url: '/writing/' },
+    { name: subsection.name, url: subsection.url },
     { name: note.title, url: `/second-brain/${slug}/` },
   ];
   const breadcrumbData = getBreadcrumbStructuredData(breadcrumbItems);

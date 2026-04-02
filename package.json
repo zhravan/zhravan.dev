@@ -26,6 +26,7 @@
     "posthog-js": "^1.310.1",
     "react": "19.1.0",
     "react-dom": "19.1.0",
+    "rss-parser": "^3.13.0",
     "shiki": "^1.29.2",
     "tailwind-merge": "^2.6.0",
     "yaml": "^2.8.1"
