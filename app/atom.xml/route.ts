@@ -12,7 +12,8 @@ function extractMdxContent(contentType: string, slug: string): string {
   const contentDirs: Record<string, string> = {
     'blog': 'content/blog',
     'musings': 'content/thoughts',
-    'second-brain': 'content/second-brain'
+    'second-brain': 'content/second-brain',
+    'newsletter': 'content/newsletter',
   };
   
   const dir = contentDirs[contentType];
@@ -43,11 +44,15 @@ export async function GET() {
   const allSecondBrain = getContentByType('second-brain', true);
   const secondBrain = filterDrafts(allSecondBrain);
 
+  const allNewsletter = getContentByType('newsletter', true);
+  const newsletterPosts = filterDrafts(allNewsletter);
+
   // Combine all content types and sort by date
   const allContent = [
     ...blogPosts.map(p => ({ ...p, type: 'blog' })),
     ...thoughts.map(p => ({ ...p, type: 'musings' })),
-    ...secondBrain.map(p => ({ ...p, type: 'second-brain' }))
+    ...secondBrain.map(p => ({ ...p, type: 'second-brain' })),
+    ...newsletterPosts.map(p => ({ ...p, type: 'newsletter' })),
   ].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   const { siteUrl, title: SITE_TITLE, description: SITE_DESCRIPTION } = loadSeoConfig();

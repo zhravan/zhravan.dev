@@ -43,6 +43,17 @@ export const CommandPalette = forwardRef<CommandPaletteHandle, CommandPalettePro
   const [selectedIndex, setSelectedIndex] = useState(0);
   const router = useRouter();
 
+  const openResultPath = useCallback(
+    (targetPath: string) => {
+      if (targetPath.startsWith('http://') || targetPath.startsWith('https://')) {
+        window.open(targetPath, '_blank', 'noopener,noreferrer');
+        return;
+      }
+      router.push(targetPath);
+    },
+    [router]
+  );
+
   useImperativeHandle(ref, () => ({
     open: () => setIsOpen(true),
     close: () => {
@@ -104,12 +115,12 @@ export const CommandPalette = forwardRef<CommandPaletteHandle, CommandPalettePro
       setSelectedIndex(prev => (prev - 1 + results.length) % results.length);
     } else if (e.key === 'Enter' && results[selectedIndex]) {
       e.preventDefault();
-      router.push(results[selectedIndex].path);
+      openResultPath(results[selectedIndex].path);
       setIsOpen(false);
       setQuery('');
       setSelectedIndex(0);
     }
-  }, [isOpen, results, selectedIndex, router]);
+  }, [isOpen, results, selectedIndex, openResultPath]);
 
   useEffect(() => {
     document.addEventListener('keydown', handleKeyDown);
@@ -189,7 +200,7 @@ export const CommandPalette = forwardRef<CommandPaletteHandle, CommandPalettePro
                   key={item.path}
                   id={`search-result-${index}`}
                   onClick={() => {
-                    router.push(item.path);
+                    openResultPath(item.path);
                     setIsOpen(false);
                     setQuery('');
                     setSelectedIndex(0);

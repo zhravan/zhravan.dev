@@ -1,119 +1,111 @@
 import { notFound } from 'next/navigation';
-import { Suspense } from 'react';
-import { getContentTypeById } from '@/lib/content-types';
-import { getContentForType, getContentBySlug } from '@/lib/content';
-import { filterDrafts, isDraft } from '@/lib/plugins/drafts';
-import { DraftPreviewGate } from '@/components/DraftPreviewGate';
+import { getContentItemBySlug, getContentByType } from '@/lib/content';
+import { getPostMetadata, getArticleStructuredData } from '@/lib/seo';
+import { Breadcrumbs } from '@/components/navigation';
+import { StructuredData } from '@/components/StructuredData';
 import { getPluginConfig } from '@/lib/plugins/registry';
 import { Giscus } from '@/lib/plugins';
 import { getReadingTimeForPost } from '@/lib/plugins/reading-time';
 import { getTocForPost } from '@/lib/plugins/toc';
-import { getShareUrl } from '@/lib/plugins/social-share';
-import { getPostMetadata, getArticleStructuredData } from '@/lib/seo';
-import { StructuredData } from '@/components/StructuredData';
-import { Breadcrumbs } from '@/components/navigation';
-import { DraftBadge } from '@/components/DraftBadge';
-import { TagsList } from '@/components/TagsList';
+import { getPostNavigation } from '@/lib/plugins/post-navigation';
+import { isDraft } from '@/lib/plugins/drafts';
+import { getSeriesForPost } from '@/lib/plugins/series';
 import { ReadingTimeBadge } from '@/components/ReadingTimeBadge';
 import { TableOfContents } from '@/components/TableOfContents';
 import { MobileTOC } from '@/components/MobileTOC';
+import { PostNavigation } from '@/components/PostNavigation';
+import { TagsList } from '@/components/TagsList';
 import { SocialShare } from '@/components/SocialShare';
-import { AnalyticsTracker } from '@/components/AnalyticsTracker';
+import { DraftBadge } from '@/components/DraftBadge';
+import { DraftPreviewGate } from '@/components/DraftPreviewGate';
+import { SeriesNavigator } from '@/components/SeriesNavigator';
+import { Suspense } from 'react';
 import { getBreadcrumbStructuredData, type BreadcrumbItem } from '@/lib/breadcrumbs';
-import type { Metadata } from 'next';
-
-interface PageProps {
-  params: Promise<{ slug: string }>;
-}
+import { getWritingSubsectionCrumb } from '@/lib/writing-section-breadcrumb';
+import { AnalyticsTracker } from '@/components/AnalyticsTracker';
+import { getShareUrl } from '@/lib/plugins/social-share';
 
 export async function generateStaticParams() {
-  const contentType = getContentTypeById('talks');
-  if (!contentType) return [];
-  
-  const allItems = getContentForType(contentType);
-  const items = filterDrafts(allItems);
-  
-  return items.map((item) => ({
-    slug: item.slug
+  const allIssues = getContentByType('newsletter', true);
+  return allIssues.map((issue) => ({
+    slug: issue.slug,
   }));
 }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
   const { slug } = await params;
-  const contentType = getContentTypeById('talks');
-  
-  if (!contentType) {
+  const issue = getContentItemBySlug('newsletter', slug, true);
+
+  if (!issue) {
     return {
-      title: 'Talk Not Found'
-    };
-  }
-  
-  const item = getContentBySlug(contentType, slug, true); // Include drafts for static generation
-  if (!item) {
-    return {
-      title: 'Talk Not Found'
+      title: 'Newsletter issue not found',
     };
   }
 
   return getPostMetadata({
-    title: item.title,
-    description: item.description,
-    path: `${contentType.path}/${slug}/`,
-    date: item.date,
-    tags: item.tags
+    title: issue.title,
+    description: issue.description,
+    path: `/newsletter/${slug}/`,
+    date: issue.date,
+    tags: issue.tags,
   });
 }
 
-export default async function TalksPost({ params }: PageProps) {
+export default async function NewsletterIssuePage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
   const { slug } = await params;
-  const contentType = getContentTypeById('talks');
-  
-  if (!contentType) {
-    notFound();
-  }
-  
-  const item = getContentBySlug(contentType, slug, true); // Include drafts for static generation
-  if (!item) {
+  const issue = getContentItemBySlug('newsletter', slug, true);
+
+  if (!issue) {
     notFound();
   }
 
-  // Import the MDX content dynamically
-  let MdxContent;
+  let Content;
   try {
-    MdxContent = (await import(`@/content/talks/${slug}.mdx`)).default;
-  } catch (e) {
+    Content = (await import(`@/content/newsletter/${slug}.mdx`)).default;
+  } catch (error) {
+    console.error(`Failed to load newsletter issue: ${slug}`, error);
     notFound();
   }
 
-  // Load plugin data
-  const readingTime = await getReadingTimeForPost(slug, 'talks');
-  const tocHeadings = await getTocForPost(slug, 'talks');
+  const readingTime = await getReadingTimeForPost(slug, 'newsletter');
+  const tocHeadings = await getTocForPost(slug, 'newsletter');
+  const postNav = getPostNavigation(slug);
+  const seriesInfo = getSeriesForPost(slug);
 
-  // Get plugin configs
   const tocConfig = getPluginConfig<{ position: 'left' | 'right' | 'inline'; sticky: boolean }>('toc');
   const readingTimeConfig = getPluginConfig<{ showIcon: boolean; showWordCount: boolean }>('reading-time');
   const draftsConfig = getPluginConfig<{ enabled: boolean; previewToken: string }>('drafts');
   const socialShareConfig = getPluginConfig<{ enabled: boolean; showIcon: boolean }>('social-share');
+  const seriesConfig = getPluginConfig<{ enabled: boolean }>('series');
 
   const showTocSidebar = tocHeadings && tocConfig && tocConfig.position !== 'inline';
   const showTocInline = tocHeadings && tocConfig && tocConfig.position === 'inline';
-  const showSidebar = true; // Always show sidebar for metadata
+  const showSidebar = true;
 
-  // Generate share URL
-  const shareUrl = getShareUrl(`/talks/${slug}/`);
+  const shareUrl = getShareUrl(`/newsletter/${slug}/`);
 
   const structuredData = getArticleStructuredData({
-    title: item.title,
-    description: item.description,
-    path: `${contentType.path}/${item.slug}/`,
-    date: item.date,
-    tags: item.tags
+    title: issue.title,
+    description: issue.description,
+    path: `/newsletter/${slug}/`,
+    date: issue.date,
+    tags: issue.tags,
   });
 
+  const subsection = getWritingSubsectionCrumb('newsletter');
   const breadcrumbItems: BreadcrumbItem[] = [
     { name: 'Home', url: '/' },
-    { name: 'Talks', url: '/talks/' },
-    { name: item.title, url: `/talks/${slug}/` },
+    { name: 'Writing', url: '/writing/' },
+    { name: subsection.name, url: subsection.url },
+    { name: issue.title, url: `/newsletter/${slug}/` },
   ];
   const breadcrumbData = getBreadcrumbStructuredData(breadcrumbItems);
 
@@ -121,27 +113,26 @@ export default async function TalksPost({ params }: PageProps) {
     <Suspense fallback={<div>Loading...</div>}>
       <StructuredData data={[structuredData, breadcrumbData]} />
       <AnalyticsTracker
-        contentType="talk"
-        contentTitle={item.title}
+        contentType="article"
+        contentTitle={issue.title}
         contentSlug={slug}
-        contentTags={item.tags}
-        contentCategory={item.tags?.[0]}
+        contentTags={issue.tags}
+        contentCategory={issue.tags?.[0]}
         readingTimeMinutes={readingTime?.minutes}
       />
-      <DraftPreviewGate 
-        isDraft={isDraft(item)}
+      <DraftPreviewGate
+        isDraft={isDraft(issue)}
         previewToken={draftsConfig?.previewToken || ''}
       >
         <div className="space-y-6 text-xxs">
           <div className="flex flex-wrap items-center gap-2 mb-8">
             <Breadcrumbs items={breadcrumbItems} />
-            {isDraft(item) && <DraftBadge draft={true} />}
+            {isDraft(issue) && <DraftBadge draft={true} />}
           </div>
 
-          {/* Metadata section - above content on mobile only */}
           <div className="space-y-2 mb-6 lg:hidden">
             <p className="text-[10px] opacity-50" style={{ color: 'var(--color-muted-foreground)' }}>
-              {item.date}
+              {issue.date}
             </p>
             {readingTime && readingTimeConfig && (
               <ReadingTimeBadge
@@ -151,46 +142,39 @@ export default async function TalksPost({ params }: PageProps) {
                 showWordCount={readingTimeConfig.showWordCount}
               />
             )}
-            {item.tags && item.tags.length > 0 && (
-              <TagsList tags={item.tags} />
-            )}
+            {issue.tags && issue.tags.length > 0 && <TagsList tags={issue.tags} />}
             {socialShareConfig && (
               <SocialShare
-                title={item.title}
+                title={issue.title}
                 url={shareUrl}
                 showIcon={socialShareConfig.showIcon}
               />
             )}
           </div>
 
-          {/* Mobile TOC */}
-          {tocHeadings && tocHeadings.length > 0 && (
-            <MobileTOC headings={tocHeadings} />
-          )}
+          {tocHeadings && tocHeadings.length > 0 && <MobileTOC headings={tocHeadings} />}
 
           <div className={showSidebar ? 'lg:grid lg:grid-cols-[1fr_250px] lg:gap-12' : ''}>
             <article className="animate-fade-in prose max-w-none">
               {showTocInline && (
-                <TableOfContents
-                  headings={tocHeadings}
-                  position="inline"
-                  sticky={false}
-                />
+                <TableOfContents headings={tocHeadings} position="inline" sticky={false} />
               )}
 
-              <MdxContent />
+              {seriesConfig && seriesInfo && <SeriesNavigator series={seriesInfo} />}
 
-              {/* Giscus comments plugin */}
-              <br/>
+              <Content />
+
+              <PostNavigation previous={postNav.previous} next={postNav.next} />
+
+              <br />
               <Giscus />
             </article>
 
             {showSidebar && (
               <aside className="hidden lg:block space-y-6">
-                {/* Metadata section - always show in sidebar on desktop */}
                 <div className="space-y-2 pb-6 border-b border-gray-200 dark:border-gray-800">
                   <p className="text-[10px] opacity-50" style={{ color: 'var(--color-muted-foreground)' }}>
-                    {item.date}
+                    {issue.date}
                   </p>
                   {readingTime && readingTimeConfig && (
                     <ReadingTimeBadge
@@ -200,12 +184,10 @@ export default async function TalksPost({ params }: PageProps) {
                       showWordCount={readingTimeConfig.showWordCount}
                     />
                   )}
-                  {item.tags && item.tags.length > 0 && (
-                    <TagsList tags={item.tags} />
-                  )}
+                  {issue.tags && issue.tags.length > 0 && <TagsList tags={issue.tags} />}
                   {socialShareConfig && (
                     <SocialShare
-                      title={item.title}
+                      title={issue.title}
                       url={shareUrl}
                       showIcon={socialShareConfig.showIcon}
                     />

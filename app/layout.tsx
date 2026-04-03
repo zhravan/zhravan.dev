@@ -22,6 +22,7 @@ import { getScrollToTopConfig } from '@/lib/plugins/scroll-to-top';
 import { getPostHogConfig } from '@/lib/plugins/analytics';
 import { getNavigationContentTypes } from '@/lib/content-types';
 import { filterDrafts } from '@/lib/plugins/drafts';
+import { getNewsletterListItems } from '@/lib/newsletter-feeds';
 import { LinkTracker } from '@/components/LinkTracker';
 import { SearchAnalytics } from '@/components/SearchAnalytics';
 import { OhMyScript } from '@/components/OhMyScript';
@@ -55,7 +56,7 @@ function getNavItems() {
   return items;
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children
 }: Readonly<{
   children: React.ReactNode;
@@ -66,26 +67,27 @@ export default function RootLayout({
   const blogPosts = getAllPosts();
   const allContentTypes = getAllContentTypes();
   
-  // Get other content types (talks, musings, second-brain)
+  // MDX-backed types except newsletter (merged separately with RSS below)
   const otherContentItems = allContentTypes
-    .filter(ct => ct.id !== 'blog' && ct.contentDir) // Only content types with MDX files
-    .flatMap(ct => getContentByType(ct.id));
-  
-  // Combine all content items
-  const allContentItems = [...blogPosts, ...otherContentItems];
+    .filter(ct => ct.id !== 'blog' && ct.contentDir)
+    .flatMap(ct => (ct.id === 'newsletter' ? [] : getContentByType(ct.id)));
+
+  const newsletterList = await getNewsletterListItems();
+
+  const allContentItems = [...blogPosts, ...otherContentItems, ...newsletterList];
   const filteredContentItems = filterDrafts(allContentItems);
   
-  // Compute paths for each content item (server-side)
   function getContentItemPath(item: ContentItem): string {
+    if (item.externalUrl) {
+      return item.externalUrl;
+    }
     if (item.contentType) {
       const contentType = getContentTypeById(item.contentType);
       if (contentType) {
-        // The "blog" content type lists at /writing, but detail routes live at /blogs/[slug]
         const basePath = contentType.id === 'blog' ? '/blogs' : contentType.path || '';
         return `${basePath}/${item.slug}`;
       }
     }
-    // Fallback
     return `/blogs/${item.slug}`;
   }
   

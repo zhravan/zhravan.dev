@@ -14,6 +14,8 @@ export interface ContentItem {
   previewToken?: string;
   ogImage?: string;
   contentType: string;
+  /** If set, this entry opens off-site (e.g. Beehiiv) instead of an MDX route */
+  externalUrl?: string;
 }
 
 function parseFrontmatter(content: string): Partial<ContentItem> {

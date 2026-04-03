@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import { getContentItemBySlug, getContentByType } from '@/lib/content';
 import { getPostMetadata, getArticleStructuredData } from '@/lib/seo';
-import { BackLink } from '@/components/navigation';
+import { Breadcrumbs } from '@/components/navigation';
 import { StructuredData } from '@/components/StructuredData';
 import { getPluginConfig } from '@/lib/plugins/registry';
 import { Giscus } from '@/lib/plugins';
@@ -20,7 +20,8 @@ import { DraftBadge } from '@/components/DraftBadge';
 import { DraftPreviewGate } from '@/components/DraftPreviewGate';
 import { SeriesNavigator } from '@/components/SeriesNavigator';
 import { Suspense } from 'react';
-import { getBreadcrumbStructuredData } from '@/lib/breadcrumbs';
+import { getBreadcrumbStructuredData, type BreadcrumbItem } from '@/lib/breadcrumbs';
+import { getWritingSubsectionCrumb } from '@/lib/writing-section-breadcrumb';
 import { AnalyticsTracker } from '@/components/AnalyticsTracker';
 import { getShareUrl } from '@/lib/plugins/social-share';
 
@@ -102,11 +103,14 @@ export default async function ThoughtPost({
     tags: thought.tags
   });
 
-  const breadcrumbData = getBreadcrumbStructuredData([
+  const subsection = getWritingSubsectionCrumb('thoughts');
+  const breadcrumbItems: BreadcrumbItem[] = [
     { name: 'Home', url: '/' },
-    { name: 'Musings', url: '/writing/' },
+    { name: 'Writing', url: '/writing/' },
+    { name: subsection.name, url: subsection.url },
     { name: thought.title, url: `/musings/${slug}/` },
-  ]);
+  ];
+  const breadcrumbData = getBreadcrumbStructuredData(breadcrumbItems);
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
@@ -124,8 +128,8 @@ export default async function ThoughtPost({
         previewToken={draftsConfig?.previewToken || ''}
       >
         <div className="space-y-6 text-xxs">
-          <div className="flex items-center gap-2 mb-8">
-            <BackLink href="/writing/">Back to Writing</BackLink>
+          <div className="flex flex-wrap items-center gap-2 mb-8">
+            <Breadcrumbs items={breadcrumbItems} />
             {isDraft(thought) && <DraftBadge draft={true} />}
           </div>
 

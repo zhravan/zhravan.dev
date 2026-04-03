@@ -1,0 +1,9 @@
+# Newsletter items on /writing are merged from:
+# 1. MDX files in content/newsletter/
+# 2. RSS feeds listed below (e.g. Beehiiv public feed)
+
+rssFeeds:
+  - id: ohmyscript-beehiiv
+    url: https://rss.beehiiv.com/feeds/WWDTjFj35Q.xml
+    # Prepended to RSS categories for filtering and display
+    tag: beehiiv

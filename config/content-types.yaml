@@ -47,6 +47,15 @@ contentTypes:
     description: A digital garden for storing and organizing knowledge, ideas, and personal insights.
     showInNav: false
 
+  - id: newsletter
+    label: Newsletter
+    path: /newsletter
+    contentDir: content/newsletter
+    icon: Mail
+    enabled: true
+    description: Site-written issues plus syndicated posts from configured RSS (e.g. Beehiiv).
+    showInNav: false
+
   - id: reading
     label: Reading
     path: /reading
