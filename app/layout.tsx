@@ -133,23 +133,21 @@ export default async function RootLayout({
             <header>
               <nav aria-label="Main navigation">
                 <div className="max-w-2xl mx-auto px-4 sm:px-8 py-4 sm:py-5 md:pb-2 md:border-b nav-border">
-                  {/* Desktop Navigation */}
-                  <div className="hidden md:block">
-                    <div className="mb-5">
-                      <Link
-                        href="/"
-                        className="text-base font-medium transition-opacity hover:opacity-90 focus:opacity-90 inline-block"
-                        style={{
-                          color: 'var(--color-foreground)',
-                          textDecoration: 'none',
-                          borderBottom: 'none',
-                          paddingBottom: 0
-                        }}
-                      >
-                        <OhMyScript />
-                      </Link>
-                    </div>
-                    <div className="flex flex-wrap items-center gap-4 sm:gap-5">
+                  {/* Desktop Navigation — logo left, links right; baseline-aligned so type lines up cleanly */}
+                  <div className="hidden md:flex md:flex-row md:flex-wrap md:items-baseline md:justify-between md:gap-x-6 md:gap-y-3">
+                    <Link
+                      href="/"
+                      className="shrink-0 text-base font-medium font-mono transition-opacity hover:opacity-90 focus:opacity-90"
+                      style={{
+                        color: 'var(--color-foreground)',
+                        textDecoration: 'none',
+                        borderBottom: 'none',
+                        paddingBottom: 0
+                      }}
+                    >
+                      <OhMyScript />
+                    </Link>
+                    <div className="flex min-w-0 flex-1 flex-wrap items-baseline justify-end gap-x-4 gap-y-2 sm:gap-x-5">
                       {navItems.map((item) => (
                         <NavPill key={item.path} href={item.path}>
                           {item.name}
