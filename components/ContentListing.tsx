@@ -52,7 +52,7 @@ export function ContentListing({ items, contentType }: ContentListingProps) {
                         <span className="opacity-30">→</span>
                         <Link
                           href={`${contentType.path}/${item.slug}`}
-                          className="hover:opacity-70 transition-opacity truncate font-semibold"
+                          className="hover:opacity-70 transition-opacity font-semibold min-w-0 flex-1 break-words"
                         >
                           {item.title}
                         </Link>

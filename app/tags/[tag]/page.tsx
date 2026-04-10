@@ -91,7 +91,7 @@ export default async function TagPage({ params }: PageProps) {
                     <span className="opacity-30">→</span>
                     <Link
                       href={itemPath}
-                      className="hover:opacity-70 transition-opacity truncate font-semibold"
+                      className="hover:opacity-70 transition-opacity font-semibold min-w-0 flex-1 break-words"
                     >
                       {item.title}
                     </Link>

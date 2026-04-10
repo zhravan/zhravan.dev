@@ -295,7 +295,7 @@ export function TabbedWritingView({
     `${basePathForContentItem(post)}/${post.slug}/`;
 
   const postTitleLinkClass =
-    'hover:opacity-70 transition-opacity truncate font-semibold inline-flex items-center gap-1 min-w-0';
+    'hover:opacity-70 transition-opacity font-semibold min-w-0 flex-1 break-words';
 
   if (!view.ready) {
     return (
@@ -415,9 +415,9 @@ export function TabbedWritingView({
                             href={post.externalUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className={postTitleLinkClass}
+                            className={`${postTitleLinkClass} flex items-baseline gap-1`}
                           >
-                            <span className="truncate">{post.title}</span>
+                            <span className="min-w-0 flex-1 break-words">{post.title}</span>
                             <span className="opacity-40 shrink-0 text-[10px]" aria-hidden>
                               ↗
                             </span>
