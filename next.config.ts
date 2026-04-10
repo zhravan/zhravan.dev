@@ -11,6 +11,10 @@ const nextConfig: NextConfig = {
   experimental: {
     mdxRs: true
   },
+  // Static export has no Image Optimization API; serve images as-is
+  images: {
+    unoptimized: true
+  },
   // Static export for GitHub Pages
   output: 'export',
   // Generate folder-based URLs (about/index.html) that work on Pages

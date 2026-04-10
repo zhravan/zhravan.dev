@@ -1,7 +1,11 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { getDefaultMetadata } from '@/lib/seo';
 import { AnalyticsTracker } from '@/components/AnalyticsTracker';
 import type { Metadata } from 'next';
+
+/** Public URL; filename contains `<>`, so encode for a valid path. */
+const HOME_PROFILE_SRC = '/assets/ohmyscript.com%3C%3Ezhravan.webp';
 
 export const metadata: Metadata = getDefaultMetadata();
 
@@ -14,7 +18,31 @@ export default function Home() {
         contentSlug="home"
       />
       <article className="animate-fade-in">
-        <h1 className="text-sm mb-4">Shravan Kumar B</h1>
+        <header className="mb-6">
+          <div className="flex flex-col items-start gap-3">
+            <Image
+              src={HOME_PROFILE_SRC}
+              alt="Shravan Kumar B"
+              width={88}
+              height={88}
+              className="h-[5.5rem] w-[5.5rem] shrink-0 rounded-full object-cover ring-1 ring-[var(--color-border)] ring-offset-2 ring-offset-[var(--color-background)]"
+              priority
+            />
+            <div className="min-w-0 space-y-2.5">
+              <h1
+                className="text-base font-medium leading-snug tracking-tight m-0"
+                style={{ color: 'var(--color-foreground)' }}
+              >
+                Shravan Kumar B
+              </h1>
+              <span
+                className="block h-px w-11 max-w-full opacity-70"
+                style={{ backgroundColor: 'var(--color-border)' }}
+                aria-hidden
+              />
+            </div>
+          </div>
+        </header>
         <div className="prose space-y-3">
           <p style={{ color: 'var(--color-muted-foreground)' }}>
             I am a tinkerer, FOSS enthusiast, polymathic indie computer scientist, systems engineer, and data-science aficionado. I build systems that make life simpler for developers, teams, and curious humans.

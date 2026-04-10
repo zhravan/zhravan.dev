@@ -111,7 +111,7 @@ export default async function RootLayout({
   const socialLinks = getSocialLinks();
 
   return (
-    <html lang="en" className={spaceGrotesk.className}>
+    <html lang="en" className={spaceGrotesk.className} suppressHydrationWarning>
       <head>
         <ThemeStyleTag />
         <StructuredData data={[websiteStructuredData, personStructuredData]} />
