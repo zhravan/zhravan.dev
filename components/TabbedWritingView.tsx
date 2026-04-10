@@ -295,7 +295,7 @@ export function TabbedWritingView({
     `${basePathForContentItem(post)}/${post.slug}/`;
 
   const postTitleLinkClass =
-    'hover:opacity-70 transition-opacity font-semibold min-w-0 flex-1 break-words';
+    'font-semibold hover:opacity-70 transition-opacity break-words border-b-0 pb-0 align-baseline';
 
   if (!view.ready) {
     return (
@@ -409,27 +409,32 @@ export function TabbedWritingView({
                   <li key={post.slug} className="group">
                     <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-2 text-xs leading-relaxed">
                       <div className="flex items-baseline gap-2 min-w-0 flex-1">
-                        <span className="opacity-30">→</span>
-                        {post.externalUrl ? (
-                          <a
-                            href={post.externalUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={`${postTitleLinkClass} flex items-baseline gap-1`}
+                        <span className="opacity-30 shrink-0">→</span>
+                        <div className="min-w-0 flex-1">
+                          {post.externalUrl ? (
+                            <a
+                              href={post.externalUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className={`${postTitleLinkClass} inline`}
+                            >
+                              <span className="break-words">{post.title}</span>
+                              <span className="opacity-40 text-[10px] ml-0.5" aria-hidden>
+                                ↗
+                              </span>
+                            </a>
+                          ) : (
+                            <Link href={getPostUrl(post)} className={postTitleLinkClass}>
+                              {post.title}
+                            </Link>
+                          )}
+                          <time
+                            className="opacity-50 text-[11px] whitespace-nowrap ml-1.5"
+                            dateTime={post.date}
                           >
-                            <span className="min-w-0 flex-1 break-words">{post.title}</span>
-                            <span className="opacity-40 shrink-0 text-[10px]" aria-hidden>
-                              ↗
-                            </span>
-                          </a>
-                        ) : (
-                          <Link href={getPostUrl(post)} className={postTitleLinkClass}>
-                            {post.title}
-                          </Link>
-                        )}
-                        <time className="opacity-50 text-[11px] shrink-0" dateTime={post.date}>
-                          {formatDate(post.date)}
-                        </time>
+                            {formatDate(post.date)}
+                          </time>
+                        </div>
                       </div>
                       {post.tags && post.tags.length > 0 && (
                         <div className="opacity-0 group-hover:opacity-70 text-[10px] transition-all duration-200 flex gap-1 flex-wrap pl-0 sm:pl-2">

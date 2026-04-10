@@ -49,16 +49,21 @@ export function ContentListing({ items, contentType }: ContentListingProps) {
                   <li key={item.slug} className="group">
                     <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-2 text-xs leading-relaxed">
                         <div className="flex items-baseline gap-2 min-w-0 flex-1">
-                        <span className="opacity-30">→</span>
-                        <Link
-                          href={`${contentType.path}/${item.slug}`}
-                          className="hover:opacity-70 transition-opacity font-semibold min-w-0 flex-1 break-words"
-                        >
-                          {item.title}
-                        </Link>
-                        <time className="opacity-50 text-[11px] shrink-0" dateTime={item.date}>
-                          {formatDate(item.date)}
-                        </time>
+                        <span className="opacity-30 shrink-0">→</span>
+                        <div className="min-w-0 flex-1">
+                          <Link
+                            href={`${contentType.path}/${item.slug}`}
+                            className="font-semibold hover:opacity-70 transition-opacity break-words border-b-0 pb-0 align-baseline"
+                          >
+                            {item.title}
+                          </Link>
+                          <time
+                            className="opacity-50 text-[11px] whitespace-nowrap ml-1.5"
+                            dateTime={item.date}
+                          >
+                            {formatDate(item.date)}
+                          </time>
+                        </div>
                       </div>
                       {item.tags && item.tags.length > 0 && (
                         <div className="opacity-0 group-hover:opacity-70 text-[10px] transition-all duration-200 flex gap-1 flex-wrap pl-0 sm:pl-2">
