@@ -27,6 +27,7 @@ import { LinkTracker } from '@/components/LinkTracker';
 import { SearchAnalytics } from '@/components/SearchAnalytics';
 import { OhMyScript } from '@/components/OhMyScript';
 import { SubscribeWidget } from '@/components/SubscribeWidget';
+import { SiteFooterLicense } from '@/components/SiteFooterLicense';
 
 const spaceGrotesk = Space_Grotesk({ subsets: ['latin'] });
 
@@ -133,7 +134,7 @@ export default async function RootLayout({
             <header>
               <nav aria-label="Main navigation">
                 <div className="max-w-2xl mx-auto px-4 sm:px-8 py-4 sm:py-5 md:pb-2 md:border-b nav-border">
-                  {/* Desktop Navigation — logo left, links right; baseline-aligned so type lines up cleanly */}
+                  {/* Desktop Navigation - logo left, links right; baseline-aligned so type lines up cleanly */}
                   <div className="hidden md:flex md:flex-row md:flex-wrap md:items-baseline md:justify-between md:gap-x-6 md:gap-y-3">
                     <Link
                       href="/"
@@ -186,6 +187,7 @@ export default async function RootLayout({
                   <p className="text-xs" style={{ color: 'var(--color-muted-foreground)', fontSize: '0.65rem' }}>
                     © 2019 • OhMyScript
                   </p>
+                  <SiteFooterLicense />
                   <div className="flex items-center gap-4">
                     {socialLinks.github && (
                       <a href={socialLinks.github} target="_blank" rel="noopener noreferrer" className="border-0 p-0 transition-opacity hover:opacity-70" aria-label="GitHub">

@@ -166,7 +166,7 @@ export function TabbedWritingView({
 
   /**
    * Client navigation to bare `/writing/` (e.g. header link): no query string, so
-   * `searchParams` stays empty — restore from sessionStorage like the first visit.
+   * `searchParams` stays empty - restore from sessionStorage like the first visit.
    */
   useEffect(() => {
     if (!view.ready) return;
