@@ -129,6 +129,7 @@ export default function UsesPage() {
           >
             <h2 className="page-title text-lg" style={{ color: 'var(--color-foreground)' }}>
               {hardwareSection.title}
+              <span className="ml-1 inline-block" style={{ color: 'hsl(163 89% 45%)' }} aria-hidden>.</span>
             </h2>
             <SectionList section={hardwareSection} />
           </section>
@@ -144,6 +145,7 @@ export default function UsesPage() {
           >
             <h2 className="page-title text-lg" style={{ color: 'var(--color-foreground)' }}>
               {softwareSection.title}
+              <span className="ml-1 inline-block" style={{ color: 'hsl(163 89% 45%)' }} aria-hidden>.</span>
             </h2>
             <SectionList section={softwareSection} />
           </section>
@@ -160,6 +162,7 @@ export default function UsesPage() {
             >
               <h2 className="page-title text-lg" style={{ color: 'var(--color-foreground)' }}>
                 {section.title}
+                <span className="ml-1 inline-block" style={{ color: 'hsl(163 89% 45%)' }} aria-hidden>.</span>
               </h2>
               <SectionList section={section} />
             </section>

@@ -39,7 +39,10 @@ export default function Services() {
       {/* Services Section */}
       <section className="animate-fade-up" style={{ animationDelay: '100ms' }}>
         <div className="mb-8">
-          <h2 className="text-base mb-2 font-semibold">Services</h2>
+          <h2 className="text-base mb-2 font-semibold" style={{ fontFamily: 'var(--font-family-display)', color: 'var(--color-foreground)' }}>
+            Services
+            <span className="ml-1 inline-block" style={{ color: 'hsl(163 89% 45%)' }} aria-hidden>.</span>
+          </h2>
           <div className="h-px w-12" style={{ backgroundColor: 'var(--color-border)' }}></div>
         </div>
 
@@ -78,7 +81,10 @@ export default function Services() {
       {/* Process Section */}
       <section className="animate-fade-up" style={{ animationDelay: '150ms' }}>
         <div className="mb-8">
-          <h2 className="text-base mb-2 font-semibold">Process</h2>
+          <h2 className="text-base mb-2 font-semibold" style={{ fontFamily: 'var(--font-family-display)', color: 'var(--color-foreground)' }}>
+            Process
+            <span className="ml-1 inline-block" style={{ color: 'hsl(163 89% 45%)' }} aria-hidden>.</span>
+          </h2>
           <div className="h-px w-12" style={{ backgroundColor: 'var(--color-border)' }}></div>
         </div>
 
@@ -110,7 +116,10 @@ export default function Services() {
       {/* Stats - Compact Preview */}
       <section className="prose animate-fade-up" style={{ animationDelay: '200ms' }}>
         <div className="mb-8">
-          <h2 className="text-base mb-2 font-semibold">Experience</h2>
+          <h2 className="text-base mb-2 font-semibold" style={{ fontFamily: 'var(--font-family-display)', color: 'var(--color-foreground)' }}>
+            Experience
+            <span className="ml-1 inline-block" style={{ color: 'hsl(163 89% 45%)' }} aria-hidden>.</span>
+          </h2>
           <div className="h-px w-12 mb-6" style={{ backgroundColor: 'var(--color-border)' }}></div>
         </div>
         <div className="flex justify-center mb-6">
@@ -141,7 +150,10 @@ export default function Services() {
       {/* Clientele Section */}
       <section className="animate-fade-up" style={{ animationDelay: '250ms' }}>
         <div className="mb-8">
-          <h2 className="text-base mb-2 font-semibold">Clients</h2>
+          <h2 className="text-base mb-2 font-semibold" style={{ fontFamily: 'var(--font-family-display)', color: 'var(--color-foreground)' }}>
+            Clients
+            <span className="ml-1 inline-block" style={{ color: 'hsl(163 89% 45%)' }} aria-hidden>.</span>
+          </h2>
           <div className="h-px w-12" style={{ backgroundColor: 'var(--color-border)' }}></div>
         </div>
         <ClienteleList
@@ -163,7 +175,10 @@ export default function Services() {
       {/* CTA - Beautiful Minimalistic */}
       <section className="animate-fade-up" style={{ animationDelay: '300ms' }}>
         <div className="mb-8">
-          <h2 className="text-base mb-2 font-semibold">Let's Talk</h2>
+          <h2 className="text-base mb-2 font-semibold" style={{ fontFamily: 'var(--font-family-display)', color: 'var(--color-foreground)' }}>
+            Let's Talk
+            <span className="ml-1 inline-block" style={{ color: 'hsl(163 89% 45%)' }} aria-hidden>.</span>
+          </h2>
           <div className="h-px w-12" style={{ backgroundColor: 'var(--color-border)' }}></div>
         </div>
         <div className="flex flex-wrap items-center gap-4 mb-6">
