@@ -56,8 +56,9 @@ function getNavItems() {
     });
   });
 
-  // Add Services, About and Contact at the end (static pages)
+  // Add static pages at the end
   items.push({ name: 'Services', path: '/services' });
+  items.push({ name: 'Uses', path: '/uses' });
   items.push({ name: 'About', path: '/about' });
   items.push({ name: 'Contact', path: '/contact' });
 

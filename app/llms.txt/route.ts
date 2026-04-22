@@ -76,10 +76,15 @@ ${contentStats.find(s => s.type === 'Newsletter') ? `Content count: ${contentSta
 Path: ${siteUrl}/reading/
 Description: Books I'm reading, have read, and thoughts on them.
 
+### Uses
+Path: ${siteUrl}/uses/
+Description: A detailed breakdown of the hardware, editor setup, software, runtime, camera gear, and services currently in use.
+
 ## Key Pages
 - Home: ${siteUrl}/
 - About: ${siteUrl}/about/
 - Services: ${siteUrl}/services/
+- Uses: ${siteUrl}/uses/
 - Contact: ${siteUrl}/contact/
 
 ## Feeds & APIs
@@ -112,6 +117,5 @@ ${new Date().toISOString().split('T')[0]}
     }
   });
 }
-
 
 
