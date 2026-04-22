@@ -3,5 +3,5 @@ interface OhMyScriptProps {
 }
 
 export function OhMyScript({ className = '' }: OhMyScriptProps) {
-  return <span className={className}>{"<OhMyScript/>"}</span>;
+  return <span className={`page-title ${className}`.trim()}>{"<OhMyScript/>"}</span>;
 }
