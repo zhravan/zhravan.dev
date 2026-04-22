@@ -91,33 +91,53 @@ export default function Home() {
 
       <section className="animate-fade-up" style={{ animationDelay: '260ms' }}>
         <div
-          className="rounded-[2px] border px-4 py-3 sm:px-5 sm:py-3.5"
+          className="relative border px-3.5 py-3 sm:px-6 sm:py-4"
           style={{
-            borderColor: 'color-mix(in srgb, hsl(145 96% 36%) 76%, var(--color-border))',
-            backgroundColor: 'color-mix(in srgb, hsl(206 80% 5%) 55%, var(--color-card))',
-            boxShadow: '0 0 0 1px color-mix(in srgb, hsl(145 96% 36%) 28%, transparent) inset',
+            borderColor: 'color-mix(in srgb, hsl(145 88% 28%) 36%, var(--color-border))',
+            backgroundColor: 'color-mix(in srgb, hsl(206 88% 4%) 68%, var(--color-card))',
+            boxShadow: '0 0 0 1px color-mix(in srgb, hsl(145 92% 30%) 16%, transparent) inset',
           }}
         >
-          <div className="flex flex-col gap-2.5 sm:flex-row sm:items-center sm:justify-between">
+          <span
+            aria-hidden
+            className="absolute left-0 top-0 h-3 w-3"
+            style={{
+              borderTop: '1px solid hsl(145 96% 36%)',
+              borderLeft: '1px solid hsl(145 96% 36%)',
+            }}
+          />
+          <span
+            aria-hidden
+            className="absolute bottom-0 right-0 h-3 w-3"
+            style={{
+              borderBottom: '1px solid hsl(145 96% 36%)',
+              borderRight: '1px solid hsl(145 96% 36%)',
+            }}
+          />
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div className="min-w-0">
               <p
-                className="m-0 text-sm sm:text-base tracking-wide break-words"
+                className="m-0 text-[1rem] sm:text-[2rem] leading-[1.05] tracking-[0.015em]"
                 style={{
-                  color: 'color-mix(in srgb, var(--color-foreground) 90%, hsl(145 28% 75%))',
-                  fontFamily: 'var(--code-font-family)',
+                  color: 'color-mix(in srgb, var(--color-foreground) 84%, hsl(145 22% 76%))',
+                  fontFamily: 'var(--font-family-display)',
                 }}
               >
                 say hi at{' '}
                 <MailtoLink
                   email="shravan@eclosion.in"
-                  className="border-b-0 pb-0 transition-opacity hover:opacity-80"
-                  style={{ color: 'hsl(145 96% 40%)' }}
+                  className="inline-block max-w-full break-all sm:break-normal border-b-0 pb-0 transition-opacity hover:opacity-80"
+                  style={{
+                    color: 'hsl(145 96% 40%)',
+                    textShadow: '0 0 8px color-mix(in srgb, hsl(145 96% 40%) 45%, transparent)',
+                    fontFamily: 'var(--font-family-display)',
+                  }}
                 >
                   shravan@eclosion.in
                 </MailtoLink>
               </p>
               <p
-                className="m-0 mt-1 text-[10px]"
+                className="m-0 mt-2 text-[10px] sm:text-[11px]"
                 style={{
                   color: 'color-mix(in srgb, var(--color-muted-foreground) 68%, transparent)',
                   fontFamily: 'var(--code-font-family)',
@@ -128,7 +148,7 @@ export default function Home() {
             </div>
             <MailtoLink
               email="shravan@eclosion.in"
-              className="inline-flex w-fit items-center justify-center border px-2.5 py-1.5 text-[11px] uppercase tracking-[0.08em] transition-opacity hover:opacity-80"
+              className="inline-flex w-full sm:w-fit items-center justify-center border px-3 py-2 text-[0.82rem] sm:text-[0.9rem] lowercase tracking-[0.01em] transition-opacity hover:opacity-80"
               style={{
                 borderColor: 'hsl(145 96% 36%)',
                 color: 'hsl(145 96% 40%)',
