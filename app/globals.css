@@ -89,6 +89,40 @@ h6 {
   text-rendering: geometricPrecision;
 }
 
+.ohmyscript-wordmark {
+  --ohmyscript-led: hsl(44 100% 70%);
+  --ohmyscript-led-core: rgb(255 248 212 / 0.98);
+  --ohmyscript-led-mid: rgb(255 226 128 / 0.72);
+  --ohmyscript-led-halo: rgb(255 186 66 / 0.42);
+  display: inline-block;
+  position: relative;
+  color: color-mix(in srgb, var(--color-foreground) 72%, var(--ohmyscript-led) 28%);
+  font-variation-settings: 'ROND' 100, 'wght' 800;
+  letter-spacing: 0.03em;
+  text-shadow:
+    0 0 0.08rem var(--ohmyscript-led-core),
+    0 0 0.32rem var(--ohmyscript-led-mid),
+    0 0 1rem var(--ohmyscript-led-halo);
+  animation: ohmyscript-sign-flicker 6.7s steps(1, end) infinite;
+}
+
+.ohmyscript-wordmark::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  color: var(--ohmyscript-led);
+  opacity: 0.95;
+  filter: blur(0.18rem);
+  transform: translateY(0.01em);
+  text-shadow:
+    0 0 0.18rem var(--ohmyscript-led-core),
+    0 0 0.6rem var(--ohmyscript-led-mid),
+    0 0 1.4rem var(--ohmyscript-led-halo);
+  pointer-events: none;
+  animation: ohmyscript-sign-flicker 6.7s steps(1, end) infinite;
+}
+
 a {
   color: var(--color-link);
   text-decoration: none;
@@ -445,6 +479,107 @@ pre.shiki::-webkit-scrollbar-thumb {
 
   100% {
     transform: translate(0, 0)
+  }
+}
+
+@keyframes ohmyscript-sign-flicker {
+  0%, 9%, 11%, 27%, 31%, 44%, 48%, 63%, 69%, 100% {
+    --ohmyscript-led: hsl(44 100% 70%);
+    --ohmyscript-led-core: rgb(255 248 212 / 0.98);
+    --ohmyscript-led-mid: rgb(255 226 128 / 0.72);
+    --ohmyscript-led-halo: rgb(255 186 66 / 0.42);
+    opacity: 1;
+    text-shadow:
+      0 0 0.08rem var(--ohmyscript-led-core),
+      0 0 0.32rem var(--ohmyscript-led-mid),
+      0 0 1rem var(--ohmyscript-led-halo);
+  }
+
+  10% {
+    --ohmyscript-led: hsl(190 100% 74%);
+    --ohmyscript-led-core: rgb(222 251 255 / 0.98);
+    --ohmyscript-led-mid: rgb(131 237 255 / 0.68);
+    --ohmyscript-led-halo: rgb(58 193 255 / 0.34);
+    opacity: 0.92;
+    text-shadow:
+      0 0 0.08rem var(--ohmyscript-led-core),
+      0 0 0.32rem var(--ohmyscript-led-mid),
+      0 0 1rem var(--ohmyscript-led-halo);
+  }
+
+  28% {
+    --ohmyscript-led: hsl(332 100% 76%);
+    --ohmyscript-led-core: rgb(255 226 242 / 0.98);
+    --ohmyscript-led-mid: rgb(255 143 203 / 0.7);
+    --ohmyscript-led-halo: rgb(255 78 171 / 0.34);
+    opacity: 0.88;
+    text-shadow:
+      0 0 0.08rem var(--ohmyscript-led-core),
+      0 0 0.32rem var(--ohmyscript-led-mid),
+      0 0 1rem var(--ohmyscript-led-halo);
+  }
+
+  30% {
+    --ohmyscript-led: hsl(126 78% 70%);
+    --ohmyscript-led-core: rgb(231 255 232 / 0.96);
+    --ohmyscript-led-mid: rgb(156 245 157 / 0.66);
+    --ohmyscript-led-halo: rgb(74 218 95 / 0.32);
+    opacity: 0.94;
+    text-shadow:
+      0 0 0.08rem var(--ohmyscript-led-core),
+      0 0 0.32rem var(--ohmyscript-led-mid),
+      0 0 1rem var(--ohmyscript-led-halo);
+  }
+
+  46% {
+    --ohmyscript-led: hsl(269 100% 78%);
+    --ohmyscript-led-core: rgb(238 228 255 / 0.98);
+    --ohmyscript-led-mid: rgb(188 144 255 / 0.72);
+    --ohmyscript-led-halo: rgb(134 84 255 / 0.34);
+    opacity: 0.9;
+    text-shadow:
+      0 0 0.08rem var(--ohmyscript-led-core),
+      0 0 0.32rem var(--ohmyscript-led-mid),
+      0 0 1rem var(--ohmyscript-led-halo);
+  }
+
+  66% {
+    --ohmyscript-led: hsl(8 100% 74%);
+    --ohmyscript-led-core: rgb(255 233 224 / 0.98);
+    --ohmyscript-led-mid: rgb(255 166 140 / 0.72);
+    --ohmyscript-led-halo: rgb(255 96 58 / 0.34);
+    opacity: 0.9;
+    text-shadow:
+      0 0 0.08rem var(--ohmyscript-led-core),
+      0 0 0.32rem var(--ohmyscript-led-mid),
+      0 0 1rem var(--ohmyscript-led-halo);
+  }
+
+  13%, 53%, 74% {
+    opacity: 0.56;
+    text-shadow:
+      0 0 0.02rem rgb(255 242 198 / 0.72),
+      0 0 0.08rem rgb(255 214 102 / 0.2),
+      0 0 0.28rem rgb(255 184 77 / 0.08);
+  }
+
+  14%, 54% {
+    opacity: 0.9;
+  }
+
+  74% {
+    opacity: 0.72;
+    text-shadow:
+      0 0 0.04rem rgb(255 242 198 / 0.8),
+      0 0 0.14rem rgb(255 224 138 / 0.28),
+      0 0 0.52rem rgb(255 184 77 / 0.14);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ohmyscript-wordmark,
+  .ohmyscript-wordmark::after {
+    animation: none;
   }
 }
 
