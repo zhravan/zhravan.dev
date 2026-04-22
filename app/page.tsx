@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { getDefaultMetadata } from '@/lib/seo';
 import { AnalyticsTracker } from '@/components/AnalyticsTracker';
+import { MailtoLink } from '@/components/MailtoLink';
 import type { Metadata } from 'next';
 
 /** Public URL; filename contains `<>`, so encode for a valid path. */
@@ -84,7 +85,7 @@ export default function Home() {
       <section className="animate-fade-up" style={{ animationDelay: '200ms' }}>
         <p className="" style={{ color: 'var(--color-muted-foreground)' }}>
           You can <Link href="/writing/">read my writing</Link>, check out my{' '}
-          <Link href="/projects/">projects</Link>, or <Link href="/about/">learn more about me</Link>. I am always interested in connecting with fellow developers and creators. You can reachout to me via <a href="mailto:shravan@eclosion.in" className="transition-opacity hover:opacity-70">shravan@eclosion.in</a>.
+          <Link href="/projects/">projects</Link>, or <Link href="/about/">learn more about me</Link>. I am always interested in connecting with fellow developers and creators. You can reachout to me via <MailtoLink email="shravan@eclosion.in" className="transition-opacity hover:opacity-70">shravan@eclosion.in</MailtoLink>.
         </p>
       </section>
 
@@ -107,13 +108,13 @@ export default function Home() {
                 }}
               >
                 say hi at{' '}
-                <a
-                  href="mailto:shravan@eclosion.in"
+                <MailtoLink
+                  email="shravan@eclosion.in"
                   className="border-b-0 pb-0 transition-opacity hover:opacity-80"
                   style={{ color: 'hsl(145 96% 40%)' }}
                 >
                   shravan@eclosion.in
-                </a>
+                </MailtoLink>
               </p>
               <p
                 className="m-0 mt-1 text-[10px]"
@@ -122,20 +123,21 @@ export default function Home() {
                   fontFamily: 'var(--code-font-family)',
                 }}
               >
-                replies within 1-3 days.
+                replies within 1-2 days.
               </p>
             </div>
-            <a
-              href="mailto:shravan@eclosion.in"
+            <MailtoLink
+              email="shravan@eclosion.in"
               className="inline-flex w-fit items-center justify-center border px-2.5 py-1.5 text-[11px] uppercase tracking-[0.08em] transition-opacity hover:opacity-80"
               style={{
                 borderColor: 'hsl(145 96% 36%)',
                 color: 'hsl(145 96% 40%)',
                 fontFamily: 'var(--code-font-family)',
               }}
+              title="Send email"
             >
               send.mail
-            </a>
+            </MailtoLink>
           </div>
         </div>
       </section>
