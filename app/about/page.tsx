@@ -102,7 +102,7 @@ export default function About() {
           >
             LinkedIn
           </a>
-          <a href="mailto:hi@ohmyscript.com" className="transition-colors duration-150">
+          <a href="mailto:shravan@eclosion.in" className="transition-colors duration-150">
             Email
           </a>
           <span style={{ color: 'var(--color-muted-foreground)' }}>·</span>

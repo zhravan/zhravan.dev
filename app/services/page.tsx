@@ -199,7 +199,7 @@ export default function Services() {
             <span className="text-sm font-semibold">Schedule a meeting</span>
           </a>
           <a
-            href="mailto:hi@ohmyscript.com"
+            href="mailto:shravan@eclosion.in"
             className="flex items-center gap-2 transition-all duration-200 hover:opacity-100 email-link-hover"
             style={{
               color: 'var(--color-muted-foreground)',

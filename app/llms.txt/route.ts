@@ -98,7 +98,7 @@ ${socialLinks.github ? `GitHub: ${socialLinks.github}` : ''}
 ${socialLinks.twitter ? `Twitter/X: ${socialLinks.twitter}` : ''}
 ${socialLinks.linkedin ? `LinkedIn: ${socialLinks.linkedin}` : ''}
 ${socialLinks.gitlab ? `GitLab: ${socialLinks.gitlab}` : ''}
-Email: hi@ohmyscript.com
+Email: shravan@eclosion.in
 
 ## Content Guidelines
 - Technical content focuses on practical implementation and real-world experience

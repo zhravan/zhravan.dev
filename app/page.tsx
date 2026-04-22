@@ -84,8 +84,60 @@ export default function Home() {
       <section className="animate-fade-up" style={{ animationDelay: '200ms' }}>
         <p className="" style={{ color: 'var(--color-muted-foreground)' }}>
           You can <Link href="/writing/">read my writing</Link>, check out my{' '}
-          <Link href="/projects/">projects</Link>, or <Link href="/about/">learn more about me</Link>. I am always interested in connecting with fellow developers and creators. You can reachout to me via <a href="mailto:hi@ohmyscript.com" className="transition-opacity hover:opacity-70">hi@ohmyscript.com</a>.
+          <Link href="/projects/">projects</Link>, or <Link href="/about/">learn more about me</Link>. I am always interested in connecting with fellow developers and creators. You can reachout to me via <a href="mailto:shravan@eclosion.in" className="transition-opacity hover:opacity-70">shravan@eclosion.in</a>.
         </p>
+      </section>
+
+      <section className="animate-fade-up" style={{ animationDelay: '260ms' }}>
+        <div
+          className="rounded-[2px] border px-4 py-3 sm:px-5 sm:py-3.5"
+          style={{
+            borderColor: 'color-mix(in srgb, hsl(145 96% 36%) 76%, var(--color-border))',
+            backgroundColor: 'color-mix(in srgb, hsl(206 80% 5%) 55%, var(--color-card))',
+            boxShadow: '0 0 0 1px color-mix(in srgb, hsl(145 96% 36%) 28%, transparent) inset',
+          }}
+        >
+          <div className="flex flex-col gap-2.5 sm:flex-row sm:items-center sm:justify-between">
+            <div className="min-w-0">
+              <p
+                className="m-0 text-sm sm:text-base tracking-wide break-words"
+                style={{
+                  color: 'color-mix(in srgb, var(--color-foreground) 90%, hsl(145 28% 75%))',
+                  fontFamily: 'var(--code-font-family)',
+                }}
+              >
+                say hi at{' '}
+                <a
+                  href="mailto:shravan@eclosion.in"
+                  className="border-b-0 pb-0 transition-opacity hover:opacity-80"
+                  style={{ color: 'hsl(145 96% 40%)' }}
+                >
+                  shravan@eclosion.in
+                </a>
+              </p>
+              <p
+                className="m-0 mt-1 text-[10px]"
+                style={{
+                  color: 'color-mix(in srgb, var(--color-muted-foreground) 68%, transparent)',
+                  fontFamily: 'var(--code-font-family)',
+                }}
+              >
+                replies within 1-3 days.
+              </p>
+            </div>
+            <a
+              href="mailto:shravan@eclosion.in"
+              className="inline-flex w-fit items-center justify-center border px-2.5 py-1.5 text-[11px] uppercase tracking-[0.08em] transition-opacity hover:opacity-80"
+              style={{
+                borderColor: 'hsl(145 96% 36%)',
+                color: 'hsl(145 96% 40%)',
+                fontFamily: 'var(--code-font-family)',
+              }}
+            >
+              send.mail
+            </a>
+          </div>
+        </div>
       </section>
 
     </main>
