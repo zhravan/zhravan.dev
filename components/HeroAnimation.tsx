@@ -52,7 +52,10 @@ export function HeroAnimation() {
       {/* Title */}
       {showCommand && (
         <div className="mb-4">
-          <h2 className="text-sm mb-2">Who am I</h2>
+          <h2 className="text-sm mb-2" style={{ fontFamily: 'var(--font-family-display)', color: 'var(--color-foreground)' }}>
+            Who am I
+            <span className="ml-1 inline-block" style={{ color: 'hsl(163 89% 45%)' }} aria-hidden>.</span>
+          </h2>
           <div className="h-px w-12" style={{ backgroundColor: 'var(--color-border)' }}></div>
         </div>
       )}

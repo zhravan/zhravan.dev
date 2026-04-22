@@ -7,7 +7,7 @@ interface Client {
   name: string;
   url?: string;
   logo?: string;
-  status?: 'active' | 'past';
+  status?: 'active' | 'perennial' | 'past';
 }
 
 interface ClienteleListProps {
@@ -17,20 +17,28 @@ interface ClienteleListProps {
 export function ClienteleList({ clients }: ClienteleListProps) {
   const [hoveredIndex, setHoveredIndex] = useState<string | null>(null);
 
-  // Separate clients into active and past
+  // Separate clients into active, perennial, and past
   const activeClients = clients.filter(client => client.status === 'active');
+  const perennialClients = clients.filter(client => client.status === 'perennial');
   const pastClients = clients.filter(client => client.status === 'past');
 
-  const renderClient = (client: Client, index: number, isActive: boolean, baseIndex: number) => {
+  const renderClient = (
+    client: Client,
+    index: number,
+    statusType: 'active' | 'perennial' | 'past',
+    baseIndex: number
+  ) => {
     const uniqueKey = `${client.name}-${index}`;
     const isHovered = hoveredIndex === uniqueKey;
+    const isActive = statusType === 'active';
+    const isPerennial = statusType === 'perennial';
     
     const content = (
       <div
         className="clientele-card relative group"
         style={{
           animationDelay: `${baseIndex * 30}ms`,
-          opacity: isActive ? 1 : 0.5,
+          opacity: isActive ? 1 : isPerennial ? 0.75 : 0.5,
         }}
         onMouseEnter={() => setHoveredIndex(uniqueKey)}
         onMouseLeave={() => setHoveredIndex(null)}
@@ -53,13 +61,17 @@ export function ClienteleList({ clients }: ClienteleListProps) {
             <div
               className="absolute top-1 left-1 text-xs"
               style={{
-                color: isActive ? 'var(--color-link)' : 'var(--color-muted-foreground)',
+                color: isActive
+                  ? 'var(--color-link)'
+                  : isPerennial
+                    ? 'hsl(45 95% 58%)'
+                    : 'var(--color-muted-foreground)',
                 fontSize: '0.6rem',
                 fontFamily: 'var(--code-font-family)',
                 opacity: 0.7,
               }}
             >
-              {isActive ? 'Active' : 'Past'}
+              {isActive ? 'Active' : isPerennial ? 'Perennial' : 'Past'}
             </div>
           )}
 
@@ -133,7 +145,18 @@ export function ClienteleList({ clients }: ClienteleListProps) {
       {activeClients.length > 0 && (
         <div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
-            {activeClients.map((client, index) => renderClient(client, index, true, index))}
+            {activeClients.map((client, index) => renderClient(client, index, 'active', index))}
+          </div>
+        </div>
+      )}
+
+      {/* Perennial Clients */}
+      {perennialClients.length > 0 && (
+        <div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+            {perennialClients.map((client, index) =>
+              renderClient(client, index, 'perennial', activeClients.length + index)
+            )}
           </div>
         </div>
       )}
@@ -142,7 +165,9 @@ export function ClienteleList({ clients }: ClienteleListProps) {
       {pastClients.length > 0 && (
         <div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
-            {pastClients.map((client, index) => renderClient(client, index, false, activeClients.length + index))}
+            {pastClients.map((client, index) =>
+              renderClient(client, index, 'past', activeClients.length + perennialClients.length + index)
+            )}
           </div>
         </div>
       )}

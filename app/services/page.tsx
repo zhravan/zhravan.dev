@@ -164,6 +164,8 @@ export default function Services() {
             { name: 'Codive', url: 'https://codive.co/', status: 'past' },
             { name: 'Freight Tiger', url: 'https://www.freighttiger.com/about/', status: 'past' },
             { name: 'Furrever', url: 'https://furrever.io/', status: 'active' },
+            { name: 'Rekard', status: 'perennial' },
+            { name: 'Shaale', status: 'active' },
             { name: 'Waste Wallet', status: 'active' },
           ]}
         />
