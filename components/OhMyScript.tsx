@@ -1,4 +1,7 @@
-export function OhMyScript() {
-  return <span>{"<OhMyScript/>"}</span>;
+interface OhMyScriptProps {
+  className?: string;
 }
 
+export function OhMyScript({ className = '' }: OhMyScriptProps) {
+  return <span className={className}>{"<OhMyScript/>"}</span>;
+}

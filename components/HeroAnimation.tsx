@@ -60,7 +60,7 @@ export function HeroAnimation() {
       <div className="max-w-3xl">
         <div style={{ minHeight: '3rem' }}>
           <h1
-            className="text-sm leading-tight font-light transition-opacity duration-300"
+            className="page-title text-xl sm:text-2xl transition-opacity duration-300"
             style={{
               color: 'var(--color-foreground)',
               opacity: isVisible ? 1 : 0,

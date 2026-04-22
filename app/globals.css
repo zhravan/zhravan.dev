@@ -59,6 +59,7 @@ body::before {
 }
 
 :root {
+  --font-family-display: var(--font-display), var(--font-family-sans);
   --code-font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
   --code-font-size: 0.775rem;
   --code-line-height: 0.5rem;
@@ -77,6 +78,15 @@ h5,
 h6 {
   font-weight: 400;
   letter-spacing: 0;
+}
+
+.page-title {
+  font-family: var(--font-family-display);
+  font-weight: 800;
+  font-variation-settings: 'ROND' 0, 'wght' 800;
+  letter-spacing: 0.01em;
+  line-height: 0.95;
+  text-rendering: geometricPrecision;
 }
 
 a {

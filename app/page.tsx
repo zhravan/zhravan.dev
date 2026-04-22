@@ -30,7 +30,7 @@ export default function Home() {
             />
             <div className="min-w-0 space-y-2.5">
               <h1
-                className="text-base font-medium leading-snug tracking-tight m-0"
+                className="page-title text-3xl sm:text-4xl tracking-tight m-0"
                 style={{ color: 'var(--color-foreground)' }}
               >
                 Shravan Kumar B
