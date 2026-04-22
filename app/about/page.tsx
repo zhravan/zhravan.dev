@@ -28,7 +28,10 @@ export default function About() {
         className="prose animate-fade-up"
         style={{ animationDelay: '100ms' }}
       >
-        <h2 className="text-sm">Background</h2>
+        <h2 className="text-sm" style={{ fontFamily: 'var(--font-family-display)', color: 'var(--color-foreground)' }}>
+          Background
+          <span className="ml-1 inline-block" style={{ color: 'hsl(163 89% 45%)' }} aria-hidden>.</span>
+        </h2>
         <p className="" style={{ color: 'var(--color-muted-foreground)' }}>
           I am a tinkerer, FOSS enthusiast, polymathic indie computer scientist, systems engineer, and data-science aficionado. My experience spans backend architectures, platform engineering, distributed systems, AI agents, developer tools, and Vehicle Routing solvers (CVRPTW/VRPTW).
           <br /><br />
@@ -36,12 +39,18 @@ export default function About() {
           cloud infrastructure, developer utilities, and AI workflows.
         </p>
 
-        <h2 className="text-sm">What I Do</h2>
+        <h2 className="text-sm" style={{ fontFamily: 'var(--font-family-display)', color: 'var(--color-foreground)' }}>
+          What I Do
+          <span className="ml-1 inline-block" style={{ color: 'hsl(163 89% 45%)' }} aria-hidden>.</span>
+        </h2>
         <p className="" style={{ color: 'var(--color-muted-foreground)' }}>
           I love building tools that make technology more accessible and enjoyable to use. I have been building and coding for over a decade and teaching for half that time.
         </p>
 
-        <h3 className="text-sm">Focus Areas</h3>
+        <h3 className="text-sm" style={{ fontFamily: 'var(--font-family-display)', color: 'var(--color-foreground)' }}>
+          Focus Areas
+          <span className="ml-1 inline-block" style={{ color: 'hsl(163 89% 45%)' }} aria-hidden>.</span>
+        </h3>
         <ul className="space-y-1" style={{ color: 'var(--color-muted-foreground)' }}>
           <li>Backend architectures, platform engineering, distributed systems, and infrastructure</li>
           <li>AI engineering & agentic AI systems (LLMs, RAG, etc.)</li>
@@ -50,13 +59,19 @@ export default function About() {
           <li>Technical writing</li>
         </ul>
 
-        <h2 className="text-sm">Beyond Code</h2>
+        <h2 className="text-sm" style={{ fontFamily: 'var(--font-family-display)', color: 'var(--color-foreground)' }}>
+          Beyond Code
+          <span className="ml-1 inline-block" style={{ color: 'hsl(163 89% 45%)' }} aria-hidden>.</span>
+        </h2>
         <p className="" style={{ color: 'var(--color-muted-foreground)' }}>
           When I am not at my keyboard, you will find me exploring new music, cooking,gardening, reading about philosophy, culture, technology and design, or exploring ideas through writing.<br />
           I believe diverse interests make for better engineers and more thoughtful problem-solving.
         </p>
 
-        <h2 className="text-sm">Get in Touch</h2>
+        <h2 className="text-sm" style={{ fontFamily: 'var(--font-family-display)', color: 'var(--color-foreground)' }}>
+          Get in Touch
+          <span className="ml-1 inline-block" style={{ color: 'hsl(163 89% 45%)' }} aria-hidden>.</span>
+        </h2>
         <p className="" style={{ color: 'var(--color-muted-foreground)' }}>
           I am always interested in connecting with other developers, designers, and creators.
           Whether you want to discuss a project, collaborate on something new, or just chat about technology, feel free to reach out.
@@ -87,7 +102,7 @@ export default function About() {
           >
             LinkedIn
           </a>
-          <a href="mailto:hi@ohmyscript.com" className="transition-colors duration-150">
+          <a href="mailto:shravan@eclosion.in" className="transition-colors duration-150">
             Email
           </a>
           <span style={{ color: 'var(--color-muted-foreground)' }}>·</span>

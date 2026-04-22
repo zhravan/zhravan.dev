@@ -36,6 +36,9 @@ export default function TalksPage() {
     return `${month} ${day}`;
   };
 
+  const postTitleLinkClass =
+    '!border-b-0 pb-0 transition-colors break-words leading-tight';
+
   // Group items by year (descending)
   const byYear = items.reduce<Record<string, typeof items>>((acc, item) => {
     const y = (new Date(item.date)).getFullYear();
@@ -56,46 +59,107 @@ export default function TalksPage() {
           Yet to add talks.
         </div>
       ) : (
-        <div className="space-y-5">
+        <div className="space-y-4">
           {yearKeys.map((year) => {
             const yearItems = byYear[year];
             return (
               <section key={year} className="space-y-1.5">
-                <h2 className="text-xs opacity-50 mb-2">{year}</h2>
-                <ul className="list-none p-0 m-0 space-y-2.5 sm:space-y-1.5">
-                  {yearItems.map((item) => (
-                    <li key={item.slug} className="group">
-                      <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-2 text-xs leading-relaxed">
-                        <div className="flex items-baseline gap-2 min-w-0 flex-1">
-                          <span className="opacity-30 shrink-0">▶</span>
-                          <div className="min-w-0 flex-1">
-                            <Link
-                              href={`${contentType.path}/${item.slug}`}
-                              className="font-semibold hover:opacity-70 transition-opacity break-words border-b-0 pb-0 align-baseline"
-                            >
-                              {item.title}
-                            </Link>
+                <div className="flex items-start justify-between gap-4">
+                  <h2
+                    className="text-[0.8rem] leading-none tracking-tight sm:text-[1.25rem]"
+                    style={{
+                      color: 'color-mix(in srgb, var(--color-foreground) 92%, transparent)',
+                      fontFamily: 'var(--font-family-display)',
+                    }}
+                  >
+                    {year}
+                    <span
+                      className="ml-1 inline-block"
+                      style={{ color: 'hsl(163 89% 45%)' }}
+                      aria-hidden
+                    >
+                      .
+                    </span>
+                  </h2>
+                  <span
+                    className="pt-0.5 text-[8px] sm:text-[10px]"
+                    style={{
+                      color: 'color-mix(in srgb, var(--color-muted-foreground) 78%, transparent)',
+                      fontFamily: 'var(--code-font-family)',
+                    }}
+                  >
+                    {yearItems.length}
+                  </span>
+                </div>
+
+                <ul
+                  className="m-0 list-none overflow-hidden rounded-[0.8rem] border p-0"
+                  style={{
+                    backgroundColor:
+                      'color-mix(in srgb, var(--color-card) 74%, var(--color-background))',
+                    borderColor: 'color-mix(in srgb, var(--color-border) 78%, transparent)',
+                  }}
+                >
+                  {yearItems.map((item, index) => (
+                    <li
+                      key={item.slug}
+                      className="group"
+                      style={{
+                        borderTop:
+                          index === 0
+                            ? 'none'
+                            : '1px dashed color-mix(in srgb, var(--color-border) 62%, transparent)',
+                      }}
+                    >
+                      <div className="px-2.5 py-4.5 sm:px-3 sm:py-4.5">
+                        <div className="flex flex-col gap-2.5 sm:flex-row sm:items-center sm:justify-between">
+                          <div className="min-w-0 flex items-start gap-2 sm:items-center sm:gap-3">
                             <time
-                              className="opacity-50 text-[11px] whitespace-nowrap ml-1.5"
+                              className="shrink-0 text-[6px] uppercase tracking-[0.1em] sm:text-[7px]"
+                              style={{
+                                color:
+                                  'color-mix(in srgb, var(--color-muted-foreground) 88%, transparent)',
+                                fontFamily: 'var(--code-font-family)',
+                              }}
                               dateTime={item.date}
                             >
                               {formatDate(item.date)}
                             </time>
-                          </div>
-                        </div>
-                        {item.tags && item.tags.length > 0 && (
-                          <div className="opacity-0 group-hover:opacity-70 text-[10px] transition-all duration-200 flex gap-1 flex-wrap pl-0 sm:pl-2">
-                            {item.tags.slice(0, 3).map((tag) => (
-                              <span
-                                key={tag}
-                                className="px-1.5 py-0.5 rounded border"
-                                style={{ borderColor: 'var(--color-border)' }}
+
+                            <div className="min-w-0 flex-1">
+                              <Link
+                                href={`${contentType.path}/${item.slug}`}
+                                className={`${postTitleLinkClass} text-[0.62rem] sm:text-[0.72rem]`}
+                                style={{
+                                  color: 'hsl(163 71% 44%)',
+                                  fontFamily: 'var(--code-font-family)',
+                                }}
                               >
-                                {tag}
-                              </span>
-                            ))}
+                                {item.title}
+                              </Link>
+                            </div>
                           </div>
-                        )}
+
+                          {item.tags && item.tags.length > 0 && (
+                            <div className="hidden flex-wrap gap-1 opacity-50 transition-opacity duration-200 sm:flex sm:justify-end sm:opacity-0 sm:group-hover:opacity-60">
+                              {item.tags.slice(0, 3).map((tag) => (
+                                <span
+                                  key={tag}
+                                  className="rounded-full border px-1.5 py-0.5 text-[8px] uppercase tracking-[0.12em]"
+                                  style={{
+                                    borderColor:
+                                      'color-mix(in srgb, var(--color-border) 90%, transparent)',
+                                    color:
+                                      'color-mix(in srgb, var(--color-muted-foreground) 90%, transparent)',
+                                    fontFamily: 'var(--code-font-family)',
+                                  }}
+                                >
+                                  {tag}
+                                </span>
+                              ))}
+                            </div>
+                          )}
+                        </div>
                       </div>
                     </li>
                   ))}

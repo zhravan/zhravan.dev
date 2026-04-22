@@ -70,8 +70,8 @@ interface ContactItem {
 
 const contactItems: ContactItem[] = [
   {
-    username: 'hi@ohmyscript.com',
-    url: 'mailto:hi@ohmyscript.com',
+    username: 'shravan@eclosion.in',
+    url: 'mailto:shravan@eclosion.in',
     icon: Mail
   },
   {

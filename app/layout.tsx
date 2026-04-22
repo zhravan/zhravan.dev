@@ -1,6 +1,6 @@
 import './globals.css';
 import type { Metadata, Viewport } from 'next';
-import { Space_Grotesk } from 'next/font/google';
+import { Doto, Space_Grotesk } from 'next/font/google';
 import Link from 'next/link';
 import { NavPill, MobileNav } from '@/components/navigation';
 import { ScrollToTop } from '@/components/ScrollToTop';
@@ -30,6 +30,13 @@ import { SubscribeWidget } from '@/components/SubscribeWidget';
 import { SiteFooterLicense } from '@/components/SiteFooterLicense';
 
 const spaceGrotesk = Space_Grotesk({ subsets: ['latin'] });
+const doto = Doto({
+  subsets: ['latin'],
+  weight: 'variable',
+  axes: ['ROND'],
+  display: 'swap',
+  variable: '--font-display'
+});
 
 export const metadata: Metadata = getDefaultMetadata();
 export const viewport: Viewport = getDefaultViewport();
@@ -49,8 +56,9 @@ function getNavItems() {
     });
   });
 
-  // Add Services, About and Contact at the end (static pages)
+  // Add static pages at the end
   items.push({ name: 'Services', path: '/services' });
+  items.push({ name: 'Uses', path: '/uses' });
   items.push({ name: 'About', path: '/about' });
   items.push({ name: 'Contact', path: '/contact' });
 
@@ -112,7 +120,7 @@ export default async function RootLayout({
   const socialLinks = getSocialLinks();
 
   return (
-    <html lang="en" className={spaceGrotesk.className} suppressHydrationWarning>
+    <html lang="en" className={`${spaceGrotesk.className} ${doto.variable}`} suppressHydrationWarning>
       <head>
         <ThemeStyleTag />
         <StructuredData data={[websiteStructuredData, personStructuredData]} />
@@ -138,7 +146,7 @@ export default async function RootLayout({
                   <div className="hidden md:flex md:flex-row md:flex-wrap md:items-baseline md:justify-between md:gap-x-6 md:gap-y-3">
                     <Link
                       href="/"
-                      className="shrink-0 text-base font-medium font-mono transition-opacity hover:opacity-90 focus:opacity-90"
+                      className="shrink-0 text-base font-medium transition-opacity hover:opacity-90 focus:opacity-90"
                       style={{
                         color: 'var(--color-foreground)',
                         textDecoration: 'none',
@@ -146,7 +154,7 @@ export default async function RootLayout({
                         paddingBottom: 0
                       }}
                     >
-                      <OhMyScript />
+                      <OhMyScript className="page-title text-xl sm:text-2xl" />
                     </Link>
                     <div className="flex min-w-0 flex-1 flex-wrap items-baseline justify-end gap-x-4 gap-y-2 sm:gap-x-5">
                       {navItems.map((item) => (
@@ -169,7 +177,7 @@ export default async function RootLayout({
                           paddingBottom: 0
                         }}
                       >
-                        <OhMyScript />
+                        <OhMyScript className="page-title text-lg" />
                       </Link>
                     </div>
                     <div className="flex items-center justify-start">

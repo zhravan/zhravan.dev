@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { getDefaultMetadata } from '@/lib/seo';
 import { AnalyticsTracker } from '@/components/AnalyticsTracker';
+import { MailtoLink } from '@/components/MailtoLink';
 import type { Metadata } from 'next';
 
 /** Public URL; filename contains `<>`, so encode for a valid path. */
@@ -30,7 +31,7 @@ export default function Home() {
             />
             <div className="min-w-0 space-y-2.5">
               <h1
-                className="text-base font-medium leading-snug tracking-tight m-0"
+                className="page-title text-lg sm:text-xl tracking-tight m-0"
                 style={{ color: 'var(--color-foreground)' }}
               >
                 Shravan Kumar B
@@ -84,8 +85,81 @@ export default function Home() {
       <section className="animate-fade-up" style={{ animationDelay: '200ms' }}>
         <p className="" style={{ color: 'var(--color-muted-foreground)' }}>
           You can <Link href="/writing/">read my writing</Link>, check out my{' '}
-          <Link href="/projects/">projects</Link>, or <Link href="/about/">learn more about me</Link>. I am always interested in connecting with fellow developers and creators. You can reachout to me via <a href="mailto:hi@ohmyscript.com" className="transition-opacity hover:opacity-70">hi@ohmyscript.com</a>.
+          <Link href="/projects/">projects</Link>, or <Link href="/about/">learn more about me</Link>. I am always interested in connecting with fellow developers and creators. You can reachout to me via <MailtoLink email="shravan@eclosion.in" className="transition-opacity hover:opacity-70">shravan@eclosion.in</MailtoLink>.
         </p>
+      </section>
+
+      <section className="animate-fade-up" style={{ animationDelay: '260ms' }}>
+        <div
+          className="relative border px-3.5 py-3 sm:px-6 sm:py-4"
+          style={{
+            borderColor: 'color-mix(in srgb, hsl(145 88% 28%) 36%, var(--color-border))',
+            backgroundColor: 'color-mix(in srgb, hsl(206 88% 4%) 68%, var(--color-card))',
+            boxShadow: '0 0 0 1px color-mix(in srgb, hsl(145 92% 30%) 16%, transparent) inset',
+          }}
+        >
+          <span
+            aria-hidden
+            className="absolute left-0 top-0 h-3 w-3"
+            style={{
+              borderTop: '1px solid hsl(145 96% 36%)',
+              borderLeft: '1px solid hsl(145 96% 36%)',
+            }}
+          />
+          <span
+            aria-hidden
+            className="absolute bottom-0 right-0 h-3 w-3"
+            style={{
+              borderBottom: '1px solid hsl(145 96% 36%)',
+              borderRight: '1px solid hsl(145 96% 36%)',
+            }}
+          />
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div className="min-w-0">
+              <p
+                className="m-0 text-[1rem] sm:text-[2rem] leading-[1.05] tracking-[0.015em]"
+                style={{
+                  color: 'color-mix(in srgb, var(--color-foreground) 84%, hsl(145 22% 76%))',
+                  fontFamily: 'var(--font-family-display)',
+                }}
+              >
+                say hi at{' '}
+                <MailtoLink
+                  email="shravan@eclosion.in"
+                  className="inline-block max-w-full break-all sm:break-normal border-b-0 pb-0 transition-opacity hover:opacity-80"
+                  style={{
+                    color: 'hsl(145 96% 40%)',
+                    textShadow: '0 0 8px color-mix(in srgb, hsl(145 96% 40%) 45%, transparent)',
+                    fontFamily: 'var(--font-family-display)',
+                  }}
+                >
+                  shravan@eclosion.in
+                </MailtoLink>
+              </p>
+              <p
+                className="m-0 mt-2 text-[10px] sm:text-[11px]"
+                style={{
+                  color: 'color-mix(in srgb, var(--color-muted-foreground) 68%, transparent)',
+                  fontFamily: 'var(--code-font-family)',
+                }}
+              >
+                replies within 1-2 days.
+              </p>
+            </div>
+            <MailtoLink
+              email="shravan@eclosion.in"
+              className="inline-flex w-full sm:w-fit items-center justify-center border px-3 py-2 text-[0.82rem] sm:text-[0.9rem] lowercase tracking-[0.01em] transition-opacity hover:opacity-80"
+              style={{
+                borderColor: 'hsl(145 96% 36%)',
+                color: 'hsl(145 96% 40%)',
+                fontFamily: 'var(--code-font-family)',
+              }}
+              title="Send email"
+            >
+              send.mail
+            </MailtoLink>
+          </div>
+        </div>
       </section>
 
     </main>

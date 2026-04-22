@@ -72,6 +72,7 @@ export const CommandPalette = forwardRef<CommandPaletteHandle, CommandPalettePro
       { title: 'Tech Talks', path: '/talks', type: 'page' as const },
       { title: 'Reading', path: '/reading', type: 'page' as const },
       { title: 'Services', path: '/services', type: 'page' as const },
+      { title: 'Uses', path: '/uses', type: 'page' as const },
       { title: 'About', path: '/about', type: 'page' as const },
       { title: 'Contact', path: '/contact', type: 'page' as const },
     ] : []),

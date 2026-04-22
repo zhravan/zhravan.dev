@@ -24,10 +24,11 @@ export function H1({ children }: { children: React.ReactNode }) {
   return (
     <h1
       id={id}
+      className="page-title"
       style={{
-        fontSize: '0.9375rem',
-        lineHeight: '1.6',
-        fontWeight: 400,
+        fontSize: '1.5rem',
+        lineHeight: '1.1',
+        fontWeight: 800,
         marginBottom: '1rem',
         marginTop: '0',
         color: 'var(--color-foreground)'

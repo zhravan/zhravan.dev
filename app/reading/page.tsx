@@ -24,12 +24,6 @@ export default function ReadingPage() {
   });
   const toRead = allBooks.filter(b => b.status === 'to-read');
 
-  const totalBooks = read.length;
-  const currentYear = new Date().getFullYear();
-  const booksThisYear = read.filter(b => 
-    b.dateFinished && new Date(b.dateFinished).getFullYear() === currentYear
-  ).length;
-
   const formatDate = (iso: string) => {
     if (!iso) return '';
     const d = new Date(iso);
@@ -39,56 +33,68 @@ export default function ReadingPage() {
     return `${month} ${year}`;
   };
 
+  const sectionTitleClass = 'text-[0.8rem] leading-none tracking-tight sm:text-[1.25rem]';
+  const bookTitleClass = 'break-words leading-tight text-[0.62rem] sm:text-[0.72rem]';
+  const sectionCardStyle = {
+    backgroundColor: 'color-mix(in srgb, var(--color-card) 74%, var(--color-background))',
+    borderColor: 'color-mix(in srgb, var(--color-border) 78%, transparent)',
+  } as const;
+
   return (
     <div className="space-y-6 sm:space-y-8 text-xxs">
       <PageHeader metadata={pageMetadata} hideTitle={true} />
 
-      {/* Stats */}
-      <div className="flex flex-wrap gap-4 sm:gap-6 text-xs">
-        <div>
-          <span className="opacity-40">Read </span>
-          <span className="font-medium">{totalBooks}</span>
-        </div>
-        <div>
-          <span className="opacity-40">This year </span>
-          <span className="font-medium">{booksThisYear}</span>
-        </div>
-        <div>
-          <span className="opacity-40">Reading </span>
-          <span className="font-medium">{reading.length}</span>
-        </div>
-      </div>
-
       {/* Currently Reading */}
       {reading.length > 0 && (
-        <section className="space-y-3">
-          <h2 className="text-xs opacity-50">Currently Reading</h2>
-          <ul className="list-none p-0 m-0 space-y-3 sm:space-y-1.5">
-            {reading.map((book) => (
-              <li key={book.id} className="group">
-                <div className="flex flex-col gap-1.5 sm:flex-row sm:items-baseline sm:gap-2 text-xs leading-relaxed">
-                  <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-2 min-w-0 flex-1">
-                    <div className="flex items-baseline gap-2 min-w-0">
-                      <span className="opacity-30 shrink-0">→</span>
-                      <span className="group-hover:opacity-70 transition-opacity font-medium break-words min-w-0">
-                        {book.title}
-                      </span>
-                    </div>
-                    <span className="text-[11px] opacity-50 pl-5 sm:pl-0">{book.author}</span>
-                  </div>
-                  {book.tags && book.tags.length > 0 && (
-                    <div className="opacity-100 sm:opacity-0 sm:group-hover:opacity-70 text-[10px] transition-all duration-200 flex gap-1 flex-wrap pl-5 sm:pl-2">
-                      {book.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="px-1.5 py-0.5 rounded border"
-                          style={{ borderColor: 'var(--color-border)' }}
-                        >
-                          {tag}
+        <section className="space-y-1.5">
+          <h2
+            className={sectionTitleClass}
+            style={{ color: 'color-mix(in srgb, var(--color-foreground) 92%, transparent)', fontFamily: 'var(--font-family-display)' }}
+          >
+            Currently Reading<span className="ml-1 inline-block" style={{ color: 'hsl(163 89% 45%)' }} aria-hidden>.</span>
+          </h2>
+          <ul className="m-0 list-none overflow-hidden rounded-[0.8rem] border p-0" style={sectionCardStyle}>
+            {reading.map((book, index) => (
+              <li
+                key={book.id}
+                className="group"
+                style={{
+                  borderTop:
+                    index === 0 ? 'none' : '1px dashed color-mix(in srgb, var(--color-border) 62%, transparent)',
+                }}
+              >
+                <div className="px-2.5 py-4.5 sm:px-3 sm:py-4.5">
+                  <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                    <div className="min-w-0 flex-1">
+                      <div className="min-w-0">
+                        <span className={bookTitleClass} style={{ color: 'hsl(163 71% 44%)', fontFamily: 'var(--code-font-family)' }}>
+                          {book.title}
                         </span>
-                      ))}
+                      </div>
+                      <div className="mt-1 text-[7px] uppercase tracking-[0.1em] sm:text-[8px]" style={{ color: 'color-mix(in srgb, var(--color-muted-foreground) 88%, transparent)', fontFamily: 'var(--code-font-family)' }}>
+                        {book.author}
+                      </div>
                     </div>
-                  )}
+                    {book.tags && book.tags.length > 0 && (
+                      <div className="hidden flex-wrap gap-1 opacity-50 transition-opacity duration-200 sm:flex sm:justify-end sm:opacity-0 sm:group-hover:opacity-60">
+                        {book.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="rounded-full border px-1.5 py-0.5 text-[8px] uppercase tracking-[0.12em]"
+                            style={{
+                              borderColor:
+                                'color-mix(in srgb, var(--color-border) 90%, transparent)',
+                              color:
+                                'color-mix(in srgb, var(--color-muted-foreground) 90%, transparent)',
+                              fontFamily: 'var(--code-font-family)',
+                            }}
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 </div>
               </li>
             ))}
@@ -98,46 +104,59 @@ export default function ReadingPage() {
 
       {/* Read Books */}
       {read.length > 0 && (
-        <section className="space-y-3">
-          <h2 className="text-xs opacity-50">Read</h2>
-          <ul className="list-none p-0 m-0 space-y-3 sm:space-y-1.5">
-            {read.map((book) => (
-              <li key={book.id} className="group">
-                <div className="flex flex-col gap-1.5 sm:flex-row sm:items-baseline sm:gap-2 text-xs leading-relaxed">
-                  <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-2 min-w-0 flex-1">
-                    <div className="flex items-baseline gap-2 min-w-0">
-                      <span className="opacity-30 shrink-0">→</span>
-                      <span className="group-hover:opacity-70 transition-opacity font-medium break-words min-w-0">
-                        {book.title}
-                      </span>
-                    </div>
-                    <div className="flex flex-wrap items-baseline gap-1.5 sm:gap-2 pl-5 sm:pl-0">
-                      <span className="text-[11px] opacity-50">{book.author}</span>
-                      {book.rating && (
-                        <span className="text-[10px] opacity-30 shrink-0 whitespace-nowrap">
-                          {book.rating}/5
+        <section className="space-y-1.5">
+          <h2
+            className={sectionTitleClass}
+            style={{ color: 'color-mix(in srgb, var(--color-foreground) 92%, transparent)', fontFamily: 'var(--font-family-display)' }}
+          >
+            Read<span className="ml-1 inline-block" style={{ color: 'hsl(163 89% 45%)' }} aria-hidden>.</span>
+          </h2>
+          <ul className="m-0 list-none overflow-hidden rounded-[0.8rem] border p-0" style={sectionCardStyle}>
+            {read.map((book, index) => (
+              <li
+                key={book.id}
+                className="group"
+                style={{
+                  borderTop:
+                    index === 0 ? 'none' : '1px dashed color-mix(in srgb, var(--color-border) 62%, transparent)',
+                }}
+              >
+                <div className="px-2.5 py-4.5 sm:px-3 sm:py-4.5">
+                  <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                    <div className="min-w-0 flex-1">
+                      <div className="min-w-0">
+                        <span className={bookTitleClass} style={{ color: 'hsl(163 71% 44%)', fontFamily: 'var(--code-font-family)' }}>
+                          {book.title}
                         </span>
-                      )}
-                      {book.dateFinished && (
-                        <time className="text-[10px] opacity-30 shrink-0 whitespace-nowrap" dateTime={book.dateFinished}>
-                          {formatDate(book.dateFinished)}
-                        </time>
-                      )}
+                      </div>
+                      <div className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-[7px] uppercase tracking-[0.1em] sm:text-[8px]" style={{ color: 'color-mix(in srgb, var(--color-muted-foreground) 88%, transparent)', fontFamily: 'var(--code-font-family)' }}>
+                        <span>{book.author}</span>
+                        {book.rating && <span>{book.rating}/5</span>}
+                        {book.dateFinished && (
+                          <time dateTime={book.dateFinished}>{formatDate(book.dateFinished)}</time>
+                        )}
+                      </div>
                     </div>
+                    {book.tags && book.tags.length > 0 && (
+                      <div className="hidden flex-wrap gap-1 opacity-50 transition-opacity duration-200 sm:flex sm:justify-end sm:opacity-0 sm:group-hover:opacity-60">
+                        {book.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="rounded-full border px-1.5 py-0.5 text-[8px] uppercase tracking-[0.12em]"
+                            style={{
+                              borderColor:
+                                'color-mix(in srgb, var(--color-border) 90%, transparent)',
+                              color:
+                                'color-mix(in srgb, var(--color-muted-foreground) 90%, transparent)',
+                              fontFamily: 'var(--code-font-family)',
+                            }}
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
                   </div>
-                  {book.tags && book.tags.length > 0 && (
-                    <div className="opacity-100 sm:opacity-0 sm:group-hover:opacity-70 text-[10px] transition-all duration-200 flex gap-1 flex-wrap pl-5 sm:pl-2">
-                      {book.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="px-1.5 py-0.5 rounded border"
-                          style={{ borderColor: 'var(--color-border)' }}
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  )}
                 </div>
               </li>
             ))}
@@ -147,20 +166,33 @@ export default function ReadingPage() {
 
       {/* Want to Read */}
       {toRead.length > 0 && (
-        <section className="space-y-3">
-          <h2 className="text-xs opacity-50">Want to Read</h2>
-          <ul className="list-none p-0 m-0 space-y-3 sm:space-y-1.5">
-            {toRead.map((book) => (
-              <li key={book.id} className="group">
-                <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-2 text-xs leading-relaxed">
-                  <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-2 min-w-0">
-                    <div className="flex items-baseline gap-2 min-w-0">
-                      <span className="opacity-30 shrink-0">→</span>
-                      <span className="group-hover:opacity-70 transition-opacity font-medium break-words min-w-0">
+        <section className="space-y-1.5">
+          <h2
+            className={sectionTitleClass}
+            style={{ color: 'color-mix(in srgb, var(--color-foreground) 92%, transparent)', fontFamily: 'var(--font-family-display)' }}
+          >
+            Want to Read<span className="ml-1 inline-block" style={{ color: 'hsl(163 89% 45%)' }} aria-hidden>.</span>
+          </h2>
+          <ul className="m-0 list-none overflow-hidden rounded-[0.8rem] border p-0" style={sectionCardStyle}>
+            {toRead.map((book, index) => (
+              <li
+                key={book.id}
+                className="group"
+                style={{
+                  borderTop:
+                    index === 0 ? 'none' : '1px dashed color-mix(in srgb, var(--color-border) 62%, transparent)',
+                }}
+              >
+                <div className="px-2.5 py-4.5 sm:px-3 sm:py-4.5">
+                  <div className="min-w-0">
+                    <div className="min-w-0">
+                      <span className={bookTitleClass} style={{ color: 'hsl(163 71% 44%)', fontFamily: 'var(--code-font-family)' }}>
                         {book.title}
                       </span>
                     </div>
-                    <span className="text-[11px] opacity-50 pl-5 sm:pl-0">{book.author}</span>
+                    <div className="mt-1 text-[7px] uppercase tracking-[0.1em] sm:text-[8px]" style={{ color: 'color-mix(in srgb, var(--color-muted-foreground) 88%, transparent)', fontFamily: 'var(--code-font-family)' }}>
+                      {book.author}
+                    </div>
                   </div>
                 </div>
               </li>

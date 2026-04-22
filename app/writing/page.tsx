@@ -11,7 +11,7 @@ import type { Metadata } from 'next';
 const pageMetadata = {
   title: 'Writing',
   description:
-    'Blogs, musings, second-brain notes, and newsletter issues.'
+    'Blogs, postmortems, musings, second-brain notes, and the occasional newsletters.'
 };
 
 export const metadata: Metadata = getPageMetadata({

@@ -76,10 +76,15 @@ ${contentStats.find(s => s.type === 'Newsletter') ? `Content count: ${contentSta
 Path: ${siteUrl}/reading/
 Description: Books I'm reading, have read, and thoughts on them.
 
+### Uses
+Path: ${siteUrl}/uses/
+Description: A detailed breakdown of the hardware, editor setup, software, runtime, camera gear, and services currently in use.
+
 ## Key Pages
 - Home: ${siteUrl}/
 - About: ${siteUrl}/about/
 - Services: ${siteUrl}/services/
+- Uses: ${siteUrl}/uses/
 - Contact: ${siteUrl}/contact/
 
 ## Feeds & APIs
@@ -93,7 +98,7 @@ ${socialLinks.github ? `GitHub: ${socialLinks.github}` : ''}
 ${socialLinks.twitter ? `Twitter/X: ${socialLinks.twitter}` : ''}
 ${socialLinks.linkedin ? `LinkedIn: ${socialLinks.linkedin}` : ''}
 ${socialLinks.gitlab ? `GitLab: ${socialLinks.gitlab}` : ''}
-Email: hi@ohmyscript.com
+Email: shravan@eclosion.in
 
 ## Content Guidelines
 - Technical content focuses on practical implementation and real-world experience
@@ -112,6 +117,5 @@ ${new Date().toISOString().split('T')[0]}
     }
   });
 }
-
 
 
