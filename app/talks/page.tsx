@@ -38,6 +38,7 @@ export default function TalksPage() {
 
   const postTitleLinkClass =
     '!border-b-0 pb-0 transition-colors break-words leading-tight';
+  const talkTitleClass = `${postTitleLinkClass} text-[0.55rem] sm:text-[0.65rem]`;
 
   // Group items by year (descending)
   const byYear = items.reduce<Record<string, typeof items>>((acc, item) => {
@@ -92,28 +93,27 @@ export default function TalksPage() {
                   </span>
                 </div>
 
-                <ul
-                  className="m-0 list-none overflow-hidden rounded-[0.8rem] border p-0"
-                  style={{
-                    backgroundColor:
-                      'color-mix(in srgb, var(--color-card) 74%, var(--color-background))',
-                    borderColor: 'color-mix(in srgb, var(--color-border) 78%, transparent)',
-                  }}
-                >
-                  {yearItems.map((item, index) => (
-                    <li
-                      key={item.slug}
-                      className="group"
-                      style={{
-                        borderTop:
-                          index === 0
-                            ? 'none'
-                            : '1px dashed color-mix(in srgb, var(--color-border) 62%, transparent)',
-                      }}
-                    >
-                      <div className="px-2.5 py-4.5 sm:px-3 sm:py-4.5">
+                <ul className="m-0 list-none p-0">
+                  {yearItems.map((item) => (
+                    <li key={item.slug} className="group">
+                      <div className="px-2.5 py-2 sm:px-3 sm:py-2">
                         <div className="flex flex-col gap-2.5 sm:flex-row sm:items-center sm:justify-between">
                           <div className="min-w-0 flex items-start gap-2 sm:items-center sm:gap-3">
+                            <span className="shrink-0 opacity-40" aria-hidden>→</span>
+
+                            <div className="min-w-0 flex-1">
+                              <Link
+                                href={`${contentType.path}/${item.slug}`}
+                                className={talkTitleClass}
+                                style={{
+                                  color: 'hsl(163 71% 44%)',
+                                  fontFamily: 'var(--code-font-family)',
+                                }}
+                              >
+                                {item.title}
+                              </Link>
+                            </div>
+
                             <time
                               className="shrink-0 text-[6px] uppercase tracking-[0.1em] sm:text-[7px]"
                               style={{
@@ -125,19 +125,6 @@ export default function TalksPage() {
                             >
                               {formatDate(item.date)}
                             </time>
-
-                            <div className="min-w-0 flex-1">
-                              <Link
-                                href={`${contentType.path}/${item.slug}`}
-                                className={`${postTitleLinkClass} text-[0.62rem] sm:text-[0.72rem]`}
-                                style={{
-                                  color: 'hsl(163 71% 44%)',
-                                  fontFamily: 'var(--code-font-family)',
-                                }}
-                              >
-                                {item.title}
-                              </Link>
-                            </div>
                           </div>
 
                           {item.tags && item.tags.length > 0 && (

@@ -432,37 +432,17 @@ export function TabbedWritingView({
               </div>
 
               <ul
-                className="m-0 list-none overflow-hidden rounded-[0.8rem] border p-0"
-                style={{
-                  backgroundColor: 'color-mix(in srgb, var(--color-card) 74%, var(--color-background))',
-                  borderColor: 'color-mix(in srgb, var(--color-border) 78%, transparent)',
-                }}
+                className="m-0 list-none overflow-hidden p-0"
               >
                 {items.map((post, index) => (
                   <li
                     key={post.slug}
                     className="group"
-                    style={{
-                      borderTop:
-                        index === 0
-                          ? 'none'
-                          : '1px dashed color-mix(in srgb, var(--color-border) 62%, transparent)',
-                    }}
                   >
-                    <div className="px-2.5 py-4.5 sm:px-3 sm:py-4.5">
+                    <div className="px-2.5 py-2 sm:px-3 sm:py-2">
                       <div className="flex flex-col gap-2.5 sm:flex-row sm:items-center sm:justify-between">
                         <div className="min-w-0 flex items-start gap-2 sm:items-center sm:gap-3">
-                          <time
-                            className="shrink-0 text-[6px] uppercase tracking-[0.1em] sm:text-[7px]"
-                            style={{
-                              color:
-                                'color-mix(in srgb, var(--color-muted-foreground) 88%, transparent)',
-                              fontFamily: 'var(--code-font-family)',
-                            }}
-                            dateTime={post.date}
-                          >
-                            {formatDate(post.date)}
-                          </time>
+                          <span className="shrink-0 opacity-40" aria-hidden>→</span>
 
                           <div className="min-w-0 flex-1">
                             {post.externalUrl ? (
@@ -470,7 +450,7 @@ export function TabbedWritingView({
                                 href={post.externalUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className={`${postTitleLinkClass} text-[0.62rem] sm:text-[0.72rem]`}
+                                className={`${postTitleLinkClass} text-[0.55rem] sm:text-[0.65rem]`}
                                 style={{
                                   color: 'hsl(163 71% 44%)',
                                   fontFamily: 'var(--code-font-family)',
@@ -484,7 +464,7 @@ export function TabbedWritingView({
                             ) : (
                               <Link
                                 href={getPostUrl(post)}
-                                className={`${postTitleLinkClass} text-[0.62rem] sm:text-[0.72rem]`}
+                                className={`${postTitleLinkClass} text-[0.55rem] sm:text-[0.65rem]`}
                                 style={{
                                   color: 'hsl(163 71% 44%)',
                                   fontFamily: 'var(--code-font-family)',
@@ -494,6 +474,18 @@ export function TabbedWritingView({
                               </Link>
                             )}
                           </div>
+
+                          <time
+                            className="shrink-0 text-[6px] uppercase tracking-[0.1em] sm:text-[7px]"
+                            style={{
+                              color:
+                                'color-mix(in srgb, var(--color-muted-foreground) 88%, transparent)',
+                              fontFamily: 'var(--code-font-family)',
+                            }}
+                            dateTime={post.date}
+                          >
+                            {formatDate(post.date)}
+                          </time>
                         </div>
 
                         {post.tags && post.tags.length > 0 && (

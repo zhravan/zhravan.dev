@@ -34,11 +34,7 @@ export default function ReadingPage() {
   };
 
   const sectionTitleClass = 'text-[0.8rem] leading-none tracking-tight sm:text-[1.25rem]';
-  const bookTitleClass = 'break-words leading-tight text-[0.62rem] sm:text-[0.72rem]';
-  const sectionCardStyle = {
-    backgroundColor: 'color-mix(in srgb, var(--color-card) 74%, var(--color-background))',
-    borderColor: 'color-mix(in srgb, var(--color-border) 78%, transparent)',
-  } as const;
+  const bookTitleClass = 'break-words leading-tight text-[0.55rem] sm:text-[0.65rem]';
 
   return (
     <div className="space-y-6 sm:space-y-8 text-xxs">
@@ -53,25 +49,21 @@ export default function ReadingPage() {
           >
             Currently Reading<span className="ml-1 inline-block" style={{ color: 'hsl(163 89% 45%)' }} aria-hidden>.</span>
           </h2>
-          <ul className="m-0 list-none overflow-hidden rounded-[0.8rem] border p-0" style={sectionCardStyle}>
-            {reading.map((book, index) => (
-              <li
-                key={book.id}
-                className="group"
-                style={{
-                  borderTop:
-                    index === 0 ? 'none' : '1px dashed color-mix(in srgb, var(--color-border) 62%, transparent)',
-                }}
-              >
-                <div className="px-2.5 py-4.5 sm:px-3 sm:py-4.5">
-                  <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-                    <div className="min-w-0 flex-1">
-                      <div className="min-w-0">
+          <ul className="m-0 list-none p-0">
+            {reading.map((book) => (
+              <li key={book.id} className="group">
+                <div className="px-2.5 py-2 sm:px-3 sm:py-2">
+                  <div className="flex flex-col gap-2.5 sm:flex-row sm:items-center sm:justify-between">
+                    <div className="min-w-0 flex items-start gap-2 sm:items-center sm:gap-3">
+                      <span className="shrink-0 opacity-40" aria-hidden>→</span>
+
+                      <div className="min-w-0 flex-1">
                         <span className={bookTitleClass} style={{ color: 'hsl(163 71% 44%)', fontFamily: 'var(--code-font-family)' }}>
                           {book.title}
                         </span>
                       </div>
-                      <div className="mt-1 text-[7px] uppercase tracking-[0.1em] sm:text-[8px]" style={{ color: 'color-mix(in srgb, var(--color-muted-foreground) 88%, transparent)', fontFamily: 'var(--code-font-family)' }}>
+
+                      <div className="shrink-0 text-[6px] uppercase tracking-[0.1em] sm:text-[7px]" style={{ color: 'color-mix(in srgb, var(--color-muted-foreground) 88%, transparent)', fontFamily: 'var(--code-font-family)' }}>
                         {book.author}
                       </div>
                     </div>
@@ -111,25 +103,21 @@ export default function ReadingPage() {
           >
             Read<span className="ml-1 inline-block" style={{ color: 'hsl(163 89% 45%)' }} aria-hidden>.</span>
           </h2>
-          <ul className="m-0 list-none overflow-hidden rounded-[0.8rem] border p-0" style={sectionCardStyle}>
-            {read.map((book, index) => (
-              <li
-                key={book.id}
-                className="group"
-                style={{
-                  borderTop:
-                    index === 0 ? 'none' : '1px dashed color-mix(in srgb, var(--color-border) 62%, transparent)',
-                }}
-              >
-                <div className="px-2.5 py-4.5 sm:px-3 sm:py-4.5">
-                  <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-                    <div className="min-w-0 flex-1">
-                      <div className="min-w-0">
+          <ul className="m-0 list-none p-0">
+            {read.map((book) => (
+              <li key={book.id} className="group">
+                <div className="px-2.5 py-2 sm:px-3 sm:py-2">
+                  <div className="flex flex-col gap-2.5 sm:flex-row sm:items-center sm:justify-between">
+                    <div className="min-w-0 flex items-start gap-2 sm:items-center sm:gap-3">
+                      <span className="shrink-0 opacity-40" aria-hidden>→</span>
+
+                      <div className="min-w-0 flex-1">
                         <span className={bookTitleClass} style={{ color: 'hsl(163 71% 44%)', fontFamily: 'var(--code-font-family)' }}>
                           {book.title}
                         </span>
                       </div>
-                      <div className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-[7px] uppercase tracking-[0.1em] sm:text-[8px]" style={{ color: 'color-mix(in srgb, var(--color-muted-foreground) 88%, transparent)', fontFamily: 'var(--code-font-family)' }}>
+
+                      <div className="shrink-0 flex flex-wrap items-center gap-x-2 gap-y-1 text-[6px] uppercase tracking-[0.1em] sm:text-[7px]" style={{ color: 'color-mix(in srgb, var(--color-muted-foreground) 88%, transparent)', fontFamily: 'var(--code-font-family)' }}>
                         <span>{book.author}</span>
                         {book.rating && <span>{book.rating}/5</span>}
                         {book.dateFinished && (
@@ -173,24 +161,20 @@ export default function ReadingPage() {
           >
             Want to Read<span className="ml-1 inline-block" style={{ color: 'hsl(163 89% 45%)' }} aria-hidden>.</span>
           </h2>
-          <ul className="m-0 list-none overflow-hidden rounded-[0.8rem] border p-0" style={sectionCardStyle}>
-            {toRead.map((book, index) => (
-              <li
-                key={book.id}
-                className="group"
-                style={{
-                  borderTop:
-                    index === 0 ? 'none' : '1px dashed color-mix(in srgb, var(--color-border) 62%, transparent)',
-                }}
-              >
-                <div className="px-2.5 py-4.5 sm:px-3 sm:py-4.5">
-                  <div className="min-w-0">
-                    <div className="min-w-0">
+          <ul className="m-0 list-none p-0">
+            {toRead.map((book) => (
+              <li key={book.id} className="group">
+                <div className="px-2.5 py-2 sm:px-3 sm:py-2">
+                  <div className="min-w-0 flex items-start gap-2 sm:items-center sm:gap-3">
+                    <span className="shrink-0 opacity-40" aria-hidden>→</span>
+
+                    <div className="min-w-0 flex-1">
                       <span className={bookTitleClass} style={{ color: 'hsl(163 71% 44%)', fontFamily: 'var(--code-font-family)' }}>
                         {book.title}
                       </span>
                     </div>
-                    <div className="mt-1 text-[7px] uppercase tracking-[0.1em] sm:text-[8px]" style={{ color: 'color-mix(in srgb, var(--color-muted-foreground) 88%, transparent)', fontFamily: 'var(--code-font-family)' }}>
+
+                    <div className="shrink-0 text-[6px] uppercase tracking-[0.1em] sm:text-[7px]" style={{ color: 'color-mix(in srgb, var(--color-muted-foreground) 88%, transparent)', fontFamily: 'var(--code-font-family)' }}>
                       {book.author}
                     </div>
                   </div>
