@@ -24,7 +24,7 @@ export function CommandPaletteWithButton(props: CommandPaletteWithButtonProps) {
 
   return (
     <>
-      <div className="fixed top-6 right-4 sm:right-8 z-30 lg:hidden">
+      <div className="fixed top-16 right-4 z-30 lg:hidden">
         <MobileSearchButton onClick={() => paletteRef.current?.open()} />
       </div>
       <CommandPalette ref={paletteRef} {...props} />

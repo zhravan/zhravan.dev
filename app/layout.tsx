@@ -180,14 +180,20 @@ export default async function RootLayout({
                         <OhMyScript className="page-title text-lg" />
                       </Link>
                     </div>
-                    <div className="flex items-center justify-start">
-                      <MobileNav items={navItems} socialLinks={socialLinks} />
-                    </div>
+                    <MobileNav items={navItems} socialLinks={socialLinks} />
                   </div>
                 </div>
               </nav>
             </header>
             <main className="max-w-2xl mx-auto px-4 sm:px-8 pt-12 pb-8 sm:pt-16 sm:pb-16">{children}</main>
+            {commandPaletteConfig && (
+              <CommandPaletteWithButton
+                contentItems={contentItemsWithPaths}
+                fuzzyThreshold={commandPaletteConfig.fuzzyThreshold}
+                showPages={commandPaletteConfig.showPages}
+                showPosts={commandPaletteConfig.showPosts}
+              />
+            )}
             <SubscribeWidget />
             <footer className="mt-12 md:mt-24 pb-8">
               <div className="max-w-2xl mx-auto px-4 sm:px-8 py-6 sm:py-8">
@@ -244,14 +250,6 @@ export default async function RootLayout({
                 showAfter={scrollToTopConfig.showAfter}
                 position={scrollToTopConfig.position}
                 smooth={scrollToTopConfig.smooth}
-              />
-            )}
-            {commandPaletteConfig && (
-              <CommandPaletteWithButton
-                contentItems={contentItemsWithPaths}
-                fuzzyThreshold={commandPaletteConfig.fuzzyThreshold}
-                showPages={commandPaletteConfig.showPages}
-                showPosts={commandPaletteConfig.showPosts}
               />
             )}
           </div>

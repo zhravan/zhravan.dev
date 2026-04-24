@@ -55,7 +55,7 @@ export function MobileNav({ items, socialLinks }: MobileNavProps) {
       {/* Hamburger Button */}
       <button
         onClick={() => setIsOpen(true)}
-        className="md:hidden p-2 transition-opacity hover:opacity-80"
+        className="fixed top-6 right-4 z-30 md:hidden p-2 transition-opacity hover:opacity-80"
         style={{
           backgroundColor: 'var(--color-muted)',
           color: 'var(--color-foreground)',
@@ -104,13 +104,13 @@ export function MobileNav({ items, socialLinks }: MobileNavProps) {
             >
               <OhMyScript />
             </Link>
-            <button
-              onClick={() => setIsOpen(false)}
-              className="p-1 transition-opacity hover:opacity-80"
-              aria-label="Close navigation menu"
-            >
-              <X className="w-4 h-4" />
-            </button>
+              <button
+                onClick={() => setIsOpen(false)}
+                className="p-1 transition-opacity hover:opacity-80"
+                aria-label="Close navigation menu"
+              >
+                <X className="w-4 h-4" />
+              </button>
           </div>
 
           {/* Navigation Items */}

@@ -8,7 +8,7 @@ export function MobileSearchButton({ onClick }: MobileSearchButtonProps) {
   return (
     <button
       onClick={onClick}
-      className="lg:hidden p-2 transition-opacity hover:opacity-80"
+      className="p-2 transition-opacity hover:opacity-80"
       style={{
         backgroundColor: 'var(--color-muted)',
         color: 'var(--color-foreground)',

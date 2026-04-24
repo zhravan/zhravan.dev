@@ -33,7 +33,7 @@ export default function ReadingPage() {
     return `${month} ${year}`;
   };
 
-  const sectionTitleClass = 'text-[0.8rem] leading-none tracking-tight sm:text-[1.25rem]';
+  const sectionTitleClass = 'page-title text-base';
   const bookTitleClass = 'break-words leading-tight text-[0.55rem] sm:text-[0.65rem]';
 
   return (
