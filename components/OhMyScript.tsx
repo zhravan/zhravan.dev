@@ -4,10 +4,7 @@ interface OhMyScriptProps {
 
 export function OhMyScript({ className = '' }: OhMyScriptProps) {
   return (
-    <span
-      className={`ohmyscript-wordmark page-title ${className}`.trim()}
-      data-text="<OhMyScript/>"
-    >
+    <span className={`page-title ${className}`.trim()}>
       {"<OhMyScript/>"}
     </span>
   );
