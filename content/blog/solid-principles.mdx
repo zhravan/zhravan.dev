@@ -35,7 +35,7 @@ Similarly, on a larger scale, this technique caused some flaws in the solution w
 
 As I started programming in Typescript standards, implementing OOPS, had become easier, better, smaller and cleaner. I realised one thing after moving from **_Functional Paradigm to OOPs paradigm_**, that knowingly or unknowingly we end up implementing some sort of anti-patterns into our codebase.
 
-## What’s a **_STUPID_** codebase?
+## What's a **_STUPID_** codebase?
 
 > A STUPID codebase is that codebase which has flaws or faults, which affect the maintainability, readability or efficiency.
 
@@ -191,13 +191,13 @@ class Traveller2 {
 
 ### Pre-optimizations (Overengineering)
 
-- **_Premature Optimizations_**: Avoid refactoring code if it doesn’t improve readability or performance of the system for no reason.
+- **_Premature Optimizations_**: Avoid refactoring code if it doesn't improve readability or performance of the system for no reason.
   Premature optimisation can also be defined as trying to optimizing the code, expecting it to improvise the performance or readability without having much data assuring it and purely weighing upon intuitions.
 
 ### Indescriptive convention
 
 - **_Indescriptive Naming_**: Descriptive Naming and Naming Conventions are two important criteria. Most of the times, naming becomes the most painful issue.
-  After some time when you or another developer visits the codebase, you would be asking the question ‘What does this variable do?’. We fail to decide what would be the best descriptive name that can be given to a variable, class, class object/instance or function. It is very important to give a descriptive name, for better readability and understandability.
+  After some time when you or another developer visits the codebase, you would be asking the question ‘What does this variable do?'. We fail to decide what would be the best descriptive name that can be given to a variable, class, class object/instance or function. It is very important to give a descriptive name, for better readability and understandability.
 
 ```javascript
 /**
@@ -230,7 +230,7 @@ These flaws were often overlooked knowingly or unknowingly, for which SOLID prin
 
 So, you wondering now what SOLID principles hold and how does it solve the issues caused due to STUPID postulates. These are programming standards that all developers must understand very well, to create a product/system with good architecture.
 SOLID principles can be considered as remedies to the problems caused due to any of the STUPID flaws in your codebase.
-Uncle Bob, otherwise known as Robert C Martin, was the Software Engineer and Consultant, who came up with mnemonic acronym SOLID in his book “Clean Coder”. Let’s explore a little more on SOLID principles in detail,
+Uncle Bob, otherwise known as Robert C Martin, was the Software Engineer and Consultant, who came up with mnemonic acronym SOLID in his book “Clean Coder”. Let's explore a little more on SOLID principles in detail,
 
 ## Pattern fixing Anti-patterns
 
@@ -238,7 +238,7 @@ Uncle Bob, otherwise known as Robert C Martin, was the Software Engineer and Con
 
 A class, method or function should undertake the responsibility of one functionality. In simpler words, it should carry out only one feature/functionality.
 
-> A class should only have a single responsibility, that is, only changes to one part of the software’s specification should be able to affect the specification of the class.
+> A class should only have a single responsibility, that is, only changes to one part of the software's specification should be able to affect the specification of the class.
 >
 > - Wikipedia
 
@@ -422,7 +422,7 @@ class NotificationSystem {
 }
 ```
 
-As you see in the above example, when you needed another requirement where you had to send both email and mobile notification, all I did was adding another function **_sendEmailwithMobileNotification()_** without changing the implementation of previous existing functions. That’s how simple it is, making an extension of features.
+As you see in the above example, when you needed another requirement where you had to send both email and mobile notification, all I did was adding another function **_sendEmailwithMobileNotification()_** without changing the implementation of previous existing functions. That's how simple it is, making an extension of features.
 
 Now, moving on to next important principle, called as **_Liskov Substitution principle_**.
 
@@ -686,7 +686,7 @@ If you like the article, hit the like button, share the article and subscribe to
 
 Stay tuned for my next article.
 
-That’s all for now. Thank you for reading.
+That's all for now. Thank you for reading.
 
 Signing off until next time.
 Happy Learning.

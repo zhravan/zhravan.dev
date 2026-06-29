@@ -149,7 +149,7 @@ export function TabbedWritingView({
    * Browser back/forward and client navigations: align view with the URL.
    * Skip while `searchParams` is still empty so we do not flash/overwrite the tab
    * that `useLayoutEffect` already set from `window.location` / sessionStorage
-   * before `router.replace` updates Next’s searchParams.
+   * before `router.replace` updates Next's searchParams.
    */
   useEffect(() => {
     if (!view.ready) return;

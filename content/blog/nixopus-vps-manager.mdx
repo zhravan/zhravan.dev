@@ -27,9 +27,9 @@ This article is my reflection on the journey of how I relied on free tier clouds
 
 ## What is Self Host?
 
-Back then, I was still trying to figure out and understand how all this worked. Starting from which command did what, which service refused to start, and why things that worked on my local; didn’t work when deployed (Thank God for Docker)
+Back then, I was still trying to figure out and understand how all this worked. Starting from which command did what, which service refused to start, and why things that worked on my local; didn't work when deployed (Thank God for Docker)
 
-I still recall one of my earliest deployment. It was [github-readme-quotes](https://github.com/shravan20/github-readme-quotes) app on Heroku. A simple git push to deploy felt magical. I didn’t really have to care how it worked. I just knew that if I followed the documentation devoutly, it was assured to work; if not, StackOverflow always had my back.
+I still recall one of my earliest deployment. It was [github-readme-quotes](https://github.com/shravan20/github-readme-quotes) app on Heroku. A simple git push to deploy felt magical. I didn't really have to care how it worked. I just knew that if I followed the documentation devoutly, it was assured to work; if not, StackOverflow always had my back.
 
 This was the same with Firebase, Render, or Netlify for static stuff. All of them taught me how to ship quickly.
 
@@ -37,9 +37,9 @@ This was the same with Firebase, Render, or Netlify for static stuff. All of the
 
 But then came the real world; need to host private apps, things that need ports, memory tuning, background workers, cron jobs, etc. Soon, those magical platforms started speaking back and complaining to me:
 
-- _"You can’t bind that port"_
+- _"You can't bind that port"_
 
-- _"You’re out of free dynos"_
+- _"You're out of free dynos"_
 
 - _"Exceed dynos quota for the month"_
 
@@ -79,7 +79,7 @@ So, yep, VPS was that sweet middle ground; cost of a simple 1 BHK flat with free
 
 So I picked a VPS provider, bought a VPS server for 7€ (~₹697). I got an IP address, username(root), and SSH details.
 
-Till then, I had learnt what VPS was and lil about behind the scenes from the few Google searches I had done. I understood that a VPS is a virtual machine running on a larger physical server with its own dedicated RAM, disk space, and CPU. And fortunately, since I was already comfortable with Linux commands, so felt navigating this environment shouldn’t be a problem.
+Till then, I had learnt what VPS was and lil about behind the scenes from the few Google searches I had done. I understood that a VPS is a virtual machine running on a larger physical server with its own dedicated RAM, disk space, and CPU. And fortunately, since I was already comfortable with Linux commands, so felt navigating this environment shouldn't be a problem.
 
 Since I had previously tinkered quite a lot with Raspberry Pi, by hooking it to the local network and SSH'ing into it from my laptop, I already knew that the only way to connect to my VPS was using SSH.
 
@@ -107,7 +107,7 @@ Every server I touched so far ran Linux, so I already had a clear cut understand
 
 I started slowly moving my apps to the VPS, and running the scripts to have it run on the VPS. I ran into another hurdle; I was only able to access the deployed applications or services using their IP address, like `http://123.45.67.89`. Unlike Heroku or Netlify, which provided me ready made subdomain for a project like [`github-readme-quotes.herokuapp.com`], my move to a VPS setup left me staring at a bare IP address.
 
-I knew I needed a proper name and URL, `some-project.com`, and that’s where DNS comes in.
+I knew I needed a proper name and URL, `some-project.com`, and that's where DNS comes in.
 
 To those who do not know what **DNS** is, consider it as a **Internet's Yellow Page (Phonebook)**; basically translates domain names to IP addresses.
 
@@ -120,7 +120,7 @@ To those who do not know what **DNS** is, consider it as a **Internet's Yellow P
 A lot of them still find tying a domain to a VPS surprisingly tricky. Hence, I keep a simple recipe:
 
 1. You buy a domain from Domain Registrar
-2. Point it to your VPS IP using A records in your registrar’s control panel
+2. Point it to your VPS IP using A records in your registrar's control panel
 
 ```bash
 Type: A
@@ -155,7 +155,7 @@ Hahaha!! Well, thats exactly when the real problems began. Over time, deployment
 
 This routing masked a lot of headaches: broken configs, panicky Nginx configuration tweaks, dread thought of “Did I actually run the right script?“ and manual responsibility of deploying all of these without any automations and verifying the releases.
 
-Eventually, I scripted it all, but I can never forget those initial days of manual, shaky deployments. They taught me the cost of carelessness, where I had spent a day to find one config misplaced. It wasn’t about skill, but rather about mental tax caused due to this.
+Eventually, I scripted it all, but I can never forget those initial days of manual, shaky deployments. They taught me the cost of carelessness, where I had spent a day to find one config misplaced. It wasn't about skill, but rather about mental tax caused due to this.
 
 By then, I had realised managing multiple applications on a single VPS only made things worse, where I had to juggle and handle process monitoring, checking the logs, and mainly running update scripts.
 
@@ -173,7 +173,7 @@ By then, I had realised managing multiple applications on a single VPS only made
   caption="On a lighter note"
 />
 
-With experience comes great clarity; I started seeing patterns in the process I followed. I’ve been doing this for a while now, everytime I spun up a VPS or deploy new project on a VPS, I found myself re-Googling the same 20 commands. I observed that across some major pain points:
+With experience comes great clarity; I started seeing patterns in the process I followed. I've been doing this for a while now, everytime I spun up a VPS or deploy new project on a VPS, I found myself re-Googling the same 20 commands. I observed that across some major pain points:
 
 - Copy-pasting Identical configurations
 - Deployment failures
@@ -193,7 +193,7 @@ My search led me to Nixopus, an indie tool built by a community led by Raghav to
   caption="VPS Management Solution"
 />
 
-Though in Alpha stage, I’ve started using it for managing my VPS and even actively contributing to improvements whenever I can. I am convinced that this project has a bright future. You check it out on [GitHub](https://github.com/raghavyuva/nixopus) and see for yourself.
+Though in Alpha stage, I've started using it for managing my VPS and even actively contributing to improvements whenever I can. I am convinced that this project has a bright future. You check it out on [GitHub](https://github.com/raghavyuva/nixopus) and see for yourself.
 
 If you would like to get involved or have questions, join our Discord community for real-time support and feedback. You can self-host Nixopus today, subscribe for updates, and stay tuned as we roll out new features and stability enhancements.
 
@@ -208,13 +208,13 @@ We have recently collaborated with HostUp, a reliable VPS provider based in Swed
 
 You can claim your VPS coupon and start building with Nixopus today.
 
-Join our [Discord](https://discord.com/invite/skdcq39Wpv) community, you’re always welcome to hop in for community support!
+Join our [Discord](https://discord.com/invite/skdcq39Wpv) community, you're always welcome to hop in for community support!
 
 Summing it up, my journey from building on free-tier clouds and shared hosting to fully embracing VPS has taught me one thing is that having control doesn't have to mean endless repetitive manual work and management. Nixopus bridges that gap, so that from now on you can focus on what really matters.
 
 Stay tuned for more freshly brewed content.
 
-That’s all for now. Thank you for reading.
+That's all for now. Thank you for reading.
 
 Signing off until next time.
 

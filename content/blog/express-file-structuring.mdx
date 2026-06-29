@@ -40,21 +40,21 @@ And also create folders namely:
 4.  **_Services_**
 5.  **_Repositories_**
 
-These are the basic files that ‘ src ’ folder/directory will be holding.
+These are the basic files that ‘ src ' folder/directory will be holding.
 
 Now, you would wonder what would each of directory hold and do?
 
 - **_Models directory_** will be holding files that keeps the schema/data models that is required for your current project.
-- **_Routes directory_** will be holding the route files, where _Routing_ refers to how an application’s endpoints (URIs) respond to client requests. It basically defines your app routes.
+- **_Routes directory_** will be holding the route files, where _Routing_ refers to how an application's endpoints (URIs) respond to client requests. It basically defines your app routes.
 - **_Controllers directory_** will be holding the controller files, wherein the controller files deal with validation of the data, whatever that is been sent from the frontend. The request and response handling is taken care in this directory.
 - **_Services directory_** will be holding the services files, which deals with the business logic of the API. This is a final filtration before sending it to the Data Access Layer, here we filter the data received into the final payload for querying with the database. The files in this directory will deal with processing the payload to the format, it should be in to be stored into the database.
 - **_Data Access Layer/Repositories_** will be dealing with queries that have to be executed based on API. All the CRUD operations for APIs are taken care of in this particular folder.
 
 These are basic application structuring method I opted to go with.
 
-This method of writing code is a stepping stone to writing clean code. Clean code doesn’t have to deal with solving complex logic in a simple way or writing code neatly. Clean coding is an art of writing the code in such a way that, a beginner himself or person from non-programming background should also be able to understand the flow of the code you have written.
+This method of writing code is a stepping stone to writing clean code. Clean code doesn't have to deal with solving complex logic in a simple way or writing code neatly. Clean coding is an art of writing the code in such a way that, a beginner himself or person from non-programming background should also be able to understand the flow of the code you have written.
 
-Apart from this, we can also go with various extra folders, which will lie above ‘src’ directory.
+Apart from this, we can also go with various extra folders, which will lie above ‘src' directory.
 
 Say, your front end is asking for data to be sent from the server in some form. Then, you can build a **_transformation layer/transformation folder_**, where you can have files defining functions converting the data received from the database in one format can be transformed to the format your front-end developers ask for.
 
@@ -68,9 +68,9 @@ Make sure you go through some simple concepts like :
 
 - **_KISS(KEEP IT SIMPLE STUPID)_**
 - **_DRY (Donot Repeat Yourself)_**
-- **_TDA (Tell Don’t Ask)_**
+- **_TDA (Tell Don't Ask)_**
 - **_SoC (Separation of Concerns)_**
-- **_YAGNI (You ain’t gonna need it)_**
+- **_YAGNI (You ain't gonna need it)_**
 
 I am not 100% sure that this is the standard format. As a beginner, I believe this is the best way to learn to code in Express or any other framework. As a beginner, I had difficulties to know this, as I believed all the logic are to be dumped into controllers. And then, I learnt it later on, that was wrong.
 

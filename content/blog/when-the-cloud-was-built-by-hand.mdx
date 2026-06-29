@@ -1,0 +1,214 @@
+export const frontmatter = {
+  title: "ClickOps Is Not a Disaster Plan",
+  date: "2026-06-27",
+  description:
+    "A plain, non-DevOps-heavy read on why manual cloud setups get risky at scale, what disaster recovery and business continuity mean in everyday language, and how infrastructure as code (Terraform, Pulumi, CDK, CloudFormation, or similar) supports both.",
+  tags: [
+    "infrastructure-as-code",
+    "terraform",
+    "pulumi",
+    "devops",
+    "business-continuity",
+    "disaster-recovery",
+    "cloud",
+    "reliability",
+    "automation",
+    "storytelling",
+  ],
+};
+
+# ClickOps Is Not a Disaster Plan
+
+Hi everyone!
+
+This is not one of those superficial "learn IaC in 15 minutes" articles.
+
+This is more about something I have been thinking lately after observing how infrastructure evolves inside real companies especially startups that scaled faster than their operational maturity.
+
+<Image
+  src="/images/blog/clickops-not-a-disaster-plan/clickops-6.png"
+  alt="Nobody intends fragility"
+  caption="Nobody intends fragility"
+/>
+
+You don't really notice the problem in the beginning. Let us assume you are using AWS cloud.
+
+For spinning up a RDS instance, you simply log into AWS then spin up RDS instance, and pass it to your service that uses it, voila works! Things are working! Users are happy! You are happy!!
+
+This becomes a bottleneck on scale, where this culture of just" setup it up for now manually" otherwise called _ClickOps Culture_, turns into silent infrastructure debt.
+
+<Image
+  src="/images/blog/clickops-not-a-disaster-plan/clickops-1.png"
+  alt="When the cloud 'works' until the day it doesnt"
+  caption="When the cloud 'works' until the day it doesnt"
+/>
+
+Recently, I got a closer look at an infrastructure setup that genuinely made me nervous.
+
+I recently got to look at a specific tech company, who hadnt documented much on their architecture. I saw a digital fossil record, layers of configurations had been piled on by different engineers over period, some of whom had long since left the company.
+
+You can pick Terraform, Pulumi, AWS CDK, CloudFormation, Bicep, or another infrastructure-as-code (IaC) path each has great docs and sharp trade-offs. This is a learning of why organisations especially ones that already serve lakhs of users cannot afford to treat the cloud like a one-off DIY project, and how automating how the cloud is defined (whatever stack you choose) ties directly to disaster management, recovery, and business continuity.
+
+I am writing this from something I observed in the wild: a real product, real people depending on it, and an infrastructure story that made me quietly nervous. The point is the pattern, not the gossip.
+
+If you are a developer/engineer who has never touched DevOps, or a founder who thinks "we are on AWS, so we are safe", this is for you.
+
+<Note>
+  If you spot something I could explain better, or you have your own war story
+  (anonymised), do drop a comment. These topics are easier to learn when we
+  share how we actually felt in the room, not only the textbook definitions.
+</Note>
+
+## The setup
+
+Imagine a company whose product is already in the hands of roughly hundred thousand people. Not a side project. Not a demo day slide. Real traffic, real money, real support tickets. Their cloud was largely assembled by hand over time: click here in the console, raise a ticket, someone SSHs in, a firewall rule "just for now," a database that "worked on the day we shipped.". Nothing evil about that. Most of us start there. The cloud vendor gives you a friendly console; it feels productive. You ship. Users come. Life moves on.
+
+The uncomfortable part was what was missing:
+
+- No serious disaster management or recovery story you could point to on a whiteboard, meaning there's zero disaster management.
+- No business continuity plan (BCP) that a non-technical stakeholder could read and nod along with.
+- And, importantly, the whole happy path lived in one primary region as if the internet and power grids had taken a lifelong vow of stability.
+
+That combination is not "a little technical debt". It is a disaster waiting to be discovered usually at 2 a.m., usually by someone who did not build the original system. If that sentence stung a little: good. I do not mean to shame anyone. I mean to name the risk kindly, the way you would tell a friend their stove gas is hissing.
+
+<Image
+  src="/images/blog/clickops-not-a-disaster-plan/clickops-2.png"
+  alt="One region is a single throat to swallow your uptime"
+  caption="One region is a single throat to swallow your uptime"
+/>
+
+## First, the words nobody explains kindly
+
+People throw around DR and BCP in meetings like seasoning. Here is how I explain them to family members who do not work in tech.
+
+### Disaster management & recovery (the simple version)
+
+> Disaster recovery is your answer to: "If our main systems go poof fire, flood, fat-finger delete, ransomware, vendor outage how do we come back without losing the trust of everyone who depends on us?"
+
+Think of it like backing up your house keys and knowing which neighbour holds the spare. It is not pessimism. It is admitting that bad days exist.
+
+Disaster management is set of operational habits: drills, runbooks, who is allowed to press which red button, how you communicate to customers when things break. Recovery is the technical half of that story: where the spare infrastructure lives, how fast you can point traffic there, how much data you are willing to lose (yes, there is almost always a trade-off).
+
+### Business continuity plan (BCP)
+
+> Business continuity asks: "If something big breaks, how does the business keep operating not only the servers, but payroll, support, refunds, legal, and the humans who answer the phone?"
+
+The cloud can be perfect and you can still fail continuity if nobody knows who decides to fail over, what you tell users, or how you pay vendors when finance laptops are locked.
+
+So: DR is largely about bringing "systems back" online. BCP is about "keeping company still breathing". They overlap; they are not the same sticker.
+
+## Why a single-region, hand-built cloud is a red flag at this scale
+
+Again: empathy first.
+
+Nobody wakes up wanting a fragile cloud or devops setup. Teams are understaffed. Founders are racing. The console feels fast. Documenting every click does not feel like shipping features.
+
+But when you are serving lakhs of users, the math changes:
+
+- **Blast radius grows.** A mistake in networking or identity is not a classroom lab; it is a headline.
+- **Knowledge lives in heads.** The person who "just knows" which box does what goes on vacation or leaves.
+- **Regions fail.** Not often. **Often enough** that mature teams design for it on purpose.
+
+So when looking at an infrastructure setup with purely manual root, no clear DR/BCP story, singular region, all I thought was that this team has simply been incredibly fortunate so far, and hasn't had to pay the "panic tax" yet. The disaster has not clocked in; it is waiting on standby.
+
+## Where automation enters
+
+Here is the remediation, IaC, otherwise called as Infrastructure as Code.
+
+IaC is a standard practice of defining and managing cloud infrastructure components like VPC, subnets, dbs, storage buckets, load balancers etc, as version controlled code instead of configuring them manually through cloud console. A IaC tool is capable of helping in comparing your desired infra with current state and automatically creates, updates, deletes resources to make them watch.
+
+The exact dialect changes though like HCL with Terraform, TypeScript or Go with Pulumi or CDK, YAML/JSON with CloudFormation or Bicep. The habit is the same, where the desired cloud is written down, not only remembered.
+
+With IaC, you are no longer building infra manually and dont have to remember each and everything. You are defining the cloud resources you need in place and how do they orchestrate and then let the IaC handle the construction of the resources and changes in it. The biggest shift isn't technical here, rather it is cultural. Instead of hoping someone to remember that how the cloud were created, how the setup was done and orchestrated, you simply make repository that becomes single source of truth and no cognitive load at all.
+
+<Image
+  src="/images/blog/clickops-not-a-disaster-plan/clickops-3.png"
+  alt="Infra does not break overnight, silently decays until one day"
+  caption="Infra does not break overnight, silently decays until one day"
+/>
+
+### What gets easier when the recipe exists
+
+**1. Repeatability**
+
+Imagine spending two days setting up a production & development environment. A few weeks later, someone asks to create pre production environment similar to prod env for testing on similar setup as prod so new features can be tested before reaching production in a production like environment. Without IaC, you will have to remember everything done to setup prod/dev setup and redo the same step, and incase you miss something, reproduction becomes the huge pain and gets challenging. With IaC in place, you already have captured the setup as a blue print, you just have to re-run it by adding new configurations to define new environment with same setting as production environment.
+
+**2. Reviewability**
+
+As mentioned IaC is infrastructure changes or evolution as code change. These changes go through **pull requests**. Maybe you accidentally delete a database backup policy. Maybe you provision a much larger server than intended. Maybe you expose a resource that was supposed to stay private. A second pair of eyes sees "oh, that port should not face the public internet" **before** it faces the planet. That single habit has saved more careers than any buzzword.
+
+**3. Less firefighting, tbh**
+
+When infrastructure is built manually, troubleshooting often starts with, "Does anyone remember how this was configured?". With IaC in place, you have to rely on specific person for knowledge of the setup. Your infra definition tells you exactly what was deployed, making incidents far easier to understand and debug them.
+
+**4. BCP and DR becomes discussable**
+
+Imagine that your production environment goes down completely. With absence of IaC, rebuilding would have been 100x harder and it also means following the existing docs, retracing manual steps and hoping nothing important was forgotten. Now, with IaC, rebuilding is simply matter of running the same infra definition again with minor tweaks,
+
+You can literally attach diagrams and the same repo that provisions the warm spare to a continuity document: "This is how we stand it up." Stakeholders do not need to read your language of choice end to end; they can see that a plan exists and changes leave a trail.
+
+No single tool wins every room. Teams pick Terraform for multi-cloud and a huge ecosystem, Pulumi when they want real languages end to end, CDK/CloudFormation/Bicep when they want to stay close to one vendor's paved road. Once you understand the crux and core ideology behind declarative intent, review before apply, building as modules or components, treating infrastructure as code or software. Everything else is just syntax, and it becomes much easier than changing the mindset itself.
+
+<Image
+  src="/images/blog/clickops-not-a-disaster-plan/clickops-7.png"
+  alt="Infra growth over time"
+  caption="Infra growth over time"
+/>
+
+## Perks at different scales (honest, not salesy)
+
+### Small teams / startups
+
+- You onboard faster; new hire reads the repo, not twelve wiki tabs from 2019.
+- You sleep a bit better before SOC2 or enterprise customers start asking security questionnaires.
+- You can clone environments easily, it is not a biggie.
+
+### Medium scale
+
+- Change management stops being folklore.
+- You can start carving network boundaries and data paths deliberately instead of accidentally.
+
+### Enterprise
+
+- Compliance and audit trails love "who changed what, when."
+- Multi-account and multi-region patterns become modules and policy guardrails, not tribal legend.
+
+None of these replaces good architecture, good backups, or good culture. What it does do is make your cloud infrastructure setup more predictable, gives you transparency on changes, and eliminates avoidable mistakes.
+
+## Operational side of IaC
+
+Writing IaC is half the part of the journey. Operating it reliably is where the actual engineering comes into play. Every IaC tool (Terraform, Pulumi etc) maintains a record of the infrastructure it manages. For example, Terraform has a state file, Pulumi maintains stack state, and so on.
+
+<Image
+  src="/images/blog/clickops-not-a-disaster-plan/clickops-4.png"
+  alt="ClickOps vs IaC"
+  caption="ClickOps vs IaC"
+/>
+
+State, otherwise called stack truth is the memory of how your infrastructure evolves. This stack truth is sacred. If that state is lost or corrupted, your infrastructure code no longer reflects reality, making changes and recovery significantly harder. It acts like a bridge between your infrastructure code and your actual cloud resources.
+
+Another important aspect of operational side of IaC is testing. Automation without tests is hope. A pipeline that applies infra on every merge sounds brave until it isn't. Run a plan, preview, or diff in CI; apply with human gates until you trust the gates.
+
+Reiterating from earlier quote again,
+
+> DR is a rehearsal, not a document. If you have never failed over on purpose in a controlled window, you mostly have a theory. A recovery plan is only as good as its last test.
+
+> BCP includes humans. If only one person can approve DNS changes, you have a single point of failure wearing a human face.
+
+<Image
+  src="/images/blog/clickops-not-a-disaster-plan/clickops-5.png"
+  alt="DR & BCP"
+  caption="DR & BCP"
+/>
+
+If you take one thing away: manual cloud at serious scale is not "wrong" in a moral sense it is fragile in a mathematical sense. Disaster recovery and business continuity are not buzzwords for enterprises with marble lobbies; they are kindness to users dressed in boring words.
+
+Solid IaC discipline whichever product you standardise on will not fix culture overnight. It does give you a fair shot at turning panic into procedure and that, for a team serving lakhs of people, is not nothing.
+
+Stay safe, document the scary bits, and rehearse your bad day before it rehearses you. xD
+
+I hope you enjoyed the read. Thats all for now, signing off...
+
+Thank you. Stay tuned for more freshly brewed contents.
+
+Happy learning!!

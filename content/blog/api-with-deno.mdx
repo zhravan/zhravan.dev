@@ -32,7 +32,7 @@ When Ryan started out Node; he missed out on very essential aspects which he rec
 
 To summarize those design flaws in the Node.js that Ryan had mentioned are as follows;
 
-- **Security**: Node has no security. Since you use NPM packages and you don’t completely know what’s in that code; maybe these codes may have unfound loopholes or severe vulnerabilities making network attacks or hacks easier. Easy access to the computer was very much open.
+- **Security**: Node has no security. Since you use NPM packages and you don't completely know what's in that code; maybe these codes may have unfound loopholes or severe vulnerabilities making network attacks or hacks easier. Easy access to the computer was very much open.
   Deno overcame this security concern by putting the Deno environment in a sandbox, by default, where each operation beyond the execution context was permitted explicitly by the user.
 
 - **Importing URLs**: One major change was requiring modules from the folder node_modules where Node.js used syntax omitting the extensions in files, caused issues with the browser standards. To resolve this issue, they had bundle up the Module Resolution Algorithm to find the requested module in Node.
@@ -46,7 +46,7 @@ To summarize those design flaws in the Node.js that Ryan had mentioned are as fo
 
 > \_On Windows: %LOCALAPPDATA%/deno (%LOCALAPPDATA% = FOLDERID_LocalAppData)
 
-> Another file called .deno_plugins is also generated in the project’s directory itself in the first run when you use certain packages like deno_mongo to install the rust binaries of the same.
+> Another file called .deno_plugins is also generated in the project's directory itself in the first run when you use certain packages like deno_mongo to install the rust binaries of the same.
 
 - **package.json**: With the above two major drawbacks; maintaining package.json was an unnecessary abstraction. Semantic Versioning was one of the main purposes that package.json served.
   On the contrary, Deno does not support the use of a package manager like npm. Hence, the need for Semantic Versioning is eliminated, eliminating the need for package.json like the manifest.
@@ -55,11 +55,11 @@ To summarize those design flaws in the Node.js that Ryan had mentioned are as fo
   In Deno, the most fundamental or let us say lowest level binding Promises API is “ops” binding to handle Asynchronous Operations.
 
 - **Out of the box, TypeScript Compiler Built in**: Node supports JavaScript scripts, with .js files. If we had to write TypeScript in Node Environment; we had to set up the TypeScript Configuration for the project along with the TypeScript package.
-  This pain of set up is over with Deno, which gives right away without the initial configuration of the application. The use is confined to default configurations of the Deno’s TypeScript Compiler. Anyhow, if your want to override the default configuration, you can add the ‘tsconfig.json’ file; using flag ‘- -config=tsconfig.json’.
+  This pain of set up is over with Deno, which gives right away without the initial configuration of the application. The use is confined to default configurations of the Deno's TypeScript Compiler. Anyhow, if your want to override the default configuration, you can add the ‘tsconfig.json' file; using flag ‘- -config=tsconfig.json'.
   Normal JS also works too with Deno; basically even files with .js extensions.
 
 - **Lastly, the usage of the await supported by v8 - Top level Async**: Node supported the async-await pattern of handling asynchronous operation after the release of ES5/ES6. If you are defining a function that does some asynchronous operation, then you will have to use this standard pattern of async-await.
-  Deno had the awesome feature of using await directly since it was binded directly to the promises. In simpler terms, you could use ‘await’ without using the async keyword in a program.
+  Deno had the awesome feature of using await directly since it was binded directly to the promises. In simpler terms, you could use ‘await' without using the async keyword in a program.
 
 ---
 
@@ -86,11 +86,11 @@ Let us dig into Deno and then start with Creating a RESTful API using Deno [ Oak
 
 Further details can be found in the official [Deno v1](https://deno.land/).
 
-**Now starting with creating simple RESTful API using Deno’s framework called Oak.**
+**Now starting with creating simple RESTful API using Deno's framework called Oak.**
 
 In this article, we will be creating Application Server using
 
-**Oak**: A Middleware Framework for Deno’s HTTP server; inspired by Koa Framework.
+**Oak**: A Middleware Framework for Deno's HTTP server; inspired by Koa Framework.
 
 **deno_mongo**: It is a MongoDB database driver built for the Deno Platform. A native database driver for MongoDB.
 
@@ -135,8 +135,8 @@ Now we have a routers folder, which has a collection of routes related to the sa
 Here let us say, User as an independent service.
 
 Now let us create a router for User which has HTTP methods
-POST → ‘/user’
-GET → ‘/user/:id’
+POST → ‘/user'
+GET → ‘/user/:id'
 
 To add a user along with getting user data as well. The route file would like this as follows:
 Create a 'routers' folder and create another file 'userRoute.js'. This file deals only with routing to the user service.
@@ -171,7 +171,7 @@ This is userDAL.ts file
 
 ---
 
-Following we create a class ‘database’ for the database connectivity whose object we can use to create an instance of, to write queries.
+Following we create a class ‘database' for the database connectivity whose object we can use to create an instance of, to write queries.
 
 Create a database folder, with a file 'config.ts', which looks like as follows,
 
@@ -200,10 +200,10 @@ Along with this, there are other pieces of code snippets that will be required t
 If you want to clone the project that I am working on, clone oak branch.
 
 ```sh
-git clone -b ‘oak’ https://github.com/zhravan/deno-crud-api.git
+git clone -b ‘oak' https://github.com/zhravan/deno-crud-api.git
 ```
 
-Now let’s run the project. Open the terminal/command prompt in the root directory of the project
+Now let's run the project. Open the terminal/command prompt in the root directory of the project
 
 ```sh
 deno run --allow-net --allow-write --allow-read --allow-plugin --unstable app.ts
@@ -221,10 +221,10 @@ When you run this command for the first time; it will download all the required 
 
 Since we are at the very start of the Deno.land and the current scenario looks as though it has a very promising scope for the future. Looking forward to work on the coming frameworks in the Deno environment.
 
-I am already fond of another called Snowlight Framework ( Inspired by Express Framework in Node); which is also available in the GitHub codebase in the ‘SnowLight’ branch.
+I am already fond of another called Snowlight Framework ( Inspired by Express Framework in Node); which is also available in the GitHub codebase in the ‘SnowLight' branch.
 
 ```sh
-git clone -b ‘snowlight’ https://github.com/zhravan/deno-crud-api.git
+git clone -b ‘snowlight' https://github.com/zhravan/deno-crud-api.git
 ```
 
 Deno looks like already better than Node as per my point of view. Looking forward to exploring many more frameworks and libraries in the Deno platform.
