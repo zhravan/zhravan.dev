@@ -1,49 +1,35 @@
 import './globals.css';
 import type { Metadata, Viewport } from 'next';
-import { Doto, Space_Grotesk } from 'next/font/google';
+import { Space_Grotesk } from 'next/font/google';
 import Link from 'next/link';
 import { NavPill, MobileNav } from '@/components/navigation';
-import { ScrollToTop } from '@/components/ScrollToTop';
 import { CommandPaletteWithButton } from '@/components/CommandPaletteWithButton';
-import { ScrollProgress } from '@/components/ScrollProgress';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import ThemeStyleTag from '@/components/ThemeStyleTag';
 import { Analytics } from '@/components/Analytics';
 import { PostHogProvider } from '@/components/PostHogProvider';
-import { CustomCursor } from '@/components/CustomCursor';
 import { getAllPosts } from '@/lib/blog';
 import { getContentByType, ContentItem } from '@/lib/content';
 import { getAllContentTypes, getContentTypeById } from '@/lib/content-types';
 import { getDefaultMetadata, getDefaultViewport, getWebsiteStructuredData, getPersonStructuredData, getSocialLinks } from '@/lib/seo';
 import { StructuredData } from '@/components/StructuredData';
 import { getCommandPaletteConfig } from '@/lib/plugins/command-palette';
-import { getScrollProgressConfig } from '@/lib/plugins/scroll-progress';
-import { getScrollToTopConfig } from '@/lib/plugins/scroll-to-top';
 import { getPostHogConfig } from '@/lib/plugins/analytics';
-import { getNavigationContentTypes } from '@/lib/content-types';
 import { filterDrafts } from '@/lib/plugins/drafts';
 import { getNewsletterListItems } from '@/lib/newsletter-feeds';
 import { LinkTracker } from '@/components/LinkTracker';
 import { SearchAnalytics } from '@/components/SearchAnalytics';
 import { OhMyScript } from '@/components/OhMyScript';
-import { SubscribeWidget } from '@/components/SubscribeWidget';
 import { SiteFooterLicense } from '@/components/SiteFooterLicense';
 
 const spaceGrotesk = Space_Grotesk({ subsets: ['latin'] });
-const doto = Doto({
-  subsets: ['latin'],
-  weight: 'variable',
-  axes: ['ROND'],
-  display: 'swap',
-  variable: '--font-display'
-});
 
 export const metadata: Metadata = getDefaultMetadata();
 export const viewport: Viewport = getDefaultViewport();
 
 // Build navigation items dynamically from content types
 function getNavItems() {
-  const contentTypes = getNavigationContentTypes();
+  const contentTypes = getAllContentTypes().filter(ct => ct.showInNav !== false && ['blog', 'projects'].includes(ct.id));
   const items: Array<{ name: string; path: string; icon?: string | null }> = [
     { name: 'Home', path: '/' }
   ];
@@ -56,11 +42,7 @@ function getNavItems() {
     });
   });
 
-  // Add static pages at the end
-  items.push({ name: 'Services', path: '/services' });
-  items.push({ name: 'Uses', path: '/uses' });
-  items.push({ name: 'About', path: '/about' });
-  items.push({ name: 'Contact', path: '/contact' });
+  // Keep secondary pages out of the primary navigation.
 
   return items;
 }
@@ -120,25 +102,18 @@ export default async function RootLayout({
   const socialLinks = getSocialLinks();
 
   return (
-    <html lang="en" className={`${spaceGrotesk.className} ${doto.variable}`} suppressHydrationWarning>
+    <html lang="en" className={spaceGrotesk.className} suppressHydrationWarning>
       <head>
         <ThemeStyleTag />
         <StructuredData data={[websiteStructuredData, personStructuredData]} />
       </head>
       <body className="antialiased">
-        <CustomCursor />
         <Analytics />
         <PostHogProvider config={postHogConfig} />
         <LinkTracker />
         <SearchAnalytics />
         <ThemeProvider>
           <div className="min-h-screen" style={{ backgroundColor: 'var(--color-background)' }}>
-            {scrollProgressConfig && (
-              <ScrollProgress
-                position={scrollProgressConfig.position}
-                height={scrollProgressConfig.height}
-              />
-            )}
             <header>
               <nav aria-label="Main navigation">
                 <div className="max-w-2xl mx-auto px-4 sm:px-8 py-4 sm:py-5 md:pb-2 md:border-b nav-border">
@@ -194,7 +169,6 @@ export default async function RootLayout({
                 showPosts={commandPaletteConfig.showPosts}
               />
             )}
-            <SubscribeWidget />
             <footer className="mt-12 md:mt-24 pb-8">
               <div className="max-w-2xl mx-auto px-4 sm:px-8 py-6 sm:py-8">
                 <div className="flex flex-col items-center gap-4">
@@ -245,13 +219,6 @@ export default async function RootLayout({
                 </div>
               </div>
             </footer>
-            {scrollToTopConfig && (
-              <ScrollToTop
-                showAfter={scrollToTopConfig.showAfter}
-                position={scrollToTopConfig.position}
-                smooth={scrollToTopConfig.smooth}
-              />
-            )}
           </div>
         </ThemeProvider>
       </body>
