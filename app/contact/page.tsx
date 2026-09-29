@@ -133,24 +133,18 @@ const contactItems: ContactItem[] = [
 
 export default function Contact() {
   return (
-    <div className="space-y-4 text-xxs">
+    <div className="space-y-10 text-sm">
       <AnalyticsTracker
         contentType="page"
         contentTitle={pageMetadata.title}
         contentSlug="contact"
       />
-      <PageHeader metadata={pageMetadata} hideTitle={true} />
+      <header className="space-y-2">
+        <h1 className="text-lg text-[var(--color-foreground)] sm:text-xl">Contact</h1>
+        <p className="max-w-xl text-[var(--color-muted-foreground)]">Currently available for freelance projects and consulting engagements.</p>
+      </header>
 
-      <div className="animate-fade-up" style={{ animationDelay: '50ms' }}>
-        <p 
-          className="text-xxs mb-4" 
-          style={{ color: 'var(--color-muted-foreground)' }}
-        >
-          Currently available for freelance projects and consulting engagements. Response time is typically within 24-48 hours.
-        </p>
-      </div>
-
-      <div className="animate-fade-up space-y-1" style={{ animationDelay: '100ms' }}>
+      <div className="space-y-1">
         {contactItems.map((item) => {
           const Icon = item.icon;
           const isBrandIcon = Icon === StackOverflowIcon || Icon === DevToIcon || Icon === SpotifyIcon || Icon === TwitterXIcon || Icon === TwitchIcon;
@@ -169,11 +163,6 @@ export default function Contact() {
                 paddingBottom: 0,
               }}
             >
-              {isBrandIcon ? (
-                <Icon size={14} />
-              ) : (
-                <Icon size={14} strokeWidth={2} />
-              )}
               <span className="text-xxs">{item.username}</span>
             </a>
           );
