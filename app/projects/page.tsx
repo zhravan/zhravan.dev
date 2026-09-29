@@ -1,78 +1,39 @@
 import { getProjects } from '@/lib/projects';
-import { PageHeader } from '@/components/PageHeader';
-import { ProjectDescription } from '@/components/ProjectDescription';
 import { getPageMetadata } from '@/lib/seo';
 import { AnalyticsTracker } from '@/components/AnalyticsTracker';
 import type { Metadata } from 'next';
 
-const pageMetadata = {
-  title: 'Projects',
-  description: 'A selection of projects I have built and contributed to.'
-};
+const pageMetadata = { title: 'Projects', description: 'A selection of projects I have built and contributed to.' };
 
-export const metadata: Metadata = getPageMetadata({
-  title: pageMetadata.title,
-  description: pageMetadata.description,
-  path: '/projects/'
-});
+export const metadata: Metadata = getPageMetadata({ title: pageMetadata.title, description: pageMetadata.description, path: '/projects/' });
 
 export default function Projects() {
   const projects = getProjects();
 
   return (
-    <div className="space-y-6 text-xxs">
-      <AnalyticsTracker
-        contentType="page"
-        contentTitle={pageMetadata.title}
-        contentSlug="projects"
-      />
-      <PageHeader metadata={pageMetadata} hideTitle={true} />
+    <div className="space-y-10 text-sm">
+      <AnalyticsTracker contentType="page" contentTitle={pageMetadata.title} contentSlug="projects" />
+      <header className="space-y-2">
+        <h1 className="text-lg text-[var(--color-foreground)] sm:text-xl">Projects</h1>
+        <p className="max-w-xl text-[var(--color-muted-foreground)]">{pageMetadata.description}</p>
+      </header>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+      <div className="divide-y divide-[var(--color-border)]">
         {projects.map((project) => (
-          <a
-            key={project.title}
-            href={project.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="project-card"
-          >
-            <div className="flex items-start justify-between gap-2 mb-1.5">
-              <h3 className="project-title">
-                {project.title}
-              </h3>
-              {project.period && (
-                <span className="project-period">{project.period}</span>
-              )}
+          <a key={project.title} href={project.link} target="_blank" rel="noopener noreferrer" className="group block border-b-0 py-5">
+            <div className="flex items-baseline justify-between gap-4">
+              <h2 className="text-sm text-[var(--color-foreground)] group-hover:opacity-70 sm:text-base">{project.title}</h2>
+              {project.period && <span className="shrink-0 text-xs text-[var(--color-muted-foreground)]">{project.period}</span>}
             </div>
-            {project.description && (
-              <ProjectDescription description={project.description} />
-            )}
-            <div className="project-tech">
-              {project.tech && project.tech.map((tech) => (
-                <span key={tech} className="tech-badge">
-                  {tech}
-                </span>
-              ))}
-            </div>
-            {project.roles && project.roles.length > 0 && (
-              <div className="project-roles">
-                {project.roles.join(', ')}
-              </div>
-            )}
+            {project.description && <p className="mt-1.5 max-w-2xl text-sm leading-6 text-[var(--color-muted-foreground)]">{project.description}</p>}
+            {project.tech && project.tech.length > 0 && <p className="mt-2 text-xs text-[var(--color-muted-foreground)]">{project.tech.join(' · ')}</p>}
           </a>
         ))}
       </div>
 
-      <section className="pt-4">
-        <p style={{ color: 'var(--color-muted-foreground)' }}>
-          You can find more of my experiments and tools on{' '}
-          <a href="https://github.com/zhravan" target="_blank" rel="noopener noreferrer">
-            GitHub
-          </a>
-          .
-        </p>
-      </section>
+      <p className="text-sm text-[var(--color-muted-foreground)]">
+        More experiments and tools on <a href="https://github.com/zhravan" target="_blank" rel="noopener noreferrer">GitHub</a>.
+      </p>
     </div>
   );
 }
