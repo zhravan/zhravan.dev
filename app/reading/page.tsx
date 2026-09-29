@@ -1,6 +1,5 @@
 import { getBooks } from '@/lib/books';
 import { getPageMetadata } from '@/lib/seo';
-import { PageHeader } from '@/components/PageHeader';
 import type { Metadata } from 'next';
 
 const pageMetadata = {
@@ -33,12 +32,15 @@ export default function ReadingPage() {
     return `${month} ${year}`;
   };
 
-  const sectionTitleClass = 'page-title text-base';
-  const bookTitleClass = 'break-words leading-tight text-[0.55rem] sm:text-[0.65rem]';
+  const sectionTitleClass = 'text-base';
+  const bookTitleClass = 'break-words leading-tight text-sm';
 
   return (
     <div className="space-y-6 sm:space-y-8 text-xxs">
-      <PageHeader metadata={pageMetadata} hideTitle={true} />
+      <header className="space-y-2">
+        <h1 className="text-lg text-[var(--color-foreground)] sm:text-xl">Reading</h1>
+        <p className="max-w-xl text-sm text-[var(--color-muted-foreground)]">{pageMetadata.description}</p>
+      </header>
 
       {/* Currently Reading */}
       {reading.length > 0 && (
@@ -55,15 +57,15 @@ export default function ReadingPage() {
                 <div className="px-2.5 py-2 sm:px-3 sm:py-2">
                   <div className="flex flex-col gap-2.5 sm:flex-row sm:items-center sm:justify-between">
                     <div className="min-w-0 flex items-start gap-2 sm:items-center sm:gap-3">
-                      <span className="shrink-0 opacity-40" aria-hidden>→</span>
+                      
 
                       <div className="min-w-0 flex-1">
-                        <span className={bookTitleClass} style={{ color: 'hsl(163 71% 44%)', fontFamily: 'var(--code-font-family)' }}>
+                        <span className={bookTitleClass} style={{ color: 'var(--color-foreground)' }}>
                           {book.title}
                         </span>
                       </div>
 
-                      <div className="shrink-0 text-[6px] uppercase tracking-[0.1em] sm:text-[7px]" style={{ color: 'color-mix(in srgb, var(--color-muted-foreground) 88%, transparent)', fontFamily: 'var(--code-font-family)' }}>
+                      <div className="shrink-0 text-xs" style={{ color: 'color-mix(in srgb, var(--color-muted-foreground) 88%, transparent)', fontFamily: 'var(--code-font-family)' }}>
                         {book.author}
                       </div>
                     </div>
@@ -72,7 +74,7 @@ export default function ReadingPage() {
                         {book.tags.map((tag) => (
                           <span
                             key={tag}
-                            className="rounded-full border px-1.5 py-0.5 text-[8px] uppercase tracking-[0.12em]"
+                            className="rounded-full border px-1.5 py-0.5 text-xs"
                             style={{
                               borderColor:
                                 'color-mix(in srgb, var(--color-border) 90%, transparent)',
@@ -109,15 +111,15 @@ export default function ReadingPage() {
                 <div className="px-2.5 py-2 sm:px-3 sm:py-2">
                   <div className="flex flex-col gap-2.5 sm:flex-row sm:items-center sm:justify-between">
                     <div className="min-w-0 flex items-start gap-2 sm:items-center sm:gap-3">
-                      <span className="shrink-0 opacity-40" aria-hidden>→</span>
+                      
 
                       <div className="min-w-0 flex-1">
-                        <span className={bookTitleClass} style={{ color: 'hsl(163 71% 44%)', fontFamily: 'var(--code-font-family)' }}>
+                        <span className={bookTitleClass} style={{ color: 'var(--color-foreground)' }}>
                           {book.title}
                         </span>
                       </div>
 
-                      <div className="shrink-0 flex flex-wrap items-center gap-x-2 gap-y-1 text-[6px] uppercase tracking-[0.1em] sm:text-[7px]" style={{ color: 'color-mix(in srgb, var(--color-muted-foreground) 88%, transparent)', fontFamily: 'var(--code-font-family)' }}>
+                      <div className="shrink-0 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs" style={{ color: 'color-mix(in srgb, var(--color-muted-foreground) 88%, transparent)', fontFamily: 'var(--code-font-family)' }}>
                         <span>{book.author}</span>
                         {book.rating && <span>{book.rating}/5</span>}
                         {book.dateFinished && (
@@ -130,7 +132,7 @@ export default function ReadingPage() {
                         {book.tags.map((tag) => (
                           <span
                             key={tag}
-                            className="rounded-full border px-1.5 py-0.5 text-[8px] uppercase tracking-[0.12em]"
+                            className="rounded-full border px-1.5 py-0.5 text-xs"
                             style={{
                               borderColor:
                                 'color-mix(in srgb, var(--color-border) 90%, transparent)',
@@ -166,15 +168,15 @@ export default function ReadingPage() {
               <li key={book.id} className="group">
                 <div className="px-2.5 py-2 sm:px-3 sm:py-2">
                   <div className="min-w-0 flex items-start gap-2 sm:items-center sm:gap-3">
-                    <span className="shrink-0 opacity-40" aria-hidden>→</span>
+                    
 
                     <div className="min-w-0 flex-1">
-                      <span className={bookTitleClass} style={{ color: 'hsl(163 71% 44%)', fontFamily: 'var(--code-font-family)' }}>
+                      <span className={bookTitleClass} style={{ color: 'var(--color-foreground)' }}>
                         {book.title}
                       </span>
                     </div>
 
-                    <div className="shrink-0 text-[6px] uppercase tracking-[0.1em] sm:text-[7px]" style={{ color: 'color-mix(in srgb, var(--color-muted-foreground) 88%, transparent)', fontFamily: 'var(--code-font-family)' }}>
+                    <div className="shrink-0 text-xs" style={{ color: 'color-mix(in srgb, var(--color-muted-foreground) 88%, transparent)', fontFamily: 'var(--code-font-family)' }}>
                       {book.author}
                     </div>
                   </div>
