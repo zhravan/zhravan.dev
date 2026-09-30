@@ -1,8 +1,9 @@
 'use client';
 
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { CommandPalette, CommandPaletteHandle } from './CommandPalette';
-import { MobileSearchButton } from './MobileSearchButton';
+
+export const OPEN_COMMAND_PALETTE_EVENT = 'open-command-palette';
 
 interface ContentItemForPalette {
   slug: string;
@@ -22,12 +23,11 @@ interface CommandPaletteWithButtonProps {
 export function CommandPaletteWithButton(props: CommandPaletteWithButtonProps) {
   const paletteRef = useRef<CommandPaletteHandle>(null);
 
-  return (
-    <>
-      <div className="fixed top-16 right-4 z-30 lg:hidden">
-        <MobileSearchButton onClick={() => paletteRef.current?.open()} />
-      </div>
-      <CommandPalette ref={paletteRef} {...props} />
-    </>
-  );
+  useEffect(() => {
+    const open = () => paletteRef.current?.open();
+    window.addEventListener(OPEN_COMMAND_PALETTE_EVENT, open);
+    return () => window.removeEventListener(OPEN_COMMAND_PALETTE_EVENT, open);
+  }, []);
+
+  return <CommandPalette ref={paletteRef} {...props} />;
 }

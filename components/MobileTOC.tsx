@@ -44,7 +44,7 @@ export function MobileTOC({ headings }: MobileTOCProps) {
   return (
     <nav aria-label="Table of contents">
       <details
-        className="lg:hidden mb-8 rounded-lg border border-gray-200 dark:border-gray-800 overflow-hidden text-[10px] bg-gray-50 dark:bg-gray-900/50 [&_*]:list-none"
+        className="xl:hidden mb-8 rounded-lg border border-gray-200 dark:border-gray-800 overflow-hidden text-[10px] bg-gray-50 dark:bg-gray-900/50 [&_*]:list-none"
         open={isOpen}
         onToggle={(e) => setIsOpen((e.target as HTMLDetailsElement).open)}
       >

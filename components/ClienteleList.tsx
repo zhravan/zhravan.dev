@@ -1,7 +1,4 @@
-'use client';
-
-import { ExternalLink } from 'lucide-react';
-import { useState } from 'react';
+import type { CSSProperties } from 'react';
 
 interface Client {
   name: string;
@@ -14,163 +11,67 @@ interface ClienteleListProps {
   clients: Client[];
 }
 
-export function ClienteleList({ clients }: ClienteleListProps) {
-  const [hoveredIndex, setHoveredIndex] = useState<string | null>(null);
+const STATUS_ORDER = { active: 0, perennial: 1, past: 2 } as const;
+const STATUS_LABEL = { active: 'Active', perennial: 'Perennial', past: 'Past' } as const;
+const SECONDS_PER_CLIENT = 3.5;
 
-  // Separate clients into active, perennial, and past
-  const activeClients = clients.filter(client => client.status === 'active');
-  const perennialClients = clients.filter(client => client.status === 'perennial');
-  const pastClients = clients.filter(client => client.status === 'past');
+function StatusIndicator({ status }: { status: NonNullable<Client['status']> }) {
+  return (
+    <span className={`status-indicator status-indicator--${status}`}>
+      <span className="status-indicator__tip" aria-hidden="true">
+        {STATUS_LABEL[status]}
+      </span>
+      <span className="sr-only">{STATUS_LABEL[status]} client:</span>
+    </span>
+  );
+}
 
-  const renderClient = (
-    client: Client,
-    index: number,
-    statusType: 'active' | 'perennial' | 'past',
-    baseIndex: number
-  ) => {
-    const uniqueKey = `${client.name}-${index}`;
-    const isHovered = hoveredIndex === uniqueKey;
-    const isActive = statusType === 'active';
-    const isPerennial = statusType === 'perennial';
-    
-    const content = (
-      <div
-        className="clientele-card relative group"
-        style={{
-          animationDelay: `${baseIndex * 30}ms`,
-          opacity: isActive ? 1 : isPerennial ? 0.75 : 0.5,
-        }}
-        onMouseEnter={() => setHoveredIndex(uniqueKey)}
-        onMouseLeave={() => setHoveredIndex(null)}
-      >
-        <div
-          className={`
-            relative flex items-center justify-center transition-colors duration-150
-            ${client.url ? 'cursor-pointer' : ''}
-          `}
-          style={{
-            backgroundColor: 'var(--color-card)',
-            border: `1px solid ${isHovered ? 'var(--color-link)' : 'rgba(0, 0, 0, 0.2)'}`,
-            borderRadius: '4px',
-            padding: '0.75rem',
-            minHeight: '60px',
-          }}
-        >
-          {/* Status - always visible */}
-          {client.status && (
-            <div
-              className="absolute top-1 left-1 text-xs"
-              style={{
-                color: isActive
-                  ? 'var(--color-link)'
-                  : isPerennial
-                    ? 'hsl(45 95% 58%)'
-                    : 'var(--color-muted-foreground)',
-                fontSize: '0.6rem',
-                fontFamily: 'var(--code-font-family)',
-                opacity: 0.7,
-              }}
-            >
-              {isActive ? 'Active' : isPerennial ? 'Perennial' : 'Past'}
-            </div>
-          )}
+function ClientMark({ client, hidden }: { client: Client; hidden: boolean }) {
+  const mark = client.logo ? (
+    <img src={client.logo} alt={client.name} className="marquee__logo" loading="lazy" />
+  ) : (
+    <span>{client.name}</span>
+  );
 
-          {/* Content */}
-          {client.logo ? (
-            <div className="w-full h-8 flex items-center justify-center">
-              <img
-                src={client.logo}
-                alt={client.name}
-                className="max-w-full max-h-full object-contain"
-                loading="lazy"
-              />
-            </div>
-          ) : (
-            <span
-              className="text-xs text-center"
-              style={{
-                color: 'var(--color-foreground)',
-                fontSize: '0.65rem',
-                letterSpacing: '0.01em',
-              }}
-            >
-              {client.name}
-            </span>
-          )}
-          
-          {client.url && (
-            <div
-              className="absolute top-1 right-1 transition-opacity duration-150"
-              style={{
-                opacity: isHovered ? 0.5 : 0,
-              }}
-            >
-              <ExternalLink
-                size={10}
-                strokeWidth={1.5}
-                style={{
-                  color: 'var(--color-link)',
-                }}
-              />
-            </div>
-          )}
-        </div>
-      </div>
-    );
+  const className = `marquee__item marquee__item--${client.status ?? 'active'}`;
 
-    return client.url ? (
+  if (client.url) {
+    return (
       <a
-        key={uniqueKey}
         href={client.url}
         target="_blank"
         rel="noopener noreferrer"
-        className="no-underline block"
-        style={{
-          borderBottom: 'none',
-          paddingBottom: '0',
-        }}
+        className={className}
+        tabIndex={hidden ? -1 : undefined}
       >
-        {content}
+        {mark}
       </a>
-    ) : (
-      <div key={uniqueKey}>
-        {content}
-      </div>
     );
-  };
+  }
+
+  return <span className={className}>{mark}</span>;
+}
+
+export function ClienteleList({ clients }: ClienteleListProps) {
+  const ordered = [...clients].sort(
+    (a, b) => STATUS_ORDER[a.status ?? 'active'] - STATUS_ORDER[b.status ?? 'active'],
+  );
+  const style = { '--marquee-duration': `${ordered.length * SECONDS_PER_CLIENT}s` } as CSSProperties;
 
   return (
-    <div className="space-y-6">
-      {/* Active Clients */}
-      {activeClients.length > 0 && (
-        <div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
-            {activeClients.map((client, index) => renderClient(client, index, 'active', index))}
-          </div>
-        </div>
-      )}
-
-      {/* Perennial Clients */}
-      {perennialClients.length > 0 && (
-        <div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
-            {perennialClients.map((client, index) =>
-              renderClient(client, index, 'perennial', activeClients.length + index)
-            )}
-          </div>
-        </div>
-      )}
-
-      {/* Past Clients */}
-      {pastClients.length > 0 && (
-        <div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
-            {pastClients.map((client, index) =>
-              renderClient(client, index, 'past', activeClients.length + perennialClients.length + index)
-            )}
-          </div>
-        </div>
-      )}
+    <div className="marquee" style={style}>
+      <div className="marquee__track">
+        {[false, true].map((hidden) => (
+          <ul key={String(hidden)} className="marquee__group" aria-hidden={hidden || undefined}>
+            {ordered.map((client) => (
+              <li key={client.name} className="marquee__entry">
+                {client.status && <StatusIndicator status={client.status} />}
+                <ClientMark client={client} hidden={hidden} />
+              </li>
+            ))}
+          </ul>
+        ))}
+      </div>
     </div>
   );
 }

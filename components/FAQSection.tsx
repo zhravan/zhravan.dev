@@ -9,6 +9,10 @@ const faqs = [
     answer: "MVPs: 4-8 weeks. Complex systems: 2-4 months. I'll give you an accurate estimate after our discovery call."
   },
   {
+    question: "Can I get a sense of the work without a call?",
+    answer: "Of course. Share a short brief and I'll reply with a written note on how I'd approach it."
+  },
+  {
     question: "What if the project overruns scope?",
     answer: "We'll discuss scope changes upfront. Additional work is billed separately, and I'll always get your approval before proceeding."
   },

@@ -3374,6 +3374,52 @@ export const themes = {
     },
     syntaxTheme: 'dracula',
   },
+  'frilo-dark': {
+    name: 'Frilo Dark',
+    colors: {
+      background: '#111111',
+      foreground: '#eeeeee',
+      card: '#191919',
+      cardForeground: '#eeeeee',
+      primary: '#eeeeee',
+      primaryForeground: '#111111',
+      secondary: '#222222',
+      secondaryForeground: '#b4b4b4',
+      muted: '#222222',
+      mutedForeground: '#b4b4b4',
+      accent: '#2a2a2a',
+      accentForeground: '#eeeeee',
+      border: '#2a2a2a',
+      input: '#2a2a2a',
+      ring: '#606060',
+      link: '#eeeeee',
+      linkHover: '#ffffff',
+    },
+    syntaxTheme: 'github-dark',
+  },
+  'frilo-light': {
+    name: 'Frilo Light',
+    colors: {
+      background: '#fcfcfc',
+      foreground: '#202020',
+      card: '#f9f9f9',
+      cardForeground: '#202020',
+      primary: '#202020',
+      primaryForeground: '#fcfcfc',
+      secondary: '#f0f0f0',
+      secondaryForeground: '#646464',
+      muted: '#f0f0f0',
+      mutedForeground: '#646464',
+      accent: '#e8e8e8',
+      accentForeground: '#202020',
+      border: '#e8e8e8',
+      input: '#e8e8e8',
+      ring: '#bbbbbb',
+      link: '#202020',
+      linkHover: '#000000',
+    },
+    syntaxTheme: 'github-light',
+  },
 } as const;
 
 export type ThemeName = keyof typeof themes;
@@ -3383,6 +3429,25 @@ export type ThemeName = keyof typeof themes;
  */
 export function getTheme(name: ThemeName): Theme {
   return themes[name];
+}
+
+/**
+ * Whether a theme reads as light or dark, derived from its background lightness.
+ * Supports the `#rrggbb` and `hsl(h s% l%)` formats used above.
+ */
+export function getThemeColorScheme(name: ThemeName): 'light' | 'dark' {
+  const bg = themes[name].colors.background.trim();
+  const hsl = bg.match(/^hsl\(\s*[\d.]+\s+[\d.]+%\s+([\d.]+)%/i);
+  if (hsl) return Number(hsl[1]) >= 50 ? 'light' : 'dark';
+
+  const hex = bg.match(/^#([0-9a-f]{6})$/i);
+  if (hex) {
+    const n = parseInt(hex[1], 16);
+    const [r, g, b] = [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+    return (0.299 * r + 0.587 * g + 0.114 * b) / 255 >= 0.5 ? 'light' : 'dark';
+  }
+
+  return 'dark';
 }
 
 /**

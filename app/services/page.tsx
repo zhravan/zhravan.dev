@@ -1,4 +1,3 @@
-import { PageHeader } from '@/components/PageHeader';
 import { getPageMetadata } from '@/lib/seo';
 import { AnalyticsTracker } from '@/components/AnalyticsTracker';
 import { HeroAnimation } from '@/components/HeroAnimation';
@@ -29,10 +28,8 @@ export default function Services() {
         contentTitle={pageMetadata.title}
         contentSlug="services"
       />
-      <PageHeader metadata={pageMetadata} hideTitle={true} />
-
       {/* Hero Section - Beautiful Preview */}
-      <section className="prose animate-fade-up -mt-18" style={{ animationDelay: '50ms' }}>
+      <section className="animate-fade-up" style={{ animationDelay: '50ms' }}>
         <HeroAnimation />
       </section>
 
@@ -88,7 +85,7 @@ export default function Services() {
           <div className="h-px w-12" style={{ backgroundColor: 'var(--color-border)' }}></div>
         </div>
 
-        <div className="flex flex-col md:flex-row items-stretch gap-3 md:gap-2">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
           <ProcessStep
             number="01"
             iconName="MessageSquare"
@@ -108,7 +105,6 @@ export default function Services() {
             number="04"
             iconName="Rocket"
             title="Launch"
-            showArrow={false}
           />
         </div>
       </section>
@@ -185,7 +181,7 @@ export default function Services() {
         </div>
         <div className="flex flex-wrap items-center gap-4 mb-6">
           <a
-            href="https://cal.com/zhravan/1hr-discussion?overlayCalendar=true&duration=30"
+            href="https://cal.com/zhravan/catchup"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 transition-opacity hover:opacity-70"
