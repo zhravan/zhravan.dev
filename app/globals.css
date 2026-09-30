@@ -905,7 +905,7 @@ pre.shiki::-webkit-scrollbar-thumb {
 }
 
 .list-row__title {
-  color: color-mix(in srgb, var(--color-foreground) 55%, var(--color-muted-foreground));
+  color: color-mix(in srgb, var(--color-foreground) 70%, var(--color-muted-foreground));
   transition: color 100ms ease-out;
 }
 

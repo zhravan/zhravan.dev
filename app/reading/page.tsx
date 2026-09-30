@@ -24,11 +24,11 @@ function formatDate(iso?: string) {
 function BookRow({ book, date }: { book: Book; date?: string }) {
   const content = (
     <span className="relative z-[1] flex items-center gap-3">
-      <span className="flex min-w-0 flex-1 items-center gap-2">
+      <span className="flex min-w-0 flex-1 items-center gap-2 overflow-hidden">
         <span className="list-row__title max-w-full shrink-0 truncate">{book.title}</span>
-        <span className="min-w-0 shrink truncate text-[12px] opacity-60">{book.author}</span>
+        <span className="hidden max-w-[40%] shrink-0 truncate text-[12px] opacity-60 sm:block">{book.author}</span>
         {book.tags && book.tags.length > 0 && (
-          <span className="list-row__tags" aria-label="Tags">
+          <span className="list-row__tags" style={{ flexShrink: 999 }} aria-label="Tags">
             {book.tags.slice(0, 3).map((tag) => (
               <span key={tag} className="tag-pill">
                 {tag}
@@ -74,7 +74,7 @@ function BookSection({ label, books, dateOf }: { label: string; books: Book[]; d
       <h2 className="mb-2 font-normal leading-none" style={{ color: 'var(--color-muted-foreground)' }}>
         {label} <span className="text-[10px] opacity-40">({books.length})</span>
       </h2>
-      <ul className="m-0 flex list-none flex-col p-0">
+      <ul className="m-0 flex list-none flex-col py-0 pr-0 pl-3">
         {books.map((book) => (
           <BookRow key={book.id} book={book} date={dateOf?.(book)} />
         ))}

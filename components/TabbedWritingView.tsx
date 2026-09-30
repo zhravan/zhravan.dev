@@ -404,7 +404,7 @@ export function TabbedWritingView({
                 {year} <span className="text-[10px] opacity-40">({items.length})</span>
               </h2>
 
-              <ul className="m-0 flex list-none flex-col p-0">
+              <ul className="m-0 flex list-none flex-col py-0 pr-0 pl-3">
                 {items.map((post) => {
                   const isExternal = Boolean(post.externalUrl);
                   const row = (
