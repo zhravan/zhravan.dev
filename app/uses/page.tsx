@@ -2,97 +2,130 @@ import { AnalyticsTracker } from '@/components/AnalyticsTracker';
 import { PageHeader } from '@/components/PageHeader';
 import { getPageMetadata } from '@/lib/seo';
 import type { Metadata } from 'next';
+import { Geist_Mono } from 'next/font/google';
+import {
+  CodeXml,
+  Computer,
+  Database,
+  Headphones,
+  Laptop,
+  LayoutGrid,
+  Monitor,
+  Mouse,
+  Play,
+  Server,
+  Sparkles,
+  Tablet,
+  Watch,
+  type LucideIcon,
+} from 'lucide-react';
+import {
+  siBruno,
+  siBun,
+  siCloudflare,
+  siCloudflareworkers,
+  siCursor,
+  siDocker,
+  siGithub,
+  siGitlab,
+  siGnu,
+  siIterm2,
+  siNodedotjs,
+  siNotion,
+  siObsstudio,
+  siOneplus,
+  siRaspberrypi,
+  siRustdesk,
+  siSpotify,
+  siVlcmediaplayer,
+  siZedindustries,
+  siZenbrowser,
+  type SimpleIcon,
+} from 'simple-icons';
 
 type UsesItem = {
   name: string;
-  config: string;
-  note?: string;
+  icon: SimpleIcon | LucideIcon;
+  tag?: string;
+  detail?: string;
 };
 
 type UsesSection = {
-  id: string;
-  number: string;
   title: string;
-  description: string;
+  icon: LucideIcon;
+  pillTags?: boolean;
   items: UsesItem[];
 };
 
 const pageMetadata = {
   title: 'Uses',
-  description: 'Everything i use, day in and day out; updated when something changes.'
+  description: 'Everything I use, day in and day out; updated when something changes.'
 };
 
 const usesSections: UsesSection[] = [
   {
-    id: 'hardware',
-    number: '01',
     title: 'Hardware',
-    description: 'The main machines, peripherals, and devices in the current setup.',
+    icon: Laptop,
     items: [
-      { name: 'MacBook Pro', config: 'M2, 32GB', note: 'Primary workhorse.' },
-      { name: 'Mac mini', config: 'M4, 10C/10G, 512GB', note: 'Secondary workstation for android dev or local ML workloads.' },
-      { name: 'Samsung 27" Curved Monitor', config: '27-inch, 100Hz, 1800R', note: 'Primary display.' },
-      { name: 'BenQ GW2790', config: '27-inch FHD IPS, 100Hz', note: 'Secondary display.' },
-      { name: 'Phone', config: 'One Plus 11R', note: 'Main phone.' },
-      { name: 'iPad', config: 'A16, 11-inch', note: 'iOS app testing or reading book.' },
-      { name: 'Smart Watch', config: 'Nothing CMF', note: 'Used for fitness tracking and notifications.' },
-      { name: 'Remax CozyBuds W17 Pro', config: 'Wireless Earbuds', note: 'Daily headphones.' },
-      { name: 'soundcore Q20i', config: 'Wireless Headphone', note: 'For music only.' },
-      { name: 'Apple Earpods', config: 'Wired Earphone', note: 'General purpose.' },
-      { name: 'Portronics Toad One', config: 'Ambidextrous Optical Mous', note: 'Preferred everyday mouse.' },
-      { name: 'Raspberry Pi 5', config: '2.4GHz quad-core 64-bit Arm Cortex-A76 8 GB RAM', note: 'Tinkering purposes.' }
+      { name: 'MacBook Pro', icon: Laptop, detail: 'Primary workhorse.' },
+      { name: 'Mac mini', icon: Computer, detail: 'M4, 10C/10G, 512GB. Secondary workstation for android dev or local ML workloads.' },
+      { name: 'Samsung 27" Curved', icon: Monitor, detail: '27-inch, 100Hz, 1800R. Primary display.' },
+      { name: 'BenQ GW2790', icon: Monitor, detail: '27-inch FHD IPS, 100Hz. Secondary display.' },
+      { name: 'OnePlus 11R', icon: siOneplus, detail: 'Main phone.' },
+      { name: 'iPad', icon: Tablet, detail: 'A16, 11-inch. iOS app testing or reading book.' },
+      { name: 'CMF Watch', icon: Watch, detail: 'Nothing CMF. Used for fitness tracking and notifications.' },
+      { name: 'CozyBuds W17 Pro', icon: Headphones, detail: 'Remax CozyBuds W17 Pro wireless earbuds. Daily headphones.' },
+      { name: 'soundcore Q20i', icon: Headphones, detail: 'Wireless headphone. For music only.' },
+      { name: 'Apple EarPods', icon: Headphones, detail: 'Wired earphone. General purpose.' },
+      { name: 'Portronics Toad One', icon: Mouse, detail: 'Ambidextrous optical mouse. Preferred everyday mouse.' },
+      { name: 'Raspberry Pi 5', icon: siRaspberrypi, detail: '2.4GHz quad-core 64-bit Arm Cortex-A76, 8 GB RAM. Tinkering purposes.' },
     ]
   },
   {
-    id: 'editor',
-    number: '02',
-    title: 'Editor',
-    description: 'A minimal editing setup without much ceremony.',
-    items: [
-      { name: 'Cursor & Zed ', config: 'Primary', note: 'Main editor.' },
-      { name: 'nano', config: 'SSH', note: 'Used over SSH instead of Vim.' }
-    ]
-  },
-  {
-    id: 'software',
-    number: '04',
     title: 'Software',
-    description: 'Mostly reliable, boring software. That is the point.',
+    icon: LayoutGrid,
     items: [
-      { name: 'Zen', config: 'Browser', note: 'Primary browser. Aggresively move away from Chrome' },
-      { name: 'Terminal', config: 'iTerm', note: 'iTerm2 terminal emulator with Zsh Shell' },
-      { name: 'Bruno', config: 'API Client', note: 'Used for API dev and testing.' },
-      { name: 'RustDesk', config: 'Remote Desktop', note: 'Used for remote desktop access.' },
-      { name: 'OBS Studio', config: 'Screen Recording', note: 'Used for screen recording and streaming.' },
-      { name: 'Notion', config: 'Notes and organization', note: 'for note-taking, management, & general organization.' },
-      { name: 'Spotify', config: 'Music streaming', note: 'Used for music streaming.' },
-      { name: 'VLC Media Player', config: 'Media playback', note: 'Used for media playback.' },
-      { name: 'Db Gate', config: 'Database management', note: 'GUI for DB.' },
-      { name: 'Docker Desktop', config: 'Containerization', note: 'Used for container management and development.' },
-      { name: 'Mole', config: 'Mac maintenance tool', note: 'Deep clean and optimize your Mac.' }
+      { name: 'Zen', icon: siZenbrowser, tag: 'Browser', detail: 'Primary browser. Aggressively move away from Chrome.' },
+      { name: 'iTerm2', icon: siIterm2, tag: 'Terminal', detail: 'iTerm2 terminal emulator with Zsh shell.' },
+      { name: 'Bruno', icon: siBruno, tag: 'API client', detail: 'Used for API dev and testing.' },
+      { name: 'RustDesk', icon: siRustdesk, tag: 'Remote', detail: 'Used for remote desktop access.' },
+      { name: 'OBS Studio', icon: siObsstudio, tag: 'Recording', detail: 'Used for screen recording and streaming.' },
+      { name: 'Notion', icon: siNotion, tag: 'Notes', detail: 'For note-taking, management, & general organization.' },
+      { name: 'Spotify', icon: siSpotify, tag: 'Music', detail: 'Used for music streaming.' },
+      { name: 'VLC', icon: siVlcmediaplayer, tag: 'Media', detail: 'Used for media playback.' },
+      { name: 'DbGate', icon: Database, tag: 'DB GUI', detail: 'GUI for DB.' },
+      { name: 'Docker', icon: siDocker, tag: 'Containers', detail: 'Docker Desktop. Used for container management and development.' },
+      { name: 'Mole', icon: Sparkles, tag: 'Cleanup', detail: 'Mac maintenance tool. Deep clean and optimize your Mac.' },
     ]
   },
   {
-    id: 'runtime',
-    number: '05',
+    title: 'Editor',
+    icon: CodeXml,
+    pillTags: true,
+    items: [
+      { name: 'Cursor', icon: siCursor, tag: 'primary', detail: 'Main editor.' },
+      { name: 'Zed', icon: siZedindustries, tag: 'secondary', detail: 'Main editor.' },
+      { name: 'nano', icon: siGnu, tag: 'remote', detail: 'Used over SSH instead of Vim.' },
+    ]
+  },
+  {
     title: 'Runtime',
-    description: 'Different runtimes for different jobs.',
+    icon: Play,
+    pillTags: true,
     items: [
-      { name: 'Node', config: 'Primary', note: 'Main runtime, typically LTS.' },
-      { name: 'Bun', config: 'Sometimes', note: 'Used where it fits.' },
-      { name: 'Cloudflare Workers', config: 'Edge runtime', note: 'For serverless and edge workloads.' },
+      { name: 'Node.js', icon: siNodedotjs, tag: 'primary', detail: 'Main runtime, typically LTS.' },
+      { name: 'Bun', icon: siBun, tag: 'sometimes', detail: 'Used where it fits.' },
+      { name: 'CF Workers', icon: siCloudflareworkers, tag: 'edge', detail: 'Cloudflare Workers. For serverless and edge workloads.' },
     ]
   },
   {
-    id: 'services',
-    number: '06',
     title: 'Services',
-    description: 'Hosted services and infrastructure in regular use.',
+    icon: Server,
     items: [
-      { name: 'Cloudflare', config: 'DNS and hosting', note: 'Core edge and hosting layer.' },
-      { name: 'Personal VPS', config: 'Self Hosting', note: 'For self-hosted applications and services.' },
-      { name: 'GitHub', config: 'Code', note: 'Source hosting and collaboration.' },
-      { name: 'GitLab', config: 'Code', note: 'Some of my projects are hosted on GitLab.' },
+      { name: 'Cloudflare', icon: siCloudflare, tag: 'DNS', detail: 'DNS and hosting. Core edge and hosting layer.' },
+      { name: 'VPS', icon: Server, tag: 'Self-host', detail: 'Personal VPS. For self-hosted applications and services.' },
+      { name: 'GitHub', icon: siGithub, tag: 'Code', detail: 'Source hosting and collaboration.' },
+      { name: 'GitLab', icon: siGitlab, tag: 'Code', detail: 'Some of my projects are hosted on GitLab.' },
     ]
   }
 ];
@@ -103,12 +136,44 @@ export const metadata: Metadata = getPageMetadata({
   path: '/uses/'
 });
 
-export default function UsesPage() {
-  // Group sections: Hardware and Software side-by-side, then Runtime/Services/Editor in third column
-  const hardwareSection = usesSections.find(s => s.id === 'hardware');
-  const softwareSection = usesSections.find(s => s.id === 'software');
-  const rightColumnSections = usesSections.filter(s => ['runtime', 'services', 'editor'].includes(s.id));
+const mono = Geist_Mono({ subsets: ['latin'], weight: ['400', '500'] });
 
+const ICON_SIZE = 18;
+
+function isSimpleIcon(icon: UsesItem['icon']): icon is SimpleIcon {
+  return typeof icon === 'object' && icon !== null && 'path' in icon;
+}
+
+function brandColor(hex: string) {
+  const [r, g, b] = [0, 2, 4].map((i) => {
+    const c = parseInt(hex.slice(i, i + 2), 16) / 255;
+    return c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
+  });
+  const luminance = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+  return luminance < 0.05 ? 'var(--color-foreground)' : `#${hex}`;
+}
+
+function ItemIcon({ icon }: { icon: UsesItem['icon'] }) {
+  if (isSimpleIcon(icon)) {
+    return (
+      <svg aria-hidden="true" viewBox="0 0 24 24" width={ICON_SIZE} height={ICON_SIZE} fill={brandColor(icon.hex)} className="shrink-0">
+        <path d={icon.path} />
+      </svg>
+    );
+  }
+  const Icon = icon;
+  return (
+    <Icon
+      aria-hidden="true"
+      size={ICON_SIZE + 2}
+      strokeWidth={1.75}
+      className="-m-px shrink-0"
+      style={{ color: 'color-mix(in srgb, var(--color-foreground) 85%, transparent)' }}
+    />
+  );
+}
+
+export default function UsesPage() {
   return (
     <div className="text-xxs">
       <AnalyticsTracker
@@ -118,103 +183,69 @@ export default function UsesPage() {
       />
       <PageHeader metadata={pageMetadata} hideTitle={true} />
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
-        {/* Hardware */}
-        {hardwareSection && (
-          <section
-            key={hardwareSection.id}
-            id={hardwareSection.id}
-            className="animate-fade-up scroll-mt-24 space-y-3"
-            style={{ animationDelay: `150ms` }}
-          >
-            <h2 className="page-title text-lg" style={{ color: 'var(--color-foreground)' }}>
-              {hardwareSection.title}
-              <span className="ml-1 inline-block" style={{ color: 'hsl(163 89% 45%)' }} aria-hidden>.</span>
-            </h2>
-            <SectionList section={hardwareSection} />
-          </section>
-        )}
-
-        {/* Software */}
-        {softwareSection && (
-          <section
-            key={softwareSection.id}
-            id={softwareSection.id}
-            className="animate-fade-up scroll-mt-24 space-y-3"
-            style={{ animationDelay: `190ms` }}
-          >
-            <h2 className="page-title text-lg" style={{ color: 'var(--color-foreground)' }}>
-              {softwareSection.title}
-              <span className="ml-1 inline-block" style={{ color: 'hsl(163 89% 45%)' }} aria-hidden>.</span>
-            </h2>
-            <SectionList section={softwareSection} />
-          </section>
-        )}
-
-        {/* Right column: Runtime, Services, Editor stacked */}
-        <div className="space-y-6">
-          {rightColumnSections.map((section, index) => (
-            <section
-              key={section.id}
-              id={section.id}
-              className="animate-fade-up scroll-mt-24 space-y-3"
-              style={{ animationDelay: `${230 + index * 40}ms` }}
-            >
-              <h2 className="page-title text-lg" style={{ color: 'var(--color-foreground)' }}>
-                {section.title}
-                <span className="ml-1 inline-block" style={{ color: 'hsl(163 89% 45%)' }} aria-hidden>.</span>
-              </h2>
-              <SectionList section={section} />
-            </section>
-          ))}
-        </div>
+      <div className={`${mono.className} mt-10 grid grid-cols-1 gap-x-10 sm:grid-cols-2 lg:-mx-32 lg:grid-cols-3`}>
+        {COLUMNS.map((column) => (
+          <UsesColumn key={column.join()} titles={column} />
+        ))}
       </div>
     </div>
   );
 }
 
-function SectionList({ section }: { section: UsesSection }) {
+const COLUMNS = [['Hardware'], ['Software'], ['Editor', 'Runtime', 'Services']];
+
+function UsesColumn({ titles }: { titles: string[] }) {
+  const sections = titles
+    .map((title) => usesSections.find((s) => s.title === title))
+    .filter((s): s is UsesSection => s !== undefined);
+
   return (
-    <ul
-      className="m-0 list-none overflow-hidden rounded-lg border p-0"
-      style={{
-        backgroundColor: 'color-mix(in srgb, var(--color-card) 74%, var(--color-background))',
-        borderColor: 'color-mix(in srgb, var(--color-border) 78%, transparent)',
-      }}
-    >
-      {section.items.map((item, index) => (
-        <li
-          key={`${section.id}-${item.name}`}
-          className="group"
-          style={{
-            borderTop:
-              index === 0
-                ? 'none'
-                : '1px dashed color-mix(in srgb, var(--color-border) 62%, transparent)',
-          }}
-        >
-          <div className="px-2.5 py-2.5 sm:px-3 sm:py-2.5">
-            <div className="flex flex-col gap-1 sm:flex-col">
-              <div className="min-w-0 flex-1">
-                <div
-                  className="font-medium text-xs"
-                  style={{ color: 'var(--color-foreground)' }}
-                >
-                  {item.name}
-                </div>
-              </div>
-              {item.note && (
-                <div
-                  className="text-[10px]"
-                  style={{ color: 'var(--color-muted-foreground)' }}
-                >
-                  {item.note}
-                </div>
-              )}
-            </div>
-          </div>
-        </li>
-      ))}
-    </ul>
+    <div className="min-w-0">
+      {sections.map((section) => {
+        const SectionIcon = section.icon;
+        return (
+          <section key={section.title} className="mb-8">
+            <h2
+              className="mb-3 flex items-center gap-3 border-b pb-3 text-[11px] font-normal uppercase leading-none tracking-[0.14em]"
+              style={{ color: 'var(--color-muted-foreground)', borderColor: 'var(--color-border)' }}
+            >
+              <SectionIcon aria-hidden="true" size={15} strokeWidth={1.75} />
+              {section.title}
+            </h2>
+            <ul className="m-0 grid list-none grid-cols-[minmax(0,1fr)_6.5rem] items-center gap-x-3 p-0">
+              {section.items.map((item) => (
+                <li key={item.name} title={item.detail} className="col-span-2 grid grid-cols-subgrid items-center py-[6px]">
+                  <span className={`flex min-w-0 items-center gap-3 ${item.tag ? '' : 'col-span-2'}`}>
+                    <ItemIcon icon={item.icon} />
+                    <span className="min-w-0 truncate text-[13px]" style={{ color: 'var(--color-foreground)' }}>
+                      {item.name}
+                    </span>
+                  </span>
+                  {item.tag && (
+                    <span className="flex min-w-0 items-center">
+                      {section.pillTags ? (
+                        <span
+                          className="inline-block max-w-full truncate rounded-full px-2.5 py-[3px] text-[11px] leading-none"
+                          style={{
+                            color: 'var(--color-muted-foreground)',
+                            backgroundColor: 'color-mix(in srgb, var(--color-foreground) 8%, transparent)',
+                          }}
+                        >
+                          {item.tag}
+                        </span>
+                      ) : (
+                        <span className="block truncate text-[12px] opacity-60" style={{ color: 'var(--color-muted-foreground)' }}>
+                          {item.tag}
+                        </span>
+                      )}
+                    </span>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </section>
+        );
+      })}
+    </div>
   );
 }
