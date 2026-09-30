@@ -41,6 +41,12 @@ MIT © Shravan Kumar B
 
 ---
 
-Built with Next.js, React, and MDX. Inspired by [leerob.com](https://leerob.com/) and the indie web movement.
+Built with Next.js, React, and MDX.
+
+UI/UX & Design inspired by:
+
+- [leerob.com](https://leerob.com/)  
+- [frilo.io/](https://www.frilo.io/)
+- the indie web movement.
 
 </samp>

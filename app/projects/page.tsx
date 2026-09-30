@@ -4,7 +4,7 @@ import { getPageMetadata } from '@/lib/seo';
 import { AnalyticsTracker } from '@/components/AnalyticsTracker';
 import { geistMono } from '@/app/fonts';
 import { PagedGrid } from '@/components/PagedGrid';
-import { ArrowRight, FolderGit2, icons } from 'lucide-react';
+import { ArrowUpRight, ChevronRight, FolderGit2, icons } from 'lucide-react';
 import type { Metadata } from 'next';
 
 const pageMetadata = {
@@ -46,52 +46,58 @@ function ProjectCard({ project }: { project: Project }) {
   const Icon = (project.icon && icons[project.icon as keyof typeof icons]) || FolderGit2;
   const color = (project.category && CATEGORY_COLORS[project.category]) || 'var(--color-muted-foreground)';
   const meta = getMeta(project);
-  const hasLink = Boolean(project.link);
+  const linkLabel = project.link?.includes('github.com') ? 'GitHub' : 'Visit';
 
-  const body = (
-    <>
-      <div className="flex items-start gap-3">
+  return (
+    <details name="project" className="project-details group h-full border-b" style={{ borderColor: 'var(--color-border)' }}>
+      <summary className="flex cursor-pointer list-none items-start gap-3 py-4 outline-none [&::-webkit-details-marker]:hidden">
         <Icon aria-hidden="true" size={20} strokeWidth={2} className="mt-px shrink-0" style={{ color }} />
         <h3
-          className="m-0 min-w-0 flex-1 text-[13px] font-medium leading-[21px] transition-colors"
+          className="m-0 min-w-0 flex-1 text-[13px] font-medium leading-[21px] opacity-85 transition-opacity group-hover:opacity-100 group-open:opacity-100"
           style={{ color: 'var(--color-foreground)' }}
         >
           {project.title}
         </h3>
-        {hasLink && (
-          <ArrowRight
-            aria-hidden="true"
-            size={14}
-            className="mt-[3px] shrink-0 opacity-60 transition-transform duration-150 group-hover:translate-x-0.5 group-hover:opacity-100"
-            style={{ color: 'var(--color-foreground)' }}
-          />
+        <ChevronRight
+          aria-hidden="true"
+          size={14}
+          className="mt-[3px] shrink-0 opacity-50 transition-transform duration-150 group-hover:opacity-100 group-open:rotate-90"
+          style={{ color: 'var(--color-foreground)' }}
+        />
+      </summary>
+
+      <div className="project-details__body pb-5 pl-8">
+        {project.description && (
+          <p className="m-0 text-[12px] leading-5" style={{ color: 'var(--color-muted-foreground)' }}>
+            {project.description}
+          </p>
+        )}
+        {meta && (
+          <p className="m-0 mt-2.5 text-[11px] opacity-70" style={{ color: 'var(--color-muted-foreground)' }}>
+            {meta}
+          </p>
+        )}
+        {(project.period || project.link) && (
+          <div className="mt-3 flex items-center justify-between gap-3 text-[11px]">
+            <span className="opacity-60" style={{ color: 'var(--color-muted-foreground)' }}>
+              {project.period}
+            </span>
+            {project.link && (
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex shrink-0 items-center gap-1"
+                style={{ color: 'var(--color-foreground)' }}
+              >
+                {linkLabel}
+                <ArrowUpRight aria-hidden="true" size={12} />
+              </a>
+            )}
+          </div>
         )}
       </div>
-      {project.description && (
-        <p className="m-0 mt-2.5 line-clamp-2 pl-8 text-[12px] leading-5" style={{ color: 'var(--color-muted-foreground)' }}>
-          {project.description}
-        </p>
-      )}
-      {meta && (
-        <p className="m-0 mt-2.5 pl-8 text-[11px] opacity-70" style={{ color: 'var(--color-muted-foreground)' }}>
-          {meta}
-        </p>
-      )}
-    </>
-  );
-
-  const className = 'group block h-full border-b py-5';
-  const style = { borderColor: 'var(--color-border)', textDecoration: 'none' };
-  const title = project.period ? `${project.title} · ${project.period}` : project.title;
-
-  return hasLink ? (
-    <a href={project.link} target="_blank" rel="noopener noreferrer" className={className} style={style} title={title}>
-      {body}
-    </a>
-  ) : (
-    <div className={className} style={style} title={title}>
-      {body}
-    </div>
+    </details>
   );
 }
 
@@ -108,7 +114,7 @@ export default function Projects() {
       <PageHeader metadata={pageMetadata} hideTitle={true} />
 
       <div className={`${geistMono.className} mt-6 lg:-mx-32`}>
-        <PagedGrid pageSize={6} label="Projects" className="grid grid-cols-1 gap-x-10 sm:grid-cols-2 lg:grid-cols-3">
+        <PagedGrid pageSize={9} label="Projects" className="grid grid-cols-1 gap-x-10 sm:grid-cols-2 lg:grid-cols-3">
           {projects.map((project) => (
             <ProjectCard key={project.title} project={project} />
           ))}

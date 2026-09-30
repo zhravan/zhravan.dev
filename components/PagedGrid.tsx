@@ -88,10 +88,6 @@ export function PagedGrid({ children, pageSize, className, label }: PagedGridPro
           </div>
 
           <div className="flex items-center gap-2">
-            <span className="mr-1 hidden items-center gap-1 sm:flex" aria-hidden="true">
-              <kbd className="kbd">←</kbd>
-              <kbd className="kbd">→</kbd>
-            </span>
             <button type="button" className="pager-arrow" aria-label="Previous page" disabled={page === 0} onClick={() => goTo(page - 1)}>
               <ChevronLeft size={14} />
             </button>

@@ -1400,3 +1400,19 @@ a.marquee__item:hover {
     animation: none;
   }
 }
+
+/* Expandable project cards */
+.project-details[open] .project-details__body {
+  animation: pager-in 200ms ease-out both;
+}
+
+.project-details summary:focus-visible h3 {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-details[open] .project-details__body {
+    animation: none;
+  }
+}
