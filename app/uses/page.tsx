@@ -2,7 +2,7 @@ import { AnalyticsTracker } from '@/components/AnalyticsTracker';
 import { PageHeader } from '@/components/PageHeader';
 import { getPageMetadata } from '@/lib/seo';
 import type { Metadata } from 'next';
-import { Geist_Mono } from 'next/font/google';
+import { geistMono as mono } from '@/app/fonts';
 import {
   CodeXml,
   Computer,
@@ -135,8 +135,6 @@ export const metadata: Metadata = getPageMetadata({
   description: pageMetadata.description,
   path: '/uses/'
 });
-
-const mono = Geist_Mono({ subsets: ['latin'], weight: ['400', '500'] });
 
 const ICON_SIZE = 18;
 

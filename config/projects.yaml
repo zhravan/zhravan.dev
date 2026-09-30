@@ -1,8 +1,12 @@
 # Projects shown on the Work page
 # Add, remove, or reorder entries as needed.
 # Projects are displayed in order based on the sequence number (lower numbers appear first)
+# category: short label shown on the card (also picks the icon colour: CLI, Web, API, Data, ML, IoT, Infra, Edge, Library, Tool)
+# icon: any lucide icon name, e.g. Braces, Server, SquareTerminal (https://lucide.dev/icons)
 - title: JSONp
   sequence: 1
+  category: Web
+  icon: Braces
   description: Multi-tab JSON previewer with tree views, formatting, and diff tool.
   tech: [JavaScript, HTML, CSS]
   roles: [Developer]
@@ -11,6 +15,8 @@
 
 - title: Gitalytics
   sequence: 2
+  category: Web
+  icon: ChartLine
   description: Repository health and development activity insights.
   tech: [JavaScript, GitHub API]
   roles: [Developer]
@@ -19,6 +25,8 @@
 
 - title: rsvp2go
   sequence: 3
+  category: Edge
+  icon: CalendarCheck
   description: Self-hosted RSVP system on Cloudflare Workers.
   tech: [Cloudflare Workers, Cloudflare KV, JavaScript]
   roles: [Developer]
@@ -27,6 +35,8 @@
 
 - title: Nixopus
   sequence: 4
+  category: Infra
+  icon: Server
   description: Self-hosted developer infrastructure platform.
   tech: [Next.js, Go, PostgreSQL, Redis]
   roles: ["fellow contributor"]
@@ -35,6 +45,8 @@
 
 - title: Wappalytic
   sequence: 5
+  category: Data
+  icon: MessageSquareText
   description: WhatsApp chat analyzer with visualizations.
   tech: [Python, Streamlit, Matplotlib]
   roles: [Developer]
@@ -43,6 +55,8 @@
 
 - title: Business Forecasting using Linear Regression
   sequence: 6
+  category: Data
+  icon: TrendingUp
   description: Sales forecasting model using linear regression in R.
   tech: [R, Linear Regression, Data Visualization]
   roles: [Developer]
@@ -51,6 +65,8 @@
 
 - title: Automating Product Photography using Generative AI
   sequence: 7
+  category: ML
+  icon: Camera
   description: Product photography automation using generative AI.
   tech: [Python, Stable Diffusion, "Mid Journey", Generative AI]
   roles: [Developer]
@@ -59,6 +75,8 @@
 
 - title: Corona Smart Mask
   sequence: 8
+  category: IoT
+  icon: ShieldPlus
   description: Corona Smart Mask using IoT.
   tech: [Python, IoT, Springboot, MySQL]
   roles: [Developer]
@@ -67,6 +85,8 @@
 
 - title: Custom Input Types
   sequence: 9
+  category: Library
+  icon: TextCursorInput
   description: NPM package for custom HTML input types.
   tech: [JavaScript, NPM, HTML]
   roles: [core contributor]
@@ -75,6 +95,8 @@
 
 - title: golearn
   sequence: 10
+  category: CLI
+  icon: SquareTerminal
   description: rustling like cli application to learn golang concepts.
   tech: [go]
   roles: [Developer]
@@ -83,6 +105,8 @@
 
 - title: GitHub Readme Quotes
   sequence: 11
+  category: Tool
+  icon: Quote
   description: Dynamic quote generator for GitHub README files.
   tech: [JavaScript, GitHub API, Markdown]
   roles: [Developer]
@@ -91,6 +115,8 @@
 
 - title: Autonomous Garbage Collecting System using Internet of Things
   sequence: 12
+  category: IoT
+  icon: Bot
   description: IoT-based indoor garbage collection robot system.
   tech: [IoT, Arduino, Sensors, Embedded Systems]
   roles: [Developer]
@@ -99,6 +125,8 @@
 
 - title: Internal E Banking Website
   sequence: 13
+  category: Web
+  icon: Landmark
   description: Internal banking web app for money transfers.
   tech: [Bootstrap, PHP, MySQL]
   roles: [Developer]
@@ -107,6 +135,8 @@
 
 - title: Online Food Portal Website
   sequence: 14
+  category: Web
+  icon: UtensilsCrossed
   description: Food ordering portal built with MEAN stack.
   tech: [Bootstrap, AngularJS, jQuery, Express, MongoDB, "MEAN Stack"]
   roles: [Developer]
@@ -115,6 +145,8 @@
 
 - title: Smart Garbage Van Tracking and Alert System using IoT
   sequence: 15
+  category: IoT
+  icon: Truck
   description: IoT system for tracking filled garbage bins.
   tech: [Raspberry Pi, IoT, Android, MIT App Inventor]
   roles: [Developer]
@@ -123,6 +155,8 @@
 
 - title: Zoo Management Information System
   sequence: 16
+  category: Web
+  icon: PawPrint
   description: Zoo management information system.
   tech: [Bootstrap, PHP, MySQL, XAMPP]
   roles: [Developer]
@@ -131,6 +165,8 @@
 
 - title: Obstacle Detection and Avoidance Robot
   sequence: 17
+  category: IoT
+  icon: Radar
   description: Arduino-based obstacle avoidance robot.
   tech: [Arduino, Ultrasonic Sensors, Embedded Systems]
   roles: [Developer]
@@ -139,6 +175,8 @@
 
 - title: Sharkio
   sequence: 18
+  category: API
+  icon: Waypoints
   description: proxy that records requests sent to your servers, enables replaying them, and helps generate types for your API.
   tech: [TypeScript, JavaScript, HTML, CSS, SCSS, Docker]
   roles: [contributor]
