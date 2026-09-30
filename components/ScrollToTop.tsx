@@ -46,7 +46,7 @@ export function ScrollToTop({
   return (
     <button
       onClick={scrollToTop}
-      className={`fixed ${positionClasses} p-2 transition-opacity hover:opacity-80`}
+      className={`fixed z-40 ${positionClasses} p-2 transition-opacity hover:opacity-80`}
       style={{
         backgroundColor: 'var(--color-muted)',
         color: 'var(--color-foreground)',

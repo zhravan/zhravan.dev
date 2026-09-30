@@ -1,11 +1,12 @@
 import { ACTIVE_THEME } from '@/lib/site';
-import { getTheme } from '@/lib/themes';
+import { getTheme, getThemeColorScheme } from '@/lib/themes';
 
 // Server component that injects the active theme CSS variables eagerly in <head>
 export default function ThemeStyleTag() {
   const { colors } = getTheme(ACTIVE_THEME);
 
   const css = `:root{${[
+    `color-scheme: ${getThemeColorScheme(ACTIVE_THEME)}`,
     `--color-background: ${colors.background}`,
     `--color-foreground: ${colors.foreground}`,
     `--color-card: ${colors.card}`,

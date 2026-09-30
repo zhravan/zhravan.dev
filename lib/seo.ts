@@ -2,6 +2,8 @@ import fs from "fs";
 import path from "path";
 import YAML from "yaml";
 import type { Metadata, Viewport } from "next";
+import { ACTIVE_THEME } from "./site";
+import { getThemeColorScheme } from "./themes";
 
 export interface StructuredData {
   "@context": string;
@@ -214,7 +216,7 @@ export function getDefaultViewport(): Viewport {
     initialScale: 1,
     maximumScale: 5,
     themeColor: cfg.themeColor || "#000000",
-    colorScheme: "light dark",
+    colorScheme: getThemeColorScheme(ACTIVE_THEME),
   };
 }
 

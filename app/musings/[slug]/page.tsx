@@ -134,7 +134,7 @@ export default async function ThoughtPost({
           </div>
 
       {/* Metadata section - above content on mobile only */}
-      <div className="space-y-2 mb-6 lg:hidden">
+      <div className="space-y-2 mb-6 xl:hidden">
         <p className="text-[10px] opacity-50" style={{ color: 'var(--color-muted-foreground)' }}>
           {thought.date}
         </p>
@@ -163,7 +163,7 @@ export default async function ThoughtPost({
         <MobileTOC headings={tocHeadings} />
       )}
 
-      <div className={showSidebar ? 'lg:grid lg:grid-cols-[1fr_250px] lg:gap-12' : ''}>
+      <div className={showSidebar ? 'xl:grid xl:grid-cols-[minmax(0,1fr)_220px] xl:gap-12 xl:-mr-[268px]' : ''}>
         <article className="animate-fade-in prose max-w-none">
           {showTocInline && (
             <TableOfContents
@@ -188,7 +188,7 @@ export default async function ThoughtPost({
         </article>
 
         {showSidebar && (
-          <aside className="hidden lg:block space-y-6">
+          <aside className="hidden xl:block space-y-6">
             {/* Metadata section - always show in sidebar on desktop */}
             <div className="space-y-2 pb-6 border-b border-gray-200 dark:border-gray-800">
               <p className="text-[10px] opacity-50" style={{ color: 'var(--color-muted-foreground)' }}>

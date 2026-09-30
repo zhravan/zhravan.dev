@@ -10,6 +10,8 @@ export interface Project {
   roles?: string[];
   period?: string;
   sequence?: number;
+  category?: string;
+  icon?: string;
 }
 
 const projectsPath = path.join(process.cwd(), 'config', 'projects.yaml');
@@ -39,7 +41,9 @@ export function getProjects(): Project[] {
     link: String(p.link || ''),
     roles: Array.isArray(p.roles) ? p.roles.map(String) : undefined,
     period: p.period ? String(p.period) : undefined,
-    sequence: typeof p.sequence === 'number' ? p.sequence : undefined
+    sequence: typeof p.sequence === 'number' ? p.sequence : undefined,
+    category: p.category ? String(p.category) : undefined,
+    icon: p.icon ? String(p.icon) : undefined
   }));
 
   // Sort by sequence number (lower numbers first), then by title if sequence is missing

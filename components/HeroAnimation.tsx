@@ -48,7 +48,7 @@ export function HeroAnimation() {
   }, [lineIndex, isVisible]);
 
   return (
-    <div className="mb-0 pb-6 -mt-2">
+    <div className="mb-0 pb-6">
       {/* Title */}
       {showCommand && (
         <div className="mb-4">
@@ -60,18 +60,16 @@ export function HeroAnimation() {
         </div>
       )}
 
-      <div className="max-w-3xl">
-        <div style={{ minHeight: '3rem' }}>
-          <h1
-            className="page-title text-xl sm:text-2xl transition-opacity duration-300"
-            style={{
-              color: 'var(--color-foreground)',
-              opacity: isVisible ? 1 : 0,
-            }}
-          >
-            {lines[lineIndex]}
-          </h1>
-        </div>
+      <div className="flex items-center justify-center py-6" style={{ minHeight: '5.5rem' }}>
+        <h1
+          className="text-center text-lg sm:text-xl font-medium leading-snug tracking-tight transition-opacity duration-300"
+          style={{
+            color: 'var(--color-foreground)',
+            opacity: isVisible ? 1 : 0,
+          }}
+        >
+          {lines[lineIndex]}
+        </h1>
       </div>
     </div>
   );

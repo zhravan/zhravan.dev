@@ -16,6 +16,7 @@
     "new:post": "node scripts/new-post.js"
   },
   "dependencies": {
+    "@calcom/embed-react": "^1.5.3",
     "@next/mdx": "15.3.3",
     "@tailwindcss/postcss": "^4.1.8",
     "@types/mdx": "^2.0.13",
@@ -28,6 +29,7 @@
     "react-dom": "19.1.0",
     "rss-parser": "^3.13.0",
     "shiki": "^1.29.2",
+    "simple-icons": "^16.33.0",
     "tailwind-merge": "^2.6.0",
     "yaml": "^2.8.1"
   },

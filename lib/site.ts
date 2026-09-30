@@ -12,6 +12,7 @@ export const SITE_DESCRIPTION =
  * Change ACTIVE_THEME to any of these 145+ available themes:
  *
  * DARK THEMES (72):
+ * - 'frilo-dark'        - Neutral gray, frilo.io-style (see also 'frilo-light')
  * - 'vitesse-dark'      - VS Code Vitesse theme
  * - 'github-dark'       - GitHub's dark theme
  * - 'dracula'           - Popular Dracula theme
@@ -173,4 +174,4 @@ export const SITE_DESCRIPTION =
  * - 'honey-glow'             - Golden honey cream with warm amber
  * - 'tropical-paradise'      - Turquoise white with tropical energy
  */
-export const ACTIVE_THEME: ThemeName = "northern-lights";
+export const ACTIVE_THEME: ThemeName = "frilo-dark";
